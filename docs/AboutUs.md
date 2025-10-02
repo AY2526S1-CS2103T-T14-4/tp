@@ -11,39 +11,37 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Wei Lun
+
+<img src="images/swei99.png" width="200px">
+
+[[github](https://github.com/swei99)]
+
+* Role: Project Supervisor
+
+### Lim Jun Sheng, Wallace
+
+<img src="images/codewallie.png" width="200px">
+
+[[github](https://github.com/codewallie)]
+
+* Role: Developer
+* Responsibilities: UI
+
+### Jhanvi Sahu
+
+<img src="images/jj55j7.png" width="200px">
+
+[[github](https://github.com/jj55j7)]
+
+* Role: Project Advisor
+* Responsibilities: Data
+
+### Kai Xiang
 
 <img src="images/okaixiang.png" width="200px">
 
 [[github](https://github.com/OKaiXiang)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
