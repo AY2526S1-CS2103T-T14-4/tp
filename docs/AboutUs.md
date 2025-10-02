@@ -19,14 +19,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Supervisor
 
-### Jane Doe
+### Lim Jun Sheng, Wallace
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/codewallie.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/codewallie)]
 
-* Role: Team Lead
+* Role: Developer
 * Responsibilities: UI
 
 ### Johnny Doe
