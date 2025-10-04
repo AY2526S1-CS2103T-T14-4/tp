@@ -341,7 +341,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.  
 
-* 1b. Missing fields required
+* 1b. Wrong command used
   * 1b1. ElderRing shows proper command format.
   Use case ends.
 
