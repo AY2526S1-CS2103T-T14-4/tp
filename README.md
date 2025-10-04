@@ -2,8 +2,8 @@
 [![codecov](https://codecov.io/gh/AY2526S1-CS2103T-T14-4/tp/graph/badge.svg?token=H10E5XH0BD)](https://codecov.io/gh/AY2526S1-CS2103T-T14-4/tp)
 ![Ui](docs/images/Ui.png)
 
-* EldenRing is an elderly care management address book for silver generation ambassadors and volunteers to easily facilitate and manage elderly clients by consolidating all their information in one place.<br>
-* EldenRing maintains elderly records such as contact information, family details, medical notes, and schedules/
+* ElderRing is an elderly care management address book for silver generation ambassadors and volunteers to easily facilitate and manage elderly clients by consolidating all their information in one place.<br>
+* ElderRing maintains elderly records such as contact information, family details, medical notes, and schedules/
 * The project simulates an ongoing software project for a desktop application (called ElderRing) used for managing elderly client information.
     * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
     * It comes with a **reasonable level of user and developer documentation**.
