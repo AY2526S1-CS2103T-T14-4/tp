@@ -274,14 +274,16 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* SGAs that need to manage and keep track of the profiles of elderly they are going to or has visited
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* 
 
 **Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+* maintain a record of elderly profile
+* removes the need of having physical notes of elderly profiles
 
 ### User stories
 
