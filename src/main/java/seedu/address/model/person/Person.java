@@ -71,7 +71,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getName().fullName.toUpperCase().equals(getName().fullName.toUpperCase());
     }
 
     /**
