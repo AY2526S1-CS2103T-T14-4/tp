@@ -32,6 +32,9 @@ public class DeleteCommand extends Command {
     private final Phone targetPhone;
     private final Name targetName;
 
+    /**
+     * Creates a DeleteCommand to delete the person at the specified {@code targetIndex}
+     */
     public DeleteCommand(Index targetIndex) {
         requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
@@ -39,6 +42,9 @@ public class DeleteCommand extends Command {
         this.targetName = null;
     }
 
+    /**
+     * Creates a DeleteCommand to delete the person with the specified {@code targetName} and {@code targetPhone}
+     */
     public DeleteCommand(Name targetName, Phone targetPhone) {
         requireNonNull(targetName);
         requireNonNull(targetPhone);
