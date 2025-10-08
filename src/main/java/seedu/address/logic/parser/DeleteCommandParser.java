@@ -30,15 +30,9 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
 
             boolean indexIsPresent = arePrefixesPresent(argMultimap, PREFIX_INDEX);
             boolean nameAndPhoneArePresent = arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE);
-            boolean preambleIsEmpty = argMultimap.getPreamble().isEmpty();
-
-            System.out.println("indexIsPresent: " + indexIsPresent);
-            System.out.println("nameAndPhoneArePresent: " + nameAndPhoneArePresent);
-            System.out.println("preambleIsEmpty: " + preambleIsEmpty);
 
             if ((!indexIsPresent && !nameAndPhoneArePresent)
-                    || (indexIsPresent && nameAndPhoneArePresent)
-                    ) {
+                    || (indexIsPresent && nameAndPhoneArePresent)) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
             }
 

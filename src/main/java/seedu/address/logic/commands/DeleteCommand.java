@@ -21,11 +21,12 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the index number used in the displayed person list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1"; // TODO
+            + ": Deletes the person identified by the index number, or the name and phone number "
+            + "used in the displayed person list.\n"
+            + "Parameters: INDEX (must be a positive integer) OR NAME AND PHONE\n"
+            + "Examples:\n\t" + COMMAND_WORD + " i/1\n\t" + COMMAND_WORD + " n/Alice p/12345678";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s"; // TODO
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
     private final Index targetIndex;
     private final Phone targetPhone;
@@ -77,7 +78,7 @@ public class DeleteCommand extends Command {
             return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
         }
 
-        throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_NAME_PHONE);
     }
 
     @Override
