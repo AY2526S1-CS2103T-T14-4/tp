@@ -279,7 +279,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
-* 
+*
 
 **Value proposition**: manage contacts faster than a typical mouse/GUI driven app
 * maintain a record of elderly profile
@@ -331,7 +331,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to add an elderly to the list 
+1.  User requests to add an elderly to the list
 2.  ElderRing adds the elderly to the list
 
     Use case ends.
@@ -341,7 +341,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. Elderly is already previously added
   * 1a1. ElderRing shows an error message.
 
-  Use case ends.  
+  Use case ends.
 
 * 1b. Wrong command used
   * 1b1. ElderRing shows proper command format.
