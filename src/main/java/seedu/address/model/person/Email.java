@@ -9,27 +9,39 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Email {
 
-    private static final String SPECIAL_CHARACTERS = "+_.-";
-    public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
-            + "and adhere to the following constraints:\n"
-            + "1. The local-part should only contain alphanumeric characters and these special characters, excluding "
-            + "the parentheses, (" + SPECIAL_CHARACTERS + "). The local-part may not start or end with any special "
-            + "characters.\n"
-            + "2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels "
-            + "separated by periods.\n"
-            + "The domain name must:\n"
-            + "    - end with a domain label at least 2 characters long\n"
-            + "    - have each domain label start and end with alphanumeric characters\n"
-            + "    - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.";
-    // alphanumeric and special characters
-    private static final String ALPHANUMERIC_NO_UNDERSCORE = "[^\\W_]+"; // alphanumeric characters except underscore
-    private static final String LOCAL_PART_REGEX = "^" + ALPHANUMERIC_NO_UNDERSCORE + "([" + SPECIAL_CHARACTERS + "]"
-            + ALPHANUMERIC_NO_UNDERSCORE + ")*";
-    private static final String DOMAIN_PART_REGEX = ALPHANUMERIC_NO_UNDERSCORE
-            + "(-" + ALPHANUMERIC_NO_UNDERSCORE + ")*";
-    private static final String DOMAIN_LAST_PART_REGEX = "(" + DOMAIN_PART_REGEX + "){2,}$"; // At least two chars
+    public static final String MESSAGE_CONSTRAINTS =
+            "Emails should be of the format local-part@domain and adhere to the following constraints:\n"
+          + "0. The email may be empty (\"\").\n"
+          + "1. If provided, the entire email must be at most 50 characters long.\n"
+          + "2. The local-part must contain only letters and digits (A–Z, a–z, 0–9) and be at least 1 character long.\n"
+          + "3. The domain is composed of dot-separated labels containing only letters (A–Z, a–z).\n"
+          + "The domain must:\n"
+          + "    - end with a label of at least 2 letters followed by '.com'\n"
+          + "    - have each domain label start and end with a letter\n"
+          + "    - contain only letters in each label (no digits, underscores, hyphens, or other symbols).";
+
+    // ===== Regex parts (minimal changes, same overall structure) =====
+
+    // Length limit lookahead for the non-empty alternative
+    private static final String LENGTH_LIMIT_LOOKAHEAD = "(?=.{1,50}$)";
+
+    // Local part: letters OR digits, at least 1
+    private static final String ALPHANUMERIC_LOCAL = "[A-Za-z0-9]+";
+    private static final String LOCAL_PART_REGEX = ALPHANUMERIC_LOCAL;
+
+    // Domain labels: letters only
+    private static final String ALPHABETS = "[A-Za-z]+";
+    private static final String DOMAIN_PART_REGEX = ALPHABETS;
+
+    // Final label: at least 2 letters, then ".com"
+    private static final String DOMAIN_LAST_PART_REGEX = "[A-Za-z]{2,}\\.com";
+
+    // Full domain: optional letter-only subdomains, then required final label
     private static final String DOMAIN_REGEX = "(" + DOMAIN_PART_REGEX + "\\.)*" + DOMAIN_LAST_PART_REGEX;
-    public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@" + DOMAIN_REGEX;
+
+    // Full validation: allow empty string OR enforce length and local@domain(.com)
+    public static final String VALIDATION_REGEX =
+            "^(?:$|" + LENGTH_LIMIT_LOOKAHEAD + LOCAL_PART_REGEX + "@" + DOMAIN_REGEX + ")$";
 
     public final String value;
 
@@ -42,6 +54,10 @@ public class Email {
         requireNonNull(email);
         checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
         value = email;
+    }
+
+    public Email() {
+        value = "";
     }
 
     /**
