@@ -1,10 +1,10 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.stream.Stream;
@@ -36,14 +36,21 @@ public class TagCommandParser implements Parser<TagCommand> {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE));
             }
 
-            argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_INDEX, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_TAG);
+            argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_INDEX, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS,
+                    PREFIX_TAG);
 
             String tagName = argMultimap.getValue(PREFIX_TAG).get();
 
             int identifierCount = 0;
-            if (indexIsPresent) identifierCount++;
-            if (nameAndPhoneArePresent) identifierCount++;
-            if (addressIsPresent) identifierCount++;
+            if (indexIsPresent) {
+                identifierCount++;
+            }
+            if (nameAndPhoneArePresent) {
+                identifierCount++;
+            }
+            if (addressIsPresent) {
+                identifierCount++;
+            }
 
             if (identifierCount != 1) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE));
