@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
@@ -97,6 +98,20 @@ public class Person {
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags);
     }
+
+    /**
+     * Returns a new Person with the given tag added.
+     * Does not modify the existing Person.
+     */
+    public Person addTag(Tag tag) {
+        requireNonNull(tag);
+
+        Set<Tag> updatedTags = new HashSet<>(this.tags);
+        updatedTags.add(tag);
+
+        return new Person(this.name, this.phone, this.email, this.address, updatedTags);
+    }
+
 
     @Override
     public int hashCode() {
