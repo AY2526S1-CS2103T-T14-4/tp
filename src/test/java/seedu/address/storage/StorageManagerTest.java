@@ -24,8 +24,8 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
-        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
+        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab.json"));
+        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs.json"));
         storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
     }
 
@@ -65,4 +65,17 @@ public class StorageManagerTest {
         assertNotNull(storageManager.getAddressBookFilePath());
     }
 
+    // Additional test for text storage
+    @Test
+    public void textStorageAddressBookReadSave() throws Exception {
+        Path textFilePath = testFolder.resolve("textab.txt");
+        TextAddressBookStorage textAddressBookStorage = new TextAddressBookStorage(textFilePath);
+        StorageManager textStorageManager = new StorageManager(textAddressBookStorage,
+                new JsonUserPrefsStorage(getTempFilePath("textprefs.json")));
+
+        AddressBook original = getTypicalAddressBook();
+        textStorageManager.saveAddressBook(original);
+        ReadOnlyAddressBook retrieved = textStorageManager.readAddressBook().get();
+        assertEquals(original, new AddressBook(retrieved));
+    }
 }
