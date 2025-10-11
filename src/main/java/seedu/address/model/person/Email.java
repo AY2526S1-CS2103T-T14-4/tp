@@ -29,10 +29,10 @@ public class Email {
     // Local part: letters OR digits, at least 1
     private static final String ALPHANUMERIC_LOCAL = "[A-Za-z0-9]+";
     private static final String LOCAL_PART_REGEX = ALPHANUMERIC_LOCAL;
-    
+
     // Domain: a single label of letters (at least 2), then ".com" (no subdomains)
     private static final String DOMAIN_REGEX = "[A-Za-z]{2,}\\.com";
-    
+
     // Full validation: allow empty string OR enforce length and local@domain(.com)
     public static final String VALIDATION_REGEX =
             "^(?:$|" + LENGTH_LIMIT_LOOKAHEAD + LOCAL_PART_REGEX + "@" + DOMAIN_REGEX + ")$";
