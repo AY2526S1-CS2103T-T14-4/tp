@@ -34,10 +34,21 @@ public class PhoneTest {
         assertFalse(Phone.isValidPhone("124293842033123")); // long phone numbers
         assertFalse(Phone.isValidPhone("911")); // exactly 3 numbers
 
-        // valid phone numbers
-        assertTrue(Phone.isValidPhone("93121534"));
+        assertFalse(Phone.isValidPhone("51234567")); // wrong starting digit (5)
+        assertFalse(Phone.isValidPhone("71234567")); // wrong starting digit (7)
+        assertFalse(Phone.isValidPhone("01234567")); // wrong starting digit (0)
+        assertFalse(Phone.isValidPhone("6123456")); // 7 digits (too short)
+        assertFalse(Phone.isValidPhone("612345678")); // 9 digits (too long)
+
+        // valid phone numbers (exactly 8 digits; start with 9/8/6)
+        assertTrue(Phone.isValidPhone("93121534")); // starts with 9
         assertTrue(Phone.isValidPhone("81234123")); // starts with 8
         assertTrue(Phone.isValidPhone("61234123")); // starts with 6
+
+        // boundary-valids: minimal patterns with correct first digit
+        assertTrue(Phone.isValidPhone("90000000"));
+        assertTrue(Phone.isValidPhone("80000000"));
+        assertTrue(Phone.isValidPhone("60000000"));
     }
 
     @Test

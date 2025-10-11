@@ -110,16 +110,12 @@ public class TagCommand extends Command {
                 throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
             }
             personToTag = lastShownList.get(targetIndex.getZeroBased());
-        }
-
-        else if (targetName != null && targetPhone != null) {
+        } else if (targetName != null && targetPhone != null) {
             Optional<Person> match = lastShownList.stream()
                     .filter(p -> p.getName().equals(targetName) && p.getPhone().equals(targetPhone))
                     .findFirst();
             personToTag = match.orElse(null);
-        }
-
-        else if (targetAddress != null) {
+        } else if (targetAddress != null) {
             Optional<Person> match = lastShownList.stream()
                     .filter(p -> p.getAddress().equals(targetAddress))
                     .findFirst();
