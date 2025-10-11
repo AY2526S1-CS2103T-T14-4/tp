@@ -145,7 +145,7 @@ public class AddCommandParserTest {
         Person expectedNoEmail = new PersonBuilder(AMY).withEmail("").withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + ADDRESS_DESC_AMY,
                 new AddCommand(expectedNoEmail));
-        
+
     }
 
     @Test
@@ -199,7 +199,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
-        
+
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + " e/bob@example.org " + ADDRESS_DESC_BOB,
                 Email.MESSAGE_CONSTRAINTS); // non-.com TLD
 

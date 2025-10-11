@@ -37,7 +37,7 @@ public class PhoneTest {
         assertFalse(Phone.isValidPhone("51234567")); // wrong starting digit (5)
         assertFalse(Phone.isValidPhone("71234567")); // wrong starting digit (7)
         assertFalse(Phone.isValidPhone("01234567")); // wrong starting digit (0)
-        assertFalse(Phone.isValidPhone("6123456"));  // 7 digits (too short)
+        assertFalse(Phone.isValidPhone("6123456")); // 7 digits (too short)
         assertFalse(Phone.isValidPhone("612345678")); // 9 digits (too long)
 
         // valid phone numbers (exactly 8 digits; start with 9/8/6)
@@ -70,5 +70,4 @@ public class PhoneTest {
         // different values -> returns false
         assertFalse(phone.equals(new Phone("99999998")));
     }
-    
 }
