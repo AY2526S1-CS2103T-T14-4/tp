@@ -18,8 +18,9 @@ public class Email {
           + "The domain must:\n"
           + "    - end with a label of at least 2 letters followed by '.com'\n"
           + "    - have each domain label start and end with a letter\n"
-          + "    - contain only letters in each label (no digits, underscores, hyphens, or other symbols).";
-
+          + "    - contain only letters in each label (no digits, underscores, hyphens, or other symbols)."
+          + "3. The domain must be a single label of letters (A–Z, a–z) of length ≥ 2, followed by '.com' "
+          + "(e.g., example.com). Subdomains like 'sales.example.com' are not allowed.";
     // ===== Regex parts (minimal changes, same overall structure) =====
 
     // Length limit lookahead for the non-empty alternative
@@ -28,17 +29,10 @@ public class Email {
     // Local part: letters OR digits, at least 1
     private static final String ALPHANUMERIC_LOCAL = "[A-Za-z0-9]+";
     private static final String LOCAL_PART_REGEX = ALPHANUMERIC_LOCAL;
-
-    // Domain labels: letters only
-    private static final String ALPHABETS = "[A-Za-z]+";
-    private static final String DOMAIN_PART_REGEX = ALPHABETS;
-
-    // Final label: at least 2 letters, then ".com"
-    private static final String DOMAIN_LAST_PART_REGEX = "[A-Za-z]{2,}\\.com";
-
-    // Full domain: optional letter-only subdomains, then required final label
-    private static final String DOMAIN_REGEX = "(" + DOMAIN_PART_REGEX + "\\.)*" + DOMAIN_LAST_PART_REGEX;
-
+    
+    // Domain: a single label of letters (at least 2), then ".com" (no subdomains)
+    private static final String DOMAIN_REGEX = "[A-Za-z]{2,}\\.com";
+    
     // Full validation: allow empty string OR enforce length and local@domain(.com)
     public static final String VALIDATION_REGEX =
             "^(?:$|" + LENGTH_LIMIT_LOOKAHEAD + LOCAL_PART_REGEX + "@" + DOMAIN_REGEX + ")$";
