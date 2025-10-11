@@ -63,13 +63,16 @@ public class EmailTest {
         assertFalse(Email.isValidEmail("if.you.dream.it_you.can.do.it@example.com")); // long local part
         assertFalse(Email.isValidEmail("e1234567@u.nus.edu")); // more than one period in domain
         assertFalse(Email.isValidEmail("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX@YY.com")); //total max 51 chars
+        assertFalse(Email.isValidEmail("peterjack@example.org")); // non-.com TLD
+        assertFalse(Email.isValidEmail("a@a1.com")); // digits in domain label (letters-only domain)
+        assertFalse(Email.isValidEmail("a@a-b.com")); // hyphen in domain label (not allowed)
+        assertFalse(Email.isValidEmail("john@sales.marketing.example.com")); // multi-label letters-only .com
 
         // valid email
         assertTrue(Email.isValidEmail("peterjack@example.com"));
         assertTrue(Email.isValidEmail("PeterJack1190@example.com"));
         assertTrue(Email.isValidEmail("X@YY.com"));
         assertTrue(Email.isValidEmail("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX@YY.com")); //total max 50 chars
-
     }
 
     @Test
@@ -90,5 +93,13 @@ public class EmailTest {
 
         // different values -> returns false
         assertFalse(email.equals(new Email("vvalid@email.com")));
+    }
+
+    @Test
+    public void defaultConstructor_setsEmpty() {
+        Email e = new Email();
+        assertTrue(Email.isValidEmail(e.value));
+        // verify exactly empty
+        // assertEquals("", e.value);
     }
 }

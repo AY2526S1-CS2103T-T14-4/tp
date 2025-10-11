@@ -56,8 +56,11 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
-        // TODO: empty email prefix accepted
-        // TODO: empty email field accepted (example e/"")
+        // email prefix omitted entirely -> treated as empty
+        Person expectedNoEmail = new PersonBuilder(BOB).withEmail("").withTags(VALID_TAG_FRIEND).build();
+        assertParseSuccess(parser,
+                NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_FRIEND,
+                new AddCommand(expectedNoEmail));
 
         // multiple tags - all accepted
         Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
@@ -137,6 +140,12 @@ public class AddCommandParserTest {
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
                 new AddCommand(expectedPerson));
+
+        // zero tags, email omitted -> empty email
+        Person expectedNoEmail = new PersonBuilder(AMY).withEmail("").withTags().build();
+        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + ADDRESS_DESC_AMY,
+                new AddCommand(expectedNoEmail));
+        
     }
 
     @Test
@@ -190,5 +199,14 @@ public class AddCommandParserTest {
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + " e/bob@example.org " + ADDRESS_DESC_BOB,
+                Email.MESSAGE_CONSTRAINTS); // non-.com TLD
+
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + " e/bob@ex4mple.com " + ADDRESS_DESC_BOB,
+                Email.MESSAGE_CONSTRAINTS); // digits in domain label
+
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + " e/b.ob@aa.com " + ADDRESS_DESC_BOB,
+                Email.MESSAGE_CONSTRAINTS); // symbol in local part (only letters/digits allowed)
     }
 }
