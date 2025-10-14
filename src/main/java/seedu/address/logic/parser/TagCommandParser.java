@@ -48,7 +48,7 @@ public class TagCommandParser implements Parser<TagCommand> {
             if (nameAndPhoneArePresent) {
                 identifierCount++;
             }
-            if (addressIsPresent) {
+            if (addressIsPresent && !nameAndPhoneArePresent) {
                 identifierCount++;
             }
 
@@ -78,7 +78,7 @@ public class TagCommandParser implements Parser<TagCommand> {
     }
 
     /**
-     * Returns true if all of the given prefixes have values in the ArgumentMultimap.
+     * Returns true if all the given prefixes have values in the ArgumentMultimap.
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());

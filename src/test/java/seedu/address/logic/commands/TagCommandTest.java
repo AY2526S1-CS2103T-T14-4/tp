@@ -18,6 +18,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -98,7 +99,7 @@ public class TagCommandTest {
     }
 
     @Test
-    public void execute_invalidIndex_throwsCommandException() {
+    public void execute_invalidIndex_throwsCommandException() throws ParseException {
         Person validPerson = new PersonBuilder().build();
         ModelStubAcceptingPersonTagged modelStub = new ModelStubAcceptingPersonTagged(validPerson);
 
@@ -109,7 +110,7 @@ public class TagCommandTest {
     }
 
     @Test
-    public void equals() {
+    public void equals() throws ParseException{
         TagCommand tagIndex1 = new TagCommand(Index.fromZeroBased(0), "vip");
         TagCommand tagIndex2 = new TagCommand(Index.fromZeroBased(1), "vip");
         TagCommand tagNamePhone = new TagCommand(new Name("Alex"), new Phone("91234567"), "vip");
@@ -121,7 +122,7 @@ public class TagCommandTest {
     }
 
     @Test
-    public void toStringMethod() {
+    public void toStringMethod() throws ParseException{
         TagCommand tagCommand = new TagCommand(Index.fromZeroBased(0), "vip");
         String expected = TagCommand.class.getCanonicalName() + "{targetIndex=0, targetName=null, targetPhone=null, " +
                 "targetAddress=null, tag=vip}";
