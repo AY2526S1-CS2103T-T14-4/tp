@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -19,7 +18,6 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
@@ -41,12 +39,10 @@ public class TagCommandTest {
                 "vip"));
         assertThrows(NullPointerException.class, () -> new TagCommand(new Name("Alex"), new Phone("91234567"),
                 null));
-        assertThrows(NullPointerException.class,
-                () -> new TagCommand(new Name("Alex"), new Phone("91234567"), new Address("Drury Lane"),
-                        null));
-        assertThrows(NullPointerException.class,
-                () -> new TagCommand(new Name("Alex"), new Phone("91234567"), null,
-                        "vip"));
+        assertThrows(NullPointerException.class, () -> new TagCommand(new Name("Alex"), new Phone("91234567"),
+                new Address("Drury Lane"), null));
+        assertThrows(NullPointerException.class, () -> new TagCommand(new Name("Alex"), new Phone("91234567"),
+                null, "vip"));
     }
 
     @Test
@@ -94,8 +90,7 @@ public class TagCommandTest {
         TagCommand tagCommand = new TagCommand(Index.fromZeroBased(0), "vip");
 
         assertThrows(CommandException.class,
-                "The person already has tag [vip]",
-                () -> tagCommand.execute(modelStub));
+                "The person already has tag [vip]", () -> tagCommand.execute(modelStub));
     }
 
     @Test
@@ -105,12 +100,11 @@ public class TagCommandTest {
 
         TagCommand tagCommand = new TagCommand(Index.fromZeroBased(1), "vip");
 
-        assertThrows(CommandException.class,
-                () -> tagCommand.execute(modelStub));
+        assertThrows(CommandException.class, () -> tagCommand.execute(modelStub));
     }
 
     @Test
-    public void equals() throws ParseException{
+    public void equals() throws ParseException {
         TagCommand tagIndex1 = new TagCommand(Index.fromZeroBased(0), "vip");
         TagCommand tagIndex2 = new TagCommand(Index.fromZeroBased(1), "vip");
         TagCommand tagNamePhone = new TagCommand(new Name("Alex"), new Phone("91234567"), "vip");
@@ -122,10 +116,10 @@ public class TagCommandTest {
     }
 
     @Test
-    public void toStringMethod() throws ParseException{
+    public void toStringMethod() throws ParseException {
         TagCommand tagCommand = new TagCommand(Index.fromZeroBased(0), "vip");
-        String expected = TagCommand.class.getCanonicalName() + "{targetIndex=0, targetName=null, targetPhone=null, " +
-                "targetAddress=null, tag=vip}";
+        String expected = TagCommand.class.getCanonicalName() + "{targetIndex=0, targetName=null, targetPhone=null, "
+                + "targetAddress=null, tag=vip}";
         assertTrue(tagCommand.toString().contains("vip"));
     }
 
