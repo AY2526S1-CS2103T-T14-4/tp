@@ -126,6 +126,10 @@ public class TagCommand extends Command {
             throw new CommandException(MESSAGE_INVALID_IDENTIFIER);
         }
 
+        if (personToTag.getTags().contains(tag)) {
+            throw new CommandException("The person already has tag " + tag);
+        }
+
         Person taggedPerson = personToTag.addTag(tag);
         model.setPerson(personToTag, taggedPerson);
 
