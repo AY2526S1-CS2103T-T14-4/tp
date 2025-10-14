@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -18,6 +19,9 @@ import seedu.address.model.person.Person;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
+    //used to compare name for sort
+    private static final Comparator<Person> NAME_ASC = (p1, p2) ->
+            p1.getName().toString().compareTo(p2.getName().toString());
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
@@ -109,6 +113,17 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    //method to sort elderly by name
+    @Override
+    public void sortPersonsByName(boolean ascending) {
+        if (ascending) {
+            addressBook.sortPersons(NAME_ASC);
+        } else {
+            addressBook.sortPersons(NAME_ASC.reversed());
+        }
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     //=========== Filtered Person List Accessors =============================================================
