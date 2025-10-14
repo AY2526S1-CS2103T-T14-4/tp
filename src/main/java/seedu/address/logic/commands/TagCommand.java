@@ -82,9 +82,11 @@ public class TagCommand extends Command {
     }
 
     /**
-     * Creates a TagCommand to tag the person with the specified targetAddress.
+     * Creates a TagCommand to tag the person with the specified targetName, targetPhone and targetAddress.
      */
-    public TagCommand(Address targetAddress, String tagName) {
+    public TagCommand(Name targetName, Phone targetPhone, Address targetAddress, String tagName) {
+        requireNonNull(targetName);
+        requireNonNull(targetPhone);
         requireNonNull(targetAddress);
         requireNonNull(tagName);
 
@@ -93,8 +95,8 @@ public class TagCommand extends Command {
         }
 
         this.targetIndex = null;
-        this.targetName = null;
-        this.targetPhone = null;
+        this.targetName = targetName;
+        this.targetPhone = targetPhone;
         this.targetAddress = targetAddress;
         this.tag = new Tag(tagName);
     }
@@ -112,18 +114,23 @@ public class TagCommand extends Command {
             personToTag = lastShownList.get(targetIndex.getZeroBased());
         } else if (targetName != null && targetPhone != null) {
             Optional<Person> match = lastShownList.stream()
-                    .filter(p -> p.getName().equals(targetName) && p.getPhone().equals(targetPhone))
+                    .filter(p -> p.getName().fullName.equalsIgnoreCase(targetName.fullName)
+                            && p.getPhone().equals(targetPhone))
                     .findFirst();
             personToTag = match.orElse(null);
         } else if (targetAddress != null) {
             Optional<Person> match = lastShownList.stream()
-                    .filter(p -> p.getAddress().equals(targetAddress))
+                    .filter(p -> p.getAddress().value.equalsIgnoreCase(targetAddress.value))
                     .findFirst();
             personToTag = match.orElse(null);
         }
 
         if (personToTag == null) {
             throw new CommandException(MESSAGE_INVALID_IDENTIFIER);
+        }
+
+        if (personToTag.getTags().contains(tag)) {
+            throw new CommandException("The person already has tag " + tag);
         }
 
         Person taggedPerson = personToTag.addTag(tag);

@@ -48,7 +48,7 @@ public class TagCommandParser implements Parser<TagCommand> {
             if (nameAndPhoneArePresent) {
                 identifierCount++;
             }
-            if (addressIsPresent) {
+            if (addressIsPresent && !nameAndPhoneArePresent) {
                 identifierCount++;
             }
 
@@ -59,13 +59,15 @@ public class TagCommandParser implements Parser<TagCommand> {
             if (indexIsPresent) {
                 Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
                 return new TagCommand(index, tagName);
-            } else if (nameAndPhoneArePresent) {
+            } else if (nameAndPhoneArePresent && !addressIsPresent) {
                 Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
                 Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
                 return new TagCommand(name, phone, tagName);
-            } else if (addressIsPresent) {
+            } else if (nameAndPhoneArePresent && addressIsPresent) {
+                Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+                Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
                 Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-                return new TagCommand(address, tagName);
+                return new TagCommand(name, phone, address, tagName);
             } else {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE));
             }
@@ -76,7 +78,7 @@ public class TagCommandParser implements Parser<TagCommand> {
     }
 
     /**
-     * Returns true if all of the given prefixes have values in the ArgumentMultimap.
+     * Returns true if all the given prefixes have values in the ArgumentMultimap.
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
