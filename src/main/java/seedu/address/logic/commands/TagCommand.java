@@ -82,9 +82,11 @@ public class TagCommand extends Command {
     }
 
     /**
-     * Creates a TagCommand to tag the person with the specified targetAddress.
+     * Creates a TagCommand to tag the person with the specified targetName, targetPhone and targetAddress.
      */
-    public TagCommand(Address targetAddress, String tagName) {
+    public TagCommand(Name targetName, Phone targetPhone, Address targetAddress, String tagName) {
+        requireNonNull(targetName);
+        requireNonNull(targetPhone);
         requireNonNull(targetAddress);
         requireNonNull(tagName);
 
@@ -93,8 +95,8 @@ public class TagCommand extends Command {
         }
 
         this.targetIndex = null;
-        this.targetName = null;
-        this.targetPhone = null;
+        this.targetName = targetName;
+        this.targetPhone = targetPhone;
         this.targetAddress = targetAddress;
         this.tag = new Tag(tagName);
     }
