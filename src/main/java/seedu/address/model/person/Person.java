@@ -63,8 +63,9 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both persons have the same PHONE and NAME.
      * This defines a weaker notion of equality between two persons.
+     * Based on business requirement: PHONE + NAME is the unique identifier.
      */
     public boolean isSamePerson(Person otherPerson) {
         if (otherPerson == this) {
@@ -73,7 +74,8 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getName().fullName.toUpperCase()
-                .equals(getName().fullName.toUpperCase());
+                .equals(getName().fullName.toUpperCase())
+                && otherPerson.getPhone().equals(getPhone());
     }
 
     /**
@@ -97,6 +99,7 @@ public class Person {
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags);
+        // Only check name + phone for equality?
     }
 
     /**
