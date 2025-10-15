@@ -28,14 +28,6 @@ public class StorageManager implements Storage {
         this.userPrefsStorage = userPrefsStorage;
     }
 
-    /**
-     * Creates a {@code StorageManager} with text-based address book storage.
-     */
-    public StorageManager(Path addressBookFilePath, UserPrefsStorage userPrefsStorage) {
-        this.addressBookStorage = new TextAddressBookStorage(addressBookFilePath);
-        this.userPrefsStorage = userPrefsStorage;
-    }
-
     // ================ UserPrefs methods ==============================
 
     @Override
