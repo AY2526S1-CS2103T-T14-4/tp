@@ -38,7 +38,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
 
             argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_INDEX, PREFIX_NAME, PREFIX_PHONE);
 
-            // Ensures that index is priority. Even if Name and Phone are present, only index is considered.
+            // Ensures that index is priority. Even if Name or Phone is present, only index is considered.
             if (indexIsPresent) {
                 Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
                 return new DeleteCommand(index);
