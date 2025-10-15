@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -116,5 +117,58 @@ public class DeleteCommandTest {
         model.updateFilteredPersonList(p -> false);
 
         assertTrue(model.getFilteredPersonList().isEmpty());
+    }
+
+    @Test
+    public void constructor_nullIndex_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new DeleteCommand((Index) null));
+    }
+
+    @Test
+    public void constructor_nullNameOrPhone_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new DeleteCommand(
+            null, new seedu.address.model.person.Phone("92345678")));
+        assertThrows(NullPointerException.class, () -> new DeleteCommand(
+            new seedu.address.model.person.Name("Alice"), null));
+    }
+
+    @Test
+    public void execute_deleteByNameAndPhone_success() throws Exception {
+        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        DeleteCommand deleteCommand = new DeleteCommand(personToDelete.getName(), personToDelete.getPhone());
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
+                Messages.format(personToDelete));
+
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.deletePerson(personToDelete);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_deleteByNameAndPhoneNotFound_throwsCommandException() {
+        DeleteCommand deleteCommand = new DeleteCommand(
+                new seedu.address.model.person.Name("Nonexistent"),
+                new seedu.address.model.person.Phone("90000000"));
+        Exception e = assertThrows(Exception.class, () -> deleteCommand.execute(model));
+        assertTrue(e.getMessage().contains(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_NAME_PHONE));
+    }
+
+    @Test
+    public void equals_namePhoneVariant() {
+        seedu.address.model.person.Name name1 = new seedu.address.model.person.Name("Alice");
+        seedu.address.model.person.Phone phone1 = new seedu.address.model.person.Phone("92345678");
+        seedu.address.model.person.Name name2 = new seedu.address.model.person.Name("Bob");
+        seedu.address.model.person.Phone phone2 = new seedu.address.model.person.Phone("87654321");
+
+        DeleteCommand cmd1 = new DeleteCommand(name1, phone1);
+        DeleteCommand cmd2 = new DeleteCommand(name1, phone1);
+        DeleteCommand cmd3 = new DeleteCommand(name2, phone2);
+
+        assertTrue(cmd1.equals(cmd2)); // same values returns true
+        assertFalse(cmd1.equals(cmd3)); // different values returns false
+        assertFalse(cmd1.equals(1)); // different type returns false
+        assertFalse(cmd1.equals(null)); // null returns false
     }
 }
