@@ -1,0 +1,22 @@
+{
+  "persons": [
+    {
+      "name": "Alice Pauline",
+      "phone": "94351253",
+      "email": "alice@example.com",
+      "address": "Address 1"
+    },
+    {
+      "name": "Bob Smith",
+      "phone": "98765432",
+      "email": "bob@example.com",
+      "address": "Bob Address"
+    },
+    {
+      "name": "Alice Pauline",
+      "phone": "94351253",
+      "email": "alice2@example.com",
+      "address": "Address 2"
+    }
+  ]
+}

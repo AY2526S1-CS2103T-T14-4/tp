@@ -2,7 +2,6 @@ package seedu.address;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -23,12 +22,11 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
-//import seedu.address.storage.AddressBookStorage;
-import seedu.address.storage.DualStorageManager;
-//import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.AddressBookStorage;
+import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
-//import seedu.address.storage.StorageManager;
+import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
@@ -55,16 +53,12 @@ public class MainApp extends Application {
 
         AppParameters appParameters = AppParameters.parse(getParameters());
         config = initConfig(appParameters.getConfigPath());
+        initLogging(config);
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-
-        // Use dual storage (both JSON and text)
-        Path jsonFilePath = Paths.get("data", "addressbook.json");
-        Path textFilePath = Paths.get("data", "addressbook.txt");
-        storage = new DualStorageManager(jsonFilePath, textFilePath, userPrefsStorage);
-
-        initLogging(config);
+        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
+        storage = new StorageManager(addressBookStorage, userPrefsStorage);
 
         model = initModelManager(storage, userPrefs);
 

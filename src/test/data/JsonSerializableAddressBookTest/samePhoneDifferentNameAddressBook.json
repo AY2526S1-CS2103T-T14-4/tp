@@ -1,0 +1,16 @@
+{
+  "persons": [
+    {
+      "name": "Stacy Pauline",
+      "phone": "88888888",
+      "email": "alice@example.com",
+      "address": "Address 1"
+    },
+    {
+      "name": "Alice Pauline",
+      "phone": "88888888",
+      "email": "alice2@example.com",
+      "address": "Address 2"
+    }
+  ]
+}

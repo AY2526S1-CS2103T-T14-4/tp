@@ -1,2 +1,0 @@
-Valid Name|12345678|Valid Address|valid@email.com
-Invalid Name@|87654321|Another Address|another@email.com

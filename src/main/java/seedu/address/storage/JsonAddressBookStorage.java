@@ -42,6 +42,7 @@ public class JsonAddressBookStorage implements AddressBookStorage {
      * @param filePath location of the data. Cannot be null.
      * @throws DataLoadingException if loading the data from storage failed.
      */
+    @Override
     public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataLoadingException {
         requireNonNull(filePath);
 
@@ -52,12 +53,35 @@ public class JsonAddressBookStorage implements AddressBookStorage {
         }
 
         try {
-            return Optional.of(jsonAddressBook.get().toModelType());
+            ReadOnlyAddressBook addressBook = jsonAddressBook.get().toModelType();
+
+            // Log success message with cleanup info
+            logger.info("[+] Data loaded! Duplicate entries were automatically removed.");
+
+            return Optional.of(addressBook);
+
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataLoadingException(ive);
         }
     }
+
+    //    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataLoadingException {
+    //        requireNonNull(filePath);
+    //
+    //        Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
+    //                filePath, JsonSerializableAddressBook.class);
+    //        if (!jsonAddressBook.isPresent()) {
+    //            return Optional.empty();
+    //        }
+    //
+    //        try {
+    //            return Optional.of(jsonAddressBook.get().toModelType());
+    //        } catch (IllegalValueException ive) {
+    //            logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
+    //            throw new DataLoadingException(ive);
+    //        }
+    //    }
 
     @Override
     public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {

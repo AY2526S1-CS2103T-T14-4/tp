@@ -19,10 +19,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     /**
      * Creates a {@code UserPrefs} with default values.
      */
-    public UserPrefs() {
-        // Keep JSON as primary for full feature support (tags, etc.)
-        // Text format will be maintained automatically
-    }
+    public UserPrefs() {}
 
     /**
      * Creates a {@code UserPrefs} with the prefs in {@code userPrefs}.
