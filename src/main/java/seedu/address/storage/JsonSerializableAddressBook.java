@@ -84,7 +84,7 @@ class JsonSerializableAddressBook {
         return addressBook.getPersonList().stream()
                 .anyMatch(existingPerson ->
                         existingPerson.getPhone().equals(person.getPhone())
-                                && existingPerson.getName().equals(person.getName()));
+                                && existingPerson.getName().fullName.equalsIgnoreCase(person.getName().fullName));
     }
 
     //    public AddressBook toModelType() throws IllegalValueException {
