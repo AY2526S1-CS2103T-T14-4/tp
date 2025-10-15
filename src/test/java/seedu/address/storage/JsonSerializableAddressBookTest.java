@@ -37,11 +37,24 @@ public class JsonSerializableAddressBookTest {
     }
 
     @Test
-    public void toModelType_duplicatePersons_throwsIllegalValueException() throws Exception {
+    public void toModelType_duplicatePersons_removedAutomatically() throws Exception {
         JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PERSON_FILE,
                 JsonSerializableAddressBook.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializableAddressBook.MESSAGE_DUPLICATE_PERSON,
-                dataFromFile::toModelType);
+
+        AddressBook addressBook = dataFromFile.toModelType();
+
+        // Verify only one person remains after duplicate removal
+        assertEquals(1, addressBook.getPersonList().size());
+
+        // verify the remaining person's details
+        assertEquals("Alice Pauline", addressBook.getPersonList().get(0).getName().toString());
     }
 
+    //    @Test
+    //    public void toModelType_duplicatePersons_throwsIllegalValueException() throws Exception {
+    //        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PERSON_FILE,
+    //                JsonSerializableAddressBook.class).get();
+    //        assertThrows(IllegalValueException.class, JsonSerializableAddressBook.MESSAGE_DUPLICATE_PERSON,
+    //                dataFromFile::toModelType);
+    //    }
 }
