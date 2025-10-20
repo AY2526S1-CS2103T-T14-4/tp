@@ -11,9 +11,18 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Phone;
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 public class EditPersonDescriptorTest {
@@ -67,5 +76,68 @@ public class EditPersonDescriptorTest {
                 + editPersonDescriptor.getAddress().orElse(null) + ", tags="
                 + editPersonDescriptor.getTags().orElse(null) + "}";
         assertEquals(expected, editPersonDescriptor.toString());
+    }
+
+    @Test
+    public void isAnyFieldEdited_empty_false() {
+        EditCommand.EditPersonDescriptor d = new EditCommand.EditPersonDescriptor();
+        assertFalse(d.isAnyFieldEdited());
+    }
+
+    @Test
+    public void isAnyFieldEdited_name_true() {
+        EditCommand.EditPersonDescriptor d = new EditCommand.EditPersonDescriptor();
+        d.setName(new Name("Alice"));
+        assertTrue(d.isAnyFieldEdited());
+    }
+
+    @Test
+    public void isAnyFieldEdited_phone_true() {
+        EditCommand.EditPersonDescriptor d = new EditCommand.EditPersonDescriptor();
+        d.setPhone(new Phone("91234567"));
+        assertTrue(d.isAnyFieldEdited());
+    }
+
+    @Test
+    public void isAnyFieldEdited_address_true() {
+        EditCommand.EditPersonDescriptor d = new EditCommand.EditPersonDescriptor();
+        d.setAddress(new Address("Blk 123, Some St"));
+        assertTrue(d.isAnyFieldEdited());
+    }
+
+    @Test
+    public void isAnyFieldEdited_tags_true() {
+        EditCommand.EditPersonDescriptor d = new EditCommand.EditPersonDescriptor();
+        Set<Tag> tags = new HashSet<>();
+        tags.add(new Tag("friend"));
+        d.setTags(tags);
+        assertTrue(d.isAnyFieldEdited());
+    }
+
+    @Test
+    public void setTags_nullThenEmptyGet_optionalEmptyAndThenPresent() {
+        EditCommand.EditPersonDescriptor d = new EditCommand.EditPersonDescriptor();
+
+        // Initially optional is empty
+        assertFalse(d.getTags().isPresent());
+
+        // Set to empty set (simulates reset)
+        d.setTags(Collections.emptySet());
+        assertTrue(d.getTags().isPresent());
+        assertTrue(d.getTags().get().isEmpty());
+    }
+
+    @Test
+    public void defensiveCopy_tagsImmutableFromOutside() {
+        EditCommand.EditPersonDescriptor d = new EditCommand.EditPersonDescriptor();
+        Set<Tag> tags = new HashSet<>();
+        tags.add(new Tag("x"));
+        d.setTags(tags);
+
+        // Mutate original set should not affect descriptor (defensive copy)
+        tags.add(new Tag("y"));
+        assertTrue(d.getTags().isPresent());
+        assertTrue(d.getTags().get().stream().anyMatch(t -> t.tagName.equals("x")));
+        assertFalse(d.getTags().get().stream().anyMatch(t -> t.tagName.equals("y")));
     }
 }
