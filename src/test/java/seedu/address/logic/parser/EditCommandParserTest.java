@@ -24,6 +24,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -205,5 +206,45 @@ public class EditCommandParserTest {
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_missingIndexPrefix_failure() {
+        // Old syntax: index in preamble (now invalid)
+        assertParseFailure(parser, "1" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+
+        // Index omitted entirely (also invalid)
+        assertParseFailure(parser, NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+    }
+
+    @Test
+    public void parse_nonIntegerIndex_failure() {
+        // Non-numeric index
+        assertParseFailure(parser, " i/abc" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+
+        // Whitespace after i/
+        assertParseFailure(parser, " i/   " + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+
+        // Very large index that overflows parse (ParserUtil.parseIndex should reject)
+        assertParseFailure(parser, " i/9999999999999999999999" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+    }
+
+    @Test
+    public void parse_duplicateIndexPrefix_failure() {
+        String userInput = " i/1 i/2 " + NAME_DESC_AMY;
+        assertParseFailure(parser, userInput,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_INDEX));
+    }
+
+    @Test
+    public void parse_oldSyntaxWithFields_failure() {
+        // Entire old command structure should fail now
+        assertParseFailure(parser, "1 " + NAME_DESC_AMY + PHONE_DESC_BOB, MESSAGE_INVALID_FORMAT);
+    }
+
+    @Test
+    public void parse_preambleNoise_failure() {
+        // Any preamble at all is now invalid
+        assertParseFailure(parser, " noise i/1" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
     }
 }
