@@ -38,7 +38,7 @@ MainWindow --> "0..1" HelpWindow
 
 PersonListPanel -down-> "*" PersonCard
 
-MainWindow -left-|> UiPart
+MainWindow -down-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
@@ -51,10 +51,10 @@ PersonCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-PersonListPanel -[hidden]left- HelpWindow
-HelpWindow -[hidden]left- CommandBox
+PersonListPanel -[hidden]left- StatusBarFooter
+StatusBarFooter -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
-ResultDisplay -[hidden]left- StatusBarFooter
+ResultDisplay -[hidden]left- HelpWindow
 
 MainWindow -[hidden]-|> UiPart
 @enduml
