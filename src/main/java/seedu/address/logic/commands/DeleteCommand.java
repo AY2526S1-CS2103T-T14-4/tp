@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.HashSet;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -9,9 +10,12 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.Tag;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -33,7 +37,8 @@ public class DeleteCommand extends Command {
     private final Name targetName;
 
     /**
-     * Creates a DeleteCommand to delete the person at the specified {@code targetIndex}
+     * Creates a DeleteCommand to delete the person at the specified
+     * {@code targetIndex}
      */
     public DeleteCommand(Index targetIndex) {
         requireNonNull(targetIndex);
@@ -43,7 +48,8 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * Creates a DeleteCommand to delete the person with the specified {@code targetName} and {@code targetPhone}
+     * Creates a DeleteCommand to delete the person with the specified
+     * {@code targetName} and {@code targetPhone}
      */
     public DeleteCommand(Name targetName, Phone targetPhone) {
         requireNonNull(targetName);
@@ -70,18 +76,22 @@ public class DeleteCommand extends Command {
             // delete by index
             Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
             model.deletePerson(personToDelete);
-            return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
+            return new CommandResult(
+                    String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
         }
 
         // delete by phone and name
+        Person partialPerson = new Person(targetName, targetPhone, new Email(), new Address("address"),
+                new HashSet<Tag>());
         Person personToDelete = lastShownList.stream()
-                .filter(person -> person.getName().equals(targetName) && person.getPhone().equals(targetPhone))
+                .filter(person -> person.isSamePerson(partialPerson))
                 .findFirst()
                 .orElse(null);
 
         if (personToDelete != null) {
             model.deletePerson(personToDelete);
-            return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
+            return new CommandResult(
+                    String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
         }
 
         throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_NAME_PHONE);
