@@ -11,6 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -179,6 +180,50 @@ public class EditCommandTest {
         String expected = EditCommand.class.getCanonicalName() + "{index=" + index + ", editPersonDescriptor="
                 + editPersonDescriptor + "}";
         assertEquals(expected, editCommand.toString());
+    }
+
+    @Test
+    public void execute_filteredListRefreshedToShowAll_success() {
+        // Filter down to 1 item
+        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+
+        // Edit with a harmless change to ensure an actual edit happens
+        Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person editedPerson = new PersonBuilder(personInFilteredList).withPhone(VALID_PHONE_BOB).build();
+
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        // Apply same change to expected
+        expectedModel.setPerson(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()), editedPerson);
+        // After execute, command forces PREDICATE_SHOW_ALL_PERSONS, so expected should do the same
+        expectedModel.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+
+        // Extra explicit check: filtered list should now be full size (assert mirrors new runtime check)
+        assertEquals(expectedModel.getAddressBook().getPersonList().size(), model.getFilteredPersonList().size());
+    }
+
+    @Test
+    public void execute_noOpDescriptorKeepsPersonButRefreshesList_success() {
+        // Filter first to simulate use case
+        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, new EditCommand.EditPersonDescriptor());
+        Person unchanged = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(unchanged));
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        // No changes to data, but still refresh to show all
+        expectedModel.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertEquals(expectedModel.getAddressBook().getPersonList().size(), model.getFilteredPersonList().size());
     }
 
 }
