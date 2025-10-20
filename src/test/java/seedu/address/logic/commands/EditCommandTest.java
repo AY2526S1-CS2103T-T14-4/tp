@@ -11,6 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -25,7 +26,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 
@@ -183,7 +183,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_filteredList_refreshedToShowAll_success() {
+    public void execute_filteredListRefreshedToShowAll_success() {
         // Filter down to 1 item
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
@@ -209,7 +209,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_noOpDescriptor_keepsPersonButRefreshesList_success() {
+    public void execute_noOpDescriptorKeepsPersonButRefreshesList_success() {
         // Filter first to simulate use case
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
