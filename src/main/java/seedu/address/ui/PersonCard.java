@@ -55,6 +55,8 @@ public class PersonCard extends UiPart<Region> {
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
+        assert person != null : "Person should not be null";
+        
         id.setText(displayedIndex + "");
         name.setText(truncate(person.getName().fullName, MAX_NAME_LENGTH));
         phone.setText(person.getPhone().value);
@@ -99,6 +101,9 @@ public class PersonCard extends UiPart<Region> {
     }
 
     private String truncate(String text, int maxLength) {
+        assert maxLength >= 0 : "Max length should be non-negative";
+        assert text != null : "Text should not be null";
+
         if (text.length() > maxLength) {
             return text.substring(BEGINNING_INDEX, maxLength) + "...";
         }
