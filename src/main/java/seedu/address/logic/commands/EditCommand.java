@@ -67,6 +67,12 @@ public class EditCommand extends Command {
         requireNonNull(index);
         requireNonNull(editPersonDescriptor);
 
+        // --- Runtime assertions (enable with -ea) ---
+        assert index.getOneBased() > 0 : "Index must be 1-based positive.";
+        // Descriptor may be empty (no-op edit is allowed by command tests), but never null.
+        assert editPersonDescriptor != null : "EditPersonDescriptor must not be null.";
+        // ------------------------------------------------
+
         this.index = index;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
     }
@@ -74,6 +80,11 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        // --- Runtime assertions ---
+        assert index.getZeroBased() >= 0 : "Zero-based index cannot be negative.";
+        // ------------------------------------------------
+
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -81,6 +92,7 @@ public class EditCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
+
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
@@ -88,7 +100,18 @@ public class EditCommand extends Command {
         }
 
         model.setPerson(personToEdit, editedPerson);
+
+        // --- Runtime assertions ---
+        assert model.getFilteredPersonList() != null : "Filtered list should remain non-null after setPerson.";
+        // ------------------------------------------------
+
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
+        // --- Runtime assertions ---
+        assert model.getFilteredPersonList().contains(editedPerson)
+                : "Edited person should appear in filtered list after update.";
+        // ------------------------------------------------
+
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
     }
 
@@ -97,8 +120,6 @@ public class EditCommand extends Command {
      * edited with {@code editPersonDescriptor}.
      */
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
-
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
