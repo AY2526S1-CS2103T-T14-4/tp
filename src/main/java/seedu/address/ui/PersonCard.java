@@ -56,7 +56,7 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         assert person != null : "Person should not be null";
-        
+
         id.setText(displayedIndex + "");
         name.setText(truncate(person.getName().fullName, MAX_NAME_LENGTH));
         phone.setText(person.getPhone().value);
