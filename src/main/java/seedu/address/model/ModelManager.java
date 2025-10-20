@@ -20,16 +20,14 @@ import seedu.address.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
     //used to compare name for sort
-    private static final Comparator<Person> NAME_ASC = (p1, p2) ->
-            p1.getName().toString().compareTo(p2.getName().toString());
-    private static final Comparator<Person> ADDRESS_ASC = (p1, p2) -> {
-        // Prefer value if Address has public 'value'; fallback to toString()
-        String a1 = p1.getAddress() == null ? ""
-                : (tryGetAddressValue(p1));
-        String a2 = p2.getAddress() == null ? ""
-                : (tryGetAddressValue(p2));
-        return a1.compareToIgnoreCase(a2);
-    };
+    private static final Comparator<Person> NAME_ASC =
+            Comparator.comparing((Person p) -> p.getName().toString(), String.CASE_INSENSITIVE_ORDER)
+                    .thenComparing(p -> p.getName().toString());
+    private static final Comparator<Person> ADDRESS_ASC =
+            Comparator.comparing((
+                    Person p) -> p.getAddress() == null ? "" : tryGetAddressValue(p),
+                            String.CASE_INSENSITIVE_ORDER)
+                    .thenComparing(p -> p.getAddress() == null ? "" : tryGetAddressValue(p));
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
