@@ -66,6 +66,10 @@ public class PersonCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(
                         truncate(tag.tagName, MAX_TAG_LENGTH))));
 
+        if (!person.getTags().isEmpty()) {
+            tags.setStyle("-fx-padding: 7 0 0 0;");
+        }
+
         address.setOnMouseClicked(event -> {
             if (address.getText().endsWith("...")) {
                 address.setText(person.getAddress().value);
@@ -83,6 +87,15 @@ public class PersonCard extends UiPart<Region> {
             }
         });
         email.setWrapText(true);
+
+        remark.setOnMouseClicked(event -> {
+            if (remark.getText().endsWith("...")) {
+                remark.setText(person.getRemark().value);
+            } else {
+                remark.setText(truncate(person.getRemark().value, MAX_REMARK_LENGTH));
+            }
+        });
+        remark.setWrapText(true);
     }
 
     private String truncate(String text, int maxLength) {

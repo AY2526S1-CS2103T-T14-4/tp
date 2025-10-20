@@ -350,7 +350,7 @@
 
 #tags .label {
     -fx-text-fill: black;
-    -fx-background-color: #3e7b91;
+    -fx-background-color: #fdc959;
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
@@ -365,7 +365,7 @@
 }
 
 #phone {
-    -fx-font-size: 1.2em;
+    -fx-font-size: 1.4em;
     -fx-font-weight: bold;
     -fx-font-style: italic;
     -fx-margin-bottom: 5px;
@@ -381,9 +381,20 @@
     -fx-font-style: italic;
 }
 
+#remark {
+    -fx-font-size: 1.2em;
+    -fx-text-fill: #454545;
+}
+
 #id {
     -fx-font-size: 2em;
     -fx-font-weight: bold;
+}
+
+#caseNotes {
+    -fx-font-size: 1.2em;
+    -fx-font-weight: bold;
+    -fx-text-fill: #454545;
 }
 
 #titleBar {
