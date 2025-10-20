@@ -1,3 +1,4 @@
+// AddressBookParserTest.java  (replace the whole class or just the tests section if you prefer)
 package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -10,6 +11,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -74,7 +76,7 @@ public class AddressBookParserTest {
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + String.join(" ", keywords));
+                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
@@ -106,6 +108,15 @@ public class AddressBookParserTest {
         String input = RemarkCommand.COMMAND_WORD + " i/" + INDEX_FIRST_PERSON.getOneBased() + " --remove";
         RemarkCommand command = (RemarkCommand) parser.parseCommand(input);
         assertEquals(new RemarkCommand(INDEX_FIRST_PERSON, new Remark("")), command);
+    }
+
+    @Test
+    public void parseCommand_remark_invalidOldStyleIndex_throwsParseException() {
+        // Old style: `remark 1 r/...` is now invalid
+        assertThrows(ParseException.class,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemarkCommand.MESSAGE_USAGE), () ->
+                        parser.parseCommand(RemarkCommand.COMMAND_WORD + " "
+                                + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_REMARK + "x"));
     }
 
     @Test
