@@ -20,9 +20,14 @@ import seedu.address.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
     //used to compare name for sort
-    private static final Comparator<Person> NAME_ASC = (p1, p2) ->
-            p1.getName().toString().compareTo(p2.getName().toString());
-
+    private static final Comparator<Person> NAME_ASC =
+            Comparator.comparing((Person p) -> p.getName().toString(), String.CASE_INSENSITIVE_ORDER)
+                    .thenComparing(p -> p.getName().toString());
+    private static final Comparator<Person> ADDRESS_ASC =
+            Comparator.comparing((
+                    Person p) -> p.getAddress() == null ? "" : tryGetAddressValue(p),
+                            String.CASE_INSENSITIVE_ORDER)
+                    .thenComparing(p -> p.getAddress() == null ? "" : tryGetAddressValue(p));
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
@@ -44,6 +49,12 @@ public class ModelManager implements Model {
         this(new AddressBook(), new UserPrefs());
     }
 
+    private static String tryGetAddressValue(Person p) {
+        // If your Address class exposes a 'value' field, use it:
+        // return p.getAddress().value;
+        // Otherwise, using toString() is safe:
+        return p.getAddress().toString();
+    }
     //=========== UserPrefs ==================================================================================
 
     @Override
@@ -122,6 +133,17 @@ public class ModelManager implements Model {
             addressBook.sortPersons(NAME_ASC);
         } else {
             addressBook.sortPersons(NAME_ASC.reversed());
+        }
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    //method to sort elderly by address
+    @Override
+    public void sortPersonsByAddress(boolean ascending) {
+        if (ascending) {
+            addressBook.sortPersons(ADDRESS_ASC);
+        } else {
+            addressBook.sortPersons(ADDRESS_ASC.reversed());
         }
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
