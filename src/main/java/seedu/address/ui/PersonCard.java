@@ -15,6 +15,11 @@ import seedu.address.model.person.Person;
 public class PersonCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
+    private static final int MAX_NAME_LENGTH = 50;
+    private static final int MAX_ADDRESS_LENGTH = 50;
+    private static final int MAX_EMAIL_LENGTH = 50;
+    private static final int MAX_TAG_LENGTH = 30;
+    private static final int BEGINNING_INDEX = 0;
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -47,13 +52,39 @@ public class PersonCard extends UiPart<Region> {
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
-        id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
+        id.setText(displayedIndex + "");
+        name.setText(truncate(person.getName().fullName, MAX_NAME_LENGTH));
         phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
+        address.setText(truncate(person.getAddress().value, MAX_ADDRESS_LENGTH));
+        email.setText(truncate(person.getEmail().value, MAX_EMAIL_LENGTH));
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> tags.getChildren().add(new Label(
+                        truncate(tag.tagName, MAX_TAG_LENGTH))));
+
+        address.setOnMouseClicked(event -> {
+            if (address.getText().endsWith("...")) {
+                address.setText(person.getAddress().value);
+            } else {
+                address.setText(truncate(person.getAddress().value, MAX_ADDRESS_LENGTH));
+            }
+        });
+        address.setWrapText(true);
+
+        email.setOnMouseClicked(event -> {
+            if (email.getText().endsWith("...")) {
+                email.setText(person.getEmail().value);
+            } else {
+                email.setText(truncate(person.getEmail().value, MAX_EMAIL_LENGTH));
+            }
+        });
+        email.setWrapText(true);
+    }
+
+    private String truncate(String text, int maxLength) {
+        if (text.length() > maxLength) {
+            return text.substring(BEGINNING_INDEX, maxLength) + "...";
+        }
+        return text;
     }
 }
