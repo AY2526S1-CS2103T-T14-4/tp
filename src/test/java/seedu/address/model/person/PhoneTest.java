@@ -31,19 +31,32 @@ public class PhoneTest {
         assertFalse(Phone.isValidPhone("phone")); // non-numeric
         assertFalse(Phone.isValidPhone("9011p041")); // alphabets within digits
         assertFalse(Phone.isValidPhone("9312 1534")); // spaces within digits
+        assertFalse(Phone.isValidPhone("124293842033123")); // long phone numbers
+        assertFalse(Phone.isValidPhone("911")); // exactly 3 numbers
 
-        // valid phone numbers
-        assertTrue(Phone.isValidPhone("911")); // exactly 3 numbers
-        assertTrue(Phone.isValidPhone("93121534"));
-        assertTrue(Phone.isValidPhone("124293842033123")); // long phone numbers
+        assertFalse(Phone.isValidPhone("51234567")); // wrong starting digit (5)
+        assertFalse(Phone.isValidPhone("71234567")); // wrong starting digit (7)
+        assertFalse(Phone.isValidPhone("01234567")); // wrong starting digit (0)
+        assertFalse(Phone.isValidPhone("6123456")); // 7 digits (too short)
+        assertFalse(Phone.isValidPhone("612345678")); // 9 digits (too long)
+
+        // valid phone numbers (exactly 8 digits; start with 9/8/6)
+        assertTrue(Phone.isValidPhone("93121534")); // starts with 9
+        assertTrue(Phone.isValidPhone("81234123")); // starts with 8
+        assertTrue(Phone.isValidPhone("61234123")); // starts with 6
+
+        // boundary-valids: minimal patterns with correct first digit
+        assertTrue(Phone.isValidPhone("90000000"));
+        assertTrue(Phone.isValidPhone("80000000"));
+        assertTrue(Phone.isValidPhone("60000000"));
     }
 
     @Test
     public void equals() {
-        Phone phone = new Phone("999");
+        Phone phone = new Phone("99999999");
 
         // same values -> returns true
-        assertTrue(phone.equals(new Phone("999")));
+        assertTrue(phone.equals(new Phone("99999999")));
 
         // same object -> returns true
         assertTrue(phone.equals(phone));
@@ -55,6 +68,6 @@ public class PhoneTest {
         assertFalse(phone.equals(5.0f));
 
         // different values -> returns false
-        assertFalse(phone.equals(new Phone("995")));
+        assertFalse(phone.equals(new Phone("99999998")));
     }
 }

@@ -11,51 +11,46 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Wei Lun
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/swei99.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/swei99)]
 
-* Role: Project Advisor
+* Role: Project Supervisor
 
-### Jane Doe
+### Lim Jun Sheng, Wallace
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/codewallie.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/codewallie)]
 
 * Role: Developer
+* Responsibilities: UI
+
+### Jhanvi Sahu
+
+<img src="images/jj55j7.png" width="200px">
+
+[[github](https://github.com/jj55j7)]
+
+* Role: Project Advisor
 * Responsibilities: Data
 
-### Jean Doe
+### Kai Xiang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/okaixiang.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/OKaiXiang)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Harnoor Virdi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/h-virdi.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/h-virdi)]
 
 * Role: Developer
 * Responsibilities: UI

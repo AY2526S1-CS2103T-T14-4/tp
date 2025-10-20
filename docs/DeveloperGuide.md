@@ -4,7 +4,7 @@
   pageNav: 3
 ---
 
-# AB-3 Developer Guide
+# ElderRing Developer Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -274,27 +274,29 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* SGAs that need to manage and keep track of the profiles of elderly they are going to or has visited
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+*
 
 **Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+* maintain a record of elderly profile
+* removes the need of having physical notes of elderly profiles
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​   | I want to …​                                    | So that I can…​                                              |
+|----------|-----------|-------------------------------------------------|--------------------------------------------------------------|
+| `* * *`  | SGA       | view all my elderly clients in a list           | have an overview of who I am caring for.                     |
+| `* * *`  | SGA       | add an elderly client’s contact details         | document the elderly phone numbers and addresses.            |
+| `* * *`  | SGA       | delete elderly profiles when no longer relevant | keep my list clean, updated, and manageable.                 |
+| `* *`    | SGA       | search for an elderly client by name            | quickly find their respective information quickly.           |
+| `* *`    | SGA       | filter elderly by needs                         | I can organize and know how to prepare before visiting them. |
+| `*`      | Volunteer | write reflection notes after visits             | process my own emotions while volunteering.                  |
 
 *{More to be added}*
 
@@ -302,14 +304,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Delete an elderly**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list elderly
+2.  ElderRing shows a list of elderly
+3.  User requests to delete a specific elderly in the list
+4.  ElderRing deletes the elderly
 
     Use case ends.
 
@@ -321,25 +323,48 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. ElderRing shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: Add an elderly**
+
+**MSS**
+
+1.  User requests to add an elderly to the list
+2.  ElderRing adds the elderly to the list
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Elderly is already previously added
+  * 1a1. ElderRing shows an error message.
+
+  Use case ends.
+
+* 1b. Wrong command used
+  * 1b1. ElderRing shows proper command format.
+  Use case ends.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 elderly without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
+4.  Response time should be less than 2 seconds.
+5.  The data should be stored locally in a text file.
+6.  ElderRing should be able to work without requiring an installer.
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-
+* **CLI**: Refers to Command Line Interface, a text-based method for users to interact with the program
+* **GUI**: Refers to Graphical User Interface, a user-friendly visual mechanism that allows users to interact with the system
+* **SGA**: Refers to Silver Generation Ambassadors; a volunteer who supports elderly through home visits and check-ins
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**

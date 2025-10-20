@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
@@ -69,8 +70,7 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both persons have the same name and phone number
      */
     public boolean isSamePerson(Person otherPerson) {
         if (otherPerson == this) {
@@ -78,7 +78,9 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getName().fullName.toUpperCase()
+                .equals(getName().fullName.toUpperCase())
+                && otherPerson.getPhone().equals(getPhone());
     }
 
     /**
@@ -103,6 +105,20 @@ public class Person {
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags);
     }
+
+    /**
+     * Returns a new Person with the given tag added.
+     * Does not modify the existing Person.
+     */
+    public Person addTag(Tag tag) {
+        requireNonNull(tag);
+
+        Set<Tag> updatedTags = new HashSet<>(this.tags);
+        updatedTags.add(tag);
+
+        return new Person(this.name, this.phone, this.email, this.address, this.remark, updatedTags);
+    }
+
 
     @Override
     public int hashCode() {
