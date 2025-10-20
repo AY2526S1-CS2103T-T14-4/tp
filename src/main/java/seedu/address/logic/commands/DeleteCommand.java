@@ -15,6 +15,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Remark;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -82,7 +83,7 @@ public class DeleteCommand extends Command {
 
         // delete by phone and name
         Person partialPerson = new Person(targetName, targetPhone, new Email(), new Address("address"),
-                new HashSet<Tag>());
+                new Remark(""), new HashSet<Tag>());
         Person personToDelete = lastShownList.stream()
                 .filter(person -> person.isSamePerson(partialPerson))
                 .findFirst()
