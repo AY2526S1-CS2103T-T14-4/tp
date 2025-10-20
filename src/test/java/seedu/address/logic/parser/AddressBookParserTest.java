@@ -111,7 +111,7 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_remark_invalidOldStyleIndex_throwsParseException() {
+    public void parseCommand_remarkInvalidOldStyleIndex_throwsParseException() {
         // Old style: `remark 1 r/...` is now invalid
         assertThrows(ParseException.class,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemarkCommand.MESSAGE_USAGE), () ->

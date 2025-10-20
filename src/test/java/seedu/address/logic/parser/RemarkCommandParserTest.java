@@ -39,23 +39,21 @@ public class RemarkCommandParserTest {
     @Test
     public void parse_missingEverything_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemarkCommand.MESSAGE_USAGE);
+        assertParseFailure(parser, "", expectedMessage);
         assertParseFailure(parser, RemarkCommand.COMMAND_WORD, expectedMessage);
     }
 
     @Test
     public void parse_missingIndex_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemarkCommand.MESSAGE_USAGE);
-        assertParseFailure(parser, RemarkCommand.COMMAND_WORD
-            + " " + PREFIX_REMARK + NON_EMPTY_REMARK, expectedMessage);
-        assertParseFailure(parser, RemarkCommand.COMMAND_WORD + " --remove", expectedMessage);
+        assertParseFailure(parser, PREFIX_REMARK + NON_EMPTY_REMARK, expectedMessage);
+        assertParseFailure(parser, "--remove", expectedMessage);
     }
 
     @Test
     public void parse_indexInPreambleNowInvalid_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemarkCommand.MESSAGE_USAGE);
-        // Old style: "1 r/..." should now fail
         assertParseFailure(parser, "1 " + PREFIX_REMARK + NON_EMPTY_REMARK, expectedMessage);
-        // Any preamble (even if i/ exists) should fail
         assertParseFailure(parser, "1 i/1 " + PREFIX_REMARK + NON_EMPTY_REMARK, expectedMessage);
     }
 
@@ -73,7 +71,6 @@ public class RemarkCommandParserTest {
 
     @Test
     public void parse_emptyRemarkString_failure() {
-        // Parser enforces non-empty remark; instructs to use --remove otherwise
         String expectedMessage = "Remark cannot be empty. To remove a remark, use '--remove'.";
         assertParseFailure(parser, " i/1 " + PREFIX_REMARK, expectedMessage);
         assertParseFailure(parser, " i/1 " + PREFIX_REMARK + "   ", expectedMessage);
@@ -90,7 +87,6 @@ public class RemarkCommandParserTest {
 
     @Test
     public void parse_withTrailingOrWeirdSpacing_success() {
-        // Whitespace around tokens should be fine
         String userInput = "   i/1   " + PREFIX_REMARK + "  hello world  ";
         RemarkCommand expected = new RemarkCommand(Index.fromOneBased(1), new Remark("hello world"));
         assertParseSuccess(parser, userInput, expected);
