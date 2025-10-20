@@ -3,17 +3,37 @@ hide circle
 skinparam classAttributeIconSize 0
 
 Class "{abstract}\nCommand" as Command {
-  +execute(Model): CommandResult
+  +execute(model: Model): CommandResult
 }
+
 Class RemarkCommand {
   +COMMAND_WORD: String
   +MESSAGE_USAGE: String
-  +MESSAGE_NOT_IMPLEMENTED_YET: String
-  +execute(Model): CommandResult
+  +MESSAGE_ADD_REMARK_SUCCESS: String
+  +MESSAGE_DELETE_REMARK_SUCCESS: String
+  --
+  -index: Index
+  -remark: Remark
+  --
+  +RemarkCommand(index: Index, remark: Remark)
+  +execute(model: Model): CommandResult
+  +equals(other: Object): boolean
+  -generateSuccessMessage(personToEdit: Person): String
 }
+
 Class CommandException
 
+' Inheritance
 RemarkCommand -up-|> Command
-Command ..> CommandException: throws >
-RemarkCommand .right.> CommandException: throws >
+
+' Throws relationships
+Command ..> CommandException : throws >
+RemarkCommand .right.> CommandException : throws >
+
+' Useful dependencies (types used)
+RemarkCommand ..> Index
+RemarkCommand ..> Remark
+RemarkCommand ..> Model
+RemarkCommand ..> Person
+RemarkCommand ..> CommandResult
 @enduml
