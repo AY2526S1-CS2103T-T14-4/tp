@@ -4,13 +4,15 @@
       "name": "Alice Pauline",
       "phone": "94351253",
       "email": "alice@example.com",
-      "address": "Address 1"
+      "address": "Address 1",
+      "remark": ""
     },
     {
       "name": "Alice Pauline",
       "phone": "88888888",
       "email": "alice2@example.com",
-      "address": "Address 2"
+      "address": "Address 2",
+      "remark": ""
     }
   ]
 }
