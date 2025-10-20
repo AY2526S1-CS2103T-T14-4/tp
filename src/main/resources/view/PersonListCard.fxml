@@ -20,8 +20,8 @@
         <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
         <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
         <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-        
-        <Line id="separator" startX="0.0" startY="50.0" endX="30" endY="50.0" 
+
+        <Line id="separator" startX="0.0" startY="50.0" endX="30" endY="50.0"
             stroke="black" strokeWidth="2.0">
             <VBox.margin>
                 <Insets top="7" />
@@ -37,6 +37,6 @@
         </Label>
         <Label fx:id="remark" styleClass="cell_small_label" text="\$remark" />
     </VBox>
-    <Label fx:id="id" alignment="CENTER_RIGHT" contentDisplay="RIGHT" 
+    <Label fx:id="id" alignment="CENTER_RIGHT" contentDisplay="RIGHT"
         prefHeight="17.0" prefWidth="43.0" styleClass="cell_big_label" HBox.hgrow="ALWAYS" />
 </HBox>

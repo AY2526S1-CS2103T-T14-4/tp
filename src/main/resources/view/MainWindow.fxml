@@ -33,7 +33,7 @@
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar>
-        
+
         <StackPane fx:id="titleBar" minHeight="80" maxHeight="80" prefHeight="80" prefWidth="340.0">
           <Label text="-ElderRing-" />
         </StackPane>
@@ -48,7 +48,7 @@
           </VBox>
         </ScrollPane>
 
-        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" 
+        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100"
             styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
