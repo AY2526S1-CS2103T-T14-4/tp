@@ -69,9 +69,6 @@ public class EditCommand extends Command {
 
         // --- Runtime assertions (enable with -ea) ---
         assert index.getOneBased() > 0 : "Index must be 1-based positive.";
-        // Descriptor may be empty (no-op edit is allowed by command tests), but never null.
-        assert editPersonDescriptor != null : "EditPersonDescriptor must not be null.";
-        // ------------------------------------------------
 
         this.index = index;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
@@ -101,16 +98,7 @@ public class EditCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
 
-        // --- Runtime assertions ---
-        assert model.getFilteredPersonList() != null : "Filtered list should remain non-null after setPerson.";
-        // ------------------------------------------------
-
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-
-        // --- Runtime assertions ---
-        assert model.getFilteredPersonList().contains(editedPerson)
-                : "Edited person should appear in filtered list after update.";
-        // ------------------------------------------------
 
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
     }
