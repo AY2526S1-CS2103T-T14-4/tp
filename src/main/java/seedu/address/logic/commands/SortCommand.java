@@ -5,23 +5,71 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.model.Model;
 
 /**
- * Sorts the details of all elderly in the address book by name in ascending order.
+ * Sorts elderly entries by their name or address in ascending/descending order.
  */
 public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts all elderly by name from A->Z.\n"
-            + "Example: " + COMMAND_WORD + " by NAME";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts elderly by a field.\n"
+            + "Parameters: Sort (asc/dsc)/(name/address)\n"
+            + "Examples: \n\t"
+            + "  " + COMMAND_WORD + " asc/name\n\t"
+            + "  " + COMMAND_WORD + " dsc/name\n\t"
+            + "  " + COMMAND_WORD + " asc/address";
 
-    public static final String MESSAGE_SUCCESS = "Sorted all elderly by name.";
+    public static final String MESSAGE_SUCCESS_NAME_ASC = "Sorted all elderly by name (A→Z).";
+    public static final String MESSAGE_SUCCESS_NAME_DESC = "Sorted all elderly by name (Z→A).";
+    public static final String MESSAGE_SUCCESS_ADDR_ASC = "Sorted all elderly by address (A→Z).";
+    public static final String MESSAGE_SUCCESS_ADDR_DESC = "Sorted all elderly by address (Z→A).";
+
+    /**
+     * Field contains attributes elderly can be sorted by
+     * Can only be sorted by Name or Address
+     */
+    public enum Field { NAME, ADDRESS }
+
+    private final Field field;
+    private final boolean ascending;
+
+    /**
+     * Create a SortCommand to sort the elderly.
+     */
+    public SortCommand(Field field, boolean ascending) {
+        this.field = requireNonNull(field);
+        this.ascending = ascending;
+    }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.sortPersonsByName(/* ascending = */ true);
-        // Ensure the UI shows the full, freshly-sorted list
-        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(MESSAGE_SUCCESS);
+
+        switch (field) {
+        case NAME:
+            model.sortPersonsByName(ascending);
+            model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+            return new CommandResult(ascending ? MESSAGE_SUCCESS_NAME_ASC : MESSAGE_SUCCESS_NAME_DESC);
+
+        case ADDRESS:
+            model.sortPersonsByAddress(ascending);
+            model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+            return new CommandResult(ascending ? MESSAGE_SUCCESS_ADDR_ASC : MESSAGE_SUCCESS_ADDR_DESC);
+
+        default:
+            // Should never happen
+            throw new AssertionError("Unknown sort field: " + field);
+        }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof SortCommand)) {
+            return false;
+        }
+        SortCommand o = (SortCommand) other;
+        return this.field == o.field && this.ascending == o.ascending;
     }
 }

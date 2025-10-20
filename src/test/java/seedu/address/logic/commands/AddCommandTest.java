@@ -162,6 +162,11 @@ public class AddCommandTest {
         public void sortPersonsByName(boolean ascending) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void sortPersonsByAddress(boolean ascending) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

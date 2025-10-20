@@ -81,6 +81,12 @@ public interface Model {
      */
     void sortPersonsByName(boolean ascending);
 
+    /**
+     * Sorts persons by address. If {@code ascending} is true, A→Z; otherwise Z→A.
+     */
+    void sortPersonsByAddress(boolean ascending);
+
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 

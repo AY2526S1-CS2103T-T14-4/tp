@@ -22,7 +22,14 @@ public class ModelManager implements Model {
     //used to compare name for sort
     private static final Comparator<Person> NAME_ASC = (p1, p2) ->
             p1.getName().toString().compareTo(p2.getName().toString());
-
+    private static final Comparator<Person> ADDRESS_ASC = (p1, p2) -> {
+        // Prefer value if Address has public 'value'; fallback to toString()
+        String a1 = p1.getAddress() == null ? ""
+                : (tryGetAddressValue(p1));
+        String a2 = p2.getAddress() == null ? ""
+                : (tryGetAddressValue(p2));
+        return a1.compareToIgnoreCase(a2);
+    };
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
@@ -44,6 +51,12 @@ public class ModelManager implements Model {
         this(new AddressBook(), new UserPrefs());
     }
 
+    private static String tryGetAddressValue(Person p) {
+        // If your Address class exposes a 'value' field, use it:
+        // return p.getAddress().value;
+        // Otherwise, using toString() is safe:
+        return p.getAddress().toString();
+    }
     //=========== UserPrefs ==================================================================================
 
     @Override
@@ -122,6 +135,17 @@ public class ModelManager implements Model {
             addressBook.sortPersons(NAME_ASC);
         } else {
             addressBook.sortPersons(NAME_ASC.reversed());
+        }
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    //method to sort elderly by address
+    @Override
+    public void sortPersonsByAddress(boolean ascending) {
+        if (ascending) {
+            addressBook.sortPersons(ADDRESS_ASC);
+        } else {
+            addressBook.sortPersons(ADDRESS_ASC.reversed());
         }
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }

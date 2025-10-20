@@ -137,6 +137,10 @@ public class TagCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override public void sortPersonsByAddress(boolean ascending) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         @Override
         public ReadOnlyUserPrefs getUserPrefs() {
             throw new AssertionError("This method should not be called.");
