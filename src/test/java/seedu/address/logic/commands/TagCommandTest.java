@@ -32,17 +32,17 @@ public class TagCommandTest {
 
     @Test
     public void constructor_nullArgs_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new TagCommand(null, "vip"));
+        assertThrows(NullPointerException.class, () -> new TagCommand(null, "vip", false));
         assertThrows(NullPointerException.class, () -> new TagCommand(null, new Phone("91234567"),
-                "vip"));
+                "vip", false));
         assertThrows(NullPointerException.class, () -> new TagCommand(new Name("Alex"), null,
-                "vip"));
+                "vip", false));
         assertThrows(NullPointerException.class, () -> new TagCommand(new Name("Alex"), new Phone("91234567"),
-                null));
+                null, false));
         assertThrows(NullPointerException.class, () -> new TagCommand(new Name("Alex"), new Phone("91234567"),
-                new Address("Drury Lane"), null));
+                new Address("Drury Lane"), null, false));
         assertThrows(NullPointerException.class, () -> new TagCommand(new Name("Alex"), new Phone("91234567"),
-                null, "vip"));
+                null, "vip", false));
     }
 
     @Test
@@ -50,7 +50,7 @@ public class TagCommandTest {
         Person validPerson = new PersonBuilder().build();
         ModelStubAcceptingPersonTagged modelStub = new ModelStubAcceptingPersonTagged(validPerson);
 
-        TagCommand tagCommand = new TagCommand(Index.fromZeroBased(0), "vip");
+        TagCommand tagCommand = new TagCommand(Index.fromZeroBased(0), "vip", false);
         tagCommand.execute(modelStub);
 
         assertTrue(modelStub.personsModified.get(0).getTags().contains(new Tag("vip")));
@@ -61,7 +61,7 @@ public class TagCommandTest {
         Person validPerson = new PersonBuilder().withName("Alex").withPhone("91234567").build();
         ModelStubAcceptingPersonTagged modelStub = new ModelStubAcceptingPersonTagged(validPerson);
 
-        TagCommand tagCommand = new TagCommand(new Name("alex"), new Phone("91234567"), "vip");
+        TagCommand tagCommand = new TagCommand(new Name("alex"), new Phone("91234567"), "vip", false);
         tagCommand.execute(modelStub);
 
         assertTrue(modelStub.personsModified.get(0).getTags().contains(new Tag("vip")));
@@ -76,7 +76,7 @@ public class TagCommandTest {
                 .build();
         ModelStubAcceptingPersonTagged modelStub = new ModelStubAcceptingPersonTagged(validPerson);
         TagCommand tagCommand = new TagCommand(new Name("Alex"), new Phone("91234567"),
-                new Address("drury lane"), "vip");
+                new Address("drury lane"), "vip", false);
         tagCommand.execute(modelStub);
 
         assertTrue(modelStub.personsModified.get(0).getTags().contains(new Tag("vip")));
@@ -87,7 +87,7 @@ public class TagCommandTest {
         Person validPerson = new PersonBuilder().build().addTag(new Tag("vip"));
         ModelStubAcceptingPersonTagged modelStub = new ModelStubAcceptingPersonTagged(validPerson);
 
-        TagCommand tagCommand = new TagCommand(Index.fromZeroBased(0), "vip");
+        TagCommand tagCommand = new TagCommand(Index.fromZeroBased(0), "vip", false);
 
         assertThrows(CommandException.class,
                 "The person already has tag [vip]", () -> tagCommand.execute(modelStub));
@@ -98,33 +98,53 @@ public class TagCommandTest {
         Person validPerson = new PersonBuilder().build();
         ModelStubAcceptingPersonTagged modelStub = new ModelStubAcceptingPersonTagged(validPerson);
 
-        TagCommand tagCommand = new TagCommand(Index.fromZeroBased(1), "vip");
+        TagCommand tagCommand = new TagCommand(Index.fromZeroBased(1), "vip", false);
 
         assertThrows(CommandException.class, () -> tagCommand.execute(modelStub));
     }
 
     @Test
+    public void execute_removeTag_success() throws Exception {
+        Person validPerson = new PersonBuilder().withTags("vip", "friend").build();
+        ModelStubAcceptingPersonTagged modelStub = new ModelStubAcceptingPersonTagged(validPerson);
+
+        TagCommand tagCommand = new TagCommand(Index.fromZeroBased(0), "vip", true);
+        tagCommand.execute(modelStub);
+
+        assertFalse(modelStub.personsModified.get(0).getTags().contains(new Tag("vip")));
+    }
+
+    @Test
+    public void execute_removeNonexistentTag_throwsCommandException() throws Exception {
+        Person validPerson = new PersonBuilder().withTags("friend").build();
+        ModelStubAcceptingPersonTagged modelStub = new ModelStubAcceptingPersonTagged(validPerson);
+
+        TagCommand tagCommand = new TagCommand(Index.fromZeroBased(0), "vip", true);
+
+        assertThrows(CommandException.class,
+                "Person does not have tag [vip].", () -> tagCommand.execute(modelStub));
+    }
+
+    @Test
     public void equals() throws ParseException {
-        TagCommand tagIndex1 = new TagCommand(Index.fromZeroBased(0), "vip");
-        TagCommand tagIndex2 = new TagCommand(Index.fromZeroBased(1), "vip");
-        TagCommand tagNamePhone = new TagCommand(new Name("Alex"), new Phone("91234567"), "vip");
+        TagCommand tagIndex1 = new TagCommand(Index.fromZeroBased(0), "vip", false);
+        TagCommand tagIndex2 = new TagCommand(Index.fromZeroBased(1), "vip", false);
+        TagCommand deleteTag = new TagCommand(Index.fromZeroBased(0), "vip", true);
 
         assertTrue(tagIndex1.equals(tagIndex1));
         assertFalse(tagIndex1.equals(null));
-        assertFalse(tagIndex1.equals(tagNamePhone));
         assertFalse(tagIndex1.equals(tagIndex2));
+        assertFalse(tagIndex1.equals(deleteTag)); // different isDelete flag
     }
 
     @Test
     public void toStringMethod() throws ParseException {
-        TagCommand tagCommand = new TagCommand(Index.fromZeroBased(0), "vip");
-        String expected = TagCommand.class.getCanonicalName() + "{targetIndex=0, targetName=null, targetPhone=null, "
-                + "targetAddress=null, tag=vip}";
+        TagCommand tagCommand = new TagCommand(Index.fromZeroBased(0), "vip", false);
         assertTrue(tagCommand.toString().contains("vip"));
     }
 
     /**
-     * A default model stub that has all of the methods failing
+     * A default model stub that has all the methods failing
      */
     private class ModelStub implements Model {
         @Override
