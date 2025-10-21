@@ -119,6 +119,11 @@ public class Person {
         return new Person(this.name, this.phone, this.email, this.address, this.remark, updatedTags);
     }
 
+    /**
+     * Returns a new Person with the given tag removed.
+     * Does not modify the existing Person.
+     */
+
     public Person removeTag(Tag tag) {
         requireNonNull(tag);
 
