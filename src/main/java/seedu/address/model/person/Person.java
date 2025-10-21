@@ -119,6 +119,15 @@ public class Person {
         return new Person(this.name, this.phone, this.email, this.address, this.remark, updatedTags);
     }
 
+    public Person removeTag(Tag tag) {
+        requireNonNull(tag);
+
+        Set<Tag> updatedTags = new HashSet<>(this.tags);
+        updatedTags.remove(tag);
+
+        return new Person(this.name, this.phone, this.email, this.address, this.remark, updatedTags);
+    }
+
 
     @Override
     public int hashCode() {
