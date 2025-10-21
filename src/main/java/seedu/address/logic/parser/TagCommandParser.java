@@ -23,6 +23,11 @@ public class TagCommandParser implements Parser<TagCommand> {
 
     @Override
     public TagCommand parse(String args) throws ParseException {
+        boolean isDelete = args.trim().endsWith("--remove");
+        String trimmedArgs = isDelete
+                ? args.substring(0, args.lastIndexOf("--remove")).trim()
+                : args.trim();
+
         try {
             ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
                     args, PREFIX_INDEX, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_TAG);
@@ -58,16 +63,16 @@ public class TagCommandParser implements Parser<TagCommand> {
 
             if (indexIsPresent) {
                 Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
-                return new TagCommand(index, tagName);
+                return new TagCommand(index, tagName, isDelete);
             } else if (nameAndPhoneArePresent && !addressIsPresent) {
                 Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
                 Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-                return new TagCommand(name, phone, tagName);
+                return new TagCommand(name, phone, tagName, isDelete);
             } else if (nameAndPhoneArePresent && addressIsPresent) {
                 Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
                 Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
                 Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-                return new TagCommand(name, phone, address, tagName);
+                return new TagCommand(name, phone, address, tagName, isDelete);
             } else {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE));
             }

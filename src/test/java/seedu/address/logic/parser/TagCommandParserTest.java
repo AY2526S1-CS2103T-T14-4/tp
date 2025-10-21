@@ -23,20 +23,20 @@ public class TagCommandParserTest {
 
     @Test
     public void parse_indexBased_success() {
-        TagCommand expected = new TagCommand(Index.fromOneBased(1), "friend");
+        TagCommand expected = new TagCommand(Index.fromOneBased(1), "friend", false);
         assertParseSuccess(parser, " i/1 t/friend", expected);
     }
 
     @Test
     public void parse_namePhoneBased_success() {
-        TagCommand expected = new TagCommand(new Name("Bob Choo"), new Phone("88888888"), "friend");
+        TagCommand expected = new TagCommand(new Name("Bob Choo"), new Phone("88888888"), "friend", false);
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + TAG_DESC_FRIEND, expected);
     }
 
     @Test
     public void parse_namePhoneAddressBased_success() {
         TagCommand expected = new TagCommand(new Name("Bob Choo"), new Phone("88888888"),
-                new Address("Block 123, Bobby Street 3"), "friend");
+                new Address("Block 123, Bobby Street 3"), "friend", false);
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_FRIEND,
                 expected);
     }
@@ -60,7 +60,7 @@ public class TagCommandParserTest {
 
     @Test
     public void parse_whitespacePreamble_success() {
-        TagCommand expected = new TagCommand(new Name("Bob Choo"), new Phone("88888888"), "friend");
+        TagCommand expected = new TagCommand(new Name("Bob Choo"), new Phone("88888888"), "friend", false);
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + TAG_DESC_FRIEND,
                 expected);
     }

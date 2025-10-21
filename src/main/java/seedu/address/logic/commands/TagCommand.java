@@ -28,119 +28,119 @@ public class TagCommand extends Command {
             + "i/INDEX (must be a positive integer) "
             + "or n/NAME p/PHONE "
             + "or a/ADDRESS "
-            + "and t/TAGNAME (alphanumeric only)\n"
+            + "and t/TAGNAME \n"
             + "Examples:\n\t"
             + COMMAND_WORD + " i/1 t/friends\n\t"
             + COMMAND_WORD + " n/Alice p/12345678 t/vip\n\t"
             + COMMAND_WORD + " a/123 Clementi Ave t/home";
 
     public static final String MESSAGE_TAG_PERSON_SUCCESS = "Tagged Person: %1$s with %2$s";
-    public static final String MESSAGE_INVALID_IDENTIFIER = "No such entry exists.";
-    public static final String MESSAGE_INVALID_TAG = "Tag name must be alphanumeric.";
+    public static final String MESSAGE_UNTAG_PERSON_SUCCESS = "Removed tag %2$s from Person: %1$s";
+    public static final String MESSAGE_INVALID_IDENTIFIER = "Person not found";
+    public static final String MESSAGE_TAG_NOT_FOUND = "Person does not have tag %s.";
 
     private final Index targetIndex;
     private final Name targetName;
     private final Phone targetPhone;
     private final Address targetAddress;
     private final Tag tag;
+    private final boolean isDelete;
 
     /**
      * Creates a TagCommand to tag the target entry based on index
      */
-    public TagCommand(Index targetIndex, String tagName) {
+    public TagCommand(Index targetIndex, String tagName, boolean isDelete) {
         requireNonNull(targetIndex);
         requireNonNull(tagName);
-
-        if (!Tag.isValidTagName(tagName)) {
-            throw new IllegalArgumentException(MESSAGE_INVALID_TAG);
-        }
 
         this.targetIndex = targetIndex;
         this.targetName = null;
         this.targetPhone = null;
         this.targetAddress = null;
         this.tag = new Tag(tagName);
+        this.isDelete = isDelete;
     }
 
     /**
      * Creates a TagCommand to tag the person with the specified targetName and targetPhone
      */
-    public TagCommand(Name targetName, Phone targetPhone, String tagName) {
+    public TagCommand(Name targetName, Phone targetPhone, String tagName, boolean isDelete) {
         requireNonNull(targetName);
         requireNonNull(targetPhone);
         requireNonNull(tagName);
-
-        if (!Tag.isValidTagName(tagName)) {
-            throw new IllegalArgumentException(MESSAGE_INVALID_TAG);
-        }
 
         this.targetIndex = null;
         this.targetName = targetName;
         this.targetPhone = targetPhone;
         this.targetAddress = null;
         this.tag = new Tag(tagName);
+        this.isDelete = isDelete;
     }
 
     /**
      * Creates a TagCommand to tag the person with the specified targetName, targetPhone and targetAddress.
      */
-    public TagCommand(Name targetName, Phone targetPhone, Address targetAddress, String tagName) {
+    public TagCommand(Name targetName, Phone targetPhone, Address targetAddress, String tagName, boolean isDelete) {
         requireNonNull(targetName);
         requireNonNull(targetPhone);
         requireNonNull(targetAddress);
         requireNonNull(tagName);
-
-        if (!Tag.isValidTagName(tagName)) {
-            throw new IllegalArgumentException(MESSAGE_INVALID_TAG);
-        }
 
         this.targetIndex = null;
         this.targetName = targetName;
         this.targetPhone = targetPhone;
         this.targetAddress = targetAddress;
         this.tag = new Tag(tagName);
+        this.isDelete = isDelete;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
-        Person personToTag = null;
+        Person targetPerson = null;
 
         if (targetIndex != null) {
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
             }
-            personToTag = lastShownList.get(targetIndex.getZeroBased());
+            targetPerson = lastShownList.get(targetIndex.getZeroBased());
         } else if (targetName != null && targetPhone != null) {
             Optional<Person> match = lastShownList.stream()
                     .filter(p -> p.getName().fullName.equalsIgnoreCase(targetName.fullName)
                             && p.getPhone().equals(targetPhone))
                     .findFirst();
-            personToTag = match.orElse(null);
+            targetPerson = match.orElse(null);
         } else if (targetAddress != null) {
             Optional<Person> match = lastShownList.stream()
                     .filter(p -> p.getAddress().value.equalsIgnoreCase(targetAddress.value))
                     .findFirst();
-            personToTag = match.orElse(null);
+            targetPerson = match.orElse(null);
         }
 
-        if (personToTag == null) {
+        if (targetPerson == null) {
             throw new CommandException(MESSAGE_INVALID_IDENTIFIER);
         }
 
-        if (personToTag.getTags().contains(tag)) {
-            throw new CommandException("The person already has tag " + tag);
+        Person outputPerson;
+
+        if (isDelete) {
+            if (!targetPerson.getTags().contains(tag)) {
+                throw new CommandException(String.format(MESSAGE_TAG_NOT_FOUND, tag.toString()));
+            }
+            outputPerson = targetPerson.removeTag(tag);
+            model.setPerson(targetPerson, outputPerson);
+            return new CommandResult(String.format(MESSAGE_UNTAG_PERSON_SUCCESS,
+                    Messages.format(outputPerson), tag.toString()));
+        } else {
+            if (targetPerson.getTags().contains(tag)) {
+                throw new CommandException("The person already has tag " + tag);
+            }
+            outputPerson = targetPerson.addTag(tag);
+            model.setPerson(targetPerson, outputPerson);
+            return new CommandResult(String.format(MESSAGE_TAG_PERSON_SUCCESS,
+                    Messages.format(outputPerson), tag.toString()));
         }
-
-        Person taggedPerson = personToTag.addTag(tag);
-        model.setPerson(personToTag, taggedPerson);
-
-        return new CommandResult(String.format(
-                MESSAGE_TAG_PERSON_SUCCESS,
-                Messages.format(taggedPerson),
-                tag.toString()
-        ));
     }
 
     @Override
@@ -154,10 +154,11 @@ public class TagCommand extends Command {
         }
 
         TagCommand otherCommand = (TagCommand) other;
-        return (targetIndex != null && targetIndex.equals(otherCommand.targetIndex))
+        return isDelete == otherCommand.isDelete
+                && ((targetIndex != null && targetIndex.equals(otherCommand.targetIndex))
                 || (targetName != null && targetName.equals(otherCommand.targetName)
                 && targetPhone != null && targetPhone.equals(otherCommand.targetPhone))
-                || (targetAddress != null && targetAddress.equals(otherCommand.targetAddress));
+                || (targetAddress != null && targetAddress.equals(otherCommand.targetAddress)));
     }
 
     @Override
@@ -168,6 +169,7 @@ public class TagCommand extends Command {
                 .add("targetPhone", targetPhone)
                 .add("targetAddress", targetAddress)
                 .add("tag", tag)
+                .add("isDelete", isDelete)
                 .toString();
     }
 }
