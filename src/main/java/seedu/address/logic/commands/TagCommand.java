@@ -36,7 +36,7 @@ public class TagCommand extends Command {
 
     public static final String MESSAGE_TAG_PERSON_SUCCESS = "Tagged Person: %1$s with %2$s";
     public static final String MESSAGE_INVALID_IDENTIFIER = "No such entry exists.";
-    public static final String MESSAGE_INVALID_TAG = "Tag name must be alphanumeric.";
+    //public static final String MESSAGE_INVALID_TAG = "Tag name must be alphanumeric.";
 
     private final Index targetIndex;
     private final Name targetName;
@@ -50,10 +50,6 @@ public class TagCommand extends Command {
     public TagCommand(Index targetIndex, String tagName) {
         requireNonNull(targetIndex);
         requireNonNull(tagName);
-
-        if (!Tag.isValidTagName(tagName)) {
-            throw new IllegalArgumentException(MESSAGE_INVALID_TAG);
-        }
 
         this.targetIndex = targetIndex;
         this.targetName = null;
@@ -70,10 +66,6 @@ public class TagCommand extends Command {
         requireNonNull(targetPhone);
         requireNonNull(tagName);
 
-        if (!Tag.isValidTagName(tagName)) {
-            throw new IllegalArgumentException(MESSAGE_INVALID_TAG);
-        }
-
         this.targetIndex = null;
         this.targetName = targetName;
         this.targetPhone = targetPhone;
@@ -89,10 +81,6 @@ public class TagCommand extends Command {
         requireNonNull(targetPhone);
         requireNonNull(targetAddress);
         requireNonNull(tagName);
-
-        if (!Tag.isValidTagName(tagName)) {
-            throw new IllegalArgumentException(MESSAGE_INVALID_TAG);
-        }
 
         this.targetIndex = null;
         this.targetName = targetName;
