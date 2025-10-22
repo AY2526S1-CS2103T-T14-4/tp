@@ -1,0 +1,27 @@
+{
+  "persons": [
+    {
+      "name": "Valid Person",
+      "phone": "92345678",
+      "email": "valid@example.com",
+      "address": "Valid Address",
+      "remark": "",
+      "tags": []
+    },
+    {
+      "phone": "87654321",
+      "email": "test@example.com",
+      "address": "Valid Address",
+      "remark": "",
+      "tags": []
+    },
+    {
+      "name": "Another Valid Person",
+      "phone": "99999999",
+      "email": "test@example.com",
+      "address": "Valid Address",
+      "remark": "",
+      "tags": []
+    }
+  ]
+}

@@ -117,4 +117,88 @@ public class JsonAdaptedPersonTest {
         Person modelPerson = person.toModelType();
         assertEquals("", modelPerson.getEmail().value);
     }
+
+    @Test
+    public void toModelType_whitespaceOnlyEmail_returnsPersonWithEmptyEmail() throws Exception {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, "   ", VALID_ADDRESS, VALID_REMARK, VALID_TAGS);
+
+        Person modelPerson = person.toModelType();
+        assertEquals("", modelPerson.getEmail().value);
+    }
+
+    @Test
+    public void toModelType_nullRemark_returnsPersonWithEmptyRemark() throws Exception {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, null, VALID_TAGS);
+
+        Person modelPerson = person.toModelType();
+        assertEquals("", modelPerson.getRemark().value);
+    }
+
+    @Test
+    public void toModelType_emptyRemark_returnsPersonWithEmptyRemark() throws Exception {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, "", VALID_TAGS);
+
+        Person modelPerson = person.toModelType();
+        assertEquals("", modelPerson.getRemark().value);
+    }
+
+    @Test
+    public void toModelType_whitespaceOnlyRemark_returnsPersonWithEmptyRemark() throws Exception {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, "   ", VALID_TAGS);
+
+        Person modelPerson = person.toModelType();
+        assertEquals("", modelPerson.getRemark().value);
+    }
+
+    @Test
+    public void toModelType_emptyName_throwsIllegalValueException() {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson("", VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_REMARK, VALID_TAGS);
+
+        assertThrows(IllegalValueException.class, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_whitespaceOnlyName_throwsIllegalValueException() {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson("   ", VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_REMARK, VALID_TAGS);
+
+        assertThrows(IllegalValueException.class, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_emptyPhone_throwsIllegalValueException() {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, "", VALID_EMAIL, VALID_ADDRESS, VALID_REMARK, VALID_TAGS);
+
+        assertThrows(IllegalValueException.class, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_whitespaceOnlyPhone_throwsIllegalValueException() {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, "   ", VALID_EMAIL, VALID_ADDRESS, VALID_REMARK, VALID_TAGS);
+
+        assertThrows(IllegalValueException.class, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_emptyAddress_throwsIllegalValueException() {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, "", VALID_REMARK, VALID_TAGS);
+
+        assertThrows(IllegalValueException.class, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_whitespaceOnlyAddress_throwsIllegalValueException() {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, "   ", VALID_REMARK, VALID_TAGS);
+
+        assertThrows(IllegalValueException.class, person::toModelType);
+    }
 }

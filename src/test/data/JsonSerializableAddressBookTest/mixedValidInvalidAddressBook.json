@@ -1,0 +1,36 @@
+{
+  "persons": [
+    {
+      "name": "Valid Person One",
+      "phone": "91111111",
+      "email": "valid1@example.com",
+      "address": "Address 1",
+      "remark": "",
+      "tags": []
+    },
+    {
+      "name": null,
+      "phone": "22222222",
+      "email": "valid2@example.com",
+      "address": "Address 2",
+      "remark": "",
+      "tags": []
+    },
+    {
+      "name": "Valid Person Three",
+      "phone": "93333333",
+      "email": "valid3@example.com",
+      "address": "Address 3",
+      "remark": "",
+      "tags": []
+    },
+    {
+      "name": "Invalid Phone Person",
+      "phone": "invalid",
+      "email": "valid4@example.com",
+      "address": "Address 4",
+      "remark": "",
+      "tags": []
+    }
+  ]
+}

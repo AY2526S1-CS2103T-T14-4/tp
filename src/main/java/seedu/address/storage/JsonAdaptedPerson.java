@@ -127,7 +127,7 @@ class JsonAdaptedPerson {
         //        final Remark modelRemark = new Remark(remark);
 
         final Remark modelRemark;
-        if (remark == null) {
+        if (remark == null || remark.trim().isEmpty()) {
             modelRemark = new Remark("");
         } else {
             modelRemark = new Remark(remark);

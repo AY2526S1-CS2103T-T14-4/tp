@@ -1,0 +1,20 @@
+{
+  "persons": [
+    {
+      "name": null,
+      "phone": "11111111",
+      "email": "test@example.com",
+      "address": "Address 1",
+      "remark": "",
+      "tags": []
+    },
+    {
+      "name": "Invalid Phone",
+      "phone": "abc",
+      "email": "test@example.com",
+      "address": "Address 2",
+      "remark": "",
+      "tags": []
+    }
+  ]
+}
