@@ -1,7 +1,7 @@
 ---
   layout: default.md
-  title: "Developer Guide"
-  pageNav: 3
+    title: "Developer Guide"
+    pageNav: 3
 ---
 
 # ElderRing Developer Guide
@@ -13,7 +13,8 @@
 
 ## **Acknowledgements**
 
-_{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
+ElderRing is a project built upon the AddressBook-Level3 (AB3) project created by [SE-EDU](https://se-education.org/)
+- Libraries used: JavaFX, JUnit5
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -65,6 +66,8 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
@@ -81,6 +84,8 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Logic component
 
@@ -115,6 +120,8 @@ How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
@@ -136,6 +143,7 @@ The `Model` component,
 
 </box>
 
+--------------------------------------------------------------------------------------------------------------------
 
 ### Storage component
 
@@ -241,13 +249,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 **Aspect: How undo & redo executes:**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -302,52 +310,194 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `ElderRing` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete an elderly**
+**Use case: Delete an elderly (by index)**
 
 **MSS**
+1. User requests to list elderly
+2. ElderRing shows a list of elderly
+3. User requests to delete a specific elderly in the list
+4. ElderRing deletes the elderly
 
-1.  User requests to list elderly
-2.  ElderRing shows a list of elderly
-3.  User requests to delete a specific elderly in the list
-4.  ElderRing deletes the elderly
-
-    Use case ends.
+  Use case ends.
 
 **Extensions**
-
 * 2a. The list is empty.
 
   Use case ends.
 
 * 3a. The given index is invalid.
-
     * 3a1. ElderRing shows an error message.
 
       Use case resumes at step 2.
 
+---
+
+**Use case: Delete an elderly (by name & phone)**
+
+**MSS**
+1. User requests to list or filter elderly (optional)
+2. User requests to delete an elderly by specifying the name and phone number
+3. ElderRing deletes the matching elderly
+
+  Use case ends.
+
+**Extensions**
+* 2a. No elderly matches the given name and phone.
+    * 2a1. ElderRing shows an error message.
+
+      Use case ends.
+
+* 2b. Neither index nor (name & phone) were provided.
+    * 2b1. ElderRing shows the proper command format.
+
+      Use case ends.
+
+---
+
 **Use case: Add an elderly**
 
 **MSS**
+1. User requests to add an elderly to the list (with required fields; optional tags)
+2. ElderRing adds the elderly to the list
 
-1.  User requests to add an elderly to the list
-2.  ElderRing adds the elderly to the list
-
-    Use case ends.
+  Use case ends.
 
 **Extensions**
+* 1a. Elderly is already previously added.
+    * 1a1. ElderRing shows an error message.
 
-* 1a. Elderly is already previously added
-  * 1a1. ElderRing shows an error message.
+      Use case ends.
+
+* 1b. Wrong command used or parameters missing/invalid.
+    * 1b1. ElderRing shows proper command format.
+
+      Use case ends.
+
+---
+
+**Use case: Edit an elderly**
+
+**MSS**
+1. User requests to list elderly (optional)
+2. User requests to edit an elderly by index, providing one or more new field values
+3. ElderRing updates the elderly
+
+Use case ends.
+
+**Extensions**
+* 2a. The given index is invalid.
+    * 2a1. ElderRing shows an error message.
+
+      Use case resumes at step 1.
+
+* 2b. No fields were provided to edit.
+    * 2b1. ElderRing shows the proper command format.
+
+      Use case ends.
+
+* 3a. The new details would duplicate an existing elderly.
+    * 3a1. ElderRing shows a duplicate error.
+
+      Use case ends.
+
+---
+
+**Use case: Find elderly by name**
+
+**MSS**
+1. User requests to find elderly by keyword(s)
+2. ElderRing shows the list filtered to matching names
+  Use case ends.
+
+**Extensions**
+* 1a. No keyword was provided or the format is invalid.
+    * 1a1. ElderRing shows the proper command format.
+
+      Use case ends.
+
+* 2a. No matches are found.
+    * 2a1. ElderRing shows “0 persons listed”.
+
+      Use case ends.
+
+---
+
+**Use case: Sort elderly (by field and order)**
+
+**MSS**
+1. User requests to sort the current list by a field (e.g., name/address) and order (ascending/descending)
+2. ElderRing sorts the list and shows a success message
 
   Use case ends.
 
-* 1b. Wrong command used
-  * 1b1. ElderRing shows proper command format.
+**Extensions**
+* 1a. Unsupported field or invalid order provided.
+    * 1a1. ElderRing shows the proper command format.
+
+      Use case ends.
+
+---
+
+**Use case: Tag an elderly**
+
+**MSS**
+1. User identifies the target elderly (by index, or by name & phone, or by address)
+2. User requests to add a tag to the target elderly
+3. ElderRing adds the tag to the elderly
+
   Use case ends.
 
-*{More to be added}*
+**Extensions**
+* 1a. The identifier is invalid or no elderly matches.
+    * 1a1. ElderRing shows an error message.
+
+      Use case ends.
+
+* 2a. The elderly already has the same tag.
+    * 2a1. ElderRing shows a duplicate-tag message.
+
+      Use case ends.
+
+---
+
+**Use case: Add or remove a remark for an elderly**
+
+**MSS**
+1. User requests to list elderly (optional)
+2. User requests to add a remark to the elderly at a given index (or to remove it)
+3. ElderRing updates the remark (added or removed)
+
+  Use case ends.
+
+**Extensions**
+* 2a. The given index is invalid.
+    * 2a1. ElderRing shows an error message.
+
+      Use case resumes at step 1.
+
+* 2b. User indicates removal flag to clear the remark.
+    * 2b1. ElderRing clears the remark and shows a confirmation.
+
+      Use case ends.
+
+---
+
+**Use case: List all elderly**
+
+**MSS**
+1. User requests to list all elderly
+2. ElderRing shows the full list
+
+  Use case ends.
+
+**Extensions**
+* 2a. The address book is empty.
+    * 2a1. ElderRing shows an empty list message.
+
+      Use case ends.
+
 
 ### Non-Functional Requirements
 
@@ -357,7 +507,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4.  Response time should be less than 2 seconds.
 5.  The data should be stored locally in a text file.
 6.  ElderRing should be able to work without requiring an installer.
-*{More to be added}*
+    *{More to be added}*
 
 ### Glossary
 
@@ -382,15 +532,15 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
@@ -399,16 +549,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `delete 0`<br>
+       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
@@ -416,6 +566,6 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_

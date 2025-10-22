@@ -4,17 +4,52 @@
   pageNav: 3
 ---
 
-# AB-3 User Guide
+# ElderRing User Guide
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+## Introduction
+**ElderRing** is a **desktop application** made for silver generation ambassadors to better **manage and organise elderly client information** more efficiently. 
+
+With **ElderRing**, you can manage elderly information with:
+- **Quick Overview**: See your list of elderly from the main screen. 
+- **Easy to use**: Simple commands that anyone can learn quickly.
+
 
 <!-- * Table of Contents -->
 <page-nav-print />
 
 --------------------------------------------------------------------------------------------------------------------
+## How to Read This Guide
 
-## Quick start
+This guide is designed for everyone, whether you're just starting out or already familiar with ElderRing.
 
+If you are **new to ElderRing**:
+- Head to "filler" to learn how to get started 
+
+If you have **experience with ElderRing**: 
+- Checkout "filler" for a quick overview of the various commands and their usage.
+- Checkout "filler" for a more in-depth breakdown of each feature.
+
+#### Tips
+
+Tips are indicated within a box with a lightbulb/
+
+<box type="tip">
+
+This is a tip you can follow for your convenience!
+
+</box>
+
+--------------------------------------------------------------------------------------------------------------------
+## Getting Started
+
+<box header=" **By the end of this section, you will:**">
+
+- Have installed **ElderRing** on your computer
+- know how to run **ElderRing**
+
+</box>
+
+### Installation
 1. Ensure you have Java `17` or above installed in your Computer.<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
