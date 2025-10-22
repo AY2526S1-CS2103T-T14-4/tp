@@ -21,7 +21,6 @@ import seedu.address.model.person.Person;
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
 
-    //public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
     public static final String MESSAGE_DUPLICATE_PERSON = "Duplicate entries found based on PHONE + NAME combination. "
             + "Entries will be automatically cleaned up.";
 
@@ -54,26 +53,101 @@ class JsonSerializableAddressBook {
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
         int duplicateCount = 0;
+        int invalidCount = 0;
+        int loadedCount = 0;
+        int entryNumber = 0;
 
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
+            entryNumber++;
+            try {
+                Person person = jsonAdaptedPerson.toModelType();
 
-            if (hasDuplicatePhoneName(addressBook, person)) {
-                duplicateCount++;
-                logger.warning("Duplicate entry skipped - Name: " + person.getName()
-                        + ", Phone: " + person.getPhone());
-                continue; // Skip this duplicate entry
+                if (hasDuplicatePhoneName(addressBook, person)) {
+                    duplicateCount++;
+                    logger.warning("[Entry " + entryNumber + "] DUPLICATE SKIPPED - Name: '" + person.getName()
+                            + "', Phone: '" + person.getPhone() + "' - Same phone+name combination exists");
+                    continue;
+                }
+
+                addressBook.addPerson(person);
+                loadedCount++;
+
+            } catch (IllegalValueException e) {
+                invalidCount++;
+                String personInfo = extractPersonInfoFromError(e.getMessage());
+                String reason = extractReasonFromError(e.getMessage());
+
+                if (!personInfo.isEmpty()) {
+                    logger.warning("[Entry " + entryNumber + "] INVALID SKIPPED - Person: '" + personInfo
+                            + "' - Reason: " + reason);
+                } else {
+                    logger.warning("[Entry " + entryNumber + "] INVALID SKIPPED - Reason: " + reason);
+                }
             }
-
-            addressBook.addPerson(person);
         }
 
+        // Log comprehensive summary
+        StringBuilder summary = new StringBuilder();
+        summary.append("Data loading completed: ");
+        summary.append(loadedCount).append(" entries loaded successfully");
+
         if (duplicateCount > 0) {
-            logger.warning(duplicateCount + " duplicate entries were skipped during loading.");
-            // Note: We don't throw an exception, we just log and continue
+            summary.append(", ").append(duplicateCount).append(" duplicates skipped");
+        }
+        if (invalidCount > 0) {
+            summary.append(", ").append(invalidCount).append(" invalid entries skipped");
+        }
+
+        logger.info(summary.toString());
+
+        if (loadedCount == 0 && persons.size() > 0) {
+            throw new IllegalValueException("No valid persons found in data file. "
+                    + "All entries were skipped due to errors.");
         }
 
         return addressBook;
+    }
+
+    /**
+     * Extracts person information from error message for better logging
+     */
+    private String extractPersonInfoFromError(String errorMessage) {
+        if (errorMessage.contains("for person:")) {
+            // Extract the person name from error message like "Invalid phone for person: John Doe"
+            return errorMessage.substring(errorMessage.indexOf("for person:") + "for person:".length()).trim();
+        }
+        return "Unknown";
+    }
+
+    /**
+     * Extracts clean reason from error message
+     */
+    private String extractReasonFromError(String errorMessage) {
+        if (errorMessage.contains("Missing required field:")) {
+            if (errorMessage.contains("name")) {
+                return "Missing name field";
+            }
+            if (errorMessage.contains("phone")) {
+                return "Missing phone field";
+            }
+            if (errorMessage.contains("address")) {
+                return "Missing address field";
+            }
+            return "Missing required field";
+        }
+        if (errorMessage.contains("Invalid name format")) {
+            return "Invalid name format";
+        }
+        if (errorMessage.contains("Invalid phone format")) {
+            return "Invalid phone number";
+        }
+        if (errorMessage.contains("Invalid address format")) {
+            return "Invalid address format";
+        }
+        if (errorMessage.contains("Invalid email format")) {
+            return "Invalid email format";
+        }
+        return errorMessage;
     }
 
     /**
@@ -86,17 +160,5 @@ class JsonSerializableAddressBook {
                         existingPerson.getPhone().equals(person.getPhone())
                                 && existingPerson.getName().fullName.equalsIgnoreCase(person.getName().fullName));
     }
-
-    //    public AddressBook toModelType() throws IllegalValueException {
-    //        AddressBook addressBook = new AddressBook();
-    //        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-    //            Person person = jsonAdaptedPerson.toModelType();
-    //            if (addressBook.hasPerson(person)) {
-    //                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
-    //            }
-    //            addressBook.addPerson(person);
-    //        }
-    //        return addressBook;
-    //    }
 
 }

@@ -1,0 +1,17 @@
+{
+  "persons": [
+    {
+      "name": "Person Without Email",
+      "phone": "91111111",
+      "address": "Some Address",
+      "tags": []
+    },
+    {
+      "name": "Person Without Remark",
+      "phone": "92222222",
+      "email": "test@example.com",
+      "address": "Another Address",
+      "tags": []
+    }
+  ]
+}

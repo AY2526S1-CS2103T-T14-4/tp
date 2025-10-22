@@ -1,0 +1,10 @@
+{
+  "persons": [
+    {
+      "name": "Test Person",
+      "phone": "92345678",
+      "address": "Test Address",
+      "tags": []
+    }
+  ]
+}

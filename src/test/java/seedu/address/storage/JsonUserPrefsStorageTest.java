@@ -2,6 +2,8 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.io.IOException;
@@ -120,4 +122,60 @@ public class JsonUserPrefsStorageTest {
         assertEquals(original, readBack);
     }
 
+    @Test
+    public void getUserPrefsFilePath_returnsCorrectPath() {
+        Path expectedPath = Paths.get("test/path/userPrefs.json");
+        JsonUserPrefsStorage storage = new JsonUserPrefsStorage(expectedPath);
+
+        assertEquals(expectedPath, storage.getUserPrefsFilePath());
+    }
+
+    @Test
+    public void getUserPrefsFilePath_withTempDir_returnsCorrectPath() {
+        Path tempPath = testFolder.resolve("testPrefs.json");
+        JsonUserPrefsStorage storage = new JsonUserPrefsStorage(tempPath);
+
+        assertEquals(tempPath, storage.getUserPrefsFilePath());
+    }
+
+    @Test
+    public void getUserPrefsFilePath_afterConstruction_unchanged() {
+        Path initialPath = Paths.get("initial/path.json");
+        JsonUserPrefsStorage storage = new JsonUserPrefsStorage(initialPath);
+
+        // Call multiple times to ensure consistency
+        assertEquals(initialPath, storage.getUserPrefsFilePath());
+        assertEquals(initialPath, storage.getUserPrefsFilePath());
+        assertEquals(initialPath, storage.getUserPrefsFilePath());
+    }
+
+    @Test
+    public void readUserPrefs_usesCorrectFilePath() throws DataLoadingException {
+        Path testPath = testFolder.resolve("testReadPrefs.json");
+        JsonUserPrefsStorage storage = new JsonUserPrefsStorage(testPath);
+
+        // Verify the file path matches what was passed to constructor
+        assertEquals(testPath, storage.getUserPrefsFilePath());
+
+        // Create a test file at that path and verify it can be read
+        UserPrefs testPrefs = new UserPrefs();
+        testPrefs.setGuiSettings(new GuiSettings(800, 600, 10, 20));
+        testPrefs.setAddressBookFilePath(Paths.get("testAddressBook.json"));
+
+        try {
+            storage.saveUserPrefs(testPrefs);
+            Optional<UserPrefs> readPrefs = storage.readUserPrefs();
+            assertTrue(readPrefs.isPresent());
+            assertEquals(testPrefs, readPrefs.get());
+        } catch (IOException e) {
+            fail("Should not throw IOException during save: " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void getUserPrefsFilePath_nullPath_returnsNull() {
+        // This tests the constructor behavior with null path
+        JsonUserPrefsStorage storage = new JsonUserPrefsStorage(null);
+        assertEquals(null, storage.getUserPrefsFilePath());
+    }
 }

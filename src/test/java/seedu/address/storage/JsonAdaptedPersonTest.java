@@ -12,8 +12,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 
 public class JsonAdaptedPersonTest {
@@ -71,19 +71,25 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
-    public void toModelType_invalidEmail_throwsIllegalValueException() {
+    public void toModelType_invalidEmail_returnsPersonWithEmptyEmail() throws Exception {
+        // Email is now optional - invalid email should result in empty email, not throw exception
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, INVALID_EMAIL, VALID_ADDRESS, VALID_REMARK, VALID_TAGS);
-        String expectedMessage = Email.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+
+        // Should not throw exception, should create person with empty email
+        Person modelPerson = person.toModelType();
+        assertEquals("", modelPerson.getEmail().value); // Email should be empty string
     }
 
     @Test
-    public void toModelType_nullEmail_throwsIllegalValueException() {
+    public void toModelType_nullEmail_returnsPersonWithEmptyEmail() throws Exception {
+        // Email is now optional - null email should result in empty email, not throw exception
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, null, VALID_ADDRESS, VALID_REMARK, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+
+        // Should not throw exception, should create person with empty email
+        Person modelPerson = person.toModelType();
+        assertEquals("", modelPerson.getEmail().value); // Email should be empty string
     }
 
     @Test
@@ -100,5 +106,99 @@ public class JsonAdaptedPersonTest {
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, null, VALID_REMARK, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    // Optional: Test that empty email string works
+    @Test
+    public void toModelType_emptyEmail_returnsPersonWithEmptyEmail() throws Exception {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, "", VALID_ADDRESS, VALID_REMARK, VALID_TAGS);
+
+        Person modelPerson = person.toModelType();
+        assertEquals("", modelPerson.getEmail().value);
+    }
+
+    @Test
+    public void toModelType_whitespaceOnlyEmail_returnsPersonWithEmptyEmail() throws Exception {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, "   ", VALID_ADDRESS, VALID_REMARK, VALID_TAGS);
+
+        Person modelPerson = person.toModelType();
+        assertEquals("", modelPerson.getEmail().value);
+    }
+
+    @Test
+    public void toModelType_nullRemark_returnsPersonWithEmptyRemark() throws Exception {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, null, VALID_TAGS);
+
+        Person modelPerson = person.toModelType();
+        assertEquals("", modelPerson.getRemark().value);
+    }
+
+    @Test
+    public void toModelType_emptyRemark_returnsPersonWithEmptyRemark() throws Exception {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, "", VALID_TAGS);
+
+        Person modelPerson = person.toModelType();
+        assertEquals("", modelPerson.getRemark().value);
+    }
+
+    @Test
+    public void toModelType_whitespaceOnlyRemark_returnsPersonWithEmptyRemark() throws Exception {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, "   ", VALID_TAGS);
+
+        Person modelPerson = person.toModelType();
+        assertEquals("", modelPerson.getRemark().value);
+    }
+
+    @Test
+    public void toModelType_emptyName_throwsIllegalValueException() {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson("", VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_REMARK, VALID_TAGS);
+
+        assertThrows(IllegalValueException.class, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_whitespaceOnlyName_throwsIllegalValueException() {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson("   ", VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_REMARK, VALID_TAGS);
+
+        assertThrows(IllegalValueException.class, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_emptyPhone_throwsIllegalValueException() {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, "", VALID_EMAIL, VALID_ADDRESS, VALID_REMARK, VALID_TAGS);
+
+        assertThrows(IllegalValueException.class, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_whitespaceOnlyPhone_throwsIllegalValueException() {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, "   ", VALID_EMAIL, VALID_ADDRESS, VALID_REMARK, VALID_TAGS);
+
+        assertThrows(IllegalValueException.class, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_emptyAddress_throwsIllegalValueException() {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, "", VALID_REMARK, VALID_TAGS);
+
+        assertThrows(IllegalValueException.class, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_whitespaceOnlyAddress_throwsIllegalValueException() {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, "   ", VALID_REMARK, VALID_TAGS);
+
+        assertThrows(IllegalValueException.class, person::toModelType);
     }
 }
