@@ -7,10 +7,10 @@
 # ElderRing User Guide
 
 ## Introduction
-**ElderRing** is a **desktop application** made for silver generation ambassadors to better **manage and organise elderly client information** more efficiently. 
+**ElderRing** is a **desktop application** made for silver generation ambassadors to better **manage and organise elderly client information** more efficiently.
 
 With **ElderRing**, you can manage elderly information with:
-- **Quick Overview**: See your list of elderly from the main screen. 
+- **Quick Overview**: See your list of elderly from the main screen.
 - **Easy to use**: Simple commands that anyone can learn quickly.
 
 
@@ -23,9 +23,9 @@ With **ElderRing**, you can manage elderly information with:
 This guide is designed for everyone, whether you're just starting out or already familiar with ElderRing.
 
 If you are **new to ElderRing**:
-- Head to "filler" to learn how to get started 
+- Head to "filler" to learn how to get started
 
-If you have **experience with ElderRing**: 
+If you have **experience with ElderRing**:
 - Checkout "filler" for a quick overview of the various commands and their usage.
 - Checkout "filler" for a more in-depth breakdown of each feature.
 
@@ -53,7 +53,7 @@ To get started, this guide serves as a walkthrough on **how to install ElderRing
 
 ### Installation
 1. Ensure you have Java `17` or above installed in your Computer.<br>
-   
+
 <box type="info" seamless>
 
 If you are not sure how to install java, follow this [guide](https://www.java.com/en/download/help/download_options.html).
@@ -167,7 +167,7 @@ Format: `list`
 
 ### Editing a person : `edit`
 
-Edits an existing elderly person in the address book, only replacing the fields with new information specified in the user input. 
+Edits an existing elderly person in the address book, only replacing the fields with new information specified in the user input.
 
 <box type="info" seamless>
 
@@ -186,7 +186,7 @@ Format: `edit i/INDEX n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS t/TAG`
 
 Examples:
 *  `edit i/10 t/Diabetic`
-*  `edit i/1 n/Joseph p/92891234` 
+*  `edit i/1 n/Joseph p/92891234`
 
 ### Locating persons by name: `find`
 
