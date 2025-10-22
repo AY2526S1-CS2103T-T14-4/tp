@@ -17,9 +17,25 @@ Class StorageManager
 package "AddressBook Storage" #F4F6F6{
 Class "<<interface>>\nAddressBookStorage" as AddressBookStorage
 Class JsonAddressBookStorage
-Class JsonSerializableAddressBook
-Class JsonAdaptedPerson
-Class JsonAdaptedTag
+Class JsonSerializableAddressBook {
+  + toModelType(): AddressBook
+  - hasDuplicatePhoneName(): boolean
+  - extractPersonInfoFromError(): String
+  - extractReasonFromError(): String
+  + MESSAGE_DUPLICATE_PERSON: String
+  __
+  «behavior»
+  + Skip invalid entries
+  + Auto-remove duplicates
+  + Detailed logging
+}
+Class JsonAdaptedPerson {
+  + toModelType(): Person
+  + MISSING_FIELD_MESSAGE_FORMAT: String
+}
+Class JsonAdaptedTag {
+  + toModelType(): Tag
+}
 }
 
 }
@@ -39,5 +55,21 @@ JsonAddressBookStorage .up.|> AddressBookStorage
 JsonAddressBookStorage ..> JsonSerializableAddressBook
 JsonSerializableAddressBook --> "*" JsonAdaptedPerson
 JsonAdaptedPerson --> "*" JsonAdaptedTag
+
+' Add notes for behavior changes
+note right of JsonSerializableAddressBook
+  **Enhanced JSON Parsing:**
+  - Invalid entries are skipped
+  - Duplicates auto-removed
+  - Detailed error logging
+  - Entry counting & statistics
+end note
+
+note right of JsonAdaptedPerson
+  **Strict Validation:**
+  - Required fields: name, phone, address
+  - Optional fields: email, remark
+  - Field format validation
+end note
 
 @enduml
