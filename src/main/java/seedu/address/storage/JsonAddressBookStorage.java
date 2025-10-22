@@ -66,23 +66,6 @@ public class JsonAddressBookStorage implements AddressBookStorage {
         }
     }
 
-    //    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataLoadingException {
-    //        requireNonNull(filePath);
-    //
-    //        Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
-    //                filePath, JsonSerializableAddressBook.class);
-    //        if (!jsonAddressBook.isPresent()) {
-    //            return Optional.empty();
-    //        }
-    //
-    //        try {
-    //            return Optional.of(jsonAddressBook.get().toModelType());
-    //        } catch (IllegalValueException ive) {
-    //            logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
-    //            throw new DataLoadingException(ive);
-    //        }
-    //    }
-
     @Override
     public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
         saveAddressBook(addressBook, filePath);

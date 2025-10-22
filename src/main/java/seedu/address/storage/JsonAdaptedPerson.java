@@ -91,13 +91,26 @@ class JsonAdaptedPerson {
         }
         final Phone modelPhone = new Phone(phone);
 
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+        //        if (email == null) {
+        //            throw new IllegalValueException(String.format(
+        //            MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+        //        }
+        //        if (!Email.isValidEmail(email)) {
+        //            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+        //        }
+        //        final Email modelEmail = new Email(email);
+
+        // Optional fields: email and remark
+        final Email modelEmail;
+        if (email == null || email.trim().isEmpty()) {
+            // Email is optional - use empty string as default
+            modelEmail = new Email("");
+        } else if (!Email.isValidEmail(email)) {
+            // If email is provided but invalid, also use empty string
+            modelEmail = new Email("");
+        } else {
+            modelEmail = new Email(email);
         }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
-        }
-        final Email modelEmail = new Email(email);
 
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
@@ -107,10 +120,18 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        //        if (remark == null) {
+        //            throw new IllegalValueException(String.format(
+        //            MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
+        //        }
+        //        final Remark modelRemark = new Remark(remark);
+
+        final Remark modelRemark;
         if (remark == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
+            modelRemark = new Remark("");
+        } else {
+            modelRemark = new Remark(remark);
         }
-        final Remark modelRemark = new Remark(remark);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags);
