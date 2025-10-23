@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Objects;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataLoadingException;
@@ -16,7 +17,13 @@ public class JsonUserPrefsStorage implements UserPrefsStorage {
 
     private Path filePath;
 
+    /**
+     * Constructs a {@code JsonUserPrefsStorage} with the given file path.
+     *
+     * @param filePath the file path where user preferences are stored
+     */
     public JsonUserPrefsStorage(Path filePath) {
+        this.filePath = Objects.requireNonNull(filePath, "File path cannot be null");
         this.filePath = filePath;
     }
 
@@ -36,6 +43,7 @@ public class JsonUserPrefsStorage implements UserPrefsStorage {
      * @throws DataLoadingException if the file format is not as expected.
      */
     public Optional<UserPrefs> readUserPrefs(Path prefsFilePath) throws DataLoadingException {
+        assert prefsFilePath != null : "Preferences file path cannot be null";
         return JsonUtil.readJsonFile(prefsFilePath, UserPrefs.class);
     }
 
