@@ -19,7 +19,7 @@ public class FilterCommand extends Command {
             + "Parameters: t/TAG\n"
             + "Example: " + COMMAND_WORD + " t/friend";
 
-    private final Tag tag;
+    private final List<Tag> tags;
 
     /**
      * Creates a FilterCommand object to display entries with the specified tag
@@ -27,7 +27,7 @@ public class FilterCommand extends Command {
      */
     public FilterCommand(List<String> tagNames) {
         requireNonNull(tagNames);
-        this.tag = tagNames.stream().map(Tag::new).toList();
+        this.tags = tagNames.stream().map(Tag::new).toList();
     }
 
     @Override
@@ -35,23 +35,26 @@ public class FilterCommand extends Command {
         requireNonNull(model);
 
         Predicate<Person> predicate = person -> person.getTags().stream()
-                .anyMatch(t -> t.tagName.equalsIgnoreCase(tag.tagName));
+                .anyMatch(personTag -> tags.stream()
+                        .anyMatch(filterTag -> filterTag.tagName.equalsIgnoreCase(personTag.tagName)));
 
         model.updateFilteredPersonList(predicate);
 
+        String joinedTags = tags.stream().map(Tag::toString).reduce((a, b) -> a + ", " + b).orElse("");
         return new CommandResult(
-                String.format("Elderly with tag: %s", tag.toString()));
+                String.format("Elderly with tag(s): %s", joinedTags));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof FilterCommand
-                && tag.equals(((FilterCommand) other).tag));
+                && tags.equals(((FilterCommand) other).tags));
     }
 
     @Override
     public String toString() {
-        return "Elderly with tag: " + tag;
+        String joinedTags = tags.stream().map(Tag::toString).reduce((a, b) -> a + ", " + b).orElse("");
+        return "Elderly with tag(s): " + joinedTags;
     }
 }
