@@ -24,9 +24,6 @@ public class TagCommandParser implements Parser<TagCommand> {
     @Override
     public TagCommand parse(String args) throws ParseException {
         boolean isDelete = args.trim().endsWith("--remove");
-        String trimmedArgs = isDelete
-                ? args.substring(0, args.lastIndexOf("--remove")).trim()
-                : args.trim();
 
         try {
             ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
