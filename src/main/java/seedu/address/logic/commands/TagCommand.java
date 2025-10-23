@@ -57,7 +57,8 @@ public class TagCommand extends Command {
         this.targetName = null;
         this.targetPhone = null;
         this.targetAddress = null;
-        this.tag = new Tag(isDelete ? tagName.substring(0, tagName.lastIndexOf("--remove")).trim() : tagName);
+        this.tag = new Tag(tagName);
+        //this.tag = new Tag(isDelete ? tagName.substring(0, tagName.lastIndexOf("--remove")).trim() : tagName);
         this.isDelete = isDelete;
     }
 
@@ -73,7 +74,8 @@ public class TagCommand extends Command {
         this.targetName = targetName;
         this.targetPhone = targetPhone;
         this.targetAddress = null;
-        this.tag = new Tag(isDelete ? tagName.substring(0, tagName.lastIndexOf("--remove")).trim() : tagName);
+        this.tag = new Tag(tagName);
+        //this.tag = new Tag(isDelete ? tagName.substring(0, tagName.lastIndexOf("--remove")).trim() : tagName);
         this.isDelete = isDelete;
     }
 
@@ -90,7 +92,8 @@ public class TagCommand extends Command {
         this.targetName = targetName;
         this.targetPhone = targetPhone;
         this.targetAddress = targetAddress;
-        this.tag = new Tag(isDelete ? tagName.substring(0, tagName.lastIndexOf("--remove")).trim() : tagName);
+        this.tag = new Tag(tagName);
+        //this.tag = new Tag(isDelete ? tagName.substring(0, tagName.lastIndexOf("--remove")).trim() : tagName);
         this.isDelete = isDelete;
     }
 
