@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.model.Model;
@@ -22,11 +23,11 @@ public class FilterCommand extends Command {
 
     /**
      * Creates a FilterCommand object to display entries with the specified tag
-     * @param tagName specified tag (criterion for filtering)
+     * @param tagNames specified tags (criterion for filtering)
      */
-    public FilterCommand(String tagName) {
-        requireNonNull(tagName);
-        this.tag = new Tag(tagName);
+    public FilterCommand(List<String> tagNames) {
+        requireNonNull(tagNames);
+        this.tag = tagNames.stream().map(Tag::new).toList();
     }
 
     @Override
@@ -47,5 +48,10 @@ public class FilterCommand extends Command {
         return other == this
                 || (other instanceof FilterCommand
                 && tag.equals(((FilterCommand) other).tag));
+    }
+
+    @Override
+    public String toString() {
+        return "Elderly with tag: " + tag;
     }
 }
