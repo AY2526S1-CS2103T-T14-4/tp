@@ -173,9 +173,8 @@ public class JsonUserPrefsStorageTest {
     }
 
     @Test
-    public void getUserPrefsFilePath_nullPath_returnsNull() {
-        // This tests the constructor behavior with null path
-        JsonUserPrefsStorage storage = new JsonUserPrefsStorage(null);
-        assertEquals(null, storage.getUserPrefsFilePath());
+    public void getUserPrefsFilePath_nullPath_throwsNullPointerException() {
+        // Verify that constructor rejects null paths
+        assertThrows(NullPointerException.class, () -> new JsonUserPrefsStorage(null));
     }
 }
