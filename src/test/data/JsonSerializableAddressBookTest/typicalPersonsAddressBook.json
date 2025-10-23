@@ -20,7 +20,7 @@
     "email" : "heinz@example.com",
     "address" : "wall street",
     "remark" : "",
-    "tags" : [ ]
+    "tags" : [ "vip" ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
@@ -34,14 +34,14 @@
     "email" : "werner@example.com",
     "address" : "michegan ave",
     "remark" : "",
-    "tags" : [ ]
+    "tags" : [ "friend"]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "94824278",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
     "remark" : "",
-    "tags" : [ ]
+    "tags" : [ "vip" ]
   }, {
     "name" : "George Best",
     "phone" : "94824428",
