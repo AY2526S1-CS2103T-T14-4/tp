@@ -1,0 +1,34 @@
+@startuml
+
+interface Parser
+abstract class Command
+
+class TagCommand {
+  - Index targetIndex
+  - Name targetName
+  - Phone targetPhone
+  - Address targetAddress
+  - Tag tag
+  --
+  + execute(Model): CommandResult
+  + equals(Object): boolean
+  + toString(): String
+}
+
+class TagCommandParser {
+  + parse(String): TagCommand
+}
+
+class ParseException
+class Tag
+class Model
+
+Parser <|-- TagCommandParser
+Command <|-- TagCommand
+
+TagCommandParser --> TagCommand : creates >
+TagCommandParser --> ParseException : throws >
+TagCommand --> Tag : uses >
+TagCommand --> Model : uses >
+
+@enduml
