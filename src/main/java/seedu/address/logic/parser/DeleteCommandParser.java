@@ -29,30 +29,40 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                     ArgumentTokenizer.tokenize(args, PREFIX_INDEX, PREFIX_NAME, PREFIX_PHONE);
 
             boolean indexIsPresent = arePrefixesPresent(argMultimap, PREFIX_INDEX);
-            boolean nameAndPhoneArePresent = arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE);
+            boolean nameIsPresent = arePrefixesPresent(argMultimap, PREFIX_NAME);
+            boolean phoneIsPresent = arePrefixesPresent(argMultimap, PREFIX_PHONE);
 
-            if ((!indexIsPresent && !nameAndPhoneArePresent)
-                    || (indexIsPresent && nameAndPhoneArePresent)) {
+            if (isValidDeletionCriteria(indexIsPresent, nameIsPresent, phoneIsPresent)) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
             }
 
             argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_INDEX, PREFIX_NAME, PREFIX_PHONE);
 
-            // Ensures that index is priority. Even if Name or Phone is present, only index is considered.
-            if (indexIsPresent) {
-                Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
-                return new DeleteCommand(index);
-            } else if (nameAndPhoneArePresent) {
-                Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-                Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-                return new DeleteCommand(name, phone);
-            } else {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
-            }
+            return getDeleteCommand(argMultimap, indexIsPresent, nameIsPresent, phoneIsPresent);
+
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
         }
+    }
+
+    private DeleteCommand getDeleteCommand(ArgumentMultimap argMultimap, boolean indexIsPresent, boolean nameIsPresent,
+            boolean phoneIsPresent) throws ParseException {
+        if (indexIsPresent) {
+            Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
+            return new DeleteCommand(index);
+        } else if (nameIsPresent && phoneIsPresent) {
+            Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+            Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
+            return new DeleteCommand(name, phone);
+        } else {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        }
+    }
+
+    private boolean isValidDeletionCriteria(boolean indexIsPresent, boolean nameIsPresent, boolean phoneIsPresent) {
+        return (!indexIsPresent || nameIsPresent || phoneIsPresent)
+                && (indexIsPresent || !nameIsPresent || !phoneIsPresent);
     }
 
     /**
