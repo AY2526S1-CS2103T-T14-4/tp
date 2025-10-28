@@ -17,13 +17,13 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Tags a person in the address book identified by index or by entry details
+ * Tags a senior in the address book identified by index or by entry details
  */
 public class TagCommand extends Command {
 
     public static final String COMMAND_WORD = "tag";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Tags the specified person in the address book.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Tags the specified senior in the address book.\n"
             + "Parameters: "
             + "i/INDEX (must be a positive integer) "
             + "or n/NAME p/PHONE "
@@ -34,10 +34,10 @@ public class TagCommand extends Command {
             + COMMAND_WORD + " n/Alice p/12345678 t/vip\n\t"
             + COMMAND_WORD + " a/123 Clementi Ave t/home";
 
-    public static final String MESSAGE_TAG_PERSON_SUCCESS = "Tagged Person: %1$s with %2$s";
-    public static final String MESSAGE_UNTAG_PERSON_SUCCESS = "Removed tag %2$s from Person: %1$s";
-    public static final String MESSAGE_INVALID_IDENTIFIER = "Person not found";
-    public static final String MESSAGE_TAG_NOT_FOUND = "Person does not have tag %s.";
+    public static final String MESSAGE_TAG_PERSON_SUCCESS = "Tagged Senior: %1$s with %2$s";
+    public static final String MESSAGE_UNTAG_PERSON_SUCCESS = "Removed tag %2$s from Senior: %1$s";
+    public static final String MESSAGE_INVALID_IDENTIFIER = "Senior not found";
+    public static final String MESSAGE_TAG_NOT_FOUND = "Senior does not have tag %s.";
 
     private final Index targetIndex;
     private final Name targetName;
@@ -62,7 +62,7 @@ public class TagCommand extends Command {
     }
 
     /**
-     * Creates a TagCommand to tag the person with the specified targetName and targetPhone
+     * Creates a TagCommand to tag the senior with the specified targetName and targetPhone
      */
     public TagCommand(Name targetName, Phone targetPhone, String tagName, boolean isDelete) {
         requireNonNull(targetName);
@@ -78,7 +78,7 @@ public class TagCommand extends Command {
     }
 
     /**
-     * Creates a TagCommand to tag the person with the specified targetName, targetPhone and targetAddress.
+     * Creates a TagCommand to tag the senior with the specified targetName, targetPhone and targetAddress.
      */
     public TagCommand(Name targetName, Phone targetPhone, Address targetAddress, String tagName, boolean isDelete) {
         requireNonNull(targetName);

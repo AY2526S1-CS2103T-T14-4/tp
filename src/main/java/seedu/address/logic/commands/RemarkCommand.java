@@ -13,30 +13,30 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Remark;
 
 /**
- * Changes the remark of an existing person in the address book.
+ * Changes the remark of an existing senior in the address book.
  */
 public class RemarkCommand extends Command {
 
     public static final String COMMAND_WORD = "remark";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Edits or removes the remark of the person identified by the index.\n"
+            + ": Edits or removes the remark of the senior identified by the index.\n"
             + "Parameters: i/INDEX (must be a positive integer) "
             + "[ r/REMARK | --remove ]\n"
             + "Examples:\n"
             + "  " + COMMAND_WORD + " i/1 r/Likes to swim.\n"
             + "  " + COMMAND_WORD + " i/1 --remove";
 
-    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Person: %1$s";
-    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Person: %1$s";
+    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Senior: %1$s";
+    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Senior: %1$s";
 
     private final Index index;
     private final Remark remark;
 
     /**
-     * Creates a RemarkCommand to update the remark of the specified person.
-     * @param index The index of the person in the filtered person list to modify
-     * @param remark The new remark for the person
+     * Creates a RemarkCommand to update the remark of the specified senior.
+     * @param index The index of the senior in the filtered senior list to modify
+     * @param remark The new remark for the senior
      */
     public RemarkCommand(Index index, Remark remark) {
         requireAllNonNull(index, remark);
