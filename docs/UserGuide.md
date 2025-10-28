@@ -7,12 +7,7 @@
 # ElderRing User Guide
 
 ## Introduction
-**ElderRing** is a **desktop application** made for silver generation ambassadors to better **manage and organise elderly client information** more efficiently.
-
-With **ElderRing**, you can manage elderly information with:
-- **Quick Overview**: See your list of elderly from the main screen.
-- **Easy to use**: Simple commands that anyone can learn quickly.
-
+**ElderRing** is a **desktop application** made for silver generation ambassadors to better **manage and organise elderly client information** more efficiently. With simple commands, elderly contacts can be managed faster than traditional GUI applications. 
 
 <!-- * Table of Contents -->
 <page-nav-print />
