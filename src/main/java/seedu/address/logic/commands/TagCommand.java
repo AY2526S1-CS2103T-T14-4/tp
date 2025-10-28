@@ -10,7 +10,6 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -77,23 +76,24 @@ public class TagCommand extends Command {
         this.isDelete = isDelete;
     }
 
-//    /**
-//     * Creates a TagCommand to tag the person with the specified targetName, targetPhone and targetAddress.
-//     */
-//    public TagCommand(Name targetName, Phone targetPhone, Address targetAddress, String tagName, boolean isDelete) {
-//        requireNonNull(targetName);
-//        requireNonNull(targetPhone);
-//        requireNonNull(targetAddress);
-//        requireNonNull(tagName);
-//
-//        this.targetIndex = null;
-//        this.targetName = targetName;
-//        this.targetPhone = targetPhone;
-//        this.targetAddress = targetAddress;
-//        this.tag = new Tag(tagName);
-//        //this.tag = new Tag(isDelete ? tagName.substring(0, tagName.lastIndexOf("--remove")).trim() : tagName);
-//        this.isDelete = isDelete;
-//    }
+    //    /**
+    //     * Creates a TagCommand to tag the person with the specified targetName, targetPhone and targetAddress.
+    //     */
+    //    public TagCommand(Name targetName, Phone targetPhone, Address targetAddress, String tagName,
+    //    boolean isDelete) {
+    //        requireNonNull(targetName);
+    //        requireNonNull(targetPhone);
+    //        requireNonNull(targetAddress);
+    //        requireNonNull(tagName);
+    //
+    //        this.targetIndex = null;
+    //        this.targetName = targetName;
+    //        this.targetPhone = targetPhone;
+    //        this.targetAddress = targetAddress;
+    //        this.tag = new Tag(tagName);
+    //        //this.tag = new Tag(isDelete ? tagName.substring(0, tagName.lastIndexOf("--remove")).trim() : tagName);
+    //        this.isDelete = isDelete;
+    //    }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -112,11 +112,6 @@ public class TagCommand extends Command {
                             && p.getPhone().equals(targetPhone))
                     .findFirst();
             targetPerson = match.orElse(null);
-//        } else if (targetAddress != null) {
-//            Optional<Person> match = lastShownList.stream()
-//                    .filter(p -> p.getAddress().value.equalsIgnoreCase(targetAddress.value))
-//                    .findFirst();
-//            targetPerson = match.orElse(null);
         }
 
         if (targetPerson == null) {
