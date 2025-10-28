@@ -23,11 +23,11 @@ With **ElderRing**, you can manage elderly information with:
 This guide is designed for everyone, whether you're just starting out or already familiar with ElderRing.
 
 If you are **new to ElderRing**:
-- Head to "filler" to learn how to get started
+- Head to [Getting Started](#getting-started) to learn how to get started
 
 If you have **experience with ElderRing**:
-- Checkout "filler" for a quick overview of the various commands and their usage.
-- Checkout "filler" for a more in-depth breakdown of each feature.
+- Checkout the [Command Summary](#command-summary) for a quick overview of the various commands and their usage.
+- Checkout [Features](#features) for a more in-depth breakdown of each feature.
 
 #### Additional Information
 
@@ -89,7 +89,7 @@ If you are not sure how to install java, follow this [guide](https://www.java.co
 
 ## Features
 
-This section covers the list of commands and their usages. If you are experienced with the command, you can refer to the "filler" below for quicker reference.
+This section covers the list of commands and their usages. If you are experienced with the command, you can refer to the [Command Summary](#command-summary) below for quicker reference.
 
 <box type="info" seamless>
 
@@ -225,6 +225,12 @@ Clears all entries from the address book.
 
 Format: `clear`
 
+<box type="warning">
+
+Do be careful, as this command irreversibly deletes ALL entries. This the operation cannot be undone.
+
+</box>
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -302,11 +308,19 @@ Format: `filter t/TAG`
 Examples:
 * `filter t/hard-of-hearing`
 
+<box type="warning">
+
+If a tag used does not exist, the entire display will show 0 entries.
+To get back your list of entries, make use of the [list](#listing-all-persons--list) command.
+
+</box>
+
+
 ### Sorting entries: `sort`
 
 Sorts elderly by NAME or ADDRESS in ascending or descending order.
 
-Format: `sort (asc or dsc)/(name or address)`
+Format: `sort (ASC or DSC)/(NAME or ADDRESS)`
 * `asc` sorts in ascending order
 * `dsc` sorts in descending order
 * `name` sorts by name
@@ -314,13 +328,14 @@ Format: `sort (asc or dsc)/(name or address)`
 
 #### Parameters:
 
-1. `asc/dsc`: Mandatory.
-2. `name/address`: Mandatory.
+1. `ASC or DSC`: Mandatory.
+2. `NAME or ADDRESS`: Mandatory.
 
 Examples:
 * `sort asc/name`
 * `sort dsc/name`
 * `sort asc/address`
+* `sort dsc/address`
 
 --------------------------------------------------------------------------------------------------------------------
 
