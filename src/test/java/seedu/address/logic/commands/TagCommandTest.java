@@ -116,7 +116,7 @@ public class TagCommandTest {
         TagCommand tagCommand = new TagCommand(Index.fromZeroBased(0), "vip", true);
 
         assertThrows(CommandException.class,
-                "Person does not have tag [vip].", () -> tagCommand.execute(modelStub));
+                "Senior does not have tag [vip].", () -> tagCommand.execute(modelStub));
     }
 
     @Test

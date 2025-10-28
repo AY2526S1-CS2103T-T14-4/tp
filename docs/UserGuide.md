@@ -7,7 +7,7 @@
 # ElderRing User Guide
 
 ## Introduction
-**ElderRing** is a **desktop application** made for silver generation ambassadors to better **manage and organise elderly client information** more efficiently. With simple commands, elderly contacts can be managed faster than traditional GUI applications. 
+**ElderRing** is a **desktop application** made for silver generation ambassadors to better **manage and organise senior clients information** more efficiently. With simple commands, seniors' contacts can be managed faster than traditional GUI applications.
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -72,7 +72,7 @@ If you are not sure how to install java, follow this [guide](https://www.java.co
 
    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   * `delete i/3` : Deletes the 3rd contact shown in the current list.
 
    * `clear` : Deletes all contacts.
 
@@ -119,13 +119,13 @@ This section covers the different parameters in ElderRing and their respective c
 
 | Parameter      | Description                                   | Constraints                                                                                                                                                                                    | Example                                                                                                      |
 |----------------|-----------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
-| `NAME`         | Elderly’s name                                | <ul><li>Only letters and spaces are permitted.</li><li>This parameter cannot be left blank.</li></ul>                                                                                          | :fa-solid-check: <br>`John Doe`<br>                                                                          |
-| `PHONE_NUMBER` | Elderly’s phone number                        | <ul><li>Only numbers are allowed.</li><li>This parameter cannot be left blank.</li><li>Only accepts numbers that are 8-digits.</li><li>Only accepts numbers that start with 6, 8, 9.</li></ul> | :fa-solid-check: <br>`91234567`<br>                                                                          |
-| `ADDRESS`      | Elderly’s residential address                 | <ul>No constraints </ul>                                                                                                                                                                       | :fa-solid-check: <br>`Blk 41 Telok Blangah Way #07-436`<br>                                                  |
-| `EMAIL`        | Elderly’s email address                       | <ul><li>Emails should be of the format. `local-part@domain`.</li><li>`local-part` must only contain letters and digits</li><li>`domain` must end in `.com`</li></ul>                           | :fa-solid-check: <br>`johndoe123@gmail.com`<br>                                                              |
-| `TAG`          | Category/label applicable to elderly          | <ul>No constraints </ul>                                                                                                                                                                       | :fa-solid-check: <br>`hard-of-hearing` <br>                                                                  |
-| `REMARK`       | Additional notes applicable to elderly        | <ul>No constraints </ul>                                                                                                                                                                       | :fa-solid-check: <br>`List of elderly’s medications: Alprax (daily), Alprazolam (once every 3 days), ..`<br> |
-| `INDEX`        | The index shown in the displayed elderly list | <ul><li>Only whole numbers are allowed.</li><li>Number must be a postive number.</li><li>Number must be smaller than the total number of entries.</li></ul>                                    | :fa-solid-check: <br>`1`<br>                                                                                 |
+| `NAME`         | Senior’s name                                | <ul><li>Only letters and spaces are permitted.</li><li>This parameter cannot be left blank.</li></ul>                                                                                          | :fa-solid-check: <br>`John Doe`<br>                                                                          |
+| `PHONE_NUMBER` | Senior’s phone number                        | <ul><li>Only numbers are allowed.</li><li>This parameter cannot be left blank.</li><li>Only accepts numbers that are 8-digits.</li><li>Only accepts numbers that start with 6, 8, 9.</li></ul> | :fa-solid-check: <br>`91234567`<br>                                                                          |
+| `ADDRESS`      | Senior’s residential address                 | <ul>No constraints </ul>                                                                                                                                                                       | :fa-solid-check: <br>`Blk 41 Telok Blangah Way #07-436`<br>                                                  |
+| `EMAIL`        | Senior’s email address                       | <ul><li>Emails should be of the format. `local-part@domain`.</li><li>`local-part` must only contain letters and digits</li><li>`domain` must end in `.com`</li></ul>                           | :fa-solid-check: <br>`johndoe123@gmail.com`<br>                                                              |
+| `TAG`          | Category/label applicable to seniors         | <ul>No constraints </ul>                                                                                                                                                                       | :fa-solid-check: <br>`hard-of-hearing` <br>                                                                  |
+| `REMARK`       | Additional notes applicable to seniors       | <ul>No constraints </ul>                                                                                                                                                                       | :fa-solid-check: <br>`List of senior’s medications: Alprax (daily), Alprazolam (once every 3 days), ..`<br> |
+| `INDEX`        | The index shown in the displayed seniors list | <ul><li>Only whole numbers are allowed.</li><li>Number must be a postive number.</li><li>Number must be smaller than the total number of entries.</li></ul>                                    | :fa-solid-check: <br>`1`<br>                                                                                 |
 
 ### Viewing help : `help`
 
@@ -136,9 +136,9 @@ Shows a message explaining how to access the help page.
 Format: `help`
 
 
-### Adding an elderly: `add`
+### Adding a senior : `add`
 
-Adds an elderly person to the address book.
+Adds a senior to the address book.
 
 Format: `add n/NAME p/PHONE_NUMBER a/ADDRESS [e/EMAIL] [t/TAG]…​`
 
@@ -154,15 +154,15 @@ Examples:
 * `add n/Tan Ah Kow e/tak@gmail.com p/96521345 a/Blk 41 Telok Blangah way #07-436 t/hard-of-hearing`
 * `add n/Shermaine Tan p/98541331 a/1 Lor 2 Toa Payoh #07-36 e/shermainetan@gmail.com`
 
-### Listing all persons : `list`
+### Listing all seniors : `list`
 
-Shows a list of all elderly in the address book.
+Shows a list of all seniors in the address book.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing a senior : `edit`
 
-Edits an existing elderly person in the address book, only replacing the fields with new information specified in the user input.
+Edits an existing senior in the address book, only replacing the fields with new information specified in the user input.
 
 <box type="info" seamless>
 
@@ -172,20 +172,20 @@ This feature does not apply to editing remarks.
 
 Format: `edit i/INDEX n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS t/TAG`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the senior at the specified `INDEX`. The index refers to the index number shown in the displayed senior list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* When editing tags, the existing tags of the senior will be removed i.e adding of tags is not cumulative.
+* You can remove all the senior’s tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
 *  `edit i/10 t/Diabetic`
 *  `edit i/1 n/Joseph p/92891234`
 
-### Locating persons by name: `find`
+### Locating seniors by name : `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds seniors whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -193,7 +193,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Seniors matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
@@ -201,17 +201,17 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a senior : `delete`
 
-Deletes the elderly person at the specified display `INDEX` OR the elderly person with a matching `NAME` and `PHONE_NUMBER`.
+Deletes the senior at the specified display `INDEX` OR the senior with a matching `NAME` and `PHONE_NUMBER`.
 
 Format: `delete i/INDEX` or `delete n/NAME p/PHONE_NUMBER`
 
-* Deletes the elderly at the specified `INDEX`.
-* Deletes the elderly matching the specified `NAME` and `PHONE_NUMBER`
+* Deletes the senior at the specified `INDEX`.
+* Deletes the senior matching the specified `NAME` and `PHONE_NUMBER`
 
 Examples:
-* `list` followed by `delete i/2` deletes the 2nd person in the address book.
+* `list` followed by `delete i/2` deletes the 2nd senior in the address book.
 * `delete n/Amy p/91234567`.
 
 ### Clearing all entries : `clear`
@@ -241,9 +241,9 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
-### Adding notes to an elderly: `remark`
+### Adding notes to a senior : `remark`
 
-Adds relevant miscellaneous information to an existing elderly person. The elderly person holds the most recent remark input.
+Adds relevant miscellaneous information to an existing senior. The senior holds the most recent remark input.
 
 Format: `remark i/INDEX [r/REMARK | --remove]`
 
@@ -253,13 +253,13 @@ Format: `remark i/INDEX [r/REMARK | --remove]`
 2. `REMARK`: Mandatory.
 
 Examples:
-* `remark i/10 r/Person is aggressive`
+* `remark i/10 r/Senior is aggressive`
 * `remark i/10 --remove`
-* `remark r/Person is kind`
+* `remark r/Senior is kind`
 
-### Tagging an elderly: `tag`
+### Tagging a senior : `tag`
 
-Tags (or untags) the elderly person at the specified display `INDEX` OR the elderly person with a matching `NAME` and `PHONE_NUMBER` OR the elderly with a matching `NAME`, `PHONE_NUMBER` and `ADDRESS`.
+Tags (or untags) the senior at the specified display `INDEX` OR the senior with a matching `NAME` and `PHONE_NUMBER` OR the senior with a matching `NAME`, `PHONE_NUMBER` and `ADDRESS`.
 
 <box type="info" seamless>
 
@@ -278,7 +278,7 @@ Examples:
 * `tag n/John Doe p/91234567 t/hard-of-hearing`
 * `tag n/John Doe p/91234567 a/Blk 41 Telok Blangah Way #07-436 t/hard-of-hearing`
 
-### Filtering entries: `filter`
+### Filtering entries : `filter`
 
 Only displays the entries with the specified tag.
 
@@ -297,9 +297,9 @@ Format: `filter t/TAG`
 Examples:
 * `filter t/hard-of-hearing`
 
-### Sorting entries: `sort`
+### Sorting entries : `sort`
 
-Sorts elderly by NAME or ADDRESS in ascending or descending order.
+Sorts seniors by NAME or ADDRESS in ascending or descending order.
 
 Format: `sort (asc or dsc)/(name or address)`
 * `asc` sorts in ascending order
@@ -337,14 +337,14 @@ Examples:
 
 | Command                                                            | Usage                                                                          | Example                                                                                            |
 |--------------------------------------------------------------------|--------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
-| **[add](#adding-an-elderly-add)**                                  | `add n/NAME p/PHONE_NUMBER a/ADDRESS [e/EMAIL] [t/TAG]…​`                      | `add n/James Ho p/22224444 a/123, Clementi Rd, 1234665 e/jamesho@example.com t/friend t/colleague` |
-| **[edit](#editing-a-person-edit)**                                 | `edit i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [t/TAG]​…`       | `edit i/2 n/James Lee e/jameslee@example.com`                                                      |
-| **[delete (by index)](#deleting-a-person-delete)**                 | `delete i/INDEX`                                                               | `delete i/3`                                                                                       |
-| **[delete (by name and phone number)](#deleting-a-person-delete)** | `delete n/NAME p/PHONE_NUMBER`                                                 | `delete n/Amy p/61234567`                                                                          |
-| **[tag (by index)](#tagging-an-elderly-tag)**                      | `tag i/INDEX t/TAG`                                                            | `tag i/1 t/hard-of-hearing`                                                                        |
-| **[tag (by name and phone number](#tagging-an-elderly-tag)**       | `tag n/NAME p/PHONE_NUMBER t/TAG`                                                     | `tag n/John Doe p/91234567 t/hard-of-hearing`                                                      |
-| **[remark](#adding-notes-to-an-elderly-remark)**                   | `remark i/INDEX r/REMARK`                                                      | `remark i/10 r/Person is kind`                                                                     |
-| **[sort (by name)](#sorting-entries-sort)**                        | `sort (asc or dsc)/name`                                                       | `sort asc/name` or `sort dsc/name`                                                                 |
-| **[sort (by address)](#sorting-entries-sort)**                     | `sort (asc or dsc)/address`                                                    | `sort asc/address` or `sort dsc/address`                                                           |
-| **[list](#listing-all-persons-list)**                              | `list`                                                                         | `list`                                                                                             |
-| **[help](#viewing-help-help)**                                     | `help`                                                                         | `help`                                                                                             |
+| **[add](#adding-a-senior--add)**                                  | `add n/NAME p/PHONE_NUMBER a/ADDRESS [e/EMAIL] [t/TAG]…​`                      | `add n/James Ho p/22224444 a/123, Clementi Rd, 1234665 e/jamesho@example.com t/friend t/colleague` |
+| **[edit](#editing-a-senior--edit)**                                 | `edit i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [t/TAG]​…`       | `edit i/2 n/James Lee e/jameslee@example.com`                                                      |
+| **[delete (by index)](#deleting-a-senior--delete)**                 | `delete i/INDEX`                                                               | `delete i/3`                                                                                       |
+| **[delete (by name and phone number)](#deleting-a-senior--delete)** | `delete n/NAME p/PHONE_NUMBER`                                                 | `delete n/Amy p/61234567`                                                                          |
+| **[tag (by index)](#tagging-a-senior--tag)**                      | `tag i/INDEX t/TAG`                                                            | `tag i/1 t/hard-of-hearing`                                                                        |
+| **[tag (by name and phone number](#tagging-a-senior--tag)**       | `tag n/NAME p/PHONE_NUMBER t/TAG`                                                     | `tag n/John Doe p/91234567 t/hard-of-hearing`                                                      |
+| **[remark](#adding-notes-to-a-senior--remark)**                   | `remark i/INDEX r/REMARK`                                                      | `remark i/10 r/Person is kind`                                                                     |
+| **[sort (by name)](#sorting-entries--sort)**                        | `sort (asc or dsc)/name`                                                       | `sort asc/name` or `sort dsc/name`                                                                 |
+| **[sort (by address)](#sorting-entries--sort)**                     | `sort (asc or dsc)/address`                                                    | `sort asc/address` or `sort dsc/address`                                                           |
+| **[list](#listing-all-seniors--list)**                              | `list`                                                                         | `list`                                                                                             |
+| **[help](#viewing-help--help)**                                     | `help`                                                                         | `help`                                                                                             |
