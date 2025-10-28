@@ -353,6 +353,3 @@ Examples:
 | **[sort (by address)](#sorting-entries--sort)**                     | `sort (asc or dsc)/address`                                                    | `sort asc/address` or `sort dsc/address`                                                           |
 | **[list](#listing-all-seniors--list)**                              | `list`                                                                         | `list`                                                                                             |
 | **[help](#viewing-help--help)**                                     | `help`                                                                         | `help`                                                                                             |
-
-
-[list](#listing-all-seniors-list)
