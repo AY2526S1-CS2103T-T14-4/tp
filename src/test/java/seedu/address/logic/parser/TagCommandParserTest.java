@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.TagCommand;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 
@@ -35,9 +34,8 @@ public class TagCommandParserTest {
 
     @Test
     public void parse_namePhoneAddressBased_success() {
-        TagCommand expected = new TagCommand(new Name("Bob Choo"), new Phone("88888888"),
-                new Address("Block 123, Bobby Street 3"), "friend", false);
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_FRIEND,
+        TagCommand expected = new TagCommand(new Name("Bob Choo"), new Phone("88888888"), "friend", false);
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + TAG_DESC_FRIEND,
                 expected);
     }
 
