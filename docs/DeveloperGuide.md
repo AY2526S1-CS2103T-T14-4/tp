@@ -51,7 +51,7 @@ The bulk of the app's work is done by the following four components:
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete i/1`.
 
 <puml src="diagrams/ArchitectureSequenceDiagram.puml" width="574" />
 
@@ -282,7 +282,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* SGAs that need to manage and keep track of the profiles of elderly they are going to or has visited
+* SGAs that need to manage and keep track of the profiles of seniors they are going to or have visited
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -290,8 +290,8 @@ _{Explain here how the data archiving feature will be implemented}_
 *
 
 **Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-* maintain a record of elderly profile
-* removes the need of having physical notes of elderly profiles
+* maintain a record of senior profile
+* removes the need of having physical notes of senior profiles
 
 ### User stories
 
@@ -299,11 +299,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​   | I want to …​                                    | So that I can…​                                              |
 |----------|-----------|-------------------------------------------------|--------------------------------------------------------------|
-| `* * *`  | SGA       | view all my elderly clients in a list           | have an overview of who I am caring for.                     |
-| `* * *`  | SGA       | add an elderly client’s contact details         | document the elderly phone numbers and addresses.            |
-| `* * *`  | SGA       | delete elderly profiles when no longer relevant | keep my list clean, updated, and manageable.                 |
-| `* *`    | SGA       | search for an elderly client by name            | quickly find their respective information quickly.           |
-| `* *`    | SGA       | filter elderly by needs                         | I can organize and know how to prepare before visiting them. |
+| `* * *`  | SGA       | view all my senior clients in a list           | have an overview of who I am caring for.                     |
+| `* * *`  | SGA       | add a senior client’s contact details         | document the senior phone numbers and addresses.            |
+| `* * *`  | SGA       | delete senior profiles when no longer relevant | keep my list clean, updated, and manageable.                 |
+| `* *`    | SGA       | search for a senior client by name            | quickly find their respective information quickly.           |
+| `* *`    | SGA       | filter seniors by needs                         | I can organize and know how to prepare before visiting them. |
 | `*`      | Volunteer | write reflection notes after visits             | process my own emotions while volunteering.                  |
 
 *{More to be added}*
@@ -312,13 +312,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `ElderRing` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete an elderly (by index)**
+**Use case: Delete a senior (by index)**
 
 **MSS**
-1. User requests to list elderly
-2. ElderRing shows a list of elderly
-3. User requests to delete a specific elderly in the list
-4. ElderRing deletes the elderly
+1. User requests to list seniors
+2. ElderRing shows a list of seniors
+3. User requests to delete a specific senior in the list
+4. ElderRing deletes the senior
 
   Use case ends.
 
@@ -334,17 +334,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ---
 
-**Use case: Delete an elderly (by name & phone)**
+**Use case: Delete a senior (by name & phone)**
 
 **MSS**
-1. User requests to list or filter elderly (optional)
-2. User requests to delete an elderly by specifying the name and phone number
-3. ElderRing deletes the matching elderly
+1. User requests to list or filter seniors (optional)
+2. User requests to delete a senior by specifying the name and phone number
+3. ElderRing deletes the matching senior
 
   Use case ends.
 
 **Extensions**
-* 2a. No elderly matches the given name and phone.
+* 2a. No seniors match the given name and phone.
     * 2a1. ElderRing shows an error message.
 
       Use case ends.
@@ -356,16 +356,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ---
 
-**Use case: Add an elderly**
+**Use case: Add a senior**
 
 **MSS**
-1. User requests to add an elderly to the list (with required fields; optional tags)
-2. ElderRing adds the elderly to the list
+1. User requests to add a senior to the list (with required fields; optional tags)
+2. ElderRing adds the senior to the list
 
   Use case ends.
 
 **Extensions**
-* 1a. Elderly is already previously added.
+* 1a. Senior is already previously added.
     * 1a1. ElderRing shows an error message.
 
       Use case ends.
@@ -377,12 +377,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ---
 
-**Use case: Edit an elderly**
+**Use case: Edit a senior**
 
 **MSS**
-1. User requests to list elderly (optional)
-2. User requests to edit an elderly by index, providing one or more new field values
-3. ElderRing updates the elderly
+1. User requests to list seniors (optional)
+2. User requests to edit a senior by index, providing one or more new field values
+3. ElderRing updates the senior
 
 Use case ends.
 
@@ -397,17 +397,17 @@ Use case ends.
 
       Use case ends.
 
-* 3a. The new details would duplicate an existing elderly.
+* 3a. The new details would duplicate an existing senior.
     * 3a1. ElderRing shows a duplicate error.
 
       Use case ends.
 
 ---
 
-**Use case: Find elderly by name**
+**Use case: Find senior by name**
 
 **MSS**
-1. User requests to find elderly by keyword(s)
+1. User requests to find senior by keyword(s)
 2. ElderRing shows the list filtered to matching names
   Use case ends.
 
@@ -424,7 +424,7 @@ Use case ends.
 
 ---
 
-**Use case: Sort elderly (by field and order)**
+**Use case: Sort seniors (by field and order)**
 
 **MSS**
 1. User requests to sort the current list by a field (e.g., name/address) and order (ascending/descending)
@@ -440,33 +440,33 @@ Use case ends.
 
 ---
 
-**Use case: Tag an elderly**
+**Use case: Tag a senior**
 
 **MSS**
-1. User identifies the target elderly (by index, or by name & phone, or by address)
-2. User requests to add a tag to the target elderly
-3. ElderRing adds the tag to the elderly
+1. User identifies the target senior (by index, or by name & phone, or by address)
+2. User requests to add a tag to the target senior
+3. ElderRing adds the tag to the senior
 
   Use case ends.
 
 **Extensions**
-* 1a. The identifier is invalid or no elderly matches.
+* 1a. The identifier is invalid or no senior matches.
     * 1a1. ElderRing shows an error message.
 
       Use case ends.
 
-* 2a. The elderly already has the same tag.
+* 2a. The senior already has the same tag.
     * 2a1. ElderRing shows a duplicate-tag message.
 
       Use case ends.
 
 ---
 
-**Use case: Add or remove a remark for an elderly**
+**Use case: Add or remove a remark for a senior**
 
 **MSS**
-1. User requests to list elderly (optional)
-2. User requests to add a remark to the elderly at a given index (or to remove it)
+1. User requests to list seniors (optional)
+2. User requests to add a remark to the senior at a given index (or to remove it)
 3. ElderRing updates the remark (added or removed)
 
   Use case ends.
@@ -484,10 +484,10 @@ Use case ends.
 
 ---
 
-**Use case: List all elderly**
+**Use case: List all seniors**
 
 **MSS**
-1. User requests to list all elderly
+1. User requests to list all seniors
 2. ElderRing shows the full list
 
   Use case ends.
@@ -502,7 +502,7 @@ Use case ends.
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 elderly without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 seniors without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  Response time should be less than 2 seconds.
 5.  The data should be stored locally in a text file.
@@ -514,7 +514,7 @@ Use case ends.
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **CLI**: Refers to Command Line Interface, a text-based method for users to interact with the program
 * **GUI**: Refers to Graphical User Interface, a user-friendly visual mechanism that allows users to interact with the system
-* **SGA**: Refers to Silver Generation Ambassadors; a volunteer who supports elderly through home visits and check-ins
+* **SGA**: Refers to Silver Generation Ambassadors; a volunteer who supports seniors through home visits and check-ins
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
