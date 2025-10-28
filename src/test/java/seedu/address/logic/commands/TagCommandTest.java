@@ -21,7 +21,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -39,10 +38,6 @@ public class TagCommandTest {
                 "vip", false));
         assertThrows(NullPointerException.class, () -> new TagCommand(new Name("Alex"), new Phone("91234567"),
                 null, false));
-        assertThrows(NullPointerException.class, () -> new TagCommand(new Name("Alex"), new Phone("91234567"),
-                new Address("Drury Lane"), null, false));
-        assertThrows(NullPointerException.class, () -> new TagCommand(new Name("Alex"), new Phone("91234567"),
-                null, "vip", false));
     }
 
     @Test
@@ -75,8 +70,7 @@ public class TagCommandTest {
                 .withAddress("Drury Lane")
                 .build();
         ModelStubAcceptingPersonTagged modelStub = new ModelStubAcceptingPersonTagged(validPerson);
-        TagCommand tagCommand = new TagCommand(new Name("Alex"), new Phone("91234567"),
-                new Address("drury lane"), "vip", false);
+        TagCommand tagCommand = new TagCommand(new Name("Alex"), new Phone("91234567"), "vip", false);
         tagCommand.execute(modelStub);
 
         assertTrue(modelStub.personsModified.get(0).getTags().contains(new Tag("vip")));
@@ -122,7 +116,7 @@ public class TagCommandTest {
         TagCommand tagCommand = new TagCommand(Index.fromZeroBased(0), "vip", true);
 
         assertThrows(CommandException.class,
-                "Person does not have tag [vip].", () -> tagCommand.execute(modelStub));
+                "Senior does not have tag [vip].", () -> tagCommand.execute(modelStub));
     }
 
     @Test
