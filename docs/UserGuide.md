@@ -197,9 +197,9 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find alex` returns `Alex Yeoh`
+* `find charlotte bernice` returns `Bernice Yu`, `Charlotte Oliveiro`<br>
+  ![result for 'find charlotte bernice'](images/findCharlotteBerniceResult.png)
 
 ### Deleting a senior : `delete`
 
