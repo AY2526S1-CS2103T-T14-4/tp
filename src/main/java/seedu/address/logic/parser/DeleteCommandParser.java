@@ -32,7 +32,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             boolean nameIsPresent = arePrefixesPresent(argMultimap, PREFIX_NAME);
             boolean phoneIsPresent = arePrefixesPresent(argMultimap, PREFIX_PHONE);
 
-            if (isValidDeletionCriteria(indexIsPresent, nameIsPresent, phoneIsPresent)) {
+            if (!isValidDeletionCriteria(indexIsPresent, nameIsPresent, phoneIsPresent)) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
             }
 
@@ -61,8 +61,8 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
     }
 
     private boolean isValidDeletionCriteria(boolean indexIsPresent, boolean nameIsPresent, boolean phoneIsPresent) {
-        return (!indexIsPresent || nameIsPresent || phoneIsPresent)
-                && (indexIsPresent || !nameIsPresent || !phoneIsPresent);
+        return (indexIsPresent && !nameIsPresent && !phoneIsPresent)
+                || (!indexIsPresent && nameIsPresent && phoneIsPresent);
     }
 
     /**
