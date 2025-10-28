@@ -156,7 +156,7 @@ Format: `add n/NAME p/PHONE_NUMBER a/ADDRESS [e/EMAIL] [t/TAG]…​`
 5. `TAG`: Optional.
 
 Examples:
-* `add n/Tan Ah Kow e/TAK@gmail.com p/96521345 a/Blk 41 Telok Blangah way #07-436 t/hard-of-hearing`
+* `add n/Tan Ah Kow e/tak@gmail.com p/96521345 a/Blk 41 Telok Blangah way #07-436 t/hard-of-hearing`
 * `add n/Shermaine Tan p/98541331 a/1 Lor 2 Toa Payoh #07-36 e/shermainetan@gmail.com`
 
 ### Listing all persons : `list`
