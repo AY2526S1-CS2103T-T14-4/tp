@@ -29,9 +29,6 @@ public class TagCommandParser implements Parser<TagCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
                 args, PREFIX_INDEX, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_REMOVE);
         boolean isDelete = argMultimap.getValue(PREFIX_REMOVE).isPresent();
-//        if (isDelete) {
-//            args = args.substring(0, args.lastIndexOf("--remove"));
-//        }
 
         try {
             boolean indexIsPresent = arePrefixesPresent(argMultimap, PREFIX_INDEX);
