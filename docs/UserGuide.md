@@ -7,12 +7,7 @@
 # ElderRing User Guide
 
 ## Introduction
-**ElderRing** is a **desktop application** made for silver generation ambassadors to better **manage and organise elderly client information** more efficiently.
-
-With **ElderRing**, you can manage seniors information with:
-- **Quick Overview**: See your list of seniors from the main screen.
-- **Easy to use**: Simple commands that anyone can learn quickly.
-
+**ElderRing** is a **desktop application** made for silver generation ambassadors to better **manage and organise senior clients information** more efficiently. With simple commands, seniors' contacts can be managed faster than traditional GUI applications.
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -156,7 +151,7 @@ Format: `add n/NAME p/PHONE_NUMBER a/ADDRESS [e/EMAIL] [t/TAG]…​`
 5. `TAG`: Optional.
 
 Examples:
-* `add n/Tan Ah Kow e/TAK@gmail.com p/96521345 a/Blk 41 Telok Blangah way #07-436 t/hard-of-hearing`
+* `add n/Tan Ah Kow e/tak@gmail.com p/96521345 a/Blk 41 Telok Blangah way #07-436 t/hard-of-hearing`
 * `add n/Shermaine Tan p/98541331 a/1 Lor 2 Toa Payoh #07-36 e/shermainetan@gmail.com`
 
 ### Listing all seniors : `list`
@@ -272,7 +267,7 @@ Tagging can be used as a categorisation feature in conjunction with the filter f
 
 </box>
 
-Format: `tag i/INDEX t/TAG [ --remove]` or `tag n/NAME p/PHONE t/TAG [ --remove]` or `tag n/NAME p/PHONE a/ADDRESS t/TAG [ --remove]`
+Format: `tag i/INDEX t/TAG [ --remove]` or `tag n/NAME p/PHONE_NUMBER t/TAG [ --remove]` or `tag n/NAME p/PHONE_NUMBER a/ADDRESS t/TAG [ --remove]`
 
 #### Parameters:
 
@@ -347,7 +342,7 @@ Examples:
 | **[delete (by index)](#deleting-a-senior--delete)**                 | `delete i/INDEX`                                                               | `delete i/3`                                                                                       |
 | **[delete (by name and phone number)](#deleting-a-senior--delete)** | `delete n/NAME p/PHONE_NUMBER`                                                 | `delete n/Amy p/61234567`                                                                          |
 | **[tag (by index)](#tagging-a-senior--tag)**                      | `tag i/INDEX t/TAG`                                                            | `tag i/1 t/hard-of-hearing`                                                                        |
-| **[tag (by name and phone number](#tagging-a-senior--tag)**       | `tag n/NAME p/PHONE t/TAG`                                                     | `tag n/John Doe p/91234567 t/hard-of-hearing`                                                      |
+| **[tag (by name and phone number](#tagging-a-senior--tag)**       | `tag n/NAME p/PHONE_NUMBER t/TAG`                                                     | `tag n/John Doe p/91234567 t/hard-of-hearing`                                                      |
 | **[remark](#adding-notes-to-a-senior--remark)**                   | `remark i/INDEX r/REMARK`                                                      | `remark i/10 r/Person is kind`                                                                     |
 | **[sort (by name)](#sorting-entries--sort)**                        | `sort (asc or dsc)/name`                                                       | `sort asc/name` or `sort dsc/name`                                                                 |
 | **[sort (by address)](#sorting-entries--sort)**                     | `sort (asc or dsc)/address`                                                    | `sort asc/address` or `sort dsc/address`                                                           |

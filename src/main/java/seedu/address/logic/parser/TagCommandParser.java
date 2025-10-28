@@ -1,10 +1,12 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.stream.Stream;
@@ -12,7 +14,6 @@ import java.util.stream.Stream;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 
@@ -23,18 +24,14 @@ public class TagCommandParser implements Parser<TagCommand> {
 
     @Override
     public TagCommand parse(String args) throws ParseException {
-        boolean isDelete = args.trim().endsWith("--remove");
-        String trimmedArgs = isDelete
-                ? args.substring(0, args.lastIndexOf("--remove")).trim()
-                : args.trim();
+        requireNonNull(args);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
+                args, PREFIX_INDEX, PREFIX_NAME, PREFIX_PHONE, PREFIX_TAG, PREFIX_REMOVE);
+        boolean isDelete = argMultimap.getValue(PREFIX_REMOVE).isPresent();
 
         try {
-            ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
-                    args, PREFIX_INDEX, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_TAG);
-
             boolean indexIsPresent = arePrefixesPresent(argMultimap, PREFIX_INDEX);
             boolean nameAndPhoneArePresent = arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE);
-            boolean addressIsPresent = arePrefixesPresent(argMultimap, PREFIX_ADDRESS);
             boolean tagIsPresent = arePrefixesPresent(argMultimap, PREFIX_TAG);
 
             if (!tagIsPresent) {
@@ -53,9 +50,6 @@ public class TagCommandParser implements Parser<TagCommand> {
             if (nameAndPhoneArePresent) {
                 identifierCount++;
             }
-            if (addressIsPresent && !nameAndPhoneArePresent) {
-                identifierCount++;
-            }
 
             if (identifierCount != 1) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE));
@@ -64,15 +58,10 @@ public class TagCommandParser implements Parser<TagCommand> {
             if (indexIsPresent) {
                 Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
                 return new TagCommand(index, tagName, isDelete);
-            } else if (nameAndPhoneArePresent && !addressIsPresent) {
+            } else if (nameAndPhoneArePresent) {
                 Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
                 Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
                 return new TagCommand(name, phone, tagName, isDelete);
-            } else if (nameAndPhoneArePresent && addressIsPresent) {
-                Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-                Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-                Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-                return new TagCommand(name, phone, address, tagName, isDelete);
             } else {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE));
             }
