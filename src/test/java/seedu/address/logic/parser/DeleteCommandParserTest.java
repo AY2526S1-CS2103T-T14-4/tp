@@ -54,10 +54,10 @@ public class DeleteCommandParserTest {
     public void parse_indexAndNamePhone_throwsParseException() {
         assertParseFailure(parser, "delete i/1 n/Alice p/92345678",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
-        assertParseSuccess(parser, "delete i/1 n/Alice",
-                new DeleteCommand(INDEX_FIRST_PERSON));
-        assertParseSuccess(parser, "delete i/1 p/92345678",
-                new DeleteCommand(INDEX_FIRST_PERSON));
+        assertParseFailure(parser, "delete i/1 n/Alice",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "delete i/1 p/92345678",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
 
     @Test

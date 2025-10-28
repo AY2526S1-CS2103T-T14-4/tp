@@ -70,32 +70,40 @@ public class DeleteCommand extends Command {
         }
 
         if (targetIndex != null) {
-            if (targetIndex.getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-            }
-
-            // delete by index
-            Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-            model.deletePerson(personToDelete);
-            return new CommandResult(
-                    String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
+            return deleteByIndex(model, lastShownList);
         }
 
-        // delete by phone and name
+        Person personToDelete = getPersonByPhoneAndName(lastShownList);
+        if (personToDelete != null) {
+            return deleteByPhoneAndName(model, personToDelete);
+        }
+
+        throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_NAME_PHONE);
+    }
+
+    private CommandResult deleteByPhoneAndName(Model model, Person personToDelete) {
+        model.deletePerson(personToDelete);
+        return new CommandResult(
+                String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
+    }
+
+    private Person getPersonByPhoneAndName(List<Person> lastShownList) {
         Person partialPerson = new Person(targetName, targetPhone, new Email(), new Address("address"),
                 new Remark(""), new HashSet<Tag>());
         Person personToDelete = lastShownList.stream()
                 .filter(person -> person.isSamePerson(partialPerson))
                 .findFirst()
                 .orElse(null);
+        return personToDelete;
+    }
 
-        if (personToDelete != null) {
-            model.deletePerson(personToDelete);
-            return new CommandResult(
-                    String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
+    private CommandResult deleteByIndex(Model model, List<Person> lastShownList) throws CommandException {
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_NAME_PHONE);
+        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
+        return deleteByPhoneAndName(model, personToDelete);
     }
 
     @Override
