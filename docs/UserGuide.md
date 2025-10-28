@@ -272,7 +272,7 @@ Tagging can be used as a categorisation feature in conjunction with the filter f
 
 </box>
 
-Format: `tag i/INDEX t/TAG [ --remove]` or `tag n/NAME p/PHONE t/TAG [ --remove]` or `tag n/NAME p/PHONE a/ADDRESS t/TAG [ --remove]`
+Format: `tag i/INDEX t/TAG [ --remove]` or `tag n/NAME p/PHONE_NUMBER t/TAG [ --remove]` or `tag n/NAME p/PHONE_NUMBER a/ADDRESS t/TAG [ --remove]`
 
 #### Parameters:
 
@@ -347,7 +347,7 @@ Examples:
 | **[delete (by index)](#deleting-a-person-delete)**                 | `delete i/INDEX`                                                               | `delete i/3`                                                                                       |
 | **[delete (by name and phone number)](#deleting-a-person-delete)** | `delete n/NAME p/PHONE_NUMBER`                                                 | `delete n/Amy p/61234567`                                                                          |
 | **[tag (by index)](#tagging-an-elderly-tag)**                      | `tag i/INDEX t/TAG`                                                            | `tag i/1 t/hard-of-hearing`                                                                        |
-| **[tag (by name and phone number](#tagging-an-elderly-tag)**       | `tag n/NAME p/PHONE t/TAG`                                                     | `tag n/John Doe p/91234567 t/hard-of-hearing`                                                      |
+| **[tag (by name and phone number](#tagging-an-elderly-tag)**       | `tag n/NAME p/PHONE_NUMBER t/TAG`                                                     | `tag n/John Doe p/91234567 t/hard-of-hearing`                                                      |
 | **[remark](#adding-notes-to-an-elderly-remark)**                   | `remark i/INDEX r/REMARK`                                                      | `remark i/10 r/Person is kind`                                                                     |
 | **[sort (by name)](#sorting-entries-sort)**                        | `sort (asc or dsc)/name`                                                       | `sort asc/name` or `sort dsc/name`                                                                 |
 | **[sort (by address)](#sorting-entries-sort)**                     | `sort (asc or dsc)/address`                                                    | `sort asc/address` or `sort dsc/address`                                                           |
