@@ -299,18 +299,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​   | I want to …​                                    | So that I can…​                                              |
 |----------|-----------|-------------------------------------------------|--------------------------------------------------------------|
-| `* * *`  | SGA       | view all my senior clients in a list           | have an overview of who I am caring for.                     |
 | `* * *`  | SGA       | add a senior client’s contact details         | document the senior phone numbers and addresses.            |
 | `* * *`  | SGA       | delete senior profiles when no longer relevant | keep my list clean, updated, and manageable.                 |
 | `* * *`  | SGA       | edit a senior's contact information           | keep their details up to date.                               |
-| `* *`    | SGA       | search for a senior client by name            | quickly find their respective information quickly.           |
-| `* *`    | SGA       | filter seniors by needs                         | I can organize and know how to prepare before visiting them. |
+| `* * *`  | SGA       | view all my senior clients in a list           | have an overview of who I am caring for.                     |
 | `* *`    | SGA       | add members with phone number in the same household       | able to reach out in the future.                     |
+| `* *`    | SGA       | filter seniors by needs                         | I can organize and know how to prepare before visiting them. |
 | `* *`    | SGA       | mark seniors as high-priority                 | identify who needs higher attention.                      |
-| `*`      | Volunteer | write reflection notes after visits           | process my own emotions while volunteering.                  |
+| `* *`    | SGA       | search for a senior client by name            | quickly find their respective information quickly.           |
 | `*`      | SGA       | track individual senior visit history      | maintain a record of interactions with each senior.          |
 | `*`      | SGA       | record preferred visit times                  | visit seniors when they are most comfortable.                |
 | `*`      | SGA       | record senior exercising routines          | check up on their progress on next visit.             |
+| `*`      | Volunteer | write reflection notes after visits           | process my own emotions while volunteering.                  |
 
 ### Use cases
 
@@ -466,12 +466,12 @@ Use case ends.
 
 ---
 
-**Use case: Add or remove a remark for a senior**
+**Use case: Add, remove or append a remark for a senior**
 
 **MSS**
 1. User requests to list seniors (optional)
 2. User requests to add a remark to the senior at a given index (or to remove it)
-3. ElderRing updates the remark (added or removed)
+3. ElderRing updates the remark (added, removed or append)
 
   Use case ends.
 
@@ -483,6 +483,11 @@ Use case ends.
 
 * 2b. User indicates removal flag to clear the remark.
     * 2b1. ElderRing clears the remark and shows a confirmation.
+
+      Use case ends.
+
+* 2c. User indicates appending flag to add remark.
+    * 2c1. ElderRing appends the remark and shows a confirmation.
 
       Use case ends.
 

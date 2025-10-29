@@ -325,26 +325,24 @@ Examples:
 
 ![remark command](images/remarkCommand.png)
 
-Adds relevant miscellaneous information to an existing senior. The senior holds the most recent remark input.
+Adds relevant miscellaneous information to an existing senior. You can replace the remark, append to the existing remark, or remove it.
 
-Format: `remark i/INDEX r/REMARK` or `remark i/INDEX --remove`
+Format: `remark i/INDEX r/REMARK` or `remark i/INDEX ap/APPEND_TEXT` or `remark i/INDEX --remove`
 
 #### Parameters:
 
 1. `INDEX`: Mandatory.
 
-With either:
+With exactly one of:
 
-2. `REMARK`: Mandatory.
-
-Or:
-
-3. `--remove`: Mandatory.
+2. `REMARK`: Mandatory.  
+3. `APPEND_TEXT`: Mandatory.  
+4. `--remove`: Mandatory.
 
 Examples:
 * `remark i/10 r/Senior is aggressive`
+* `remark i/10 ap/Followed up on 24 Oct`
 * `remark i/10 --remove`
-* `remark r/Senior is kind`
 
 <br>
 
@@ -480,7 +478,7 @@ The remedy is to manually restore the minimized Help Window.
 | **[delete (by name and phone number)](#deleting-a-senior-delete)** | `delete n/NAME p/PHONE_NUMBER`                                           | `delete n/Amy p/61234567`                                                                    |
 | **[tag (by index)](#tagging-a-senior-tag)**              | `tag i/INDEX t/TAG`                                                      | `tag i/1 t/hard-of-hearing`                                                                  |
 | **[tag (by name and phone number)](#tagging-a-senior-tag)** | `tag n/NAME p/PHONE_NUMBER t/TAG`                                        | `tag n/John Doe p/91234567 t/hard-of-hearing`                                                |
-| **[remark](#adding-notes-to-a-senior-remark)**           | `remark i/INDEX r/REMARK`                                                | `remark i/10 r/Person is kind`                                                               |
+| **[remark](#adding-notes-to-a-senior-remark)**           | `remark i/INDEX r/REMARK` or `remark i/INDEX ap/APPEND_TEXT` or `remark i/INDEX --remove` | `remark i/10 ap/Person is kind`                                                               |
 | **[sort (by name)](#sorting-entries-sort)**              | `sort (ASC or DSC)/NAME`                                                 | `sort asc/name` or `sort dsc/name`                                                           |
 | **[sort (by address)](#sorting-entries-sort)**           | `sort (ASC or DSC)/ADDRESS`                                             | `sort asc/address` or `sort dsc/address`                                                     |
 | **[list](#listing-all-seniors-list)**                    | `list`                                                                   | `list`                                                                                       |
