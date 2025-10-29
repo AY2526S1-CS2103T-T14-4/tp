@@ -39,7 +39,6 @@ public class TagCommand extends Command {
     private final Index targetIndex;
     private final Name targetName;
     private final Phone targetPhone;
-    //private final Address targetAddress;
     private final Tag tag;
     private final boolean isDelete;
 
@@ -53,9 +52,7 @@ public class TagCommand extends Command {
         this.targetIndex = targetIndex;
         this.targetName = null;
         this.targetPhone = null;
-        //this.targetAddress = null;
         this.tag = new Tag(tagName);
-        //this.tag = new Tag(isDelete ? tagName.substring(0, tagName.lastIndexOf("--remove")).trim() : tagName);
         this.isDelete = isDelete;
     }
 
@@ -70,30 +67,9 @@ public class TagCommand extends Command {
         this.targetIndex = null;
         this.targetName = targetName;
         this.targetPhone = targetPhone;
-        //this.targetAddress = null;
         this.tag = new Tag(tagName);
-        //this.tag = new Tag(isDelete ? tagName.substring(0, tagName.lastIndexOf("--remove")).trim() : tagName);
         this.isDelete = isDelete;
     }
-
-    //    /**
-    //     * Creates a TagCommand to tag the person with the specified targetName, targetPhone and targetAddress.
-    //     */
-    //    public TagCommand(Name targetName, Phone targetPhone, Address targetAddress, String tagName,
-    //    boolean isDelete) {
-    //        requireNonNull(targetName);
-    //        requireNonNull(targetPhone);
-    //        requireNonNull(targetAddress);
-    //        requireNonNull(tagName);
-    //
-    //        this.targetIndex = null;
-    //        this.targetName = targetName;
-    //        this.targetPhone = targetPhone;
-    //        this.targetAddress = targetAddress;
-    //        this.tag = new Tag(tagName);
-    //        //this.tag = new Tag(isDelete ? tagName.substring(0, tagName.lastIndexOf("--remove")).trim() : tagName);
-    //        this.isDelete = isDelete;
-    //    }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -162,7 +138,6 @@ public class TagCommand extends Command {
                 .add("targetIndex", targetIndex)
                 .add("targetName", targetName)
                 .add("targetPhone", targetPhone)
-                //.add("targetAddress", targetAddress)
                 .add("tag", tag)
                 .add("isDelete", isDelete)
                 .toString();
