@@ -189,7 +189,11 @@
 }
 
 .context-menu .label {
-    -fx-text-fill: black;
+    -fx-text-fill: black !important;
+}
+
+.context-menu .menu-item {
+    -fx-text-fill: black !important;
 }
 
 .menu-bar {
