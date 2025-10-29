@@ -16,7 +16,8 @@ public class SortCommand extends Command {
             + "Examples: \n\t"
             + "  " + COMMAND_WORD + " asc/name\n\t"
             + "  " + COMMAND_WORD + " dsc/name\n\t"
-            + "  " + COMMAND_WORD + " asc/address";
+            + "  " + COMMAND_WORD + " asc/address\n\t"
+            + "  " + COMMAND_WORD + " dsc/address";
 
     public static final String MESSAGE_SUCCESS_NAME_ASC = "Sorted all seniors by name (A→Z).";
     public static final String MESSAGE_SUCCESS_NAME_DESC = "Sorted all seniors by name (Z→A).";
