@@ -311,8 +311,8 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter (e.g., `Hans Bo` will match `Bo Hans`).
 * Only the name is searched.
 * Partial words within the name can be matched (e.g., `Han` will match `Hans`).
-* Seniors matching at least one keyword will be returned (i.e. `OR` search).
-  e.g., `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Seniors matching at least one keyword will be returned
+  (e.g., `Hans Bo` will return `Hans Gruber`, `Boyo Yang`).
 
 Examples:
 * `find alex` displays `Alex Yeoh`.
