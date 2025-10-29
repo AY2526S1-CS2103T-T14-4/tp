@@ -20,28 +20,32 @@ public class RemarkCommand extends Command {
     public static final String COMMAND_WORD = "remark";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Edits or removes the remark of the senior identified by the index.\n"
+            + ": Edits, appends to, or removes the remark of the senior identified by the index.\n"
             + "Parameters: i/INDEX (must be a positive integer) "
-            + "[ r/REMARK | --remove ]\n"
+            + "[ r/REMARK | ap/APPEND_TEXT | --remove ]\n"
             + "Examples:\n"
             + "  " + COMMAND_WORD + " i/1 r/Likes to swim.\n"
+            + "  " + COMMAND_WORD + " i/1 ap/Has a cat.\n"
             + "  " + COMMAND_WORD + " i/1 --remove";
 
     public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Senior: %1$s";
     public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Senior: %1$s";
+    public static final String MESSAGE_APPEND_REMARK_SUCCESS = "Appended to remark for Senior: %1$s";
 
     private final Index index;
     private final Remark remark;
+    private final boolean isAppend;
 
     /**
      * Creates a RemarkCommand to update the remark of the specified senior.
      * @param index The index of the senior in the filtered senior list to modify
      * @param remark The new remark for the senior
      */
-    public RemarkCommand(Index index, Remark remark) {
+    public RemarkCommand(Index index, Remark remark, boolean isAppend) {
         requireAllNonNull(index, remark);
         this.index = index;
         this.remark = remark;
+        this.isAppend = isAppend;
     }
 
     @Override
@@ -53,7 +57,9 @@ public class RemarkCommand extends Command {
             return false;
         }
         RemarkCommand e = (RemarkCommand) other;
-        return index.equals(e.index) && remark.equals(e.remark);
+        return index.equals(e.index)
+            && remark.equals(e.remark)
+            && isAppend == e.isAppend;
     }
 
     @Override
@@ -65,9 +71,20 @@ public class RemarkCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
+
+        Remark newRemark;
+        if (isAppend) {
+            String currentRemark = personToEdit.getRemark().value;
+            String appendedRemark = currentRemark.isEmpty() ? remark.value
+                : currentRemark + " " + remark.value;
+            newRemark = new Remark(appendedRemark);
+        } else {
+            newRemark = remark;
+        }
+
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), remark, personToEdit.getTags());
+                personToEdit.getAddress(), newRemark, personToEdit.getTags());
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -76,6 +93,9 @@ public class RemarkCommand extends Command {
     }
 
     private String generateSuccessMessage(Person personToEdit) {
+        if (isAppend) {
+            return String.format(MESSAGE_APPEND_REMARK_SUCCESS, Messages.format(personToEdit));
+        }
         String message = !remark.value.isEmpty() ? MESSAGE_ADD_REMARK_SUCCESS : MESSAGE_DELETE_REMARK_SUCCESS;
         return String.format(message, Messages.format(personToEdit));
     }

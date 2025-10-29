@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPEND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE;
@@ -26,10 +27,9 @@ public class RemarkCommandParser implements Parser<RemarkCommand> {
     public RemarkCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
-        // Accept i/, r/, and --remove. Index must now be provided via i/.
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_INDEX, PREFIX_REMARK, PREFIX_REMOVE);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
+            PREFIX_INDEX, PREFIX_REMARK, PREFIX_REMOVE, PREFIX_APPEND);
 
-        // Disallow stray text before prefixes (index is not in preamble anymore)
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemarkCommand.MESSAGE_USAGE));
         }
@@ -45,26 +45,32 @@ public class RemarkCommandParser implements Parser<RemarkCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemarkCommand.MESSAGE_USAGE), ive);
         }
 
-        // Mutually exclusive: either r/REMARK or --remove
         boolean hasRemove = argMultimap.getValue(PREFIX_REMOVE).isPresent();
         Optional<String> remarkOpt = argMultimap.getValue(PREFIX_REMARK);
+        Optional<String> appendOpt = argMultimap.getValue(PREFIX_APPEND);
 
-        if (hasRemove == remarkOpt.isPresent()) {
-            // either both present or both absent
+        // Check mutual exclusivity
+        if ((hasRemove ? 1 : 0) + (remarkOpt.isPresent() ? 1 : 0) + (appendOpt.isPresent() ? 1 : 0) != 1) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemarkCommand.MESSAGE_USAGE));
         }
 
         if (hasRemove) {
-            // canonicalize remove to empty remark
-            return new RemarkCommand(index, new Remark(""));
+            return new RemarkCommand(index, new Remark(""), false);
         }
 
-        // r/ path: require non-empty after trim
-        String remark = remarkOpt.get().trim();
-        if (remark.isEmpty()) {
-            throw new ParseException("Remark cannot be empty. To remove a remark, use '--remove'.");
+        if (remarkOpt.isPresent()) {
+            String remark = remarkOpt.get().trim();
+            if (remark.isEmpty()) {
+                throw new ParseException("Remark cannot be empty. To remove a remark, use '--remove'.");
+            }
+            return new RemarkCommand(index, new Remark(remark), false);
         }
 
-        return new RemarkCommand(index, new Remark(remark));
+        // Handle append
+        String appendText = appendOpt.get().trim();
+        if (appendText.isEmpty()) {
+            throw new ParseException("Appended text cannot be empty.");
+        }
+        return new RemarkCommand(index, new Remark(appendText), true);
     }
 }

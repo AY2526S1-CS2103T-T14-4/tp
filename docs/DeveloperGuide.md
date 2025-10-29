@@ -302,11 +302,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | SGA       | view all my senior clients in a list           | have an overview of who I am caring for.                     |
 | `* * *`  | SGA       | add a senior client’s contact details         | document the senior phone numbers and addresses.            |
 | `* * *`  | SGA       | delete senior profiles when no longer relevant | keep my list clean, updated, and manageable.                 |
+| `* * *`  | SGA       | edit a senior's contact information           | keep their details up to date.                               |
 | `* *`    | SGA       | search for a senior client by name            | quickly find their respective information quickly.           |
 | `* *`    | SGA       | filter seniors by needs                         | I can organize and know how to prepare before visiting them. |
-| `*`      | Volunteer | write reflection notes after visits             | process my own emotions while volunteering.                  |
-
-*{More to be added}*
+| `* *`    | SGA       | add members with phone number in the same household       | able to reach out in the future.                     |
+| `* *`    | SGA       | mark seniors as high-priority                 | identify who needs higher attention.                      |
+| `*`      | Volunteer | write reflection notes after visits           | process my own emotions while volunteering.                  |
+| `*`      | SGA       | track individual senior visit history      | maintain a record of interactions with each senior.          |
+| `*`      | SGA       | record preferred visit times                  | visit seniors when they are most comfortable.                |
+| `*`      | SGA       | record senior exercising routines          | check up on their progress on next visit.             |
 
 ### Use cases
 

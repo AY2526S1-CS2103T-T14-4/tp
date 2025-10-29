@@ -101,14 +101,14 @@ public class AddressBookParserTest {
         String input = RemarkCommand.COMMAND_WORD + " i/" + INDEX_FIRST_PERSON.getOneBased()
                 + " " + PREFIX_REMARK + remark.value;
         RemarkCommand command = (RemarkCommand) parser.parseCommand(input);
-        assertEquals(new RemarkCommand(INDEX_FIRST_PERSON, remark), command);
+        assertEquals(new RemarkCommand(INDEX_FIRST_PERSON, remark, /*isAppend=*/false), command);
     }
 
     @Test
     public void parseCommand_remark_remove() throws Exception {
         String input = RemarkCommand.COMMAND_WORD + " i/" + INDEX_FIRST_PERSON.getOneBased() + " --remove";
         RemarkCommand command = (RemarkCommand) parser.parseCommand(input);
-        assertEquals(new RemarkCommand(INDEX_FIRST_PERSON, new Remark("")), command);
+        assertEquals(new RemarkCommand(INDEX_FIRST_PERSON, new Remark(""), /*isAppend=*/false), command);
     }
 
     @Test
