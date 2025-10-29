@@ -15,7 +15,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
     public NameContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
-    
+
     @Override
     public boolean test(Person person) {
         return keywords.stream()
