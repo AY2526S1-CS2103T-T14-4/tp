@@ -38,6 +38,7 @@
     },
     {
       "src": "DeveloperGuide.md",
+      "title": "Developer Guide",
       "headings": {
         "elderring-developer-guide": "ElderRing Developer Guide",
         "acknowledgements": "Acknowledgements",
