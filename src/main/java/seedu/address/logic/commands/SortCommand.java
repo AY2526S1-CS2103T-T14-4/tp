@@ -12,7 +12,7 @@ public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts seniors by a field.\n"
-            + "Parameters: Sort (asc/dsc)/(name/address)\n"
+            + "Parameters: Sort (ASC or DSC)/(NAME or ADDRESS)\n"
             + "Examples: \n\t"
             + "  " + COMMAND_WORD + " asc/name\n\t"
             + "  " + COMMAND_WORD + " dsc/name\n\t"
