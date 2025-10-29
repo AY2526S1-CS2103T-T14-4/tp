@@ -63,7 +63,7 @@ If you are not sure how to install java, follow this [guide](https://www.java.co
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar ElderRing.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/Updated_Ui.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -192,12 +192,13 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* Partial words within the name can be matched. e.g. `Han` will match `Hans`
 * Seniors matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
 * `find alex` returns `Alex Yeoh`
+* `find can ran` returns `Candice Lim`, `Randy Tan`, `Ranger Lee`
 * `find charlotte bernice` returns `Bernice Yu`, `Charlotte Oliveiro`<br>
   ![result for 'find charlotte bernice'](images/findCharlotteBerniceResult.png)
 
@@ -243,8 +244,15 @@ ElderRing data are saved automatically as a JSON file `[JAR file location]/data/
 <box type="warning" seamless>
 
 **Caution:**
-If your changes to the data file makes its format invalid, ElderRing will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the ElderRing to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+* If the data file contains invalid formatting (broken JSON, parsing errors, file permission issues, etc.), ElderRing will discard all data and start with an empty data file.
+* Certain edits may cause unexpected behavior. Edit the data file only if you are confident in maintaining the correct format.
+
+#### Data validation during loading
+* **Invalid entries**: Entries missing required fields (name, phone, or address) are skipped
+* **Duplicate entries**: Contacts with identical name and phone numbers are automatically removed
+* **Optional fields**: Missing optional fields are auto-filled with default values
+
+**Recommendation:** Always back up the file before editing.
 </box>
 
 ### Adding notes to a senior : `remark`
