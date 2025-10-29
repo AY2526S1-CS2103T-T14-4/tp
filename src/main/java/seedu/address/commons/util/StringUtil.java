@@ -65,4 +65,29 @@ public class StringUtil {
             return false;
         }
     }
+
+    /**
+     * Returns true if the {@code sentence} contains the {@code word} as a partial match, ignoring case.
+     *   Examples:
+     *   - containsPartialWordIgnoreCase("candice randy", "can") = true
+     *   - containsPartialWordIgnoreCase("ranger rower", "ran") = true
+     *   - containsPartialWordIgnoreCase("candy crush", "can") = true
+     *   - containsPartialWordIgnoreCase("candice randy", "dy") = true
+     *
+     * @param sentence cannot be null
+     * @param word cannot be null, cannot be empty
+     */
+    public static boolean containsPartialWordIgnoreCase(String sentence, String word) {
+        requireNonNull(sentence);
+        requireNonNull(word);
+
+        String preppedWord = word.trim();
+        checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
+
+        String preppedSentence = sentence.toLowerCase();
+        String preppedWordLower = preppedWord.toLowerCase();
+
+        // Check if the word appears as a substring anywhere in the sentence
+        return preppedSentence.contains(preppedWordLower);
+    }
 }
