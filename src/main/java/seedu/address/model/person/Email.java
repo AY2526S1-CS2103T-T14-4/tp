@@ -11,15 +11,15 @@ public class Email {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Emails should be of the format local-part@domain and adhere to the following constraints:\n"
-          + "0. The email may be empty (\"\").\n"
-          + "1. If provided, the entire email must be at most 50 characters long.\n"
-          + "2. The local-part must contain only letters and digits (A–Z, a–z, 0–9) and be at least 1 character long.\n"
-          + "3. The domain is composed of dot-separated labels containing only letters (A–Z, a–z).\n"
+          + "1. The email may be empty (\"\").\n"
+          + "2. If provided, the entire email must be at most 50 characters long.\n"
+          + "3. The local-part must contain only letters and digits (A–Z, a–z, 0–9) and be at least 1 character long.\n"
+          + "4. The domain is composed of dot-separated labels containing only letters (A–Z, a–z).\n"
           + "The domain must:\n"
           + "    - end with a label of at least 2 letters followed by '.com'\n"
           + "    - have each domain label start and end with a letter\n"
-          + "    - contain only letters in each label (no digits, underscores, hyphens, or other symbols)."
-          + "3. The domain must be a single label of letters (A–Z, a–z) of length ≥ 2, followed by '.com' "
+          + "    - contain only letters in each label (no digits, underscores, hyphens, or other symbols). \n"
+          + "5. The domain must be a single label of letters (A–Z, a–z) of length ≥ 2, followed by '.com' "
           + "(e.g., example.com). Subdomains like 'sales.example.com' are not allowed.";
     // ===== Regex parts (minimal changes, same overall structure) =====
 
