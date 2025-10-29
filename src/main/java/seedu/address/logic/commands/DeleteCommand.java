@@ -26,10 +26,10 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the senior identified by the index number, or the name and phone number "
+            + ": Deletes the senior identified by the index number, or the full name and phone number "
             + "used in the displayed senior list.\n"
-            + "Parameters: i/INDEX (must be a positive integer) OR n/NAME p/PHONE\n"
-            + "Examples:\n\t" + COMMAND_WORD + " i/1\n\t" + COMMAND_WORD + " n/Alice p/12345678";
+            + "Parameters: i/INDEX (must be a positive integer) OR n/NAME p/PHONE_NUMBER\n"
+            + "Examples:\n\t" + COMMAND_WORD + " i/1\n\t" + COMMAND_WORD + " n/Alice Tan p/62345678";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Senior: %1$s";
 
@@ -75,13 +75,13 @@ public class DeleteCommand extends Command {
 
         Person personToDelete = getPersonByPhoneAndName(lastShownList);
         if (personToDelete != null) {
-            return deleteByPhoneAndName(model, personToDelete);
+            return deletePersonToDelete(model, personToDelete);
         }
 
         throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_NAME_PHONE);
     }
 
-    private CommandResult deleteByPhoneAndName(Model model, Person personToDelete) {
+    private CommandResult deletePersonToDelete(Model model, Person personToDelete) {
         model.deletePerson(personToDelete);
         return new CommandResult(
                 String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
@@ -103,7 +103,7 @@ public class DeleteCommand extends Command {
         }
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        return deleteByPhoneAndName(model, personToDelete);
+        return deletePersonToDelete(model, personToDelete);
     }
 
     @Override

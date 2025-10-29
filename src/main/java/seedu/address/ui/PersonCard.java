@@ -72,32 +72,25 @@ public class PersonCard extends UiPart<Region> {
             tags.setStyle("-fx-padding: 7 0 0 0;");
         }
 
-        address.setOnMouseClicked(event -> {
-            if (address.getText().endsWith("...")) {
-                address.setText(person.getAddress().value);
-            } else {
-                address.setText(truncate(person.getAddress().value, MAX_ADDRESS_LENGTH));
-            }
-        });
-        address.setWrapText(true);
+        setupExpandableFields();
+    }
 
-        email.setOnMouseClicked(event -> {
-            if (email.getText().endsWith("...")) {
-                email.setText(person.getEmail().value);
-            } else {
-                email.setText(truncate(person.getEmail().value, MAX_EMAIL_LENGTH));
-            }
-        });
-        email.setWrapText(true);
+    private void setupExpandableFields() {
+        setupExpandableField(name, person.getName().fullName, MAX_NAME_LENGTH);
+        setupExpandableField(address, person.getAddress().value, MAX_ADDRESS_LENGTH);
+        setupExpandableField(email, person.getEmail().value, MAX_EMAIL_LENGTH);
+        setupExpandableField(remark, person.getRemark().value, MAX_REMARK_LENGTH);
+    }
 
-        remark.setOnMouseClicked(event -> {
-            if (remark.getText().endsWith("...")) {
-                remark.setText(person.getRemark().value);
+    private void setupExpandableField(Label field, String fullText, int maxLength) {
+        field.setOnMouseClicked(event -> {
+            if (field.getText().endsWith("...")) {
+                field.setText(fullText);
             } else {
-                remark.setText(truncate(person.getRemark().value, MAX_REMARK_LENGTH));
+                field.setText(truncate(fullText, maxLength));
             }
         });
-        remark.setWrapText(true);
+        field.setWrapText(true);
     }
 
     private String truncate(String text, int maxLength) {
