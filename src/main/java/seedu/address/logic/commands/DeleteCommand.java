@@ -75,13 +75,13 @@ public class DeleteCommand extends Command {
 
         Person personToDelete = getPersonByPhoneAndName(lastShownList);
         if (personToDelete != null) {
-            return deleteByPhoneAndName(model, personToDelete);
+            return deletePersonToDelete(model, personToDelete);
         }
 
         throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_NAME_PHONE);
     }
 
-    private CommandResult deleteByPhoneAndName(Model model, Person personToDelete) {
+    private CommandResult deletePersonToDelete(Model model, Person personToDelete) {
         model.deletePerson(personToDelete);
         return new CommandResult(
                 String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
@@ -103,7 +103,7 @@ public class DeleteCommand extends Command {
         }
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        return deleteByPhoneAndName(model, personToDelete);
+        return deletePersonToDelete(model, personToDelete);
     }
 
     @Override

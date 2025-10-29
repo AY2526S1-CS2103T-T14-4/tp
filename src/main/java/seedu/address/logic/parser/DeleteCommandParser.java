@@ -55,9 +55,8 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
             Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
             return new DeleteCommand(name, phone);
-        } else {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
+        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
 
     private boolean isValidDeletionCriteria(boolean indexIsPresent, boolean nameIsPresent, boolean phoneIsPresent) {
