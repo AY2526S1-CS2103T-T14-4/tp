@@ -35,14 +35,14 @@ This is an example of an additional information.
 </box>
 
 --------------------------------------------------------------------------------------------------------------------
-## Getting Started
+## Quick Start
 
 To get started, this guide serves as a walkthrough on **how to install ElderRing** and **how to use it**!
 
 <box header=" **By the end of this section, you will:**">
 
 - Have installed **ElderRing** on your computer
-- know how to run **ElderRing**
+- Know how to run **ElderRing**
 
 </box>
 
@@ -59,9 +59,9 @@ If you are not sure how to install java, follow this [guide](https://www.java.co
 
 2. Download the latest `ElderRing.jar` file from [here](https://github.com/AY2526S1-CS2103T-T14-4/tp/releases/tag/v1.3).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for your ElderRing.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar ElderRing.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -228,7 +228,7 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+ElderRing data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
@@ -237,8 +237,8 @@ ElderRing data are saved automatically as a JSON file `[JAR file location]/data/
 <box type="warning" seamless>
 
 **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+If your changes to the data file makes its format invalid, ElderRing will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause the ElderRing to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
 ### Adding notes to a senior : `remark`
@@ -322,7 +322,7 @@ Examples:
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ElderRing home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
