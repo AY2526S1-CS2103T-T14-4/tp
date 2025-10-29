@@ -222,35 +222,6 @@ public class TagCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
-     */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
-
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
-        }
-
-        @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
-        }
-
-        @Override
-        public ObservableList<Person> getFilteredPersonList() {
-            return FXCollections.observableArrayList(person);
-        }
-
-        @Override
-        public void setPerson(Person target, Person editedPerson) {
-            requireNonNull(target);
-            requireNonNull(editedPerson);
-        }
-    }
-
-    /**
      * A Model stub that accepts tagging to persons.
      */
     private class ModelStubAcceptingPersonTagged extends ModelStub {
