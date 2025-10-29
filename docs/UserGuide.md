@@ -29,14 +29,19 @@ If you have **experience with ElderRing**:
 Additional information is indicated as a box with an "**i**" symbol.
 
 <box type="info" seamless>
+
 This is an example of additional information.
+
 </box>
 
 #### Tips
 
 Tips are displayed as a box with a "**💡**" symbol.
+
 <box type="tip" seamless>
+
 This is an example of a tip!
+
 </box>
 
 #### Warnings
@@ -44,7 +49,9 @@ This is an example of a tip!
 Warnings are displayed as a box with a "**!**" symbol.
 
 <box type="warning">
+
 This is an example of a warning!
+
 </box>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -53,8 +60,10 @@ This is an example of a warning!
 This guide serves as a walkthrough on **how to install ElderRing** and **how to use it**!
 
 <box header=" **By the end of this section, you will:**">
+
 - Have installed **ElderRing** on your computer.
 - Know how to run **ElderRing**.
+
 </box>
 
 ### Installation
@@ -79,7 +88,9 @@ If you are unsure of how to install Java, follow this [guide](https://www.java.c
 5. Type the command in the command box (located at the bottom of the window) and press Enter to execute it.
 
 <box type="tip" seamless>
+
 Typing **`help`** and pressing Enter will open the help window.
+
 </box>
 
    Some example commands you can try:
@@ -127,6 +138,7 @@ This section covers the list of commands and their usage. If you are experienced
   e.g., if the command specifies `help 123`, it will be interpreted as `help`.
   ```
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+
 </box>
 
 ### Parameters
@@ -182,7 +194,9 @@ Examples:
 Edits an existing senior in the address book, only replacing the fields with new information specified in the user input.
 
 <box type="info" seamless>
+
 Remarks cannot be edited using this feature.
+
 </box>
 
 Format: `edit i/INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]`
@@ -197,11 +211,13 @@ Format: `edit i/INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]`
 6. `TAG`: Optional.
 
 <box type="info" seamless>
+
 * Edits the senior at the specified `INDEX`. The index refers to the index number shown in the displayed senior list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the senior will be removed (adding of tags is not cumulative).
 * You can remove all the senior’s tags by typing `t/` without specifying any tags after it.
+
 </box>
 
 Examples:
@@ -228,8 +244,10 @@ Or:
 3. `PHONE_NUMBER`: Mandatory.
 
 <box type="info" seamless>
+
 * Deletes the senior at the specified `INDEX`.
 * Deletes the senior matching the specified `NAME` and `PHONE_NUMBER`.
+
 </box>
 
 Examples:
@@ -245,8 +263,10 @@ Shows a list of all seniors in the address book.
 Format: `list`
 
 <box type="tip" seamless>
+
 If texts end with `...`, there are more information hidden. Click on the `...` to expand and view the full information (not applicable to long tags).You can also click it to hide it again.
 ![expand](images/expandUi.png)
+
 </box>
 
 <br>
@@ -263,10 +283,12 @@ Format: `sort (ASC or DSC)/(NAME or ADDRESS)`
 2. `NAME or ADDRESS`: Mandatory.
 
 <box type="info" seamless>
+
 * `asc` sorts in ascending order
 * `dsc` sorts in descending order
 * `name` sorts by name
 * `address` sorts by address
+
 </box>
 
 Examples:
@@ -333,7 +355,9 @@ Examples:
 Tags (or untags) the senior at the specified display `INDEX` OR the senior with a matching `NAME` and `PHONE_NUMBER` OR the senior with a matching `NAME`, `PHONE_NUMBER` and `ADDRESS`.
 
 <box type="info" seamless>
+
 Tagging can be used as a categorisation feature in conjunction with the filter feature.
+
 </box>
 
 Format: `tag i/INDEX t/TAG [ --remove]` or `tag n/NAME p/PHONE_NUMBER t/TAG [ --remove]` or `tag n/NAME p/PHONE_NUMBER a/ADDRESS t/TAG [ --remove]`
@@ -356,7 +380,9 @@ Examples:
 Only displays the entries with the specified tag.
 
 <box type="info" seamless>
+
 Filtering can be used as a more specific alternative to the list feature.
+
 </box>
 
 Format: `filter t/TAG`
@@ -369,8 +395,10 @@ Examples:
 * `filter t/hard-of-hearing`
 
 <box type="warning">
+
 If the tag specified does not exist, there will be no entries displayed.
 To display the original list of seniors, make use of the [list](#listing-all-seniors-list) command.
+
 </box>
 
 <br>
@@ -382,7 +410,9 @@ Clears all entries from the address book.
 Format: `clear`
 
 <box type="warning">
+
 Be careful! This command irreversibly deletes ALL entries (This operation cannot be undone).
+
 </box>
 
 <br>
@@ -406,6 +436,7 @@ ElderRing data is saved in the hard disk automatically after any command that ch
 ElderRing data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <box type="warning">
+
 **Caution:**
 * If the data file contains invalid formatting (broken JSON, parsing errors, file permission issues, etc.), ElderRing will discard all data and start with an empty data file.
 * Certain edits may cause unexpected behavior. Edit the data file only if you are confident in maintaining the correct format.
@@ -416,6 +447,7 @@ ElderRing data are saved automatically as a JSON file `[JAR file location]/data/
 * **Optional fields**: Missing optional fields are auto-filled with default values
 
 **Recommendation:** Always back up the file before editing.
+
 </box>
 
 --------------------------------------------------------------------------------------------------------------------
