@@ -75,13 +75,58 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         logger.info("Using data file : " + storage.getAddressBookFilePath());
 
+        // Ensure data directory exists first, before any read/write operations
+        ensureDataDirectoryExists(storage.getAddressBookFilePath());
+
         Optional<ReadOnlyAddressBook> addressBookOptional;
         ReadOnlyAddressBook initialData;
-        boolean dataCleaned = false; // Track if we cleaned any data
+        boolean shouldSaveData = false; // Track if we need to save data
 
-        // ensure data directory exists
         try {
-            Path dataDir = storage.getAddressBookFilePath().getParent();
+            addressBookOptional = storage.readAddressBook();
+
+            if (!addressBookOptional.isPresent()) {
+                // No existing file - use sample data and MUST save it
+                logger.info("Creating a new data file " + storage.getAddressBookFilePath()
+                        + " populated with a sample AddressBook.");
+                initialData = SampleDataUtil.getSampleAddressBook();
+                shouldSaveData = true; // MUST save to create the file
+            } else {
+                // File exists - use loaded data and save to clean duplicates/invalid entries
+                initialData = addressBookOptional.get();
+                shouldSaveData = true; // Save to clean any duplicates/invalid entries
+            }
+
+        } catch (DataLoadingException e) {
+            logger.warning("Data file at " + storage.getAddressBookFilePath() + " could not be loaded."
+                    + " Will be starting with an empty AddressBook.");
+            initialData = new AddressBook();
+            shouldSaveData = true; // Save empty address book to create valid file
+        }
+
+        // Save the data immediately to ensure:
+        // 1. File and folder are created
+        // 2. Sample data is persisted
+        // 3. Duplicates/invalid entries are cleaned
+        if (shouldSaveData) {
+            try {
+                storage.saveAddressBook(initialData);
+                logger.info("Data has been saved to file: " + storage.getAddressBookFilePath());
+            } catch (IOException e) {
+                logger.warning("Failed to save data to file: " + StringUtil.getDetails(e));
+            }
+        }
+
+        return new ModelManager(initialData, userPrefs);
+    }
+
+    /**
+     * Ensures the data directory exists. Creates it if necessary.
+     * This is critical for preventing file save failures.
+     */
+    private void ensureDataDirectoryExists(Path filePath) {
+        try {
+            Path dataDir = filePath.getParent();
             if (dataDir != null && !java.nio.file.Files.exists(dataDir)) {
                 java.nio.file.Files.createDirectories(dataDir);
                 logger.info("Created data directory: " + dataDir);
@@ -89,47 +134,6 @@ public class MainApp extends Application {
         } catch (IOException e) {
             logger.warning("Failed to create data directory: " + StringUtil.getDetails(e));
         }
-
-        try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Creating a new data file " + storage.getAddressBookFilePath()
-                        + " populated with a sample AddressBook.");
-
-                // ensure sample data gets saved to create the folder
-                try {
-                    ReadOnlyAddressBook sampleData = SampleDataUtil.getSampleAddressBook();
-                    storage.saveAddressBook(sampleData);
-                    logger.info("Sample data saved to create data file structure");
-                } catch (IOException e) {
-                    logger.warning("Failed to save sample data: " + StringUtil.getDetails(e));
-                }
-            }
-
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
-
-            // If we loaded data (not sample data), mark that cleaning occurred
-            if (addressBookOptional.isPresent()) {
-                dataCleaned = true;
-            }
-
-        } catch (DataLoadingException e) {
-            logger.warning("Data file at " + storage.getAddressBookFilePath() + " could not be loaded."
-                    + " Will be starting with an empty AddressBook.");
-            initialData = new AddressBook();
-        }
-
-        // Save the cleaned data back immediately if duplicates/invalid entries were removed
-        if (dataCleaned) {
-            try {
-                storage.saveAddressBook(initialData);
-                logger.info("Cleaned data has been saved to file: " + storage.getAddressBookFilePath());
-            } catch (IOException e) {
-                logger.warning("Failed to save cleaned data to file: " + StringUtil.getDetails(e));
-            }
-        }
-
-        return new ModelManager(initialData, userPrefs);
     }
 
     private void initLogging(Config config) {
@@ -218,10 +222,6 @@ public class MainApp extends Application {
         logger.info("============================ [ Stopping ElderRing ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
-
-            // also save current address book data to ensure folder creation
-            storage.saveAddressBook(model.getAddressBook());
-            logger.info("Data saved successfully on shutdown");
         } catch (IOException e) {
             logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
         }
