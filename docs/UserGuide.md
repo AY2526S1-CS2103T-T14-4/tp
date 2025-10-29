@@ -264,7 +264,7 @@ Format: `list`
 
 <box type="tip" seamless>
 
-If texts end with `...`, there are more information hidden. Click on the `...` to expand and view the full information (not applicable to long tags).You can also click it to hide it again.
+If texts end with `...`, there are more information hidden. Click on the `...` to expand and view the full information (not applicable to long tags). You can also click it to hide it again.
 ![expand](images/expandUi.png)
 
 </box>
