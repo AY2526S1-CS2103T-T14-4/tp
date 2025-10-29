@@ -27,6 +27,16 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
+        // NEW VALIDATION: Check if all keywords contain only letters
+        for (String keyword : nameKeywords) {
+            if (!keyword.matches("[a-zA-Z]+")) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                                "Find command only accepts alphabetical characters. " +
+                                        "Numbers and special characters are not allowed."));
+            }
+        }
+
         return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 

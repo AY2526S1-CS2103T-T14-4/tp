@@ -19,7 +19,8 @@ public class FindCommand extends Command {
             + "the specified keywords (case-insensitive, partial matching) and displays them as a list with "
             + "index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " can tan"; // Changed from "alice bob charlie"
+            + "Constraints: Keywords must contain only alphabetical characters (no numbers or special characters)\n"
+            + "Example: " + COMMAND_WORD + " can tan";
 
     private final NameContainsKeywordsPredicate predicate;
 
