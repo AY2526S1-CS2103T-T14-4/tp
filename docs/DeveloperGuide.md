@@ -564,8 +564,39 @@ testers are expected to do more *exploratory* testing.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing data files
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Prerequisites: Ensure the data folder exists but the data file `data/addressbook.json` is missing.
+   
+    2. Test case: Launch the application.
+       Expected: ElderRing starts with an empty address book. A new data file is created automatically when changes are made.
 
-1. _{ more test cases …​ }_
+2. Dealing with corrupted data files
+
+    1. Prerequisites: Corrupt the data file by opening `data/addressbook.json` and modifying it to contain invalid JSON format (e.g., remove closing braces, add extra commas).
+
+    2. Test case: Launch the application.
+       Expected: ElderRing starts with an empty address book. Error message shown in the status message indicating the data file is invalid and has been reset.
+
+3. Dealing with data files containing invalid entries
+
+    1. Prerequisites: Modify `data/addressbook.json` to include entries with missing required fields (name, phone, or address).
+
+    2. Test case: Launch the application.
+    Expected: ElderRing loads successfully. Invalid entries are deleted and a warning message shows the number of invalid entries deleted.
+
+4. Dealing with data files containing duplicate entries
+
+    1. Prerequisites: Modify `data/addressbook.json` to include multiple entries with identical name and phone number combinations.
+
+    2. Test case: Launch the application.
+    Expected: ElderRing loads successfully. Duplicate entries are automatically removed and a warning message shows the number of duplicates deleted.
+
+5. Testing auto-save functionality
+
+    1. Prerequisites: Launch the application and ensure there are existing contacts.
+
+    2. Test case: Execute a command that modifies data (e.g., `add`, `delete`, `edit`).
+    Expected: The data file is updated automatically. Changes persist after restarting the application.
+
+6. _{ more test cases …​ }_
