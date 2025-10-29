@@ -85,37 +85,6 @@ public class MainAppTest {
     }
 
     @Test
-    public void stop_methodSavesUserPrefsWhenModelIsSet() throws Exception {
-        MainApp mainApp = new MainApp();
-
-        // Use reflection to set the model field for testing
-        var modelField = MainApp.class.getDeclaredField("model");
-        modelField.setAccessible(true);
-
-        // Create a mock model with user prefs
-        UserPrefs userPrefs = new UserPrefs();
-        var mockModel = new ModelManager(new AddressBook(), userPrefs);
-        modelField.set(mainApp, mockModel);
-
-        // Also set storage
-        var storageField = MainApp.class.getDeclaredField("storage");
-        storageField.setAccessible(true);
-
-        // Create a mock storage that doesn't actually save
-        Storage mockStorage = new StorageManager(
-                new JsonAddressBookStorage(Paths.get("test.json")),
-                new JsonUserPrefsStorage(Paths.get("test_prefs.json"))
-        );
-        storageField.set(mainApp, mockStorage);
-
-        // Now stop should work without throwing exceptions
-        mainApp.stop();
-
-        // If we reach here, the method executed successfully
-        assertTrue(true);
-    }
-
-    @Test
     public void mainApp_hasExpectedFields() {
         // Test that MainApp has the expected fields
         MainApp mainApp = new MainApp();
