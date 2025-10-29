@@ -50,6 +50,10 @@ public class Email {
         value = email;
     }
 
+    /**
+     * Constructs an empty {@code Email}.
+     * This represents a person with no email address specified.
+     */
     public Email() {
         value = "";
     }
