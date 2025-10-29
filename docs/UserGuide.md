@@ -73,7 +73,7 @@ If you are not sure how to install java, follow this [guide](https://www.java.co
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar ElderRing.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/Updated_Ui.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -202,12 +202,13 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* Partial words within the name can be matched. e.g. `Han` will match `Hans`
 * Seniors matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
 * `find alex` returns `Alex Yeoh`
+* `find can ran` returns `Candice Lim`, `Randy Tan`, `Ranger Lee`
 * `find charlotte bernice` returns `Bernice Yu`, `Charlotte Oliveiro`<br>
   ![result for 'find charlotte bernice'](images/findCharlotteBerniceResult.png)
 
@@ -253,8 +254,15 @@ ElderRing data are saved automatically as a JSON file `[JAR file location]/data/
 <box type="warning" seamless>
 
 **Caution:**
-If your changes to the data file makes its format invalid, ElderRing will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the ElderRing to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+* If the data file contains invalid formatting (broken JSON, parsing errors, file permission issues, etc.), ElderRing will discard all data and start with an empty data file.
+* Certain edits may cause unexpected behavior. Edit the data file only if you are confident in maintaining the correct format.
+
+#### Data validation during loading
+* **Invalid entries**: Entries missing required fields (name, phone, or address) are skipped
+* **Duplicate entries**: Contacts with identical name and phone numbers are automatically removed
+* **Optional fields**: Missing optional fields are auto-filled with default values
+
+**Recommendation:** Always back up the file before editing.
 </box>
 
 ### Adding notes to a senior : `remark`
@@ -360,16 +368,17 @@ Examples:
 
 ## Command summary
 
-| Command                                                   | Usage                                                                    | Example                                                                                            |
-|-----------------------------------------------------------|--------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
-| **[add](#adding-a-senior-add)**                           | `add n/NAME p/PHONE_NUMBER a/ADDRESS [e/EMAIL] [t/TAG]…​`                | `add n/James Ho p/22224444 a/123, Clementi Rd, 1234665 e/jamesho@example.com t/friend t/colleague` |
-| **[edit](#editing-a-senior-edit)**                        | `edit i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [t/TAG]​…` | `edit i/2 n/James Lee e/jameslee@example.com`                                                      |
-| **[delete (by index)](#deleting-a-senior-delete)**        | `delete i/INDEX`                                                         | `delete i/3`                                                                                       |
-| **[delete (by name and phone number)](#deleting-a-senior-delete)** | `delete n/NAME p/PHONE_NUMBER`                                           | `delete n/Amy p/61234567`                                                                          |
-| **[tag (by index)](#tagging-a-senior-tag)**               | `tag i/INDEX t/TAG`                                                      | `tag i/1 t/hard-of-hearing`                                                                        |
-| **[tag (by name and phone number](#tagging-a-senior-tag)** | `tag n/NAME p/PHONE_NUMBER t/TAG`                                        | `tag n/John Doe p/91234567 t/hard-of-hearing`                                                      |
-| **[remark](#adding-notes-to-a-senior-remark)**            | `remark i/INDEX r/REMARK`                                                | `remark i/10 r/Person is kind`                                                                     |
-| **[sort (by name)](#sorting-entries-sort)**               | `sort (ASC or DSC)/NAME`                                                 | `sort asc/name` or `sort dsc/name`                                                                 |
-| **[sort (by address)](#sorting-entries-sort)**            | `sort (ASC or DSC)/ADDRESS`                                              | `sort asc/address` or `sort dsc/address`                                                           |
-| **[list](#listing-all-seniors-list)**                     | `list`                                                                   | `list`                                                                                             |
-| **[help](#viewing-help-help)**                            | `help`                                                                   | `help`                                                                                             |
+| Command                                                  | Usage                                                                    | Example                                                                                      |
+|----------------------------------------------------------|--------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
+| **[add](#adding-a-senior-add)**                          | `add n/NAME p/PHONE_NUMBER a/ADDRESS [e/EMAIL] [t/TAG]…​`                | `add n/James Ho p/22224444 a/123, Clementi Rd, 1234665 e/jamesho@example.com t/friend t/colleague` |
+| **[edit](#editing-a-senior-edit)**                       | `edit i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [t/TAG]​…` | `edit i/2 n/James Lee e/jameslee@example.com`                                                |
+| **[find (by name)](#locating-seniors-by-name-find)**     | `find KEYWORD [MORE_KEYWORDS]​…`                                         | `find alex` or `find can ran`                                                      |
+| **[delete (by index)](#deleting-a-senior-delete)**       | `delete i/INDEX`                                                         | `delete i/3`                                                                                 |
+| **[delete (by name and phone number)](#deleting-a-senior-delete)** | `delete n/NAME p/PHONE_NUMBER`                                           | `delete n/Amy p/61234567`                                                                    |
+| **[tag (by index)](#tagging-a-senior-tag)**              | `tag i/INDEX t/TAG`                                                      | `tag i/1 t/hard-of-hearing`                                                                  |
+| **[tag (by name and phone number](#tagging-a-senior-tag)** | `tag n/NAME p/PHONE_NUMBER t/TAG`                                        | `tag n/John Doe p/91234567 t/hard-of-hearing`                                                |
+| **[remark](#adding-notes-to-a-senior-remark)**           | `remark i/INDEX r/REMARK`                                                | `remark i/10 r/Person is kind`                                                               |
+| **[sort (by name)](#sorting-entries-sort)**              | `sort (ASC or DSC)/NAME`                                                 | `sort asc/name` or `sort dsc/name`                                                           |
+| **[sort (by address)](#sorting-entries-sort)**           | `sort (ASC or DSC)/ADDRESSS`                                             | `sort asc/address` or `sort dsc/address`                                                     |
+| **[list](#listing-all-seniors-list)**                    | `list`                                                                   | `list`                                                                                       |
+| **[help](#viewing-help-help)**                           | `help`                                                                   | `help`                                                                                       |
