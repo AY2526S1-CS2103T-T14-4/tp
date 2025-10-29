@@ -77,6 +77,8 @@ public class MainApp extends Application {
 
         Optional<ReadOnlyAddressBook> addressBookOptional;
         ReadOnlyAddressBook initialData;
+        boolean dataCleaned = false; // Track if we cleaned any data
+
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
@@ -84,10 +86,26 @@ public class MainApp extends Application {
                         + " populated with a sample AddressBook.");
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+
+            // If we loaded data (not sample data), mark that cleaning occurred
+            if (addressBookOptional.isPresent()) {
+                dataCleaned = true;
+            }
+
         } catch (DataLoadingException e) {
             logger.warning("Data file at " + storage.getAddressBookFilePath() + " could not be loaded."
                     + " Will be starting with an empty AddressBook.");
             initialData = new AddressBook();
+        }
+
+        // Save the cleaned data back immediately if duplicates/invalid entries were removed
+        if (dataCleaned) {
+            try {
+                storage.saveAddressBook(initialData);
+                logger.info("Cleaned data has been saved to file: " + storage.getAddressBookFilePath());
+            } catch (IOException e) {
+                logger.warning("Failed to save cleaned data to file: " + StringUtil.getDetails(e));
+            }
         }
 
         return new ModelManager(initialData, userPrefs);
