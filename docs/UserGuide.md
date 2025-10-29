@@ -18,7 +18,7 @@
 This guide is designed for everyone, whether you're just starting out or already familiar with ElderRing.
 
 If you are **new to ElderRing**:
-- Head to [Getting Started](#getting-started) to learn how to get started
+- Head to [Quick Start](#quick-start) to learn how to get started
 
 If you have **experience with ElderRing**:
 - Checkout the [Command Summary](#command-summary) for a quick overview of the various commands and their usage.
@@ -31,6 +31,16 @@ Additional information are indicated as a box with an "**i**" symbol.
 <box type="info" seamless>
 
 This is an example of an additional information.
+
+</box>
+
+#### Warnings
+
+Warnings are displayed as a box an "**!**" symbol.
+
+<box type="warning">
+
+This is an example of a warning!
 
 </box>
 
@@ -57,7 +67,7 @@ If you are not sure how to install java, follow this [guide](https://www.java.co
 
 </box>
 
-2. Download the latest `ElderRing.jar` file from [here](https://github.com/AY2526S1-CS2103T-T14-4/tp/releases/tag/v1.3).
+2. Download the latest `ElderRing.jar` file from [here](https://github.com/AY2526S1-CS2103T-T14-4/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your ElderRing.
 
@@ -314,7 +324,7 @@ Examples:
 <box type="warning">
 
 If a tag used does not exist, the entire display will show 0 entries.
-To get back your list of entries, make use of the [list](#listing-all-persons--list) command.
+To get back your list of entries, make use of the [list](#listing-all-seniors-list) command.
 
 </box>
 
@@ -358,17 +368,17 @@ Examples:
 
 ## Command summary
 
-| Command                                                             | Usage                                                                          | Example                                                                                      |
-|---------------------------------------------------------------------|--------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
-| **[add](#adding-a-senior--add)**                                    | `add n/NAME p/PHONE_NUMBER a/ADDRESS [e/EMAIL] [t/TAG]…​`                      | `add n/James Ho p/22224444 a/123, Clementi Rd, 1234665 e/jamesho@example.com t/friend t/colleague` |
-| **[edit](#editing-a-senior--edit)**                                 | `edit i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [t/TAG]​…`       | `edit i/2 n/James Lee e/jameslee@example.com`                                                |
-| **[find (by name)](#locating-seniors-by-name--find)**               | `find KEYWORD [MORE_KEYWORDS]​…`       | `find alex` or `find can ran`                                                      |
-| **[delete (by index)](#deleting-a-senior--delete)**                 | `delete i/INDEX`                                                               | `delete i/3`                                                                                 |
-| **[delete (by name and phone number)](#deleting-a-senior--delete)** | `delete n/NAME p/PHONE_NUMBER`                                                 | `delete n/Amy p/61234567`                                                                    |
-| **[tag (by index)](#tagging-a-senior--tag)**                        | `tag i/INDEX t/TAG`                                                            | `tag i/1 t/hard-of-hearing`                                                                  |
-| **[tag (by name and phone number](#tagging-a-senior--tag)**         | `tag n/NAME p/PHONE_NUMBER t/TAG`                                                     | `tag n/John Doe p/91234567 t/hard-of-hearing`                                                |
-| **[remark](#adding-notes-to-a-senior--remark)**                     | `remark i/INDEX r/REMARK`                                                      | `remark i/10 r/Person is kind`                                                               |
-| **[sort (by name)](#sorting-entries--sort)**                        | `sort (asc or dsc)/name`                                                       | `sort asc/name` or `sort dsc/name`                                                           |
-| **[sort (by address)](#sorting-entries--sort)**                     | `sort (asc or dsc)/address`                                                    | `sort asc/address` or `sort dsc/address`                                                     |
-| **[list](#listing-all-seniors--list)**                              | `list`                                                                         | `list`                                                                                       |
-| **[help](#viewing-help--help)**                                     | `help`                                                                         | `help`                                                                                       |
+| Command                                                  | Usage                                                                    | Example                                                                                      |
+|----------------------------------------------------------|--------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
+| **[add](#adding-a-senior-add)**                          | `add n/NAME p/PHONE_NUMBER a/ADDRESS [e/EMAIL] [t/TAG]…​`                | `add n/James Ho p/22224444 a/123, Clementi Rd, 1234665 e/jamesho@example.com t/friend t/colleague` |
+| **[edit](#editing-a-senior-edit)**                       | `edit i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [t/TAG]​…` | `edit i/2 n/James Lee e/jameslee@example.com`                                                |
+| **[find (by name)](#locating-seniors-by-name-find)**     | `find KEYWORD [MORE_KEYWORDS]​…`                                         | `find alex` or `find can ran`                                                      |
+| **[delete (by index)](#deleting-a-senior-delete)**       | `delete i/INDEX`                                                         | `delete i/3`                                                                                 |
+| **[delete (by name and phone number)](#deleting-a-senior-delete)** | `delete n/NAME p/PHONE_NUMBER`                                           | `delete n/Amy p/61234567`                                                                    |
+| **[tag (by index)](#tagging-a-senior-tag)**              | `tag i/INDEX t/TAG`                                                      | `tag i/1 t/hard-of-hearing`                                                                  |
+| **[tag (by name and phone number](#tagging-a-senior-tag)** | `tag n/NAME p/PHONE_NUMBER t/TAG`                                        | `tag n/John Doe p/91234567 t/hard-of-hearing`                                                |
+| **[remark](#adding-notes-to-a-senior-remark)**           | `remark i/INDEX r/REMARK`                                                | `remark i/10 r/Person is kind`                                                               |
+| **[sort (by name)](#sorting-entries-sort)**              | `sort (ASC or DSC)/NAME`                                                 | `sort asc/name` or `sort dsc/name`                                                           |
+| **[sort (by address)](#sorting-entries-sort)**           | `sort (ASC or DSC)/ADDRESSS`                                             | `sort asc/address` or `sort dsc/address`                                                     |
+| **[list](#listing-all-seniors-list)**                    | `list`                                                                   | `list`                                                                                       |
+| **[help](#viewing-help-help)**                           | `help`                                                                   | `help`                                                                                       |
