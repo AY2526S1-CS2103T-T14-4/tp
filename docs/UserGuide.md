@@ -7,7 +7,7 @@
 # ElderRing User Guide
 
 ## Introduction
-**ElderRing** is a **desktop application** made for Silver Generation Ambassadors (SGAs) to better **manage and organise senior clients information** more efficiently. With simple-to-type commands, seniors' contacts can be managed faster than traditional Graphical User Interface (GUI) applications.
+**ElderRing** is a **desktop application** made for Silver Generation Ambassadors (SGAs) to better **manage and organise senior clients' information** more efficiently. With simple-to-type commands, seniors' contacts can be managed faster than traditional Graphical User Interface (GUI) applications.
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -26,10 +26,10 @@ If you have **experience with ElderRing**:
 
 #### Additional Information
 
-Additional information are indicated as a box with an "**i**" symbol.
+Additional information is indicated as a box with an "**i**" symbol.
 
 <box type="info" seamless>
-This is an example of an additional information.
+This is an example of additional information.
 </box>
 
 #### Tips
@@ -58,11 +58,11 @@ This guide serves as a walkthrough on **how to install ElderRing** and **how to 
 </box>
 
 ### Installation
-1. Ensure you have Java `17` or above installed in your Computer.<br>
+1. Ensure you have Java `17` or above installed on your computer.<br>
 
 <box type="info" seamless>
 
-If you are unsure of how to install java, follow this [guide](https://www.java.com/en/download/help/download_options.html).
+If you are unsure of how to install Java, follow this [guide](https://www.java.com/en/download/help/download_options.html).
 
 **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
@@ -100,7 +100,7 @@ Typing **`help`** and pressing Enter will open the help window.
 
 ## Features
 
-This section covers the list of commands and their usages. If you are experienced with the commands, you can refer to the [Command Summary](#command-summary) below for quicker reference.
+This section covers the list of commands and their usage. If you are experienced with the commands, you can refer to the [Command Summary](#command-summary) below for quicker reference.
 
 <box type="info" seamless>
 
@@ -108,23 +108,23 @@ This section covers the list of commands and their usages. If you are experience
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   ```
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g., in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
   ```
 * Parameters in `[ square brackets ]` are optional.<br>
   ```
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g., `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
   ```
 * Parameters with `…`​ after them can be used multiple times (including zero times).<br>
   ```
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g., `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
   ```
 * Parameters can be in any order.<br>
   ```
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g., if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
   ```
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   ```
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  e.g., if the command specifies `help 123`, it will be interpreted as `help`.
   ```
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
@@ -138,10 +138,10 @@ This section covers the different parameters in ElderRing and their respective c
 | `NAME`         | Senior’s name                                | <ul><li>Only letters and spaces are permitted.</li><li>This parameter cannot be left blank.</li></ul>                                                                                          | :fa-solid-check: <br>`John Doe`<br>                                                                          |
 | `PHONE_NUMBER` | Senior’s phone number                        | <ul><li>Only numbers are allowed.</li><li>This parameter cannot be left blank.</li><li>Only accepts numbers that are 8-digits.</li><li>Only accepts numbers that start with 6, 8, 9.</li></ul> | :fa-solid-check: <br>`91234567`<br>                                                                          |
 | `ADDRESS`      | Senior’s residential address                 | <ul>No constraints </ul>                                                                                                                                                                       | :fa-solid-check: <br>`Blk 41 Telok Blangah Way #07-436`<br>                                                  |
-| `EMAIL`        | Senior’s email address                       | <ul><li>Emails should be of the format. `local-part@domain`.</li><li>`local-part` must only contain letters and digits</li><li>`domain` must end in `.com`</li></ul>                           | :fa-solid-check: <br>`johndoe123@gmail.com`<br>                                                              |
+| `EMAIL`        | Senior’s email address                       | <ul><li>Emails should be in the format `local-part@domain`.</li><li>`local-part` must only contain letters and digits</li><li>`domain` must end in `.com`</li></ul>                           | :fa-solid-check: <br>`johndoe123@gmail.com`<br>                                                              |
 | `TAG`          | Category/label applicable to seniors         | <ul>No constraints </ul>                                                                                                                                                                       | :fa-solid-check: <br>`hard-of-hearing` <br>                                                                  |
-| `REMARK`       | Additional notes applicable to seniors       | <ul>No constraints </ul>                                                                                                                                                                       | :fa-solid-check: <br>`List of senior’s medications: Alprax (daily), Alprazolam (once every 3 days), ..`<br> |
-| `INDEX`        | The index shown in the displayed seniors list | <ul><li>Only whole numbers are allowed.</li><li>Number must be a postive number.</li><li>Number must be smaller than the total number of entries.</li></ul>                                    | :fa-solid-check: <br>`1`<br>                                                                                 |
+| `REMARK`       | Additional notes applicable to seniors       | <ul>No constraints </ul>                                                                                                                                                                       | :fa-solid-check: <br>`List of senior’s medications: Alprax (daily), Alprazolam (once every 3 days), ...`<br> |
+| `INDEX`        | The index shown in the displayed seniors list | <ul><li>Only whole numbers are allowed.</li><li>Number must be a positive number.</li><li>Number must be smaller than the total number of entries.</li></ul>                                    | :fa-solid-check: <br>`1`<br>                                                                                 |
 
 <br>
 
@@ -172,7 +172,7 @@ Format: `add n/NAME p/PHONE_NUMBER a/ADDRESS [e/EMAIL] [t/TAG]…​`
 5. `TAG`: Optional.
 
 Examples:
-* `add n/Tan Ah Kow e/tak@gmail.com p/96521345 a/Blk 41 Telok Blangah way #07-436 t/hard-of-hearing`
+* `add n/Tan Ah Kow e/tak@gmail.com p/96521345 a/Blk 41 Telok Blangah Way #07-436 t/hard-of-hearing`
 * `add n/Shermaine Tan p/98541331 a/1 Lor 2 Toa Payoh #07-36 e/shermainetan@gmail.com`
 
 <br>
@@ -285,12 +285,12 @@ Finds seniors whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive (e.g `hans` will match `Hans`).
-* The order of the keywords does not matter (e.g. `Hans Bo` will match `Bo Hans`).
+* The search is case-insensitive (e.g., `hans` will match `Hans`).
+* The order of the keywords does not matter (e.g., `Hans Bo` will match `Bo Hans`).
 * Only the name is searched.
-* Partial words within the name can be matched (e.g. `Han` will match `Hans`).
+* Partial words within the name can be matched (e.g., `Han` will match `Hans`).
 * Seniors matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+  e.g., `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
 * `find alex` displays `Alex Yeoh`.
@@ -397,7 +397,7 @@ Format: `exit`
 
 ### Saving the data
 
-ElderRing data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+ElderRing data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 <br>
 
@@ -422,7 +422,7 @@ ElderRing data are saved automatically as a JSON file `[JAR file location]/data/
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
+**Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ElderRing home folder.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -447,9 +447,9 @@ The remedy is to manually restore the minimized Help Window.
 | **[delete (by index)](#deleting-a-senior-delete)**       | `delete i/INDEX`                                                         | `delete i/3`                                                                                 |
 | **[delete (by name and phone number)](#deleting-a-senior-delete)** | `delete n/NAME p/PHONE_NUMBER`                                           | `delete n/Amy p/61234567`                                                                    |
 | **[tag (by index)](#tagging-a-senior-tag)**              | `tag i/INDEX t/TAG`                                                      | `tag i/1 t/hard-of-hearing`                                                                  |
-| **[tag (by name and phone number](#tagging-a-senior-tag)** | `tag n/NAME p/PHONE_NUMBER t/TAG`                                        | `tag n/John Doe p/91234567 t/hard-of-hearing`                                                |
+| **[tag (by name and phone number)](#tagging-a-senior-tag)** | `tag n/NAME p/PHONE_NUMBER t/TAG`                                        | `tag n/John Doe p/91234567 t/hard-of-hearing`                                                |
 | **[remark](#adding-notes-to-a-senior-remark)**           | `remark i/INDEX r/REMARK`                                                | `remark i/10 r/Person is kind`                                                               |
 | **[sort (by name)](#sorting-entries-sort)**              | `sort (ASC or DSC)/NAME`                                                 | `sort asc/name` or `sort dsc/name`                                                           |
-| **[sort (by address)](#sorting-entries-sort)**           | `sort (ASC or DSC)/ADDRESSS`                                             | `sort asc/address` or `sort dsc/address`                                                     |
+| **[sort (by address)](#sorting-entries-sort)**           | `sort (ASC or DSC)/ADDRESS`                                             | `sort asc/address` or `sort dsc/address`                                                     |
 | **[list](#listing-all-seniors-list)**                    | `list`                                                                   | `list`                                                                                       |
 | **[help](#viewing-help-help)**                           | `help`                                                                   | `help`                                                                                       |
