@@ -79,12 +79,33 @@ public class MainApp extends Application {
         ReadOnlyAddressBook initialData;
         boolean dataCleaned = false; // Track if we cleaned any data
 
+        // ensure data directory exists
+        try {
+            Path dataDir = storage.getAddressBookFilePath().getParent();
+            if (dataDir != null && !java.nio.file.Files.exists(dataDir)) {
+                java.nio.file.Files.createDirectories(dataDir);
+                logger.info("Created data directory: " + dataDir);
+            }
+        } catch (IOException e) {
+            logger.warning("Failed to create data directory: " + StringUtil.getDetails(e));
+        }
+
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Creating a new data file " + storage.getAddressBookFilePath()
                         + " populated with a sample AddressBook.");
+
+                // ensure sample data gets saved to create the folder
+                try {
+                    ReadOnlyAddressBook sampleData = SampleDataUtil.getSampleAddressBook();
+                    storage.saveAddressBook(sampleData);
+                    logger.info("Sample data saved to create data file structure");
+                } catch (IOException e) {
+                    logger.warning("Failed to save sample data: " + StringUtil.getDetails(e));
+                }
             }
+
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
 
             // If we loaded data (not sample data), mark that cleaning occurred
@@ -197,6 +218,10 @@ public class MainApp extends Application {
         logger.info("============================ [ Stopping ElderRing ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
+
+            // also save current address book data to ensure folder creation
+            storage.saveAddressBook(model.getAddressBook());
+            logger.info("Data saved successfully on shutdown");
         } catch (IOException e) {
             logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
         }
