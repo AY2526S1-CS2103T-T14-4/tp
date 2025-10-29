@@ -75,40 +75,65 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         logger.info("Using data file : " + storage.getAddressBookFilePath());
 
+        // Ensure data directory exists first, before any read/write operations
+        ensureDataDirectoryExists(storage.getAddressBookFilePath());
+
         Optional<ReadOnlyAddressBook> addressBookOptional;
         ReadOnlyAddressBook initialData;
-        boolean dataCleaned = false; // Track if we cleaned any data
+        boolean shouldSaveData = false; // Track if we need to save data
 
         try {
             addressBookOptional = storage.readAddressBook();
+
             if (!addressBookOptional.isPresent()) {
+                // No existing file - use sample data and MUST save it
                 logger.info("Creating a new data file " + storage.getAddressBookFilePath()
                         + " populated with a sample AddressBook.");
-            }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
-
-            // If we loaded data (not sample data), mark that cleaning occurred
-            if (addressBookOptional.isPresent()) {
-                dataCleaned = true;
+                initialData = SampleDataUtil.getSampleAddressBook();
+                shouldSaveData = true; // MUST save to create the file
+            } else {
+                // File exists - use loaded data and save to clean duplicates/invalid entries
+                initialData = addressBookOptional.get();
+                shouldSaveData = true; // Save to clean any duplicates/invalid entries
             }
 
         } catch (DataLoadingException e) {
             logger.warning("Data file at " + storage.getAddressBookFilePath() + " could not be loaded."
                     + " Will be starting with an empty AddressBook.");
             initialData = new AddressBook();
+            shouldSaveData = true; // Save empty address book to create valid file
         }
 
-        // Save the cleaned data back immediately if duplicates/invalid entries were removed
-        if (dataCleaned) {
+        // Save the data immediately to ensure:
+        // 1. File and folder are created
+        // 2. Sample data is persisted
+        // 3. Duplicates/invalid entries are cleaned
+        if (shouldSaveData) {
             try {
                 storage.saveAddressBook(initialData);
-                logger.info("Cleaned data has been saved to file: " + storage.getAddressBookFilePath());
+                logger.info("Data has been saved to file: " + storage.getAddressBookFilePath());
             } catch (IOException e) {
-                logger.warning("Failed to save cleaned data to file: " + StringUtil.getDetails(e));
+                logger.warning("Failed to save data to file: " + StringUtil.getDetails(e));
             }
         }
 
         return new ModelManager(initialData, userPrefs);
+    }
+
+    /**
+     * Ensures the data directory exists. Creates it if necessary.
+     * This is critical for preventing file save failures.
+     */
+    private void ensureDataDirectoryExists(Path filePath) {
+        try {
+            Path dataDir = filePath.getParent();
+            if (dataDir != null && !java.nio.file.Files.exists(dataDir)) {
+                java.nio.file.Files.createDirectories(dataDir);
+                logger.info("Created data directory: " + dataDir);
+            }
+        } catch (IOException e) {
+            logger.warning("Failed to create data directory: " + StringUtil.getDetails(e));
+        }
     }
 
     private void initLogging(Config config) {
