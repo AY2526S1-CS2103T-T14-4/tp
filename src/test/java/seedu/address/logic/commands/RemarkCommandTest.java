@@ -37,9 +37,10 @@ public class RemarkCommandTest {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(firstPerson).withRemark(REMARK_STUB).build();
 
-        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON, new Remark(REMARK_STUB));
+        // pass the remark value and isAppend = false
+        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON, new Remark(REMARK_STUB),
+        /*isAppend=*/false);
 
-        // Use Messages.format() to match what the actual command produces
         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS,
                 Messages.format(editedPerson));
 
@@ -54,9 +55,9 @@ public class RemarkCommandTest {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(firstPerson).withRemark("").build();
 
-        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON, new Remark(""));
+        // use 3-arg constructor with isAppend = false
+        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON, new Remark(""), /*isAppend=*/false);
 
-        // Use Messages.format() to match what the actual command produces
         String expectedMessage = String.format(RemarkCommand.MESSAGE_DELETE_REMARK_SUCCESS,
                 Messages.format(editedPerson));
 
@@ -74,9 +75,9 @@ public class RemarkCommandTest {
         Person editedPerson = new PersonBuilder(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()))
                 .withRemark(REMARK_STUB).build();
 
-        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON, new Remark(REMARK_STUB));
+        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON, new Remark(REMARK_STUB),
+        /*isAppend=*/false);
 
-        // Use Messages.format() to match what the actual command produces
         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS,
                 Messages.format(editedPerson));
 
@@ -89,7 +90,9 @@ public class RemarkCommandTest {
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        RemarkCommand remarkCommand = new RemarkCommand(outOfBoundIndex, new Remark(VALID_REMARK_BOB));
+        // use 3-arg constructor; flag value doesn't matter for invalid index
+        RemarkCommand remarkCommand = new RemarkCommand(outOfBoundIndex, new Remark(VALID_REMARK_BOB),
+        /*isAppend=*/false);
 
         assertCommandFailure(remarkCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
@@ -101,19 +104,21 @@ public class RemarkCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
-        RemarkCommand remarkCommand = new RemarkCommand(outOfBoundIndex, new Remark(VALID_REMARK_BOB));
+        // use 3-arg constructor; flag value doesn't matter for invalid index
+        RemarkCommand remarkCommand = new RemarkCommand(outOfBoundIndex, new Remark(VALID_REMARK_BOB),
+        /*isAppend=*/false);
 
         assertCommandFailure(remarkCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        final RemarkCommand standardCommand = new RemarkCommand(INDEX_FIRST_PERSON,
-                new Remark(VALID_REMARK_AMY));
+        final RemarkCommand standardCommand =
+                new RemarkCommand(INDEX_FIRST_PERSON, new Remark(VALID_REMARK_AMY), false);
 
         // same values -> returns true
-        RemarkCommand commandWithSameValues = new RemarkCommand(INDEX_FIRST_PERSON,
-                new Remark(VALID_REMARK_AMY));
+        RemarkCommand commandWithSameValues =
+                new RemarkCommand(INDEX_FIRST_PERSON, new Remark(VALID_REMARK_AMY), false);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -126,11 +131,90 @@ public class RemarkCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new RemarkCommand(INDEX_SECOND_PERSON,
-                new Remark(VALID_REMARK_AMY))));
+        assertFalse(standardCommand.equals(
+                new RemarkCommand(INDEX_SECOND_PERSON, new Remark(VALID_REMARK_AMY), false)));
 
         // different remark -> returns false
         assertFalse(standardCommand.equals(new RemarkCommand(INDEX_FIRST_PERSON,
-                new Remark(VALID_REMARK_BOB))));
+                new Remark(VALID_REMARK_BOB), false)));
+
+        // different append flag -> returns false
+        assertFalse(standardCommand.equals(
+                new RemarkCommand(INDEX_FIRST_PERSON, new Remark(VALID_REMARK_AMY), true)));
+    }
+
+    @Test
+    public void execute_appendWhenExistingEmptySuccess() {
+        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        // Ensure existing remark is empty
+        Person personWithEmptyRemark = new PersonBuilder(firstPerson).withRemark("").build();
+        model.setPerson(firstPerson, personWithEmptyRemark);
+
+        RemarkCommand cmd = new RemarkCommand(INDEX_FIRST_PERSON, new Remark("alpha"), true);
+
+        Person expectedEdited = new PersonBuilder(personWithEmptyRemark).withRemark("alpha").build();
+        String expectedMessage = String.format(RemarkCommand.MESSAGE_APPEND_REMARK_SUCCESS,
+                Messages.format(expectedEdited));
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(personWithEmptyRemark, expectedEdited);
+
+        assertCommandSuccess(cmd, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_appendWhenExistingNonEmptyInsertSingleSpaceSuccess() {
+        Person first = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person withRemark = new PersonBuilder(first).withRemark("alpha").build();
+        model.setPerson(first, withRemark);
+
+        RemarkCommand cmd = new RemarkCommand(INDEX_FIRST_PERSON, new Remark("beta"), true);
+
+        Person expected = new PersonBuilder(withRemark).withRemark("alpha beta").build();
+        String expectedMessage = String.format(RemarkCommand.MESSAGE_APPEND_REMARK_SUCCESS,
+                Messages.format(expected));
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(withRemark, expected);
+
+        assertCommandSuccess(cmd, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_removeOnAlreadyEmptySuccessAndMessage() {
+        Person first = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person empty = new PersonBuilder(first).withRemark("").build();
+        model.setPerson(first, empty);
+
+        RemarkCommand cmd = new RemarkCommand(INDEX_FIRST_PERSON, new Remark(""), false);
+
+        // Deleting from empty still counts as remove
+        Person expected = empty; // stays empty
+        String expectedMessage = String.format(RemarkCommand.MESSAGE_DELETE_REMARK_SUCCESS,
+                Messages.format(expected));
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        // setPerson still called (no-op replacement) to keep behavior consistent
+        expectedModel.setPerson(empty, expected);
+
+        assertCommandSuccess(cmd, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_appendFilteredListSuccess() {
+        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        Person first = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person edited = new PersonBuilder(first).withRemark(first.getRemark().value.isEmpty()
+                ? "new" : (first.getRemark().value + " new")).build();
+
+        RemarkCommand cmd = new RemarkCommand(INDEX_FIRST_PERSON, new Remark("new"), true);
+
+        String expectedMessage = String.format(RemarkCommand.MESSAGE_APPEND_REMARK_SUCCESS,
+                Messages.format(edited));
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(model.getFilteredPersonList().get(0), edited);
+
+        assertCommandSuccess(cmd, model, expectedMessage, expectedModel);
     }
 }
