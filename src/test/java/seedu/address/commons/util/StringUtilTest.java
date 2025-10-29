@@ -2,6 +2,7 @@ package seedu.address.commons.util;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.util.StringUtil.containsPartialWordIgnoreCase;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.io.FileNotFoundException;
@@ -62,13 +63,13 @@ public class StringUtilTest {
     @Test
     public void containsWordIgnoreCase_emptyWord_throwsIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, "Word parameter cannot be empty", ()
-            -> StringUtil.containsWordIgnoreCase("typical sentence", "  "));
+                -> StringUtil.containsWordIgnoreCase("typical sentence", "  "));
     }
 
     @Test
     public void containsWordIgnoreCase_multipleWords_throwsIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, "Word parameter should be a single word", ()
-            -> StringUtil.containsWordIgnoreCase("typical sentence", "aaa BBB"));
+                -> StringUtil.containsWordIgnoreCase("typical sentence", "aaa BBB"));
     }
 
     @Test
@@ -132,7 +133,7 @@ public class StringUtilTest {
     @Test
     public void getDetails_exceptionGiven() {
         assertTrue(StringUtil.getDetails(new FileNotFoundException("file not found"))
-            .contains("java.io.FileNotFoundException: file not found"));
+                .contains("java.io.FileNotFoundException: file not found"));
     }
 
     @Test
@@ -140,4 +141,87 @@ public class StringUtilTest {
         assertThrows(NullPointerException.class, () -> StringUtil.getDetails(null));
     }
 
+
+    @Test
+    public void containsPartialWordIgnoreCase_nullSentence_throwsNullPointerException() {
+        try {
+            containsPartialWordIgnoreCase(null, "test");
+            assertFalse(true); // Should not reach here
+        } catch (NullPointerException e) {
+            // Expected behavior
+        }
+    }
+
+    @Test
+    public void containsPartialWordIgnoreCase_nullWord_throwsNullPointerException() {
+        try {
+            containsPartialWordIgnoreCase("test sentence", null);
+            assertFalse(true); // Should not reach here
+        } catch (NullPointerException e) {
+            // Expected behavior
+        }
+    }
+
+    @Test
+    public void containsPartialWordIgnoreCase_emptyWord_throwsIllegalArgumentException() {
+        try {
+            containsPartialWordIgnoreCase("test sentence", "");
+            assertFalse(true); // Should not reach here
+        } catch (IllegalArgumentException e) {
+            // Expected behavior
+        }
+    }
+
+    @Test
+    public void containsPartialWordIgnoreCase_blankWord_throwsIllegalArgumentException() {
+        try {
+            containsPartialWordIgnoreCase("test sentence", "   ");
+            assertFalse(true); // Should not reach here
+        } catch (IllegalArgumentException e) {
+            // Expected behavior
+        }
+    }
+
+    @Test
+    public void containsPartialWordIgnoreCase_partialMatchStart_returnsTrue() {
+        assertTrue(containsPartialWordIgnoreCase("candice randy", "can"));
+    }
+
+    @Test
+    public void containsPartialWordIgnoreCase_partialMatchMiddle_returnsTrue() {
+        assertTrue(containsPartialWordIgnoreCase("candice randy", "ndi"));
+    }
+
+    @Test
+    public void containsPartialWordIgnoreCase_partialMatchEnd_returnsTrue() {
+        assertTrue(containsPartialWordIgnoreCase("candice randy", "dy"));
+    }
+
+    @Test
+    public void containsPartialWordIgnoreCase_caseInsensitive_returnsTrue() {
+        assertTrue(containsPartialWordIgnoreCase("Candice Randy", "CAN"));
+        assertTrue(containsPartialWordIgnoreCase("CANDICE RANDY", "can"));
+        assertTrue(containsPartialWordIgnoreCase("candice randy", "CAN"));
+    }
+
+    @Test
+    public void containsPartialWordIgnoreCase_fullWordMatch_returnsTrue() {
+        assertTrue(containsPartialWordIgnoreCase("candice randy", "candice"));
+    }
+
+    @Test
+    public void containsPartialWordIgnoreCase_noMatch_returnsFalse() {
+        assertFalse(containsPartialWordIgnoreCase("candice randy", "xyz"));
+        assertFalse(containsPartialWordIgnoreCase("candice randy", "candy")); // "candy" not in "candice"
+    }
+
+    @Test
+    public void containsPartialWordIgnoreCase_multipleWords_returnsTrue() {
+        assertTrue(containsPartialWordIgnoreCase("candice randy rower", "row"));
+    }
+
+    @Test
+    public void containsPartialWordIgnoreCase_withWhitespace_ignoresWhitespace() {
+        assertTrue(containsPartialWordIgnoreCase("candice randy", "  can  "));
+    }
 }
