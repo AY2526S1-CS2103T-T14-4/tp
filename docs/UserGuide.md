@@ -383,7 +383,7 @@ Examples:
 
 Tags (or untags) the senior at the specified display `INDEX` OR the senior with a matching `NAME` and `PHONE_NUMBER`.
 
-<box type="info" seamless>
+<box type="tip" seamless>
 
 Tip: Tagging can be used as a categorisation feature in conjunction with the filter feature.
 
@@ -412,7 +412,7 @@ Examples:
 
 Only displays the entries with the input tag.
 
-<box type="info" seamless>
+<box type="tip" seamless>
 
 **Tip**: Filtering can be used as a more specific alternative to the list feature.
 
