@@ -1,3 +1,5 @@
 coverage:
   ignore:
     - "src/main/java/seedu/address/ui/**"
+    - "src/main/java/seedu/address/Main.java"
+    - "src/main/java/seedu/address/MainApp.java"
