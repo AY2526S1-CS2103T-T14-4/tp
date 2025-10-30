@@ -133,6 +133,15 @@ This section covers the list of commands and their usage. If you are experienced
 
   </box>
 
+* Parameters split by the `|` symbol are alternatives.
+
+  <box>
+
+  e.g., `remark i/INDEX [r/REMARK | ap/APPEND_TEXT | --remove]` can be used as `remark i/1 r/Patient is diabetic.` or
+  `remark i/1 ap/Prescribed diabetes medication.` or `remark i/1 --remove`
+
+  </box>
+
 * Parameters with `…`​ after them can be used multiple times (including zero times).<br>
 
   <box>
@@ -392,6 +401,7 @@ Examples:
 * `tag i/1 t/hard-of-hearing`
 * `tag n/John Doe p/91234567 t/hard-of-hearing`
 * `tag i/1 t/hard-of-hearing --remove`
+
 <br>
 
 ### Filtering entries : `filter`
