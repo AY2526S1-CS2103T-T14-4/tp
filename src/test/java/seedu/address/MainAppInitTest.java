@@ -27,12 +27,10 @@ public class MainAppInitTest {
 
         // Test that init doesn't throw exceptions when called with minimal setup
         assertDoesNotThrow(() -> {
-            // We need to set some basic parameters to avoid NPE
             try {
                 mainApp.init();
             } catch (Exception e) {
                 // Some exceptions are expected due to JavaFX not being initialized
-                // But we want to ensure no catastrophic failures
                 if (!isExpectedInitException(e)) {
                     throw e;
                 }
@@ -44,7 +42,7 @@ public class MainAppInitTest {
     public void init_individualComponentsCanBeInitialized() {
         MainApp mainApp = new MainApp();
 
-        // Test that we can call the individual initialization methods
+        // Test to call the individual initialization methods
         assertDoesNotThrow(() -> {
             Config config = mainApp.initConfig(null);
             assertNotNull(config);
