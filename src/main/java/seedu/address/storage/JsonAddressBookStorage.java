@@ -20,6 +20,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 public class JsonAddressBookStorage implements AddressBookStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
+    private static final int MAX_PERSONS_LIMIT = 250;
 
     private Path filePath;
 
@@ -58,6 +59,15 @@ public class JsonAddressBookStorage implements AddressBookStorage {
             // Log success message with cleanup info
             logger.info("[+] Data loaded! Duplicate entries were automatically removed.");
 
+            // Check if original data exceeded limit and add warning
+            JsonSerializableAddressBook jsonBook = jsonAddressBook.get();
+
+            // Log if limit was checked during load
+            if (jsonBook.getOriginalPersonCount() > MAX_PERSONS_LIMIT) {
+                logger.warning("Original JSON file contained " + jsonBook.getOriginalPersonCount()
+                        + " entries. Only first " + MAX_PERSONS_LIMIT + " were loaded.");
+            }
+
             return Optional.of(addressBook);
 
         } catch (IllegalValueException ive) {
@@ -80,8 +90,31 @@ public class JsonAddressBookStorage implements AddressBookStorage {
         requireNonNull(addressBook);
         requireNonNull(filePath);
 
-        FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
+        // Check and truncate accordingly
+        int personCount = addressBook.getPersonList().size();
+
+        if (personCount > MAX_PERSONS_LIMIT) {
+            // Log warning about truncation
+            int excessCount = personCount - MAX_PERSONS_LIMIT;
+            logger.warning("Address book contains " + personCount + " entries, which exceeds the limit of "
+                    + MAX_PERSONS_LIMIT + ". The last " + excessCount + " entries will be removed.");
+
+            // Create a new AddressBook with only the first MAX_PERSONS_LIMIT entries
+            seedu.address.model.AddressBook truncatedBook = new seedu.address.model.AddressBook();
+            addressBook.getPersonList().stream()
+                    .limit(MAX_PERSONS_LIMIT)
+                    .forEach(truncatedBook::addPerson);
+
+            FileUtil.createIfMissing(filePath);
+            JsonUtil.saveJsonFile(new JsonSerializableAddressBook(truncatedBook), filePath);
+
+            logger.info("Successfully saved " + MAX_PERSONS_LIMIT + " entries. "
+                    + excessCount + " excess entries were deleted.");
+        } else {
+            // Normal save
+            FileUtil.createIfMissing(filePath);
+            JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
+        }
     }
 
 }
