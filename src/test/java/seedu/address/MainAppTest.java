@@ -73,7 +73,7 @@ public class MainAppTest {
 
     @Test
     public void mainApp_canBeInstantiated() {
-        // Test that we can create an instance of MainApp
+        // test to create an instance of MainApp
         MainApp mainApp = new MainApp();
         assertEquals(MainApp.class, mainApp.getClass());
     }
@@ -84,7 +84,6 @@ public class MainAppTest {
         MainApp mainApp = new MainApp();
 
         // These fields should exist (they may be null until initialized)
-        // We're just testing that the class structure is correct
         assertNotNull(MainApp.VERSION);
         assertEquals("seedu.address.MainApp", MainApp.class.getName());
     }

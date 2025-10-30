@@ -188,7 +188,7 @@ public class JsonUserPrefsStorageTest {
         try {
             // Enable assertions for this test if needed
             storage.readUserPrefs((Path) null);
-            // If we reach here, assertions might be disabled
+            // If code reaches here, assertions might be disabled
             System.out.println("Note: Assertions might be disabled - assertion test skipped");
         } catch (AssertionError e) {
             // Expected behavior when assertions are enabled

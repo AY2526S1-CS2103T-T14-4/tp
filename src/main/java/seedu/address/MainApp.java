@@ -80,7 +80,7 @@ public class MainApp extends Application {
 
         Optional<ReadOnlyAddressBook> addressBookOptional;
         ReadOnlyAddressBook initialData;
-        boolean shouldSaveData = false; // Track if we need to save data
+        boolean shouldSaveData = false; // Track if data needs to be saved
 
         try {
             addressBookOptional = storage.readAddressBook();
@@ -112,6 +112,10 @@ public class MainApp extends Application {
             try {
                 storage.saveAddressBook(initialData);
                 logger.info("Data has been saved to file: " + storage.getAddressBookFilePath());
+                int personCount = initialData.getPersonList().size();
+                if (personCount >= 250) {
+                    logger.info("Address book is at or near capacity (" + personCount + "/250 entries)");
+                }
             } catch (IOException e) {
                 logger.warning("Failed to save data to file: " + StringUtil.getDetails(e));
             }
