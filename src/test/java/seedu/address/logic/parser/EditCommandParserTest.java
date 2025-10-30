@@ -246,4 +246,12 @@ public class EditCommandParserTest {
         String userInput = " i/" + targetIndex.getOneBased() + " " + "n/" + longName;
         assertParseFailure(parser, userInput, Name.MESSAGE_CONSTRAINTS);
     }
+
+    @Test
+    public void parse_addressTooLong_failure() {
+        Index targetIndex = INDEX_FIRST_PERSON;
+        String longAddress = "B".repeat(101);
+        String userInput = " i/" + targetIndex.getOneBased() + " " + PREFIX_ADDRESS + longAddress;
+        assertParseFailure(parser, userInput, Address.MESSAGE_CONSTRAINTS);
+    }
 }

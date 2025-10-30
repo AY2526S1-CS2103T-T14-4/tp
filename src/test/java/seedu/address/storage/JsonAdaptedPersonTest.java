@@ -219,4 +219,13 @@ public class JsonAdaptedPersonTest {
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
+
+    @Test
+    public void toModelType_overlongAddress_throwsIllegalValueException() {
+        String tooLong = "X".repeat(Address.MAX_LENGTH + 1);
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, tooLong, VALID_REMARK, VALID_TAGS);
+        String expectedMessage = Address.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
 }

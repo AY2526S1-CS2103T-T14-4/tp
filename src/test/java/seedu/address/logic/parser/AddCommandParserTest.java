@@ -209,4 +209,12 @@ public class AddCommandParserTest {
                 " n/" + longName + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
                 Name.MESSAGE_CONSTRAINTS);
     }
+
+    @Test
+    public void parse_addressTooLong_failure() {
+        String longAddress = "A".repeat(101);
+        assertParseFailure(parser,
+                NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + " " + PREFIX_ADDRESS + longAddress,
+                Address.MESSAGE_CONSTRAINTS);
+    }
 }
