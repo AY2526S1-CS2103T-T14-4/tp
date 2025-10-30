@@ -17,7 +17,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](https://github.com/swei99)]
 
-* Role: Project Supervisor
+* Role: Developer
+* Responsibilities: Add, Remark
 
 ### Lim Jun Sheng, Wallace
 
@@ -44,7 +45,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/OKaiXiang)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Data
 
 ### Harnoor Virdi
 
