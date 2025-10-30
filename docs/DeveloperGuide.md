@@ -280,7 +280,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
-*
 
 **Value proposition**: manage contacts faster than a typical mouse/GUI driven app
 * maintain a record of senior profile
