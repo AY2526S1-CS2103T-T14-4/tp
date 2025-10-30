@@ -217,4 +217,52 @@ public class RemarkCommandTest {
 
         assertCommandSuccess(cmd, model, expectedMessage, expectedModel);
     }
+
+    @Test
+    public void execute_appendBoundary_success() {
+        Person first = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        String appendText = "ab";
+        // existing length + 1 (space) + append length == MAX_LENGTH
+        String existing = "x".repeat(Remark.MAX_LENGTH - appendText.length() - 1);
+        Person withRemark = new PersonBuilder(first).withRemark(existing).build();
+        model.setPerson(first, withRemark);
+
+        RemarkCommand cmd = new RemarkCommand(INDEX_FIRST_PERSON, new Remark(appendText), true);
+
+        Person expected = new PersonBuilder(withRemark).withRemark(existing + " " + appendText).build();
+        String expectedMessage = String.format(RemarkCommand.MESSAGE_APPEND_REMARK_SUCCESS, Messages.format(expected));
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(withRemark, expected);
+
+        assertCommandSuccess(cmd, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_appendExceedsLimit_failure() {
+        Person first = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        // existing length 2499, append 2 -> 2501 FAIL
+        String existing = "x".repeat(Remark.MAX_LENGTH - 1);
+        Person withRemark = new PersonBuilder(first).withRemark(existing).build();
+        model.setPerson(first, withRemark);
+
+        RemarkCommand cmd = new RemarkCommand(INDEX_FIRST_PERSON, new Remark("ab"), true);
+        assertCommandFailure(cmd, model, Remark.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void execute_replaceMaxLength_success() {
+        Person first = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        String max = "a".repeat(Remark.MAX_LENGTH);
+
+        Person edited = new PersonBuilder(first).withRemark(max).build();
+        RemarkCommand cmd = new RemarkCommand(INDEX_FIRST_PERSON, new Remark(max), false);
+
+        String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, Messages.format(edited));
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(first, edited);
+
+        assertCommandSuccess(cmd, model, expectedMessage, expectedModel);
+    }
 }

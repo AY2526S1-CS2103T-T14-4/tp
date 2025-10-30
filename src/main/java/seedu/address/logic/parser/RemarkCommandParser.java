@@ -10,7 +10,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE;
 import java.util.Optional;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Remark;
@@ -41,8 +40,8 @@ public class RemarkCommandParser implements Parser<RemarkCommand> {
                     .orElseThrow(() -> new ParseException(
                             String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemarkCommand.MESSAGE_USAGE)));
             index = ParserUtil.parseIndex(indexRaw);
-        } catch (IllegalValueException ive) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemarkCommand.MESSAGE_USAGE), ive);
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemarkCommand.MESSAGE_USAGE), pe);
         }
 
         boolean hasRemove = argMultimap.getValue(PREFIX_REMOVE).isPresent();
@@ -63,7 +62,11 @@ public class RemarkCommandParser implements Parser<RemarkCommand> {
             if (remark.isEmpty()) {
                 throw new ParseException("Remark cannot be empty. To remove a remark, use '--remove'.");
             }
-            return new RemarkCommand(index, new Remark(remark), false);
+            try {
+                return new RemarkCommand(index, new Remark(remark), false);
+            } catch (IllegalArgumentException ex) {
+                throw new ParseException(Remark.MESSAGE_CONSTRAINTS, ex);
+            }
         }
 
         // Handle append
@@ -71,6 +74,12 @@ public class RemarkCommandParser implements Parser<RemarkCommand> {
         if (appendText.isEmpty()) {
             throw new ParseException("Appended text cannot be empty.");
         }
-        return new RemarkCommand(index, new Remark(appendText), true);
+        try {
+            // Note: this validates the append segment length (<= 2500). The final combined
+            // length is validated in RemarkCommand#execute.
+            return new RemarkCommand(index, new Remark(appendText), true);
+        } catch (IllegalArgumentException ex) {
+            throw new ParseException(Remark.MESSAGE_CONSTRAINTS, ex);
+        }
     }
 }

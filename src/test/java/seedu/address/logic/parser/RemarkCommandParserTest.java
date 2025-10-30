@@ -165,4 +165,26 @@ public class RemarkCommandParserTest {
         assertParseSuccess(parser, userInput, expected);
     }
 
+    @Test
+    public void parse_addRemarkMaxLength_success() {
+        String max = "a".repeat(Remark.MAX_LENGTH);
+        String userInput = " i/1 r/" + max;
+        RemarkCommand expected = new RemarkCommand(Index.fromOneBased(1), new Remark(max), false);
+        assertParseSuccess(parser, userInput, expected);
+    }
+
+    @Test
+    public void parse_addRemarkOverLimit_failure() {
+        String over = "a".repeat(Remark.MAX_LENGTH + 1);
+        String userInput = " i/1 r/" + over;
+        assertParseFailure(parser, userInput, Remark.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_appendSegmentOverLimit_failure() {
+        String over = "a".repeat(Remark.MAX_LENGTH + 1);
+        String userInput = " i/1 ap/" + over;
+        assertParseFailure(parser, userInput, Remark.MESSAGE_CONSTRAINTS);
+    }
+
 }

@@ -77,9 +77,18 @@ public class RemarkCommand extends Command {
             String currentRemark = personToEdit.getRemark().value;
             String appendedRemark = currentRemark.isEmpty() ? remark.value
                 : currentRemark + " " + remark.value;
-            newRemark = new Remark(appendedRemark);
+            try {
+                newRemark = new Remark(appendedRemark);
+            } catch (IllegalArgumentException ex) {
+                throw new CommandException(Remark.MESSAGE_CONSTRAINTS, ex);
+            }
         } else {
-            newRemark = remark;
+            // Replacement/remove path already validated at parse time, but be defensive
+            try {
+                newRemark = new Remark(remark.value);
+            } catch (IllegalArgumentException ex) {
+                throw new CommandException(Remark.MESSAGE_CONSTRAINTS, ex);
+            }
         }
 
         Person editedPerson = new Person(
