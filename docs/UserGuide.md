@@ -155,6 +155,15 @@ This section covers the list of commands and their usage. If you are experienced
 
   </box>
 
+* Parameters split by the `|` symbol are alternatives.
+
+  <box>
+
+  e.g., `remark i/INDEX [r/REMARK | ap/APPEND_TEXT | --remove]` can be used as `remark i/1 r/Patient is diabetic.` or
+  `remark i/1 ap/Prescribed diabetes medication.` or `remark i/1 --remove`
+
+  </box>
+
 * Parameters with `…`​ after them can be used multiple times (including zero times).<br>
 
   <box>
@@ -237,7 +246,7 @@ Edits an existing senior in the address book, only replacing the fields with new
 
 <box type="info" seamless>
 
-Remarks cannot be edited using this feature.
+This feature cannot edit remarks.
 
 </box>
 
@@ -254,11 +263,12 @@ Format: `edit i/INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]`
 
 <box type="info" seamless>
 
-* Edits the senior at the specified `INDEX`. The index refers to the index number shown in the displayed senior list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the senior at the specified `INDEX`. The index refers to the index number shown in the displayed senior list. 
+The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the senior will be removed (adding of tags is not cumulative).
-* You can remove all the senior’s tags by typing `t/` without specifying any tags after it.
+* This feature updates existing values to the input values.
+* Editing tags will remove the existing tags (adding of tags is not cumulative).
+* An input of `t/` without any tags following it will remove all the senior's tags.
 
 </box>
 
@@ -270,7 +280,7 @@ Examples:
 
 ### Deleting a senior : `delete`
 
-Deletes the senior at the specified display `INDEX` OR the senior with a matching `NAME` and `PHONE_NUMBER`.
+Deletes the senior at the specified display `INDEX` OR the senior with the matching `NAME` and `PHONE_NUMBER`.
 
 Format: `delete i/INDEX` or `delete n/NAME p/PHONE_NUMBER`
 
@@ -293,7 +303,7 @@ Or:
 </box>
 
 Examples:
-* `list` followed by `delete i/2` deletes the 2nd senior in the address book.
+* `list` followed by `delete i/2` deletes the second senior displayed in the address book.
 * `delete n/Amy Tan p/61234567`.
 
 <br>
@@ -306,7 +316,8 @@ Format: `list`
 
 <box type="tip" seamless>
 
-If texts end with `...`, there are more information hidden. Click on the `...` to expand and view the full information (not applicable to long tags). You can also click it to hide it again.
+If texts end with `...`, there is more information hidden. Click on the `...` to expand and view the full information 
+(not applicable to long tags). You can also click on the `...` to hide it again.
 ![expand](images/expandUi.png)
 
 </box>
@@ -315,7 +326,7 @@ If texts end with `...`, there are more information hidden. Click on the `...` t
 
 ### Sorting entries : `sort`
 
-Sorts seniors by NAME or ADDRESS in ascending or descending order.
+Sorts seniors by `NAME` or `ADDRESS` in ascending or descending order.
 
 Format: `sort (ASC or DSC)/(NAME or ADDRESS)`
 
@@ -328,8 +339,8 @@ Format: `sort (ASC or DSC)/(NAME or ADDRESS)`
 
 * `asc` sorts in ascending order
 * `dsc` sorts in descending order
-* `name` sorts by name
-* `address` sorts by address
+* `name` sorts by NAME
+* `address` sorts by ADDRESS
 
 </box>
 
@@ -345,15 +356,15 @@ Examples:
 
 ![find command](images/findCommand.png)
 
-Finds seniors whose names contain any of the given keywords.
+Finds seniors whose names contain any of the input keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive (e.g., `hans` will match `Hans`).
 * The order of the keywords does not matter (e.g., `Hans Bo` will match `Bo Hans`).
-* Only the name is searched.
-* Partial words within the name can be matched (e.g., `Han` will match `Hans`).
-* Seniors matching at least one keyword will be returned
+* This feature only searches names.
+* This feature matches partial words within the name (e.g., `Han` will match `Hans`).
+* This feature will return seniors matching at least one keyword
   (e.g., `Hans Bo` will return `Hans Gruber`, `Boyo Yang`).
 
 Examples:
@@ -367,7 +378,7 @@ Examples:
 
 ![remark command](images/remarkCommand.png)
 
-Adds relevant miscellaneous information to an existing senior. You can replace the remark, append to the existing remark, or remove it.
+Adds relevant miscellaneous information to an existing senior. This feature can replace the remark, append to the existing remark, or remove it.
 
 Format: `remark i/INDEX r/REMARK` or `remark i/INDEX ap/APPEND_TEXT` or `remark i/INDEX --remove`
 
@@ -394,9 +405,9 @@ Examples:
 
 Tags (or untags) the senior at the specified display `INDEX` OR the senior with a matching `NAME` and `PHONE_NUMBER`.
 
-<box type="info" seamless>
+<box type="tip" seamless>
 
-Tagging can be used as a categorisation feature in conjunction with the filter feature.
+Tip: Tagging can be used as a categorisation feature in conjunction with the filter feature.
 
 </box>
 
@@ -414,17 +425,18 @@ Examples:
 * `tag i/1 t/hard-of-hearing`
 * `tag n/John Doe p/91234567 t/hard-of-hearing`
 * `tag i/1 t/hard-of-hearing --remove`
+
 <br>
 
 ### Filtering entries : `filter`
 
 ![filter command](images/filterCommand.png)
 
-Only displays the entries with the specified tag.
+Only displays the entries with the input tag.
 
-<box type="info" seamless>
+<box type="tip" seamless>
 
-Filtering can be used as a more specific alternative to the list feature.
+**Tip**: Filtering can be used as a more specific alternative to the list feature.
 
 </box>
 
@@ -439,8 +451,8 @@ Examples:
 
 <box type="warning">
 
-If the tag specified does not exist, there will be no entries displayed.
-To display the original list of seniors, make use of the [list](#listing-all-seniors-list) command.
+**Warning**: If the tag specified does not exist, this feature will not display any entries.
+To display the original list of seniors, use the [list](#listing-all-seniors-list) command.
 
 </box>
 
@@ -454,7 +466,7 @@ Format: `clear`
 
 <box type="warning">
 
-Be careful! This command irreversibly deletes ALL entries (This operation cannot be undone).
+**Warning**: Be careful! This command irreversibly deletes ALL entries (this operation cannot be undone).
 
 </box>
 
@@ -470,26 +482,26 @@ Format: `exit`
 
 ### Saving the data
 
-ElderRing data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+ElderRing data is automatically saved in the hard disk after any command that modifies the data. There is no need for manual saving.
 
 <br>
 
 ### Editing the data file
 
-ElderRing data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+ElderRing data are automatically saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update the data by directly editing that file.
 
 <box type="warning">
 
-**Caution:**
+**Warning:**
 * If the data file contains invalid formatting (broken JSON, parsing errors, file permission issues, etc.), ElderRing will discard all data and start with an empty data file.
 * Certain edits may cause unexpected behavior. Edit the data file only if you are confident in maintaining the correct format.
 
 **Data validation during loading**
-* **Invalid entries**: Entries missing required fields (name, phone, or address) are skipped
-* **Duplicate entries**: Contacts with identical name and phone numbers are automatically removed
-* **Optional fields**: Missing optional fields are auto-filled with default values
+* **Invalid entries**: ElderRing will skip entries missing required fields (name, phone, or address).
+* **Duplicate entries**: Contacts with identical names and phone numbers are automatically removed.
+* **Optional fields**: Missing optional fields are auto-filled with default values.
 
-**Recommendation:** Always back up the file before editing.
+**Tip:** Always back up the file before editing.
 
 </box>
 
@@ -505,9 +517,10 @@ ElderRing data are saved automatically as a JSON file `[JAR file location]/data/
 ## Known issues
 
 1. **When using multiple screens**, the GUI will open off-screen if you move the application to a secondary screen, and later switch to using only the primary screen. <br><br>
-The remedy is to delete the `preferences.json` file created by the application before running the application again.
+The remedy is to delete the `preferences.json` file created by the application (in the same folder as the JAR file) before running the application again. 
+<br><br>
 
-2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. <br><br>
+2. **If you minimize the Help Window** and then run the `help` command again (or use the `Help` menu or the keyboard shortcut `F1`), the original Help Window will remain minimized and no new Help Window will appear. <br><br>
 The remedy is to manually restore the minimized Help Window.
 
 --------------------------------------------------------------------------------------------------------------------
