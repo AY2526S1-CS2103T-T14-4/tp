@@ -370,7 +370,7 @@ Examples:
 
 ![tag command](images/tagCommand.png)
 
-Tags (or untags) the senior at the specified display `INDEX` OR the senior with a matching `NAME` and `PHONE_NUMBER` OR the senior with a matching `NAME`, `PHONE_NUMBER` and `ADDRESS`.
+Tags (or untags) the senior at the specified display `INDEX` OR the senior with a matching `NAME` and `PHONE_NUMBER`.
 
 <box type="info" seamless>
 
@@ -378,17 +378,20 @@ Tagging can be used as a categorisation feature in conjunction with the filter f
 
 </box>
 
-Format: `tag i/INDEX t/TAG [ --remove]` or `tag n/NAME p/PHONE_NUMBER t/TAG [ --remove]` or `tag n/NAME p/PHONE_NUMBER a/ADDRESS t/TAG [ --remove]`
+Format: `tag i/INDEX t/TAG [ --remove]` or `tag n/NAME p/PHONE_NUMBER t/TAG [ --remove]` 
+or `tag i/INDEX t/TAG --remove` or `tag n/NAME p/PHONE_NUMBER t/TAG --remove`
 
 #### Parameters:
 
 1. `TAG`: Mandatory.
+2. `INDEX`: Optional.
+3. `NAME`: Optional.
+4. `PHONE`: Optional.
 
 Examples:
 * `tag i/1 t/hard-of-hearing`
 * `tag n/John Doe p/91234567 t/hard-of-hearing`
-* `tag n/John Doe p/91234567 a/Blk 41 Telok Blangah Way #07-436 t/hard-of-hearing`
-
+* `tag i/1 t/hard-of-hearing --remove`
 <br>
 
 ### Filtering entries : `filter`

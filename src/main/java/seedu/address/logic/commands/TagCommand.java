@@ -26,10 +26,11 @@ public class TagCommand extends Command {
             + "Parameters: "
             + "i/INDEX (must be a positive integer) "
             + "or n/NAME p/PHONE "
-            + "and t/TAGNAME \n"
+            + "and t/TAGNAME [ --remove ] \n"
             + "Examples:\n\t"
             + COMMAND_WORD + " i/1 t/friends\n\t"
-            + COMMAND_WORD + " n/Alice p/12345678 t/vip\n\t";
+            + COMMAND_WORD + " n/Alice p/12345678 t/vip\n\t"
+            + COMMAND_WORD + "i/1 t/friends --remove\n\t";
 
     public static final String MESSAGE_TAG_PERSON_SUCCESS = "Tagged Senior: %1$s with %2$s";
     public static final String MESSAGE_UNTAG_PERSON_SUCCESS = "Removed tag %2$s from Senior: %1$s";
