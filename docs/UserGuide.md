@@ -12,6 +12,28 @@
 <!-- * Table of Contents -->
 <page-nav-print />
 
+## Table of Contents
+* [How to Read This Guide](#how-to-read-this-guide)
+* [Quick Start](#quick-start)
+* [Features](#features)
+    * [Parameters](#parameters)
+    * [Viewing help: `help`](#viewing-help-help)
+    * [Adding a senior: `add`](#adding-a-senior-add)
+    * [Editing a senior: `edit`](#editing-a-senior-edit)
+    * [Deleting a senior: `delete`](#deleting-a-senior-delete)
+    * [Listing all seniors: `list`](#listing-all-seniors-list)
+    * [Sorting entries: `sort`](#sorting-entries-sort)
+    * [Locating seniors by name: `find`](#locating-seniors-by-name-find)
+    * [Adding notes to a senior: `remark`](#adding-notes-to-a-senior-remark)
+    * [Tagging a senior: `tag`](#tagging-a-senior-tag)
+    * [Filtering entries: `filter`](#filtering-entries-filter)
+    * [Clearing all entries: `clear`](#clearing-all-entries-clear)
+    * [Exiting the program: `exit`](#exiting-the-program-exit)
+    * [Saving the data](#saving-the-data)
+    * [Editing the data file](#editing-the-data-file)
+* [FAQ](#faq)
+* [Known issues](#known-issues)
+* [Command summary](#command-summary)
 --------------------------------------------------------------------------------------------------------------------
 ## How to Read This Guide
 
@@ -165,15 +187,15 @@ This section covers the list of commands and their usage. If you are experienced
 
 This section covers the different parameters in ElderRing and their respective constraints.
 
-| Parameter      | Description                                   | Constraints                                                                                                                                                                                    | Example                                                                                                      |
-|----------------|-----------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
-| `NAME`         | Senior’s name                                | <ul><li>Only letters and spaces are permitted.</li><li>This parameter cannot be left blank.</li></ul>                                                                                          | :fa-solid-check: <br>`John Doe`<br>                                                                          |
-| `PHONE_NUMBER` | Senior’s phone number                        | <ul><li>Only numbers are allowed.</li><li>This parameter cannot be left blank.</li><li>Only accepts numbers that are 8-digits.</li><li>Only accepts numbers that start with 6, 8, 9.</li></ul> | :fa-solid-check: <br>`91234567`<br>                                                                          |
-| `ADDRESS`      | Senior’s residential address                 | <ul>No constraints </ul>                                                                                                                                                                       | :fa-solid-check: <br>`Blk 41 Telok Blangah Way #07-436`<br>                                                  |
-| `EMAIL`        | Senior’s email address                       | <ul><li>Emails should be in the format `local-part@domain`.</li><li>`local-part` must only contain letters and digits</li><li>`domain` must end in `.com`</li></ul>                           | :fa-solid-check: <br>`johndoe123@gmail.com`<br>                                                              |
-| `TAG`          | Category/label applicable to seniors         | <ul>No constraints </ul>                                                                                                                                                                       | :fa-solid-check: <br>`hard-of-hearing` <br>                                                                  |
-| `REMARK`       | Additional notes applicable to seniors       | <ul>No constraints </ul>                                                                                                                                                                       | :fa-solid-check: <br>`List of senior’s medications: Alprax (daily), Alprazolam (once every 3 days), ...`<br> |
-| `INDEX`        | The index shown in the displayed seniors list | <ul><li>Only whole numbers are allowed.</li><li>Number must be a positive number.</li><li>Number must be smaller than the total number of entries.</li></ul>                                    | :fa-solid-check: <br>`1`<br>                                                                                 |
+| Parameter      | Description                                   | Constraints                                                                                                                                                                                                  | Example                                                                                                      |
+|----------------|-----------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
+| `NAME`         | Senior’s name                                 | <ul><li>Only letters and spaces are permitted.</li><li>This parameter cannot be left blank.</li><li>Maximum length of 66 characters.</li></ul>                                                               | :fa-solid-check: <br>`John Doe`<br>                                                                          |
+| `PHONE_NUMBER` | Senior’s phone number                         | <ul><li>Only numbers are allowed.</li><li>This parameter cannot be left blank.</li><li>Only accepts numbers that are 8-digits.</li><li>Only accepts numbers that start with 6, 8, 9.</li></ul>               | :fa-solid-check: <br>`91234567`<br>                                                                          |
+| `ADDRESS`      | Senior’s residential address                  | <ul><li>Maximum length of 100 characters excluding spaces.</li> </ul>                                                                                                                                        | :fa-solid-check: <br>`Blk 41 Telok Blangah Way #07-436`<br>                                                  |
+| `EMAIL`        | Senior’s email address                        | <ul><li>Emails should be in the format `local-part@domain`.</li><li>`local-part` must only contain letters and digits</li><li>`domain` must end in `.com`</li><li>Maximum length of 50 characters.</li></ul> | :fa-solid-check: <br>`johndoe123@gmail.com`<br>                                                              |
+| `TAG`          | Category/label applicable to seniors          | <ul>No constraints </ul>                                                                                                                                                                                     | :fa-solid-check: <br>`hard-of-hearing` <br>                                                                  |
+| `REMARK`       | Additional notes applicable to seniors        | <ul><li>Maximum length of 2500 characters.</li> </ul>                                                                                                                                                        | :fa-solid-check: <br>`List of senior’s medications: Alprax (daily), Alprazolam (once every 3 days), ...`<br> |
+| `INDEX`        | The index shown in the displayed seniors list | <ul><li>Only whole numbers are allowed.</li><li>Number must be a positive number.</li><li>Number must be smaller than the total number of entries.</li></ul>                                                 | :fa-solid-check: <br>`1`<br>                                                                                 |
 
 <br>
 
