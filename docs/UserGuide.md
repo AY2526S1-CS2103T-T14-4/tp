@@ -495,10 +495,10 @@ ElderRing data are automatically saved as a JSON file `[JAR file location]/data/
 ## Known issues
 
 1. **When using multiple screens**, the GUI will open off-screen if you move the application to a secondary screen, and later switch to using only the primary screen. <br><br>
-The remedy is to delete the `preferences.json` file created by the application before running the application again. 
+The remedy is to delete the `preferences.json` file created by the application (in the same folder as the JAR file) before running the application again. 
 <br><br>
 
-2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. <br><br>
+2. **If you minimize the Help Window** and then run the `help` command again (or use the `Help` menu or the keyboard shortcut `F1`), the original Help Window will remain minimized and no new Help Window will appear. <br><br>
 The remedy is to manually restore the minimized Help Window.
 
 --------------------------------------------------------------------------------------------------------------------
