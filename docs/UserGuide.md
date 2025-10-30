@@ -118,25 +118,45 @@ This section covers the list of commands and their usage. If you are experienced
 **Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  ```
+
+  <box>
+
   e.g., in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-  ```
+
+  </box>
+
 * Parameters in `[ square brackets ]` are optional.<br>
-  ```
+
+  <box>
+
   e.g., `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-  ```
+
+  </box>
+
 * Parameters with `…`​ after them can be used multiple times (including zero times).<br>
-  ```
+
+  <box>
+
   e.g., `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-  ```
+
+  </box>
+
 * Parameters can be in any order.<br>
-  ```
+  
+  <box>
+
   e.g., if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-  ```
+
+  </box>
+
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  ```
+
+  <box>
+
   e.g., if the command specifies `help 123`, it will be interpreted as `help`.
-  ```
+
+  </box>
+
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 
 </box>
