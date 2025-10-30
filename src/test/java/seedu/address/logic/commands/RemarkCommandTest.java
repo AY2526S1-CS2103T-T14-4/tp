@@ -265,4 +265,24 @@ public class RemarkCommandTest {
 
         assertCommandSuccess(cmd, model, expectedMessage, expectedModel);
     }
+
+    @Test
+    public void execute_replaceOverLimitViaReflection_failure() throws Exception {
+        // Build a command with a safe remark first (so constructor doesn't throw)
+        RemarkCommand cmd = new RemarkCommand(INDEX_FIRST_PERSON, new Remark("x"), /*isAppend=*/false);
+
+        // Reflectively grab the internal Remark instance from the command
+        java.lang.reflect.Field remarkField = RemarkCommand.class.getDeclaredField("remark");
+        remarkField.setAccessible(true);
+        Remark internalRemark = (Remark) remarkField.get(cmd);
+
+        // Overwrite its public final 'value' with an overlong string to exceed 2500
+        String tooLong = "a".repeat(Remark.MAX_LENGTH + 1);
+        java.lang.reflect.Field valueField = Remark.class.getDeclaredField("value");
+        valueField.setAccessible(true);
+        valueField.set(internalRemark, tooLong);
+
+        // Now the replace path (isAppend = false) will try new Remark(remark.value) and hit the catch
+        assertCommandFailure(cmd, model, Remark.MESSAGE_CONSTRAINTS);
+    }
 }
