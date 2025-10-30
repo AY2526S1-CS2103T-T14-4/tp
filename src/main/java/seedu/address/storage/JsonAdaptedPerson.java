@@ -115,7 +115,11 @@ class JsonAdaptedPerson {
         if (remark == null || remark.trim().isEmpty()) {
             modelRemark = new Remark("");
         } else {
-            modelRemark = new Remark(remark);
+            try {
+                modelRemark = new Remark(remark);
+            } catch (IllegalArgumentException ex) {
+                throw new seedu.address.commons.exceptions.IllegalValueException(Remark.MESSAGE_CONSTRAINTS, ex);
+            }
         }
 
         final Set<Tag> modelTags = new HashSet<>(personTags);

@@ -20,6 +20,18 @@ public class NameTest {
     }
 
     @Test
+    public void constructor_overLimit_throwsIllegalArgumentException() {
+        String over = "X".repeat(Name.MAX_LENGTH + 1);
+        assertThrows(IllegalArgumentException.class, () -> new Name(over));
+    }
+
+    @Test
+    public void constructor_exactLimit_success() {
+        String exact = "Y".repeat(Name.MAX_LENGTH);
+        new Name(exact); // no exception
+    }
+
+    @Test
     public void isValidName() {
         // null name
         assertThrows(NullPointerException.class, () -> Name.isValidName(null));
@@ -36,6 +48,15 @@ public class NameTest {
         //assertTrue(Name.isValidName("peter the 2nd")); // alphanumeric characters
         assertTrue(Name.isValidName("Capital Tan")); // with capital letters
         //assertTrue(Name.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
+    }
+
+    @Test
+    public void isValidName_limits() {
+        String exact = "Z".repeat(Name.MAX_LENGTH);
+        String over = "Z".repeat(Name.MAX_LENGTH + 1);
+
+        assertTrue(Name.isValidName(exact));
+        assertFalse(Name.isValidName(over));
     }
 
     @Test

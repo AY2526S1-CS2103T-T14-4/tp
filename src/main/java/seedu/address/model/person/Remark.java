@@ -1,12 +1,15 @@
 package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's remark in the address book.
  * Guarantees: immutable; is always valid
  */
 public class Remark {
+    public static final int MAX_LENGTH = 2500;
+    public static final String MESSAGE_CONSTRAINTS = "Remarks must be at most " + MAX_LENGTH + " characters.";
     public final String value;
 
     /**
@@ -16,7 +19,15 @@ public class Remark {
      */
     public Remark(String remark) {
         requireNonNull(remark);
+        checkArgument(isValidRemark(remark), MESSAGE_CONSTRAINTS);
         value = remark;
+    }
+
+    /**
+     * Returns true if the remark is within the allowed length.
+     */
+    public static boolean isValidRemark(String test) {
+        return test.length() <= MAX_LENGTH;
     }
 
     @Override

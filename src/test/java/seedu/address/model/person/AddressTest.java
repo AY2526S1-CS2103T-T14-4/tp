@@ -14,24 +14,36 @@ public class AddressTest {
     }
 
     @Test
-    public void constructor_invalidAddress_throwsIllegalArgumentException() {
-        String invalidAddress = "";
-        assertThrows(IllegalArgumentException.class, () -> new Address(invalidAddress));
+    public void constructor_invalidBlank_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> new Address(""));
+        assertThrows(IllegalArgumentException.class, () -> new Address("   "));
+    }
+
+    @Test
+    public void constructor_overLimit_throwsIllegalArgumentException() {
+        String over = "X".repeat(Address.MAX_LENGTH + 1);
+        assertThrows(IllegalArgumentException.class, () -> new Address(over));
+    }
+
+    @Test
+    public void constructor_exactLimit_success() {
+        String exact = "Y".repeat(Address.MAX_LENGTH);
+        new Address(exact); // no exception
     }
 
     @Test
     public void isValidAddress() {
-        // null address
+        // null -> NPE
         assertThrows(NullPointerException.class, () -> Address.isValidAddress(null));
 
-        // invalid addresses
-        assertFalse(Address.isValidAddress("")); // empty string
-        assertFalse(Address.isValidAddress(" ")); // spaces only
+        // invalid
+        assertFalse(Address.isValidAddress("")); // empty
+        assertFalse(Address.isValidAddress("   ")); // spaces only
+        assertFalse(Address.isValidAddress("Z".repeat(Address.MAX_LENGTH + 1))); // too long
 
-        // valid addresses
-        assertTrue(Address.isValidAddress("Blk 456, Den Road, #01-355"));
-        assertTrue(Address.isValidAddress("-")); // one character
-        assertTrue(Address.isValidAddress("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
+        // valid
+        assertTrue(Address.isValidAddress("Blk 41 Telok Blangah Way #07-436"));
+        assertTrue(Address.isValidAddress("A".repeat(Address.MAX_LENGTH))); // boundary
     }
 
     @Test

@@ -201,4 +201,20 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + " e/b.ob@aa.com " + ADDRESS_DESC_BOB,
                 Email.MESSAGE_CONSTRAINTS); // symbol in local part (only letters/digits allowed)
     }
+
+    @Test
+    public void parse_nameTooLong_failure() {
+        String longName = "A".repeat(67);
+        assertParseFailure(parser,
+                " n/" + longName + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
+                Name.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_addressTooLong_failure() {
+        String longAddress = "A".repeat(101);
+        assertParseFailure(parser,
+                NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + " " + PREFIX_ADDRESS + longAddress,
+                Address.MESSAGE_CONSTRAINTS);
+    }
 }
