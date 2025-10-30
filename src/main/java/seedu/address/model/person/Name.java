@@ -9,14 +9,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Name {
 
+    public static final int MAX_LENGTH = 66;
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphabetic characters and spaces, and it should not be blank";
+            "Names should only contain letters and spaces, must not be blank, and must be at most "
+            + MAX_LENGTH + " characters.";
 
-    /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "^[A-Za-z][A-Za-z ]*$";
+    // Example regex below: first char letter, then letters/spaces
+    public static final String VALIDATION_REGEX = "[A-Za-z][A-Za-z ]*";
 
     public final String fullName;
 
@@ -35,7 +34,10 @@ public class Name {
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidName(String test) {
-        return test.matches(VALIDATION_REGEX);
+        requireNonNull(test); // ensure NPE for null input
+        return !test.isBlank()
+                && test.length() <= MAX_LENGTH
+                && test.matches(VALIDATION_REGEX);
     }
 
 

@@ -238,4 +238,12 @@ public class EditCommandParserTest {
         // Any preamble at all is now invalid
         assertParseFailure(parser, " noise i/1" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
     }
+
+    @Test
+    public void parse_nameTooLong_failure() {
+        Index targetIndex = INDEX_FIRST_PERSON;
+        String longName = "B".repeat(67);
+        String userInput = " i/" + targetIndex.getOneBased() + " " + "n/" + longName;
+        assertParseFailure(parser, userInput, Name.MESSAGE_CONSTRAINTS);
+    }
 }
