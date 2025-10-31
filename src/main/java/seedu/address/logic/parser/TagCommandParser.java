@@ -41,7 +41,11 @@ public class TagCommandParser implements Parser<TagCommand> {
             argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_INDEX, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS,
                     PREFIX_TAG);
 
-            String tagName = argMultimap.getValue(PREFIX_TAG).get();
+            String tagName = argMultimap.getValue(PREFIX_TAG).get().trim();
+
+            if (tagName.isEmpty()) {
+                throw new ParseException("Tag name cannot be empty.");
+            }
 
             int identifierCount = 0;
             if (indexIsPresent) {
