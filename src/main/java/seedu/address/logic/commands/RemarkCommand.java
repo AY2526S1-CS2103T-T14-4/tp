@@ -1,3 +1,4 @@
+
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -28,9 +29,12 @@ public class RemarkCommand extends Command {
             + "  " + COMMAND_WORD + " i/1 ap/Has a cat.\n"
             + "  " + COMMAND_WORD + " i/1 --remove";
 
-    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Senior: %1$s";
+    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Senior: %1$s\nRemark: %2$s";
     public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Senior: %1$s";
-    public static final String MESSAGE_APPEND_REMARK_SUCCESS = "Appended to remark for Senior: %1$s";
+    public static final String MESSAGE_APPEND_REMARK_SUCCESS = "Appended to remark for Senior: %1$s\nRemark: %2$s";
+    public static final String MESSAGE_NO_REMARK_TO_REMOVE = "No remark to remove for Senior: %1$s";
+    public static final String MESSAGE_EXCLUSIVE_ACTIONS =
+            "Specify exactly one of r/REMARK, ap/APPEND_TEXT, or --remove.";
 
     private final Index index;
     private final Remark remark;
@@ -58,8 +62,8 @@ public class RemarkCommand extends Command {
         }
         RemarkCommand e = (RemarkCommand) other;
         return index.equals(e.index)
-            && remark.equals(e.remark)
-            && isAppend == e.isAppend;
+                && remark.equals(e.remark)
+                && isAppend == e.isAppend;
     }
 
     @Override
@@ -76,7 +80,7 @@ public class RemarkCommand extends Command {
         if (isAppend) {
             String currentRemark = personToEdit.getRemark().value;
             String appendedRemark = currentRemark.isEmpty() ? remark.value
-                : currentRemark + " " + remark.value;
+                    : currentRemark + remark.value;
             try {
                 newRemark = new Remark(appendedRemark);
             } catch (IllegalArgumentException ex) {
@@ -94,18 +98,26 @@ public class RemarkCommand extends Command {
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), newRemark, personToEdit.getTags());
-
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
+        if (!isAppend && remark.value.isEmpty()) {
+            String msg = String.format(
+                    personToEdit.getRemark().value.isEmpty() ? MESSAGE_NO_REMARK_TO_REMOVE
+                            : MESSAGE_DELETE_REMARK_SUCCESS, Messages.format(editedPerson));
+            return new CommandResult(msg);
+        }
         return new CommandResult(generateSuccessMessage(editedPerson));
     }
 
     private String generateSuccessMessage(Person personToEdit) {
         if (isAppend) {
-            return String.format(MESSAGE_APPEND_REMARK_SUCCESS, Messages.format(personToEdit));
+            return String.format(MESSAGE_APPEND_REMARK_SUCCESS,
+                    Messages.format(personToEdit), personToEdit.getRemark().value);
         }
         String message = !remark.value.isEmpty() ? MESSAGE_ADD_REMARK_SUCCESS : MESSAGE_DELETE_REMARK_SUCCESS;
-        return String.format(message, Messages.format(personToEdit));
+        return !remark.value.isEmpty()
+                ? String.format(message, Messages.format(personToEdit), personToEdit.getRemark().value)
+                : String.format(message, Messages.format(personToEdit));
     }
 }

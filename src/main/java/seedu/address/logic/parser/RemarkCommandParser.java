@@ -27,7 +27,7 @@ public class RemarkCommandParser implements Parser<RemarkCommand> {
         requireNonNull(args);
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
-            PREFIX_INDEX, PREFIX_REMARK, PREFIX_REMOVE, PREFIX_APPEND);
+                PREFIX_INDEX, PREFIX_REMARK, PREFIX_REMOVE, PREFIX_APPEND);
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_INDEX, PREFIX_REMARK, PREFIX_REMOVE, PREFIX_APPEND);
 
@@ -51,8 +51,12 @@ public class RemarkCommandParser implements Parser<RemarkCommand> {
         Optional<String> appendOpt = argMultimap.getValue(PREFIX_APPEND);
 
         // Check mutual exclusivity
-        if ((hasRemove ? 1 : 0) + (remarkOpt.isPresent() ? 1 : 0) + (appendOpt.isPresent() ? 1 : 0) != 1) {
+        int modes = (hasRemove ? 1 : 0) + (remarkOpt.isPresent() ? 1 : 0) + (appendOpt.isPresent() ? 1 : 0);
+        if (modes == 0) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemarkCommand.MESSAGE_USAGE));
+        }
+        if (modes > 1) {
+            throw new ParseException(RemarkCommand.MESSAGE_EXCLUSIVE_ACTIONS);
         }
 
         if (hasRemove) {
