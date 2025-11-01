@@ -76,7 +76,7 @@ public class RemarkCommand extends Command {
         if (isAppend) {
             String currentRemark = personToEdit.getRemark().value;
             String appendedRemark = currentRemark.isEmpty() ? remark.value
-                : currentRemark + " " + remark.value;
+                : currentRemark + remark.value;
             try {
                 newRemark = new Remark(appendedRemark);
             } catch (IllegalArgumentException ex) {

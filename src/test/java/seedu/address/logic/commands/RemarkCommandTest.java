@@ -39,7 +39,7 @@ public class RemarkCommandTest {
 
         // pass the remark value and isAppend = false
         RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON, new Remark(REMARK_STUB),
-        /*isAppend=*/false);
+            false);
 
         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS,
                 Messages.format(editedPerson));
@@ -56,7 +56,7 @@ public class RemarkCommandTest {
         Person editedPerson = new PersonBuilder(firstPerson).withRemark("").build();
 
         // use 3-arg constructor with isAppend = false
-        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON, new Remark(""), /*isAppend=*/false);
+        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON, new Remark(""), false);
 
         String expectedMessage = String.format(RemarkCommand.MESSAGE_DELETE_REMARK_SUCCESS,
                 Messages.format(editedPerson));
@@ -76,7 +76,7 @@ public class RemarkCommandTest {
                 .withRemark(REMARK_STUB).build();
 
         RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON, new Remark(REMARK_STUB),
-        /*isAppend=*/false);
+            false);
 
         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS,
                 Messages.format(editedPerson));
@@ -92,7 +92,7 @@ public class RemarkCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         // use 3-arg constructor; flag value doesn't matter for invalid index
         RemarkCommand remarkCommand = new RemarkCommand(outOfBoundIndex, new Remark(VALID_REMARK_BOB),
-        /*isAppend=*/false);
+            false);
 
         assertCommandFailure(remarkCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
@@ -106,7 +106,7 @@ public class RemarkCommandTest {
 
         // use 3-arg constructor; flag value doesn't matter for invalid index
         RemarkCommand remarkCommand = new RemarkCommand(outOfBoundIndex, new Remark(VALID_REMARK_BOB),
-        /*isAppend=*/false);
+            false);
 
         assertCommandFailure(remarkCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
@@ -170,7 +170,7 @@ public class RemarkCommandTest {
 
         RemarkCommand cmd = new RemarkCommand(INDEX_FIRST_PERSON, new Remark("beta"), true);
 
-        Person expected = new PersonBuilder(withRemark).withRemark("alpha beta").build();
+        Person expected = new PersonBuilder(withRemark).withRemark("alphabeta").build();
         String expectedMessage = String.format(RemarkCommand.MESSAGE_APPEND_REMARK_SUCCESS,
                 Messages.format(expected));
 
@@ -205,7 +205,7 @@ public class RemarkCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         Person first = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person edited = new PersonBuilder(first).withRemark(first.getRemark().value.isEmpty()
-                ? "new" : (first.getRemark().value + " new")).build();
+                ? "new" : (first.getRemark().value + "new")).build();
 
         RemarkCommand cmd = new RemarkCommand(INDEX_FIRST_PERSON, new Remark("new"), true);
 
@@ -222,14 +222,14 @@ public class RemarkCommandTest {
     public void execute_appendBoundary_success() {
         Person first = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         String appendText = "ab";
-        // existing length + 1 (space) + append length == MAX_LENGTH
-        String existing = "x".repeat(Remark.MAX_LENGTH - appendText.length() - 1);
+        // existing length + append length == MAX_LENGTH
+        String existing = "x".repeat(Remark.MAX_LENGTH - appendText.length());
         Person withRemark = new PersonBuilder(first).withRemark(existing).build();
         model.setPerson(first, withRemark);
 
         RemarkCommand cmd = new RemarkCommand(INDEX_FIRST_PERSON, new Remark(appendText), true);
 
-        Person expected = new PersonBuilder(withRemark).withRemark(existing + " " + appendText).build();
+        Person expected = new PersonBuilder(withRemark).withRemark(existing + appendText).build();
         String expectedMessage = String.format(RemarkCommand.MESSAGE_APPEND_REMARK_SUCCESS, Messages.format(expected));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
@@ -269,7 +269,7 @@ public class RemarkCommandTest {
     @Test
     public void execute_replaceOverLimitViaReflection_failure() throws Exception {
         // Build a command with a safe remark first (so constructor doesn't throw)
-        RemarkCommand cmd = new RemarkCommand(INDEX_FIRST_PERSON, new Remark("x"), /*isAppend=*/false);
+        RemarkCommand cmd = new RemarkCommand(INDEX_FIRST_PERSON, new Remark("x"), false);
 
         // Reflectively grab the internal Remark instance from the command
         java.lang.reflect.Field remarkField = RemarkCommand.class.getDeclaredField("remark");
@@ -282,7 +282,6 @@ public class RemarkCommandTest {
         valueField.setAccessible(true);
         valueField.set(internalRemark, tooLong);
 
-        // Now the replace path (isAppend = false) will try new Remark(remark.value) and hit the catch
         assertCommandFailure(cmd, model, Remark.MESSAGE_CONSTRAINTS);
     }
 }
