@@ -87,6 +87,27 @@ public class RemarkCommandTest {
     }
 
     @Test
+    public void execute_appendWithNonEmptyRemark_includesPreviousRemarkInMessage() throws Exception {
+        // Set up a person with an existing remark
+        String previousRemark = "[OLD-REMARK-123]";
+        Person original = new PersonBuilder().withRemark(previousRemark).build();
+
+        Model model = new ModelManager(new AddressBook(), new UserPrefs());
+        model.addPerson(original);
+
+        // isAppend = true, new remark is non-empty -> final line should use 2-arg format
+        RemarkCommand cmd = new RemarkCommand(Index.fromOneBased(1),
+                new Remark(" new note"), /* isAppend */ true);
+
+        CommandResult result = cmd.execute(model);
+        String feedback = result.getFeedbackToUser();
+
+        // The message should contain the previous remark value as the 2nd formatted arg
+        assertTrue(feedback.contains(previousRemark),
+                "Expected feedback to include previous remark when appending non-empty text.");
+    }
+
+    @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         // use 3-arg constructor; flag value doesn't matter for invalid index
