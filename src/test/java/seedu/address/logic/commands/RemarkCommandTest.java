@@ -118,7 +118,7 @@ public class RemarkCommandTest {
     }
 
     @Test
-    public void execute_replaceWhenExistingNonEmpty_success_includesRemarkInMessage() {
+    public void execute_replaceWhenExistingNonEmptyIncludesRemarkInMessage_success() {
         // Person initially with a non-empty remark ("old")
         Person first = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person withOldRemark = new PersonBuilder(first).withRemark("old").build();
