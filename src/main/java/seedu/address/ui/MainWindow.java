@@ -140,6 +140,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleHelp() {
+        helpWindow.unminimize();
         if (!helpWindow.isShowing()) {
             helpWindow.show();
         } else {
