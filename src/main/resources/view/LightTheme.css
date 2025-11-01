@@ -325,9 +325,9 @@
 }
 
 #commandTextField {
-    -fx-background-color: #D9D9D9;
+    -fx-background-color: transparent;
+    -fx-control-inner-background: #D9D9D9;
     -fx-background-insets: 0;
-    -fx-border-color: #E5E5E5 #E5E5E5 #E5E5E5 #E5E5E5;
     -fx-border-insets: 0;
     -fx-border-width: 1;
     -fx-font-family: "Segoe UI";
@@ -335,6 +335,10 @@
     -fx-font-size: 13pt;
     -fx-text-fill: black;
     -fx-border-radius: 5;
+}
+
+#commandTextField:focused {
+    -fx-faint-focus-color: transparent;
 }
 
 #filterField, #personListPanel, #personWebpage {

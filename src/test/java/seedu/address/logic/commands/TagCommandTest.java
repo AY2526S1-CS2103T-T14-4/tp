@@ -194,7 +194,7 @@ public class TagCommandTest {
         public List<Person> getFullPersonList() {
             throw new AssertionError("This method should not be called.");
         }
-        
+
         @Override
         public void addPerson(Person person) {
             throw new AssertionError("This method should not be called.");
