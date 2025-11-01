@@ -32,6 +32,8 @@ public class RemarkCommand extends Command {
     public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Senior: %1$s";
     public static final String MESSAGE_APPEND_REMARK_SUCCESS = "Appended to remark for Senior: %1$s";
     public static final String MESSAGE_NO_REMARK_TO_REMOVE = "No remark to remove for Senior: %1$s";
+    public static final String MESSAGE_EXCLUSIVE_ACTIONS =
+            "Specify exactly one of r/REMARK, ap/APPEND_TEXT, or --remove.";
 
     private final Index index;
     private final Remark remark;

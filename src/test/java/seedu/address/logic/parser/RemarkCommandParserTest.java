@@ -64,7 +64,7 @@ public class RemarkCommandParserTest {
 
     @Test
     public void parse_bothRemarkAndRemoveProvided_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemarkCommand.MESSAGE_USAGE);
+        String expectedMessage = RemarkCommand.MESSAGE_EXCLUSIVE_ACTIONS;
         assertParseFailure(parser, " i/1 " + PREFIX_REMARK + NON_EMPTY_REMARK + " --remove", expectedMessage);
     }
 
@@ -119,19 +119,19 @@ public class RemarkCommandParserTest {
 
     @Test
     public void parse_mutuallyExclusiveRemarkAndAppend_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemarkCommand.MESSAGE_USAGE);
+        String expectedMessage = RemarkCommand.MESSAGE_EXCLUSIVE_ACTIONS;
         assertParseFailure(parser, " i/1 r/hey ap/there", expectedMessage);
     }
 
     @Test
     public void parse_mutuallyExclusiveAppendAndRemove_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemarkCommand.MESSAGE_USAGE);
+        String expectedMessage = RemarkCommand.MESSAGE_EXCLUSIVE_ACTIONS;
         assertParseFailure(parser, " i/1 ap/hello --remove", expectedMessage);
     }
 
     @Test
     public void parse_allThreeProvided_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemarkCommand.MESSAGE_USAGE);
+        String expectedMessage = RemarkCommand.MESSAGE_EXCLUSIVE_ACTIONS;
         assertParseFailure(parser, " i/1 r/x ap/y --remove", expectedMessage);
     }
 
