@@ -12,7 +12,7 @@ public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts seniors by a field.\n"
-            + "Parameters: Sort (ASC or DSC)/(NAME or ADDRESS)\n"
+            + "Parameters: Sort (ASC | DSC)/(NAME | ADDRESS)\n"
             + "Examples: \n\t"
             + "  " + COMMAND_WORD + " asc/name\n\t"
             + "  " + COMMAND_WORD + " dsc/name\n\t"
@@ -48,12 +48,12 @@ public class SortCommand extends Command {
         switch (field) {
         case NAME:
             model.sortPersonsByName(ascending);
-            model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+            //model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
             return new CommandResult(ascending ? MESSAGE_SUCCESS_NAME_ASC : MESSAGE_SUCCESS_NAME_DESC);
 
         case ADDRESS:
             model.sortPersonsByAddress(ascending);
-            model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+            //model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
             return new CommandResult(ascending ? MESSAGE_SUCCESS_ADDR_ASC : MESSAGE_SUCCESS_ADDR_DESC);
 
         default:
