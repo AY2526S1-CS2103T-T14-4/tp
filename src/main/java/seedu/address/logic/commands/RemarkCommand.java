@@ -61,8 +61,8 @@ public class RemarkCommand extends Command {
         }
         RemarkCommand e = (RemarkCommand) other;
         return index.equals(e.index)
-                && remark.equals(e.remark)
-                && isAppend == e.isAppend;
+            && remark.equals(e.remark)
+            && isAppend == e.isAppend;
     }
 
     @Override
