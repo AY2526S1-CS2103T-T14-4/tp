@@ -42,12 +42,16 @@ public class NameTest {
         assertFalse(Name.isValidName("^")); // only non-alphanumeric characters
         assertFalse(Name.isValidName("peter*")); // contains non-alphanumeric characters
 
-        // valid name
+        assertFalse(Name.isValidName("john  doe")); // double space
+        assertFalse(Name.isValidName("John   Doe")); // triple space
+        assertFalse(Name.isValidName("Alice  Bob  Carol")); // multiple doubles
+        assertFalse(Name.isValidName("Alice ")); // trailing space (regex rejects)
+        assertFalse(Name.isValidName(" Alice")); // leading space (regex rejects)
+
         assertTrue(Name.isValidName("peter jack")); // alphabets only
-        //assertTrue(Name.isValidName("12345")); // numbers only
-        //assertTrue(Name.isValidName("peter the 2nd")); // alphanumeric characters
         assertTrue(Name.isValidName("Capital Tan")); // with capital letters
-        //assertTrue(Name.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
+        assertTrue(Name.isValidName("Alice Bob Carol")); // multiple words with single spaces
+        assertTrue(Name.isValidName("A B C")); // single-letter words with single spaces
     }
 
     @Test
