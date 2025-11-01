@@ -502,7 +502,7 @@ The application supports up to **250 entries** to maintain optimal performance w
 
 ElderRing data are automatically saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update the data by directly editing that file.
 
-<box type="warning">
+<box type="warning" seamless>
 
 **Warning:**
 * If the data file contains invalid formatting (broken JSON, parsing errors, file permission issues, etc.), ElderRing will discard all data and start with an empty data file.
