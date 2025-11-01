@@ -11,11 +11,11 @@ public class Name {
 
     public static final int MAX_LENGTH = 66;
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain letters and spaces, must not be blank, and must be at most "
-            + MAX_LENGTH + " characters.";
+            "Names should only contain letters and only a space between words, must not be blank,"
+            + " and must be at most " + MAX_LENGTH + " characters.";
 
-    // Example regex below: first char letter, then letters/spaces
-    public static final String VALIDATION_REGEX = "[A-Za-z][A-Za-z ]*";
+    // Only letters, with words separated by a single space (no consecutive spaces)
+    public static final String VALIDATION_REGEX = "[A-Za-z]+(?: [A-Za-z]+)*";
 
     public final String fullName;
 
@@ -40,7 +40,6 @@ public class Name {
                 && test.matches(VALIDATION_REGEX);
     }
 
-
     @Override
     public String toString() {
         return fullName;
@@ -52,7 +51,6 @@ public class Name {
             return true;
         }
 
-        // instanceof handles nulls
         if (!(other instanceof Name)) {
             return false;
         }

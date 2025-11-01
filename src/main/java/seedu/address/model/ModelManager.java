@@ -140,7 +140,7 @@ public class ModelManager implements Model {
         } else {
             addressBook.sortPersons(NAME_ASC.reversed());
         }
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        //updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     //method to sort elderly by address
@@ -151,7 +151,7 @@ public class ModelManager implements Model {
         } else {
             addressBook.sortPersons(ADDRESS_ASC.reversed());
         }
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        //updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     //=========== Filtered Person List Accessors =============================================================
