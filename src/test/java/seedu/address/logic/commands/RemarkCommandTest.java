@@ -118,6 +118,55 @@ public class RemarkCommandTest {
     }
 
     @Test
+    public void execute_replaceWhenExistingNonEmpty_success_includesRemarkInMessage() {
+        // Person initially with a non-empty remark ("old")
+        Person first = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person withOldRemark = new PersonBuilder(first).withRemark("old").build();
+        model.setPerson(first, withOldRemark);
+
+        // Replace (not append) with "new"
+        RemarkCommand cmd = new RemarkCommand(INDEX_FIRST_PERSON, new Remark("new"), /*isAppend*/ false);
+
+        Person expected = new PersonBuilder(withOldRemark).withRemark("new").build();
+
+        // Must hit the add/replace branch that formats with two placeholders and a newline.
+        String expectedMessage = String.format(
+                RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS,
+                Messages.format(expected),
+                "new");
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(withOldRemark, expected);
+
+        assertCommandSuccess(cmd, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_add_includesExactTwoPlaceholderFormatting() {
+        // Start from empty remark to confirm the exact string formatting (including the newline)
+        Person first = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person empty = new PersonBuilder(first).withRemark("").build();
+        model.setPerson(first, empty);
+
+        String newRemark = "line1 and line2";
+        RemarkCommand cmd = new RemarkCommand(INDEX_FIRST_PERSON, new Remark(newRemark), /*isAppend*/ false);
+
+        Person expected = new PersonBuilder(empty).withRemark(newRemark).build();
+
+        // Verify exact formatting with newline between the two placeholders:
+        // "Added remark to Senior: %1$s\nRemark: %2$s"
+        String expectedMessage = "Added remark to Senior: "
+                + Messages.format(expected)
+                + "\nRemark: "
+                + newRemark;
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(empty, expected);
+
+        assertCommandSuccess(cmd, model, expectedMessage, expectedModel);
+    }
+
+    @Test
     public void execute_invalidPersonIndexFilteredList_failure() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
