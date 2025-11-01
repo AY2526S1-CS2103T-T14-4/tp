@@ -53,16 +53,18 @@ public class RemarkCommandTest {
     @Test
     public void execute_deleteRemarkUnfilteredList_success() {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person editedPerson = new PersonBuilder(firstPerson).withRemark("").build();
+        // Ensure existing remark is non-empty before removal
+        Person withRemark = new PersonBuilder(firstPerson).withRemark("alpha").build();
+        model.setPerson(firstPerson, withRemark);
 
-        // use 3-arg constructor with isAppend = false
+        Person editedPerson = new PersonBuilder(withRemark).withRemark("").build();
         RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON, new Remark(""), false);
 
         String expectedMessage = String.format(RemarkCommand.MESSAGE_DELETE_REMARK_SUCCESS,
                 Messages.format(editedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(firstPerson, editedPerson);
+        expectedModel.setPerson(withRemark, editedPerson);
 
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
     }
@@ -188,13 +190,11 @@ public class RemarkCommandTest {
 
         RemarkCommand cmd = new RemarkCommand(INDEX_FIRST_PERSON, new Remark(""), false);
 
-        // Deleting from empty still counts as remove
         Person expected = empty; // stays empty
-        String expectedMessage = String.format(RemarkCommand.MESSAGE_DELETE_REMARK_SUCCESS,
+        String expectedMessage = String.format(RemarkCommand.MESSAGE_NO_REMARK_TO_REMOVE,
                 Messages.format(expected));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        // setPerson still called (no-op replacement) to keep behavior consistent
         expectedModel.setPerson(empty, expected);
 
         assertCommandSuccess(cmd, model, expectedMessage, expectedModel);

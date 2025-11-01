@@ -31,6 +31,7 @@ public class RemarkCommand extends Command {
     public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Senior: %1$s";
     public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Senior: %1$s";
     public static final String MESSAGE_APPEND_REMARK_SUCCESS = "Appended to remark for Senior: %1$s";
+    public static final String MESSAGE_NO_REMARK_TO_REMOVE = "No remark to remove for Senior: %1$s";
 
     private final Index index;
     private final Remark remark;
@@ -98,6 +99,12 @@ public class RemarkCommand extends Command {
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
+        if (!isAppend && remark.value.isEmpty()) {
+            String msg = String.format(
+                    personToEdit.getRemark().value.isEmpty() ? MESSAGE_NO_REMARK_TO_REMOVE
+                            : MESSAGE_DELETE_REMARK_SUCCESS, Messages.format(editedPerson));
+            return new CommandResult(msg);
+        }
         return new CommandResult(generateSuccessMessage(editedPerson));
     }
 
