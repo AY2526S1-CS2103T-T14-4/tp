@@ -29,8 +29,6 @@ public class MainAppComponentsTest {
     public void appParameters_canBeCreated() {
         assertDoesNotThrow(() -> {
             // Test that AppParameters can be instantiated and used
-            // Since we can't easily create JavaFX Parameters in tests,
-            // we'll test that the class exists and has the expected methods
             var appParametersClass = AppParameters.class;
             assertNotNull(appParametersClass);
 

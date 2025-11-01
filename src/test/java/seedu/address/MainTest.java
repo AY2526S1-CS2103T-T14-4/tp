@@ -13,7 +13,7 @@ public class MainTest {
 
     @Test
     public void main_classCanBeInstantiated() {
-        // Test that we can create an instance of Main (without calling main method)
+        // Test to create an instance of Main (without calling main method)
         assertDoesNotThrow(() -> {
             Main main = new Main();
             // Verify it's the right type

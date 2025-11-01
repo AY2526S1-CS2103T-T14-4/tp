@@ -15,7 +15,7 @@ import seedu.address.model.tag.Tag;
 public class FilterCommand extends Command {
 
     public static final String COMMAND_WORD = "filter";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": filters all persons with the specified tag.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": filters all seniors with the specified tag.\n"
             + "Parameters: t/TAG\n"
             + "Example: " + COMMAND_WORD + " t/friend";
 

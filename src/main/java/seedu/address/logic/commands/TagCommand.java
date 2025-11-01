@@ -24,9 +24,8 @@ public class TagCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Tags the specified senior in the address book.\n"
             + "Parameters: "
-            + "i/INDEX (must be a positive integer) "
-            + "or n/NAME p/PHONE "
-            + "and t/TAGNAME [ --remove ] \n"
+            + "[ i/INDEX (must be a positive integer) | n/NAME p/PHONE_NUMBER ] "
+            + "t/TAGNAME [ --remove ] \n"
             + "Examples:\n\t"
             + COMMAND_WORD + " i/1 t/friends\n\t"
             + COMMAND_WORD + " n/Alice p/12345678 t/vip\n\t"

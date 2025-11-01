@@ -142,7 +142,6 @@ public class FindCommandParserTest {
     @Test
     public void parse_emptyStringAfterFiltering_throwsParseException() {
         // This tests the edge case where all keywords become empty after filtering
-        // Though it's hard to trigger with normal input, we test the empty input case
         assertParseFailure(parser, "", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 

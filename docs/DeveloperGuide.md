@@ -257,13 +257,6 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -287,7 +280,6 @@ _{Explain here how the data archiving feature will be implemented}_
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
-*
 
 **Value proposition**: manage contacts faster than a typical mouse/GUI driven app
 * maintain a record of senior profile
@@ -516,7 +508,6 @@ Use case ends.
 4.  Response time should be less than 2 seconds.
 5.  The data should be stored locally in a text file.
 6.  ElderRing should be able to work without requiring an installer.
-    *{More to be added}*
 
 ### Glossary
 
@@ -552,8 +543,6 @@ testers are expected to do more *exploratory* testing.
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
@@ -561,15 +550,13 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
     1. Test case: `delete i/1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
 
     1. Test case: `delete i/0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+       Expected: No person is deleted. Error details shown in the status message.
 
     1. Other incorrect delete commands to try: `delete`, `delete i/x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
 
 ### Saving data
 
@@ -607,5 +594,3 @@ testers are expected to do more *exploratory* testing.
 
     2. Test case: Execute a command that modifies data (e.g., `add`, `delete`, `edit`).
     Expected: The data file is updated automatically. Changes persist after restarting the application.
-
-6. _{ more test cases …​ }_

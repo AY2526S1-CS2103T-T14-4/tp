@@ -15,9 +15,6 @@ public class MainAppInitIntegrationTest {
     @TempDir
     public Path tempDir;
 
-    // Remove this test - it's too complex and not worth the effort
-    // Instead, focus on testing the individual components
-
     @Test
     public void appParameters_structureIsCorrect() {
         // Test that AppParameters has the expected structure
@@ -33,8 +30,7 @@ public class MainAppInitIntegrationTest {
             assertNotNull(getConfigPathMethod);
 
         } catch (Exception e) {
-            // It's okay if the structure is different
-            // We're just verifying the class exists and is accessible
+            // verifying the class exists and is accessible
         }
     }
 

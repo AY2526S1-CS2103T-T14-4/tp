@@ -298,11 +298,4 @@ public class JsonSerializableAddressBookTest {
         assertEquals("Some other error", result);
     }
 
-    //    @Test
-    //    public void toModelType_duplicatePersons_throwsIllegalValueException() throws Exception {
-    //        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PERSON_FILE,
-    //                JsonSerializableAddressBook.class).get();
-    //        assertThrows(IllegalValueException.class, JsonSerializableAddressBook.MESSAGE_DUPLICATE_PERSON,
-    //                dataFromFile::toModelType);
-    //    }
 }

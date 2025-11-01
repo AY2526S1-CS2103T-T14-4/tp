@@ -23,6 +23,10 @@ class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Duplicate entries found based on PHONE + NAME combination. "
             + "Entries will be automatically cleaned up.";
+    public static final String MESSAGE_ENTRY_LIMIT_EXCEEDED = "Entry limit exceeded. "
+            + "Only first 250 entries will be kept.";
+
+    private static final int MAX_PERSONS_LIMIT = 250;
 
     private static final Logger logger = LogsCenter.getLogger(JsonSerializableAddressBook.class);
 
@@ -56,9 +60,18 @@ class JsonSerializableAddressBook {
         int invalidCount = 0;
         int loadedCount = 0;
         int entryNumber = 0;
+        int skippedDueToLimit = 0;
+        boolean limitExceeded = false;
 
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             entryNumber++;
+            // Check if reached the limit
+            if (loadedCount >= MAX_PERSONS_LIMIT) {
+                skippedDueToLimit = persons.size() - MAX_PERSONS_LIMIT - invalidCount - duplicateCount;
+                limitExceeded = true;
+                break; // Stop processing once we reach the limit
+            }
+
             try {
                 Person person = jsonAdaptedPerson.toModelType();
 
@@ -86,6 +99,11 @@ class JsonSerializableAddressBook {
             }
         }
 
+        // Log warning if limit was exceeded
+        if (limitExceeded) {
+            logger.warning(MESSAGE_ENTRY_LIMIT_EXCEEDED + " Skipped " + skippedDueToLimit + " entries beyond limit.");
+        }
+
         // Log comprehensive summary
         StringBuilder summary = new StringBuilder();
         summary.append("Data loading completed: ");
@@ -96,6 +114,9 @@ class JsonSerializableAddressBook {
         }
         if (invalidCount > 0) {
             summary.append(", ").append(invalidCount).append(" invalid entries skipped");
+        }
+        if (skippedDueToLimit > 0) {
+            summary.append(", ").append(skippedDueToLimit).append(" entries skipped due to limit");
         }
 
         logger.info(summary.toString());
@@ -159,6 +180,14 @@ class JsonSerializableAddressBook {
                 .anyMatch(existingPerson ->
                         existingPerson.getPhone().equals(person.getPhone())
                                 && existingPerson.getName().fullName.equalsIgnoreCase(person.getName().fullName));
+    }
+
+    /**
+     * Returns the number of persons in the JSON data before processing.
+     * Used to check if limit was exceeded.
+     */
+    public int getOriginalPersonCount() {
+        return persons.size();
     }
 
 }
