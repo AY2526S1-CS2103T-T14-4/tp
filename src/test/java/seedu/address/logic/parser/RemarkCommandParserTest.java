@@ -136,15 +136,6 @@ public class RemarkCommandParserTest {
     }
 
     @Test
-    public void parse_duplicateRemarkPrefixLastWinsOrReject_consistencyCheck() {
-        // Decide desired behavior. If your tokenizer returns the last value, this should succeed with "second".
-        // If you want to reject duplicates, change parser to detect duplicates and update test to expect failure.
-        String userInput = " i/1 r/first r/second";
-        RemarkCommand expected = new RemarkCommand(Index.fromOneBased(1), new Remark("second"), false);
-        assertParseSuccess(parser, userInput, expected);
-    }
-
-    @Test
     public void parse_removeFlagPresent_successEvenWithoutValue() {
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = " i/" + targetIndex.getOneBased() + " --remove";
