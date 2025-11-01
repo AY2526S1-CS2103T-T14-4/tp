@@ -50,29 +50,29 @@ public class EmailTest {
         assertFalse(Email.isValidEmail("peterjack@example.com.")); // domain name ends with a period
         assertFalse(Email.isValidEmail("peterjack@-example.com")); // domain name starts with a hyphen
         assertFalse(Email.isValidEmail("peterjack@example.com-")); // domain name ends with a hyphen
-        assertFalse(Email.isValidEmail("peterjack@example.c")); // top level domain has less than two chars
+
+        // previously invalid due to TLD restriction, now valid
+        assertTrue(Email.isValidEmail("peterjack@example.c")); // single-letter last label now allowed
+        assertTrue(Email.isValidEmail("peterjack@example.org")); // any letter-only TLD allowed
+
         assertFalse(Email.isValidEmail("PeterJack_1190@example.com")); // underscore in local part
         assertFalse(Email.isValidEmail("PeterJack.1190@example.com")); // period in local part
         assertFalse(Email.isValidEmail("PeterJack+1190@example.com")); // '+' symbol in local part
         assertFalse(Email.isValidEmail("PeterJack-1190@example.com")); // hyphen in local part
-        assertFalse(Email.isValidEmail("a@bc")); // minimal
-        assertFalse(Email.isValidEmail("test@localhost")); // alphabets only
-        assertFalse(Email.isValidEmail("123@145")); // numeric local part and domain name
-        assertFalse(Email.isValidEmail("a1+be.d@example1.com")); // mixture of alphanumeric and special characters
-        assertFalse(Email.isValidEmail("peter_jack@very-very-very-long-example.com")); // long domain name
-        assertFalse(Email.isValidEmail("if.you.dream.it_you.can.do.it@example.com")); // long local part
-        assertFalse(Email.isValidEmail("e1234567@u.nus.edu")); // more than one period in domain
-        assertFalse(Email.isValidEmail("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX@YY.com")); //total max 51 chars
-        assertFalse(Email.isValidEmail("peterjack@example.org")); // non-.com TLD
-        assertFalse(Email.isValidEmail("a@a1.com")); // digits in domain label (letters-only domain)
-        assertFalse(Email.isValidEmail("a@a-b.com")); // hyphen in domain label (not allowed)
-        assertFalse(Email.isValidEmail("john@sales.marketing.example.com")); // multi-label letters-only .com
+        assertFalse(Email.isValidEmail("123@145")); // numeric domain label not allowed
+        assertFalse(Email.isValidEmail("a1+be.d@example1.com")); // digits in domain label
+        assertFalse(Email.isValidEmail("peter_jack@very-very-very-long-example.com")); // hyphen in domain
+        assertFalse(Email.isValidEmail("if.you.dream.it_you.can.do.it@example.com")); // underscore in local part
+        assertFalse(Email.isValidEmail("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX@YY.com")); // total max 51 chars
+
+        // subdomains allowed
+        assertTrue(Email.isValidEmail("john@sales.marketing.example.com")); // multi-label domain
 
         // valid email
         assertTrue(Email.isValidEmail("peterjack@example.com"));
         assertTrue(Email.isValidEmail("PeterJack1190@example.com"));
         assertTrue(Email.isValidEmail("X@YY.com"));
-        assertTrue(Email.isValidEmail("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX@YY.com")); //total max 50 chars
+        assertTrue(Email.isValidEmail("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX@YY.com")); // total max 50 chars
     }
 
     @Test
@@ -101,5 +101,61 @@ public class EmailTest {
         assertTrue(Email.isValidEmail(e.value));
         // verify exactly empty
         // assertEquals("", e.value);
+    }
+
+    // New tests for subdomains, boundaries, and label rules
+
+    @Test
+    public void isValidEmail_subdomainsAllowed() {
+        assertTrue(Email.isValidEmail("a@aa.com"));
+        assertTrue(Email.isValidEmail("bob@sales.example.com"));
+        assertTrue(Email.isValidEmail("user@a.aa.com")); // single-letter subdomain allowed, last label >= 2
+    }
+
+    @Test
+    public void isValidEmail_lastLabelLengthConstraint() {
+        // Now allowed: last label before TLD can be 1 character
+        assertTrue(Email.isValidEmail("u@b.a.com"));
+        assertTrue(Email.isValidEmail("u@b.aa.com"));
+    }
+
+    @Test
+    public void isValidEmail_consecutiveDotsInDomain_invalid() {
+        assertFalse(Email.isValidEmail("a@aa..com")); // empty label between dots
+        assertFalse(Email.isValidEmail("a@.aa.com")); // starts with dot label
+        assertFalse(Email.isValidEmail("a@aa.com.")); // ends with dot
+    }
+
+    @Test
+    public void isValidEmail_uppercaseDomain_valid() {
+        assertTrue(Email.isValidEmail("a@EXAMPLE.com"));
+        assertTrue(Email.isValidEmail("a@SALES.EXAMPLE.com"));
+        assertTrue(Email.isValidEmail("a@EXAMPLE.COM"));
+        assertTrue(Email.isValidEmail("a@Sales.Example.COM"));
+        assertTrue(Email.isValidEmail("X@YY.COM"));
+        // New: .sg accepted (case-insensitive)
+        assertTrue(Email.isValidEmail("a@example.sg"));
+        assertTrue(Email.isValidEmail("a@EXAMPLE.SG"));
+        assertTrue(Email.isValidEmail("user@sales.example.SG"));
+    }
+
+    @Test
+    public void isValidEmail_lengthBoundaryWithSubdomain() {
+        // Build an address with subdomain "sales.example.com"
+        String domain = "sales.example.com"; // length = 17
+        String suffix = "@" + domain; // length = 18
+        int localLen = 50 - suffix.length(); // local + '@domain' == 50
+        String exact = "a".repeat(localLen) + suffix;
+        assertTrue(Email.isValidEmail(exact)); // exactly 50
+
+        String over = "a".repeat(localLen + 1) + suffix;
+        assertFalse(Email.isValidEmail(over)); // 51
+    }
+
+    @Test
+    public void isValidEmail_whitespaceCharacters_invalid() {
+        assertFalse(Email.isValidEmail("a@aa.com\n"));
+        assertFalse(Email.isValidEmail("\ta@aa.com"));
+        assertFalse(Email.isValidEmail("a@ a.com"));
     }
 }

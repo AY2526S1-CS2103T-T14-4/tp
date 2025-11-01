@@ -254,4 +254,31 @@ public class EditCommandParserTest {
         String userInput = " i/" + targetIndex.getOneBased() + " " + PREFIX_ADDRESS + longAddress;
         assertParseFailure(parser, userInput, Address.MESSAGE_CONSTRAINTS);
     }
+
+    @Test
+    public void parse_validSubdomainEmail_success() {
+        Index targetIndex = INDEX_FIRST_PERSON;
+        String userInput = " i/" + targetIndex.getOneBased() + " e/amy@sales.example.com";
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withEmail("amy@sales.example.com").build();
+        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_validUppercaseTld_success() {
+        Index targetIndex = INDEX_FIRST_PERSON;
+        String userInput = " i/" + targetIndex.getOneBased() + " e/amy@example.COM";
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withEmail("amy@example.COM").build();
+        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_validSgTld_success() {
+        Index targetIndex = INDEX_FIRST_PERSON;
+        String userInput = " i/" + targetIndex.getOneBased() + " e/amy@example.sg";
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withEmail("amy@example.sg").build();
+        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
 }

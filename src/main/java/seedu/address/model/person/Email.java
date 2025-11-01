@@ -14,14 +14,11 @@ public class Email {
           + "1. The email may be empty (\"\").\n"
           + "2. If provided, the entire email must be at most 50 characters long.\n"
           + "3. The local-part must contain only letters and digits (A–Z, a–z, 0–9) and be at least 1 character long.\n"
-          + "4. The domain is composed of dot-separated labels containing only letters (A–Z, a–z).\n"
+          + "4. The domain may be composed of dot-separated labels containing only letters (A–Z, a–z).\n"
           + "The domain must:\n"
-          + "    - end with a label of at least 2 letters followed by '.com'\n"
+          + "    - end with a label of at least 1 letter\n"
           + "    - have each domain label start and end with a letter\n"
-          + "    - contain only letters in each label (no digits, underscores, hyphens, or other symbols). \n"
-          + "5. The domain must be a single label of letters (A–Z, a–z) of length ≥ 2, followed by '.com' "
-          + "(e.g., example.com). Subdomains like 'sales.example.com' are not allowed.";
-    // ===== Regex parts (minimal changes, same overall structure) =====
+          + "    - contain only letters in each label (no digits, underscores, hyphens, or other symbols).";
 
     // Length limit lookahead for the non-empty alternative
     private static final String LENGTH_LIMIT_LOOKAHEAD = "(?=.{1,50}$)";
@@ -30,10 +27,8 @@ public class Email {
     private static final String ALPHANUMERIC_LOCAL = "[A-Za-z0-9]+";
     private static final String LOCAL_PART_REGEX = ALPHANUMERIC_LOCAL;
 
-    // Domain: a single label of letters (at least 2), then ".com" (no subdomains)
-    private static final String DOMAIN_REGEX = "[A-Za-z]{2,}\\.com";
+    private static final String DOMAIN_REGEX = "(?:[A-Za-z]+\\.)*[A-Za-z]+";
 
-    // Full validation: allow empty string OR enforce length and local@domain(.com)
     public static final String VALIDATION_REGEX =
             "^(?:$|" + LENGTH_LIMIT_LOOKAHEAD + LOCAL_PART_REGEX + "@" + DOMAIN_REGEX + ")$";
 
@@ -46,8 +41,8 @@ public class Email {
      */
     public Email(String email) {
         requireNonNull(email);
-        checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
-        value = email;
+        checkArgument(isValidEmail(email.toLowerCase()), MESSAGE_CONSTRAINTS);
+        value = email.toLowerCase();
     }
 
     /**
@@ -76,7 +71,6 @@ public class Email {
             return true;
         }
 
-        // instanceof handles nulls
         if (!(other instanceof Email)) {
             return false;
         }
