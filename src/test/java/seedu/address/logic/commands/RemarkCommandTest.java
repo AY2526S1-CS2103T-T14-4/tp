@@ -118,6 +118,27 @@ public class RemarkCommandTest {
     }
 
     @Test
+    public void execute_removeWhenAlreadyEmpty_returnsNoRemarkToRemove() {
+        // Arrange: ensure the target person already has an empty remark
+        Person first = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person alreadyEmpty = new PersonBuilder(first).withRemark("").build();
+        model.setPerson(first, alreadyEmpty);
+
+        // Act: run a remove (isAppend = false, remark = "")
+        RemarkCommand cmd = new RemarkCommand(INDEX_FIRST_PERSON, new Remark(""), /*isAppend=*/false);
+
+        // Expect: MESSAGE_NO_REMARK_TO_REMOVE and no change to remark
+        String expectedMessage = String.format(
+                RemarkCommand.MESSAGE_NO_REMARK_TO_REMOVE,
+                Messages.format(alreadyEmpty));
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(alreadyEmpty, alreadyEmpty); // no-op replacement to mirror command flow
+
+        assertCommandSuccess(cmd, model, expectedMessage, expectedModel);
+    }
+
+    @Test
     public void execute_replaceWhenExistingNonEmptyIncludesRemarkInMessage_success() {
         // Person initially with a non-empty remark ("old")
         Person first = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
