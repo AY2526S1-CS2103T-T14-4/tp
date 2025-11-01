@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
@@ -280,4 +281,27 @@ public class RemarkCommandTest {
 
         assertCommandFailure(cmd, model, Remark.MESSAGE_CONSTRAINTS);
     }
+
+    @Test
+    public void execute_removeExistingRemark_returnsDeleteSuccessMessage() throws Exception {
+        // Model with one person who HAS a remark
+        Person personWithRemark = new PersonBuilder().withRemark("needs follow-up").build();
+        Model model = new ModelManager(new AddressBook(), new UserPrefs());
+        model.addPerson(personWithRemark);
+
+        // Build what the edited person will look like after removal (empty remark)
+        Person editedPerson = new PersonBuilder(personWithRemark).withRemark("").build();
+        String expectedMsg = String.format(
+                RemarkCommand.MESSAGE_DELETE_REMARK_SUCCESS,
+                Messages.format(editedPerson)
+        );
+
+        // User command: not append, empty remark -> remove
+        RemarkCommand cmd = new RemarkCommand(Index.fromOneBased(1), new Remark(""), /* isAppend */ false);
+
+        CommandResult result = cmd.execute(model);
+
+        assertEquals(expectedMsg, result.getFeedbackToUser());
+    }
+
 }
