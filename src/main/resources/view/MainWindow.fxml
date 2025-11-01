@@ -38,7 +38,7 @@
           <Label text="-ElderRing-" />
         </StackPane>
 
-        <ScrollPane fitToWidth="true" fitToHeight="true" VBox.vgrow="ALWAYS" vbarPolicy="ALWAYS">
+        <ScrollPane fx:id="personListScrollPane" fitToWidth="true" fitToHeight="true" VBox.vgrow="ALWAYS" vbarPolicy="ALWAYS">
           <VBox fx:id="personList" minWidth="340" prefWidth="340" prefHeight="400"
               styleClass="pane-with-border">
             <padding>
