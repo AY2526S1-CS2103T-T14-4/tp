@@ -494,7 +494,11 @@ Format: `exit`
 
 ElderRing data is automatically saved in the hard disk after any command that modifies the data. There is no need for manual saving.
 
-<br>
+<box type="info" seamless>
+
+The application supports up to **250 entries** to maintain optimal performance while meeting the operational needs of volunteers who typically manage a manageable number of senior contacts.
+
+</box>
 
 ### Editing the data file
 
@@ -508,9 +512,9 @@ ElderRing data are automatically saved as a JSON file `[JAR file location]/data/
 * Adding any of the prefix used in this application may cause unintended behaviors. 
 
 **Data validation during loading**
-* **Invalid entries**: ElderRing will skip entries missing required fields (name, phone, or address).
+* **Invalid entries**:  Entries must contain `name`, `phone`, and `address` fields. Entries missing any required field are skipped.
 * **Duplicate entries**: Contacts with identical names and phone numbers are automatically removed.
-* **Optional fields**: Missing optional fields are auto-filled with default values.
+* **Optional fields**: Missing optional fields (`email`, `remark`, `tags`) are auto-filled with default values (empty string for email/remark, empty array for tags).
 
 **Tip:** Always back up the file before editing.
 
