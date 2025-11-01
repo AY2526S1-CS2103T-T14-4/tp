@@ -73,7 +73,7 @@ public class DeleteCommand extends Command {
             return deleteByIndex(model, lastShownList);
         }
 
-        Person personToDelete = getPersonByPhoneAndName(lastShownList);
+        Person personToDelete = getPersonByPhoneAndName(model.getFullPersonList());
         if (personToDelete != null) {
             return deletePersonToDelete(model, personToDelete);
         }

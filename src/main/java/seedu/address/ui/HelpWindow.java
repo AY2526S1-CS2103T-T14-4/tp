@@ -68,6 +68,10 @@ public class HelpWindow extends UiPart<Stage> {
         getRoot().centerOnScreen();
     }
 
+    public void unminimize() {
+        getRoot().setIconified(false);
+    }
+
     /**
      * Returns true if the help window is currently being shown.
      */
