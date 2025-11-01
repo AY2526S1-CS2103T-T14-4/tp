@@ -27,7 +27,7 @@ public class RemarkCommandParser implements Parser<RemarkCommand> {
         requireNonNull(args);
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
-                PREFIX_INDEX, PREFIX_REMARK, PREFIX_REMOVE, PREFIX_APPEND);
+            PREFIX_INDEX, PREFIX_REMARK, PREFIX_REMOVE, PREFIX_APPEND);
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_INDEX, PREFIX_REMARK, PREFIX_REMOVE, PREFIX_APPEND);
 
