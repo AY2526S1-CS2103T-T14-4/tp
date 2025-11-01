@@ -46,8 +46,9 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_clear() throws Exception {
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
+        assertTrue(parser.parseCommand("clear --removeall") instanceof ClearCommand);
+        assertThrows(ParseException.class, () -> parser.parseCommand("clear"));
+        assertThrows(ParseException.class, () -> parser.parseCommand("clear 3"));
     }
 
     @Test
