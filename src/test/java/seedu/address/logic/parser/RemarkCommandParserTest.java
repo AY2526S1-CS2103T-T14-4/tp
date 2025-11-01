@@ -33,6 +33,13 @@ public class RemarkCommandParserTest {
         assertParseSuccess(parser, userInput, expected);
     }
 
+    @Test
+    public void parse_trimsRemarkAndAllowsEmpty_success() {
+        // trailing/leading spaces around remark should be trimmed
+        assertParseSuccess(parser, " i/2 r/   hello world   ",
+                new RemarkCommand(Index.fromOneBased(2), new Remark("hello world"), /*isEdit*/ false));
+    }
+
     // ========== Failure cases ==========
 
     @Test
@@ -40,6 +47,13 @@ public class RemarkCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemarkCommand.MESSAGE_USAGE);
         assertParseFailure(parser, "", expectedMessage);
         assertParseFailure(parser, RemarkCommand.COMMAND_WORD, expectedMessage);
+    }
+
+    @Test
+    public void parse_bothRemarkAndAppendSpecified_failure() {
+        String input = " i/3 r/test ap/test";
+        String expectedMessage = "Specify exactly one of r/REMARK, ap/APPEND_TEXT, or --remove.";
+        assertParseFailure(parser, input, expectedMessage);
     }
 
     @Test
