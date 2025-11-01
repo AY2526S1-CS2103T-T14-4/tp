@@ -192,14 +192,26 @@ public class AddCommandParserTest {
                 + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
 
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + " e/bob@example.org " + ADDRESS_DESC_BOB,
-                Email.MESSAGE_CONSTRAINTS); // non-.com TLD
+        // Removed: .org is now valid
+        // assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + " e/bob@example.org " + ADDRESS_DESC_BOB,
+        //         Email.MESSAGE_CONSTRAINTS);
 
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + " e/bob@ex4mple.com " + ADDRESS_DESC_BOB,
                 Email.MESSAGE_CONSTRAINTS); // digits in domain label
 
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + " e/b.ob@aa.com " + ADDRESS_DESC_BOB,
                 Email.MESSAGE_CONSTRAINTS); // symbol in local part (only letters/digits allowed)
+    }
+
+    @Test
+    public void parse_validOtherTld_success() {
+        Person expected = new PersonBuilder(BOB)
+                .withEmail("bob@example.org")
+                .withTags()
+                .build();
+        assertParseSuccess(parser,
+                NAME_DESC_BOB + PHONE_DESC_BOB + " e/bob@example.org" + ADDRESS_DESC_BOB,
+                new AddCommand(expected));
     }
 
     @Test
@@ -216,5 +228,38 @@ public class AddCommandParserTest {
         assertParseFailure(parser,
                 NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + " " + PREFIX_ADDRESS + longAddress,
                 Address.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_validSubdomainEmail_success() {
+        Person expected = new PersonBuilder(BOB)
+                .withEmail("bob@sales.example.com")
+                .withTags()
+                .build();
+        assertParseSuccess(parser,
+                NAME_DESC_BOB + PHONE_DESC_BOB + " e/bob@sales.example.com" + ADDRESS_DESC_BOB,
+                new AddCommand(expected));
+    }
+
+    @Test
+    public void parse_validUppercaseTld_success() {
+        Person expected = new PersonBuilder(BOB)
+                .withEmail("bob@example.COM")
+                .withTags()
+                .build();
+        assertParseSuccess(parser,
+                NAME_DESC_BOB + PHONE_DESC_BOB + " e/bob@example.COM" + ADDRESS_DESC_BOB,
+                new AddCommand(expected));
+    }
+
+    @Test
+    public void parse_validSgTld_success() {
+        Person expected = new PersonBuilder(BOB)
+                .withEmail("bob@example.sg")
+                .withTags()
+                .build();
+        assertParseSuccess(parser,
+                NAME_DESC_BOB + PHONE_DESC_BOB + " e/bob@example.sg" + ADDRESS_DESC_BOB,
+                new AddCommand(expected));
     }
 }

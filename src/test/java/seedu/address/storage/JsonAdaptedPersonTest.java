@@ -228,4 +228,32 @@ public class JsonAdaptedPersonTest {
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
+
+    @Test
+    public void toModelType_validSubdomainEmail_retained() throws Exception {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, "john@sales.example.com",
+                        VALID_ADDRESS, VALID_REMARK, VALID_TAGS);
+        Person modelPerson = person.toModelType();
+        assertEquals("john@sales.example.com", modelPerson.getEmail().value);
+    }
+
+    @Test
+    public void toModelType_validUppercaseTld_retained() throws Exception {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, "john@example.COM",
+                        VALID_ADDRESS, VALID_REMARK, VALID_TAGS);
+        Person modelPerson = person.toModelType();
+        // Email stored in lowercase
+        assertEquals("john@example.com", modelPerson.getEmail().value);
+    }
+
+    @Test
+    public void toModelType_validSgTld_retained() throws Exception {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, "john@example.sg",
+                        VALID_ADDRESS, VALID_REMARK, VALID_TAGS);
+        Person modelPerson = person.toModelType();
+        assertEquals("john@example.sg", modelPerson.getEmail().value);
+    }
 }
