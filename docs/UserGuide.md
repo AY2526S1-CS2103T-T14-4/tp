@@ -131,6 +131,23 @@ Typing **`help`** and pressing Enter will open the help window.
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Parameters
+
+This section covers the different parameters in ElderRing and their respective constraints.
+
+| Parameter      | Description                                   | Constraints                                                                                                                                                                                                  | Example                                                                                                      |
+|----------------|-----------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
+| `NAME`         | Senior’s name                                 | <ul><li>Only letters and spaces are permitted.</li><li>This parameter cannot be left blank.</li><li>Maximum length of 66 characters.</li></ul>                                                               | :fa-solid-check: <br>`John Doe`<br>                                                                          |
+| `PHONE_NUMBER` | Senior’s phone number                         | <ul><li>Only numbers are allowed.</li><li>This parameter cannot be left blank.</li><li>Only accepts numbers that are 8-digits.</li><li>Only accepts numbers that start with 6, 8, 9.</li></ul>               | :fa-solid-check: <br>`91234567`<br>                                                                          |
+| `ADDRESS`      | Senior’s residential address                  | <ul><li>Maximum length of 100 characters excluding spaces.</li> </ul>                                                                                                                                        | :fa-solid-check: <br>`Blk 41 Telok Blangah Way #07-436`<br>                                                  |
+| `EMAIL`        | Senior’s email address                        | <ul><li>Emails should be in the format `local-part@domain`.</li><li>`local-part` must only contain letters and digits</li><li>`domain` must end in `.com`</li><li>Maximum length of 50 characters.</li></ul> | :fa-solid-check: <br>`johndoe123@gmail.com`<br>                                                              |
+| `TAG`          | Category/label applicable to seniors          | <ul>No constraints </ul>                                                                                                                                                                                     | :fa-solid-check: <br>`hard-of-hearing` <br>                                                                  |
+| `REMARK`       | Additional notes applicable to seniors        | <ul><li>Maximum length of 2500 characters.</li> </ul>                                                                                                                                                        | :fa-solid-check: <br>`List of senior’s medications: Alprax (daily), Alprazolam (once every 3 days), ...`<br> |
+| `INDEX`        | The index shown in the displayed seniors list | <ul><li>Only whole numbers are allowed.</li><li>Number must be a positive number.</li><li>Number must be smaller than the total number of entries.</li></ul>                                                 | :fa-solid-check: <br>`1`<br>                                                                                 |
+<br>
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Features
 
 This section covers the list of commands and their usage. If you are experienced with the commands, you can refer to the [Command Summary](#command-summary) below for quicker reference.
@@ -182,22 +199,6 @@ This section covers the list of commands and their usage. If you are experienced
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 
 </box>
-
-### Parameters
-
-This section covers the different parameters in ElderRing and their respective constraints.
-
-| Parameter      | Description                                   | Constraints                                                                                                                                                                                                  | Example                                                                                                      |
-|----------------|-----------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
-| `NAME`         | Senior’s name                                 | <ul><li>Only letters and spaces are permitted.</li><li>This parameter cannot be left blank.</li><li>Maximum length of 66 characters.</li></ul>                                                               | :fa-solid-check: <br>`John Doe`<br>                                                                          |
-| `PHONE_NUMBER` | Senior’s phone number                         | <ul><li>Only numbers are allowed.</li><li>This parameter cannot be left blank.</li><li>Only accepts numbers that are 8-digits.</li><li>Only accepts numbers that start with 6, 8, 9.</li></ul>               | :fa-solid-check: <br>`91234567`<br>                                                                          |
-| `ADDRESS`      | Senior’s residential address                  | <ul><li>Maximum length of 100 characters excluding spaces.</li> </ul>                                                                                                                                        | :fa-solid-check: <br>`Blk 41 Telok Blangah Way #07-436`<br>                                                  |
-| `EMAIL`        | Senior’s email address                        | <ul><li>Emails should be in the format `local-part@domain`.</li><li>`local-part` must only contain letters and digits</li><li>`domain` must end in `.com`</li><li>Maximum length of 50 characters.</li></ul> | :fa-solid-check: <br>`johndoe123@gmail.com`<br>                                                              |
-| `TAG`          | Category/label applicable to seniors          | <ul>No constraints </ul>                                                                                                                                                                                     | :fa-solid-check: <br>`hard-of-hearing` <br>                                                                  |
-| `REMARK`       | Additional notes applicable to seniors        | <ul><li>Maximum length of 2500 characters.</li> </ul>                                                                                                                                                        | :fa-solid-check: <br>`List of senior’s medications: Alprax (daily), Alprazolam (once every 3 days), ...`<br> |
-| `INDEX`        | The index shown in the displayed seniors list | <ul><li>Only whole numbers are allowed.</li><li>Number must be a positive number.</li><li>Number must be smaller than the total number of entries.</li></ul>                                                 | :fa-solid-check: <br>`1`<br>                                                                                 |
-
-<br>
 
 ### Viewing help : `help`
 
