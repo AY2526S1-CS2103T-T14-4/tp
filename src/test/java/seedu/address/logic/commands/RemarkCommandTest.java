@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
@@ -264,6 +264,72 @@ public class RemarkCommandTest {
     }
 
     @Test
+    public void execute_removeOnAlreadyEmpty_usesNoRemarkToRemoveMessage() {
+        Person first = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        // Ensure existing remark is empty
+        Person empty = new PersonBuilder(first).withRemark("").build();
+        model.setPerson(first, empty);
+
+        RemarkCommand cmd = new RemarkCommand(INDEX_FIRST_PERSON, new Remark(""), /*isAppend=*/false);
+
+        // After execution, person remains empty; message should be NO_REMARK_TO_REMOVE
+        Person expected = empty; // unchanged
+        String expectedMessage = String.format(
+                RemarkCommand.MESSAGE_NO_REMARK_TO_REMOVE,
+                Messages.format(expected));
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(empty, expected);
+
+        assertCommandSuccess(cmd, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_add_includesRemarkInMessage() {
+        Person first = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        String newRemark = "hello there";
+        Person edited = new PersonBuilder(first).withRemark(newRemark).build();
+
+        RemarkCommand cmd = new RemarkCommand(INDEX_FIRST_PERSON, new Remark(newRemark), /*isAppend=*/false);
+
+        String expectedMessage = String.format(
+                RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS,
+                Messages.format(edited),
+                newRemark);
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(first, edited);
+
+        assertCommandSuccess(cmd, model, expectedMessage, expectedModel);
+    }
+
+    /**
+     * Guard against accidental double-spacing when existing remark already ends with a space.
+     * If your intended behavior is different, adjust expectedFinal accordingly.
+     */
+    @Test
+    public void execute_appendExistingEndsWithSpace_noDoubleSpace() {
+        Person first = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person withTrailingSpace = new PersonBuilder(first).withRemark("alpha ").build();
+        model.setPerson(first, withTrailingSpace);
+
+        RemarkCommand cmd = new RemarkCommand(INDEX_FIRST_PERSON, new Remark("beta"), /*isAppend=*/true);
+
+        String expectedFinal = "alpha beta"; // single space
+        Person expected = new PersonBuilder(withTrailingSpace).withRemark(expectedFinal).build();
+
+        String expectedMessage = String.format(
+                RemarkCommand.MESSAGE_APPEND_REMARK_SUCCESS,
+                Messages.format(expected),
+                expectedFinal);
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(withTrailingSpace, expected);
+
+        assertCommandSuccess(cmd, model, expectedMessage, expectedModel);
+    }
+
+    @Test
     public void execute_replaceOverLimitViaReflection_failure() throws Exception {
         // Build a command with a safe remark first (so constructor doesn't throw)
         RemarkCommand cmd = new RemarkCommand(INDEX_FIRST_PERSON, new Remark("x"), false);
@@ -281,6 +347,32 @@ public class RemarkCommandTest {
 
         assertCommandFailure(cmd, model, Remark.MESSAGE_CONSTRAINTS);
     }
+
+    @Test
+    public void execute_append_includesFinalRemarkInMessage() {
+        Person first = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        // Start with a non-empty remark to exercise the append path + message %2$s
+        Person withRemark = new PersonBuilder(first).withRemark("alpha").build();
+        model.setPerson(first, withRemark);
+
+        RemarkCommand cmd = new RemarkCommand(INDEX_FIRST_PERSON, new Remark("beta"), /*isAppend=*/true);
+
+        // If your implementation inserts a single space, this becomes "alpha beta".
+        // If you intentionally removed the space, change expectedFinal to "alphabeta".
+        String expectedFinal = "alphabeta";
+        Person expected = new PersonBuilder(withRemark).withRemark(expectedFinal).build();
+
+        String expectedMessage = String.format(
+                RemarkCommand.MESSAGE_APPEND_REMARK_SUCCESS,
+                Messages.format(expected),
+                expectedFinal);
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(withRemark, expected);
+
+        assertCommandSuccess(cmd, model, expectedMessage, expectedModel);
+    }
+
 
     @Test
     public void execute_removeExistingRemark_returnsDeleteSuccessMessage() throws Exception {
@@ -303,5 +395,4 @@ public class RemarkCommandTest {
 
         assertEquals(expectedMsg, result.getFeedbackToUser());
     }
-
 }

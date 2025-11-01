@@ -197,7 +197,7 @@ This section covers the list of commands and their usage. If you are experienced
   </box>
 
 * Parameters can be in any order.<br>
-  
+
   <box>
 
   e.g., if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -271,7 +271,7 @@ Format: `edit i/INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]`
 
 <box type="info" seamless>
 
-* Edits the senior at the specified `INDEX`. The index refers to the index number shown in the displayed senior list. 
+* Edits the senior at the specified `INDEX`. The index refers to the index number shown in the displayed senior list.
 The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * This feature updates existing values to the input values.
@@ -324,7 +324,7 @@ Format: `list`
 
 <box type="tip" seamless>
 
-If texts end with `...`, there is more information hidden. Click on the `...` to expand and view the full information 
+If texts end with `...`, there is more information hidden. Click on the `...` to expand and view the full information
 (not applicable to long tags). You can also click on the `...` to hide it again.
 ![expand](images/expandUi.png)
 
@@ -398,8 +398,8 @@ Format: `remark i/INDEX r/REMARK` or `remark i/INDEX ap/APPEND_TEXT` or `remark 
 
 With exactly one of:
 
-2. `REMARK`: Mandatory.  
-3. `APPEND_TEXT`: Mandatory.  
+2. `REMARK`: Mandatory.
+3. `APPEND_TEXT`: Mandatory.
 4. `--remove`: Mandatory.
 
 Examples:
@@ -421,7 +421,7 @@ Tip: Tagging can be used as a categorisation feature in conjunction with the fil
 
 </box>
 
-Format: `tag i/INDEX t/TAG [ --remove]` or `tag n/NAME p/PHONE_NUMBER t/TAG [ --remove]` 
+Format: `tag i/INDEX t/TAG [ --remove]` or `tag n/NAME p/PHONE_NUMBER t/TAG [ --remove]`
 or `tag i/INDEX t/TAG --remove` or `tag n/NAME p/PHONE_NUMBER t/TAG --remove`
 
 #### Parameters:
@@ -509,7 +509,7 @@ ElderRing data are automatically saved as a JSON file `[JAR file location]/data/
 **Warning:**
 * If the data file contains invalid formatting (broken JSON, parsing errors, file permission issues, etc.), ElderRing will discard all data and start with an empty data file.
 * Certain edits may cause unexpected behavior. Edit the data file only if you are confident in maintaining the correct format.
-* Adding any of the prefix used in this application may cause unintended behaviors. 
+* Adding any of the prefix used in this application may cause unintended behaviors.
 
 **Data validation during loading**
 * **Invalid entries**:  Entries must contain `name`, `phone`, and `address` fields. Entries missing any required field are skipped.
@@ -532,7 +532,7 @@ ElderRing data are automatically saved as a JSON file `[JAR file location]/data/
 ## Known issues
 
 1. **When using multiple screens**, the GUI will open off-screen if you move the application to a secondary screen, and later switch to using only the primary screen. <br><br>
-The remedy is to delete the `preferences.json` file created by the application (in the same folder as the JAR file) before running the application again. 
+The remedy is to delete the `preferences.json` file created by the application (in the same folder as the JAR file) before running the application again.
 <br><br>
 
 2. **If you minimize the Help Window** and then run the `help` command again (or use the `Help` menu or the keyboard shortcut `F1`), the original Help Window will remain minimized and no new Help Window will appear. <br><br>
