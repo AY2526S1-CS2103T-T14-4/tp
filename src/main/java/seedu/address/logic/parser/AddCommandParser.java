@@ -51,17 +51,6 @@ public class AddCommandParser implements Parser<AddCommand> {
                 .filter(tag -> !tag.tagName.trim().isEmpty())
                 .collect(Collectors.toSet());
 
-        Set<Tag> tagNameList = tagList.stream()
-                .map(x -> x.tagName)
-                .map(String::trim)
-                .filter(tagName -> !tagName.isEmpty())
-                .map(Tag::new)
-                .collect(Collectors.toSet());
-
-        if (tagNameList.isEmpty()) {
-            throw new ParseException("At least one non-empty tag must be provided.");
-        }
-
         boolean emailIsPresent = arePrefixesPresent(argMultimap, PREFIX_EMAIL);
         Email email;
         if (emailIsPresent) {
