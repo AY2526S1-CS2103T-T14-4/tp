@@ -65,7 +65,7 @@ public class PersonCard extends UiPart<Region> {
         remark.setText(truncate(person.getRemark().value, MAX_REMARK_LENGTH));
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach((tag) -> { 
+                .forEach((tag) -> {
                     Label tagLabel = new Label(truncate(tag.tagName, MAX_TAG_LENGTH));
                     tags.getChildren().add(tagLabel);
                     setupExpandableField(tagLabel, tag.tagName, MAX_TAG_LENGTH);
