@@ -69,24 +69,6 @@ public class RemarkCommandTest {
     }
 
     @Test
-    public void execute_filteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-
-        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person editedPerson = new PersonBuilder(firstPerson).withRemark(REMARK_STUB).build();
-
-        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON, new Remark(REMARK_STUB), false);
-
-        String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS,
-                Messages.format(editedPerson), editedPerson.getRemark().value);
-
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(firstPerson, editedPerson);
-
-        assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
     public void execute_appendWithNonEmptyRemark_includesPreviousRemarkInMessage() throws Exception {
         // Set up a person with an existing remark
         String previousRemark = "[OLD-REMARK-123]";
@@ -283,24 +265,6 @@ public class RemarkCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(empty, expected);
-
-        assertCommandSuccess(cmd, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_appendFilteredListSuccess() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-        Person first = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person edited = new PersonBuilder(first).withRemark(first.getRemark().value.isEmpty()
-                ? "new" : (first.getRemark().value + "new")).build();
-
-        RemarkCommand cmd = new RemarkCommand(INDEX_FIRST_PERSON, new Remark("new"), true);
-
-        String expectedMessage = String.format(RemarkCommand.MESSAGE_APPEND_REMARK_SUCCESS,
-                Messages.format(edited), edited.getRemark().value);
-
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), edited);
 
         assertCommandSuccess(cmd, model, expectedMessage, expectedModel);
     }

@@ -393,8 +393,8 @@ Use case ends.
 
       Use case ends.
 
-* 3a. The new details would duplicate an existing senior.
-    * 3a1. ElderRing shows a duplicate error.
+* 2c. The new details would duplicate an existing senior.
+    * 2c1. ElderRing shows a duplicate error.
 
       Use case ends.
 
@@ -414,7 +414,7 @@ Use case ends.
       Use case ends.
 
 * 2a. No matches are found.
-    * 2a1. ElderRing shows “0 persons listed”.
+    * 2a1. ElderRing shows “0 seniors listed”.
 
       Use case ends.
 
@@ -439,7 +439,7 @@ Use case ends.
 **Use case: Tag a senior**
 
 **MSS**
-1. User identifies the target senior (by index, or by name & phone, or by address)
+1. User identifies the target senior (by index, or by name & phone)
 2. User requests to add a tag to the target senior
 3. ElderRing adds the tag to the senior
 
@@ -495,7 +495,7 @@ Use case ends.
 
 **Extensions**
 * 2a. The address book is empty.
-    * 2a1. ElderRing shows an empty list message.
+    * 2a1. ElderRing shows an empty list.
 
       Use case ends.
 
@@ -506,7 +506,7 @@ Use case ends.
 2.  Should be able to hold up to 1000 seniors without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  Response time should be less than 2 seconds.
-5.  The data should be stored locally in a text file.
+5.  The data should be stored locally in a JSON file.
 6.  ElderRing should be able to work without requiring an installer.
 
 ### Glossary
