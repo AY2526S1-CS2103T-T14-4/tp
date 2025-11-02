@@ -27,7 +27,7 @@
     * [Adding notes to a senior: `remark`](#adding-notes-to-a-senior-remark)
     * [Tagging a senior: `tag`](#tagging-a-senior-tag)
     * [Filtering entries: `filter`](#filtering-entries-filter)
-    * [Clearing all entries: `clear`](#clearing-all-entries-clear)
+    * [Clearing all entries: `clear --removeall`](#clearing-all-entries-clear)
     * [Exiting the program: `exit`](#exiting-the-program-exit)
     * [Saving the data](#saving-the-data)
     * [Editing the data file](#editing-the-data-file)
@@ -130,7 +130,7 @@ Typing **`help`** and pressing Enter will open the help window.
 
    * `delete i/3` : Deletes the 3rd seniors shown in the current list.
 
-   * `clear` : Deletes all seniors.
+   * `clear --removeall` : Deletes all seniors.
 
    * `exit` : Exits the app.
 
@@ -144,10 +144,10 @@ This section covers the different parameters in ElderRing and their respective c
 
 | Parameter      | Description                                   | Constraints                                                                                                                                                                                                                                                                                                                | Example                                                                                                      |
 |----------------|-----------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
-| `NAME`         | Senior’s name                                 | <ul><li>Only letters and spaces are permitted.</li><li>This parameter cannot be left blank.</li><li>Maximum length of 66 characters.</li><li>If you need to include terms like "s/o" or "d/o" in a name, please use alternatives such as "son of" or "s o" instead.</li><li>Only english characters are allowed.</li></ul> | :fa-solid-check: <br>`John Doe`<br>                                                                          |
-| `PHONE_NUMBER` | Senior’s phone number                         | <ul><li>Only numbers are allowed.</li><li>This parameter cannot be left blank.</li><li>Only accepts numbers that are 8-digits.</li><li>Only accepts numbers that start with 6, 8, 9.</li></ul>                                                                                                                             | :fa-solid-check: <br>`91234567`<br>                                                                          |
-| `ADDRESS`      | Senior’s residential address                  | <ul><li>Maximum length of 100 characters excluding spaces.</li> </ul>                                                                                                                                                                                                                                                      | :fa-solid-check: <br>`Blk 41 Telok Blangah Way #07-436`<br>                                                  |
-| `EMAIL`        | Senior’s email address                        | <ul><li>Emails should be in the format `local-part@domain`.</li><li>`local-part` must only contain letters and digits</li><li>`domain` must end in `.com`</li><li>Maximum length of 50 characters.</li></ul>                                                                                                               | :fa-solid-check: <br>`johndoe123@gmail.com`<br>                                                              |
+| `NAME`         | Senior’s name                                 | <ul><li>Only letters and spaces are permitted.</li><li>This parameter cannot be left blank.</li><li>If you need to include terms like "s/o" or "d/o" in a name, please use alternatives such as "son of" or "s o" instead.</li><li>Only english characters are allowed with one space between words.</li><li>Maximum length of 66 characters.</li></ul> | :fa-solid-check: <br>`John Doe`<br>                                                                          |
+| `PHONE_NUMBER` | Senior’s phone number                         | <ul><li>Only numbers are allowed.</li><li>This parameter cannot be left blank.</li><li>Only accepts numbers that start with 6, 8, 9.</li><li>Only accepts numbers that are 8-digits.</li></ul>                                                                                                                             | :fa-solid-check: <br>`91234567`<br>                                                                          |
+| `ADDRESS`      | Senior’s residential address                  | <ul><li>Maximum length of 100 characters.</li> </ul>                                                                                                                                                                                                                                                      | :fa-solid-check: <br>`Blk 41 Telok Blangah Way #07-436`<br>                                                  |
+| `EMAIL`        | Senior’s email address                        | <ul><li>Emails should be in the format `local-part@domain`.</li><li>`local-part` must at least contain one letter or digit.</li><li>`domain` must at least contain one letter.</li><li>Maximum length of 50 characters.</li></ul>                                                                                                               | :fa-solid-check: <br>`johndoe123@gmail.com`<br>                                                              |
 | `TAG`          | Category/label applicable to seniors          | <ul>No constraints </ul>                                                                                                                                                                                                                                                                                                   | :fa-solid-check: <br>`hard-of-hearing` <br>                                                                  |
 | `REMARK`       | Additional notes applicable to seniors        | <ul><li>Maximum length of 2500 characters.</li> </ul>                                                                                                                                                                                                                                                                      | :fa-solid-check: <br>`List of senior’s medications: Alprax (daily), Alprazolam (once every 3 days), ...`<br> |
 | `INDEX`        | The index shown in the displayed seniors list | <ul><li>Only whole numbers are allowed.</li><li>Number must be a positive number.</li><li>The index must refer to a valid entry in the list (i.e., it cannot be out of range).</li></ul>                                                                                                                                   | :fa-solid-check: <br>`1`<br>                                                                                 |
@@ -204,7 +204,7 @@ This section covers the list of commands and their usage. If you are experienced
 
   </box>
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear --removeall`) will be ignored.<br>
 
   <box>
 
@@ -402,6 +402,11 @@ With exactly one of:
 3. `APPEND_TEXT`: Mandatory.
 4. `--remove`: Mandatory.
 
+<box type="info" seamless>
+* Words starting with `ap/` or `r/`, are treated as invalid input.
+
+</box>
+
 Examples:
 * `remark i/10 r/Senior is aggressive`
 * `remark i/10 ap/Followed up on 24 Oct`
@@ -468,11 +473,11 @@ To display the original list of seniors, use the [list](#listing-all-seniors-lis
 
 <br>
 
-### Clearing all entries : `clear`
+### Clearing all entries : `clear --removeall`
 
 Clears all entries from ElderRing.
 
-Format: `clear`
+Format: `clear --removeall`
 
 <box type="warning">
 
@@ -557,5 +562,5 @@ The remedy is to manually restore the minimized Help Window.
 | **[tag (by index)](#tagging-a-senior-tag)**                        | `tag i/INDEX t/TAG`                                                                       | `tag i/1 t/hard-of-hearing`                                                                        |
 | **[tag (by name and phone number)](#tagging-a-senior-tag)**        | `tag n/NAME p/PHONE_NUMBER t/TAG`                                                         | `tag n/John Doe p/91234567 t/hard-of-hearing`                                                      |
 | **[Filter](#filtering-entries-filter)**                            | `filter t/TAG`                                                                            | `filter t/hard-of-hearing`                                                                         |
-| **[Clear](#clearing-all-entries-clear)**                           | `clear`                                                                                   | `clear`                                                                                            |
+| **[Clear --removeall](#clearing-all-entries-clear)**                           | `clear --removeall`                                                                                   | `clear --removeall`                                                                                            |
 | **[Exit](#exiting-the-program-exit)**                              | `exit`                                                                                    | `exit`                                                                                             |
