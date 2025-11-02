@@ -7,7 +7,9 @@
 # ElderRing User Guide
 
 ## Introduction
-**ElderRing** is a **command line (CLI) desktop application** made for **Silver Generation Ambassadors (SGAs)** to better **manage and organise senior clients' information** more efficiently. With simple-to-type commands, seniors' contacts can be managed faster than traditional Graphical User Interface (GUI) applications.
+Welcome to **ElderRing**, a **command line (CLI)** desktop application specially made for **Silver Generation Ambassadors (SGAs)** to better **manage and organise senior clients' information** more efficiently. With simple-to-type commands, seniors' contacts can be managed faster than traditional Graphical User Interface (GUI) applications.
+
+<br>
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -15,8 +17,8 @@
 ## Table of Contents
 * [How to Read This Guide](#how-to-read-this-guide)
 * [Quick Start](#quick-start)
+* [Parameters](#parameters)
 * [Features](#features)
-    * [Parameters](#parameters)
     * [Viewing help: `help`](#viewing-help-help)
     * [Adding a senior: `add`](#adding-a-senior-add)
     * [Editing a senior: `edit`](#editing-a-senior-edit)
@@ -27,7 +29,7 @@
     * [Adding notes to a senior: `remark`](#adding-notes-to-a-senior-remark)
     * [Tagging a senior: `tag`](#tagging-a-senior-tag)
     * [Filtering entries: `filter`](#filtering-entries-filter)
-    * [Clearing all entries: `clear --removeall`](#clearing-all-entries-clear)
+    * [Clearing all entries: `clear`](#clearing-all-entries-clear)
     * [Exiting the program: `exit`](#exiting-the-program-exit)
     * [Saving the data](#saving-the-data)
     * [Editing the data file](#editing-the-data-file)
@@ -40,7 +42,7 @@
 This guide is designed for all SGAs, whether you're just starting out or are already familiar with ElderRing.
 
 If you are **new to ElderRing**:
-- Head to [Quick Start](#quick-start) to learn how to get started
+- Head to [Quick Start](#quick-start) to learn how to get started.
 
 If you have **experience with ElderRing**:
 - Check out the [Command Summary](#command-summary) for a quick overview of the various commands and their usage.
@@ -62,7 +64,7 @@ Tips are displayed as a box with a "**💡**" symbol.
 
 <box type="tip" seamless>
 
-This is an example of a tip!
+This is an example of a tip.
 
 </box>
 
@@ -72,7 +74,7 @@ Warnings are displayed as a box with a "**!**" symbol.
 
 <box type="warning">
 
-This is an example of a warning!
+This is an example of a warning.
 
 </box>
 
@@ -83,8 +85,8 @@ This guide serves as a walkthrough on **how to install ElderRing** and **how to 
 
 <box header=" **By the end of this section, you will:**">
 
-- Have installed **ElderRing** on your computer.
-- Know how to run **ElderRing**.
+- have installed **ElderRing** on your computer.
+- know how to run **ElderRing**.
 
 </box>
 
@@ -95,7 +97,10 @@ This guide serves as a walkthrough on **how to install ElderRing** and **how to 
 
 If you are unsure of how to install Java, follow this [guide](https://www.java.com/en/download/help/download_options.html).
 
-**Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
+## Ensure you have the precise JDK version prescribed based on your following OS:
+**Mac users:**  [Click here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
+**Windows users:**  [Click here](https://se-education.org/guides/tutorials/javaInstallationWindows.html).
+**Linux users:**  [Click here](https://se-education.org/guides/tutorials/javaInstallationLinux.html).
 
 </box>
 
@@ -151,7 +156,6 @@ This section covers the different parameters in ElderRing and their respective c
 | `TAG`          | Category/label applicable to seniors          | <ul>No constraints </ul>                                                                                                                                                                                                                                                                                                   | :fa-solid-check: <br>`hard-of-hearing` <br>                                                                  |
 | `REMARK`       | Additional notes applicable to seniors        | <ul><li>Maximum length of 2500 characters.</li> </ul>                                                                                                                                                                                                                                                                      | :fa-solid-check: <br>`List of senior’s medications: Alprax (daily), Alprazolam (once every 3 days), ...`<br> |
 | `INDEX`        | The index shown in the displayed seniors list | <ul><li>Only whole numbers are allowed.</li><li>Number must be a positive number.</li><li>The index must refer to a valid entry in the list (i.e., it cannot be out of range).</li></ul>                                                                                                                                   | :fa-solid-check: <br>`1`<br>                                                                                 |
-<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -204,7 +208,7 @@ This section covers the list of commands and their usage. If you are experienced
 
   </box>
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear --removeall`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list` and `exit`) will be ignored.<br>
 
   <box>
 
@@ -218,9 +222,10 @@ This section covers the list of commands and their usage. If you are experienced
 
 ### Viewing help : `help`
 
+Shows a message explaining how to access the help page.
+
 ![help popup](images/helpCommand.png)
 
-Shows a message explaining how to access the help page.
 
 Format: `help`
 
@@ -228,9 +233,10 @@ Format: `help`
 
 ### Adding a senior : `add`
 
+Adds a senior to ElderRing.
+
 ![add command](images/addCommand.png)
 
-Adds a senior to ElderRing.
 
 Format: `add n/NAME p/PHONE_NUMBER a/ADDRESS [e/EMAIL] [t/TAG]…​`
 
@@ -364,9 +370,9 @@ Examples:
 
 ### Locating seniors by name : `find`
 
-![find command](images/findCommand.png)
-
 Finds seniors whose names contain any of the input keywords.
+
+![find command](images/findCommand.png)
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -386,9 +392,10 @@ Examples:
 
 ### Adding notes to a senior : `remark`
 
+Adds relevant miscellaneous information to an existing senior. This feature can replace the remark, append to the existing remark, or remove it.
+
 ![remark command](images/remarkCommand.png)
 
-Adds relevant miscellaneous information to an existing senior. This feature can replace the remark, append to the existing remark, or remove it.
 
 Format: `remark i/INDEX r/REMARK` or `remark i/INDEX ap/APPEND_TEXT` or `remark i/INDEX --remove`
 
@@ -403,6 +410,7 @@ With exactly one of:
 4. `--remove`: Mandatory.
 
 <box type="info" seamless>
+
 Words starting with **`ap/`** or **`r/`**, are treated as invalid input.
 
 </box>
@@ -416,9 +424,9 @@ Examples:
 
 ### Tagging a senior : `tag`
 
-![tag command](images/tagCommand.png)
-
 Tags (or untags) the senior at the specified display `INDEX` OR the senior with a matching `NAME` and `PHONE_NUMBER`.
+
+![tag command](images/tagCommand.png)
 
 <box type="tip" seamless>
 
@@ -445,9 +453,10 @@ Examples:
 
 ### Filtering entries : `filter`
 
+Only displays the entries with the input tag.
+
 ![filter command](images/filterCommand.png)
 
-Only displays the entries with the input tag.
 
 <box type="tip" seamless>
 
@@ -473,7 +482,7 @@ To display the original list of seniors, use the [list](#listing-all-seniors-lis
 
 <br>
 
-### Clearing all entries : `clear --removeall`
+### Clearing all entries : `clear`
 
 Clears all entries from ElderRing.
 
@@ -481,7 +490,7 @@ Format: `clear --removeall`
 
 <box type="warning">
 
-**Warning**: Be careful! This command irreversibly deletes ALL entries (this operation cannot be undone).
+**Warning**: Be careful. This command irreversibly deletes ALL entries (this operation cannot be undone).
 
 </box>
 
@@ -540,7 +549,7 @@ ElderRing data are automatically saved as a JSON file `[JAR file location]/data/
 The remedy is to delete the `preferences.json` file created by the application (in the same folder as the JAR file) before running the application again.
 <br><br>
 
-2. **If you minimize the Help Window** and then run the `help` command again (or use the `Help` menu or the keyboard shortcut `F1`), the original Help Window will remain minimized and no new Help Window will appear. <br><br>
+2. **If you minimize the Help Window** and then run the `help` command again (or use the `help` menu or the keyboard shortcut `F1`), the original Help Window will remain minimized and no new Help Window will appear. <br><br>
 The remedy is to manually restore the minimized Help Window.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -561,6 +570,6 @@ The remedy is to manually restore the minimized Help Window.
 | **[remark](#adding-notes-to-a-senior-remark)**                     | `remark i/INDEX r/REMARK` or `remark i/INDEX ap/APPEND_TEXT` or `remark i/INDEX --remove` | `remark i/10 ap/Person is kind`                                                                    |
 | **[tag (by index)](#tagging-a-senior-tag)**                        | `tag i/INDEX t/TAG`                                                                       | `tag i/1 t/hard-of-hearing`                                                                        |
 | **[tag (by name and phone number)](#tagging-a-senior-tag)**        | `tag n/NAME p/PHONE_NUMBER t/TAG`                                                         | `tag n/John Doe p/91234567 t/hard-of-hearing`                                                      |
-| **[Filter](#filtering-entries-filter)**                            | `filter t/TAG`                                                                            | `filter t/hard-of-hearing`                                                                         |
-| **[Clear --removeall](#clearing-all-entries-clear)**                           | `clear --removeall`                                                                                   | `clear --removeall`                                                                                            |
-| **[Exit](#exiting-the-program-exit)**                              | `exit`                                                                                    | `exit`                                                                                             |
+| **[filter](#filtering-entries-filter)**                            | `filter t/TAG`                                                                            | `filter t/hard-of-hearing`                                                                         |
+| **[clear](#clearing-all-entries-clear)**                           | `clear --removeall`                                                                                   | `clear --removeall`                                                                                            |
+| **[exit](#exiting-the-program-exit)**                              | `exit`                                                                                    | `exit`                                                                                             |
