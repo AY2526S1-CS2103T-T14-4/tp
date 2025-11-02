@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -168,6 +169,13 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    @FXML
+    private void handleScroll() {
+        Platform.runLater(() -> {
+            personListScrollPane.setVvalue(1.0);
+        });
+    }
+
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
@@ -192,7 +200,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isScroll()) {
-                personListScrollPane.setVvalue(1.0);
+                handleScroll();
             }
 
             return commandResult;
