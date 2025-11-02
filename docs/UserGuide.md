@@ -116,27 +116,27 @@ Ensure you have the precise JDK version prescribed based on your following OS:
 
 4. Open a command terminal.
 
-5. Change your directory to the folder containing ElderRing.jar
+5. Change your directory to the folder containing `ElderRing.jar` using 
    `cd [path from current position to the folder containing ElderRing.jar]`
 
 6. Run the following command in the terminal to launch the application
    `java -jar ElderRing.jar`
 
-7. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br><br>
+7. A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br><br>
    ![Ui](images/Ui.png)
 
-8. Type the command in the command box (located at the bottom of the window) and press Enter to execute it.
+8. Type a command in the command box (located at the bottom of the window) and press Enter to execute it.
 
 <box type="tip" seamless>
 
-Typing **`help`** and pressing Enter will open the help window.
+Typing **`help`** and pressing Enter opens the help window.
 
 </box>
 
    Some example commands you can try:
    * `list` : Lists all seniors.
-   * `add n/John Doe p/98765432 e/doe@sg.com a/St 9, blk 7, #01-01` : Adds a seniors named `John Doe` to ElderRing.
-   * `delete i/3` : Deletes the 3rd seniors shown in the current list.
+   * `add n/John Doe p/98765432 e/doe@sg.com a/St 9, blk 7, #01-01` : Adds a senior named `John Doe` to ElderRing.
+   * `delete i/3` : Deletes the 3rd senior shown in the current list.
    * `clear --removeall` : Deletes all seniors.
    * `exit` : Exits the app.
 
@@ -152,11 +152,11 @@ This section covers the different parameters in ElderRing and their respective c
 
 | Parameter      | Description                                   | Constraints                                                                                                                                                                                                                                                                                                                | Example                                                                                                      |
 |----------------|-----------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
-| `NAME`         | Senior’s name                                 | <ul><li>Only letters and spaces are permitted.</li><li>This parameter cannot be left blank.</li><li>If you need to include terms like "s/o" or "d/o" in a name, please use alternatives such as "son of" or "s o" instead.</li><li>Only english characters are allowed with one space between words.</li><li>Maximum length of 66 characters.</li></ul> | :fa-solid-check: <br>`John Doe`<br>                                                                          |
-| `PHONE_NUMBER` | Senior’s phone number                         | <ul><li>Only numbers are allowed.</li><li>This parameter cannot be left blank.</li><li>Only accepts numbers that start with 6, 8, 9.</li><li>Only accepts numbers that are 8-digits.</li></ul>                                                                                                                             | :fa-solid-check: <br>`91234567`<br>                                                                          |
+| `NAME`         | Senior’s name                                 | <ul><li>Only letters and spaces are permitted.</li><li>This parameter cannot be left blank.</li><li>If you need to include terms like "s/o" or "d/o" in a name, please use alternatives such as "son of" or "s o" instead.</li><li>Only English letters with single spaces between words are allowed.</li><li>Maximum length of 66 characters.</li></ul> | :fa-solid-check: <br>`John Doe`<br>                                                                          |
+| `PHONE_NUMBER` | Senior’s phone number                         | <ul><li>Only numbers are allowed.</li><li>This parameter cannot be left blank.</li><li>Only accepts numbers that start with 6, 8, 9.</li><li>Only 8-digit numbers are accepted.</li></ul>                                                                                                                             | :fa-solid-check: <br>`91234567`<br>                                                                          |
 | `ADDRESS`      | Senior’s residential address                  | <ul><li>Maximum length of 100 characters.</li> </ul>                                                                                                                                                                                                                                                      | :fa-solid-check: <br>`Blk 41 Telok Blangah Way #07-436`<br>                                                  |
-| `EMAIL`        | Senior’s email address                        | <ul><li>Emails should be in the format `local-part@domain`.</li><li>`local-part` must at least contain one letter or digit.</li><li>`domain` must at least contain one letter.</li><li>Emails will be stored in all lowercase regardless of given input.</li><li>Maximum length of 50 characters.</li></ul>                                                                                                               | :fa-solid-check: <br>`johndoe123@gmail.com`<br>                                                              |
-| `TAG`          | Category/label applicable to seniors          | <ul><li>Maximum length of 30 characters for each tag.</li> </ul>                                                                                                                                                                                                                                                                                                   | :fa-solid-check: <br>`hard-of-hearing` <br>                                                                  |
+| `EMAIL`        | Senior’s email address                        | <ul><li>Emails should be in the format `local-part@domain`.</li><li>`local-part` must at least contain one letter or digit.</li><li>`domain` must at least contain one letter.</li><li>Emails will be stored in all lowercase regardless of input.</li><li>Maximum length of 50 characters.</li></ul>                                                                                                               | :fa-solid-check: <br>`johndoe123@gmail.com`<br>                                                              |
+| `TAG`          | Category/label applicable to seniors          | <ul><li>Maximum length of 30 characters for each tag.</li><li>Multiple tags allowed for each senior.</li></ul>                                                                                                                                                                                                                                                                                                   | :fa-solid-check: <br>`hard-of-hearing` <br>                                                                  |
 | `REMARK`       | Additional notes applicable to seniors        | <ul><li>Maximum length of 2500 characters.</li> </ul>                                                                                                                                                                                                                                                                      | :fa-solid-check: <br>`List of senior’s medications: Alprax (daily), Alprazolam (once every 3 days), ...`<br> |
 | `INDEX`        | The index shown in the displayed seniors list | <ul><li>Only whole numbers are allowed.</li><li>Number must be a positive number.</li><li>The index must refer to a valid entry in the list (i.e., it cannot be out of range).</li></ul>                                                                                                                                   | :fa-solid-check: <br>`1`<br>                                                                                 |
 
@@ -213,11 +213,11 @@ This section covers the list of commands and their usage. If you are experienced
 
   </box>
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list` and `exit`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list` and `exit`) are ignored.<br>
 
   <box>
 
-  e.g., if the command specifies `help 123`, it will be interpreted as `help`.
+  e.g., if the command specifies `help 123`, it is interpreted as `help`.
 
   </box>
 
@@ -285,9 +285,9 @@ Format: `edit i/INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]`
 * Edits the senior at the specified `INDEX`. The index refers to the index number shown in the displayed senior list.
 The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
-* This feature updates existing values to the input values.
-* Editing tags will remove the existing tags (adding of tags is not cumulative).
-* An input of `t/` without any tags following it will remove all the senior's tags.
+* This feature replaces existing values with the new input values.
+* Editing tags replaces existing tags (adding is not cumulative).
+* Using `t/` with no value removes all of a senior’s tags.
 
 </box>
 
@@ -385,7 +385,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter (e.g., `Hans Bo` will match `Bo Hans`).
 * This feature only searches names.
 * This feature matches partial words within the name (e.g., `Han` will match `Hans`).
-* This feature will display seniors matching at least one keyword
+* This feature displays seniors matching at least one keyword
   (e.g., `Hans Bo` will match `Hans Gruber`, `Boyo Yang`).
 
 Examples:
@@ -416,7 +416,7 @@ With exactly one of:
 
 <box type="warning">
 
-**Warning**: Words starting with **`ap/`** or **`r/`**, are treated as invalid input.
+**Warning**: Words starting with **`ap/`** or **`r/`** in the remark text are treated as invalid input.
 
 </box>
 
@@ -530,7 +530,7 @@ ElderRing data are automatically saved as a JSON file `[JAR file location]/data/
 <box type="warning">
 
 **Warning:**
-* If the data file contains invalid formatting (broken JSON, parsing errors, file permission issues, etc.), ElderRing will discard all data and start with an empty data file.
+* If the data file contains invalid formatting (broken JSON, parsing errors, file permission issues, etc.), ElderRing discards all data and start with an empty data file.
 * Certain edits may cause unexpected behavior. Edit the data file only if you are confident in maintaining the correct format.
 * Adding any of the prefix used in this application may cause unintended behaviors.
 
@@ -562,9 +562,6 @@ ElderRing data are automatically saved as a JSON file `[JAR file location]/data/
 The remedy is to delete the `preferences.json` file created by the application (in the same folder as the JAR file) before running the application again.
 <br><br>
 
-2. **If you minimize the Help Window** and then run the `help` command again (or use the `help` menu or the keyboard shortcut `F1`), the original Help Window will remain minimized and no new Help Window will appear. <br><br>
-The remedy is to manually restore the minimized Help Window.
-
 --------------------------------------------------------------------------------------------------------------------
 
 <br>
@@ -575,7 +572,7 @@ The remedy is to manually restore the minimized Help Window.
 |--------------------------------------------------------------------|-------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
 | **[help](#viewing-help-help)**                                     | `help`                                                                                    | `help`                                                                                             |
 | **[add](#adding-a-senior-add)**                                    | `add n/NAME p/PHONE_NUMBER a/ADDRESS [e/EMAIL] [t/TAG]…​`                                 | `add n/James Ho p/98652148 a/123, Clementi Rd, 1234665 e/jamesho@example.com t/friend t/colleague` |
-| **[edit](#editing-a-senior-edit)**                                 | `edit i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [t/TAG]​…`                  | `edit i/2 n/James Lee e/jameslee@example.com`                                                      |
+| **[edit](#editing-a-senior-edit)**                                 | `edit i/INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]​…`                  | `edit i/2 n/James Lee e/jameslee@example.com`                                                      |
 | **[delete (by index)](#deleting-a-senior-delete)**                 | `delete i/INDEX`                                                                          | `delete i/3`                                                                                       |
 | **[delete (by name and phone number)](#deleting-a-senior-delete)** | `delete n/NAME p/PHONE_NUMBER`                                                            | `delete n/Amy p/61234567`                                                                          |
 | **[list](#listing-all-seniors-list)**                              | `list`                                                                                    | `list`                                                                                             |
