@@ -403,7 +403,7 @@ With exactly one of:
 4. `--remove`: Mandatory.
 
 <box type="info" seamless>
-* Words starting with `ap/` or `r/`, are treated as invalid input.
+Words starting with **`ap/`** or **`r/`**, are treated as invalid input.
 
 </box>
 
