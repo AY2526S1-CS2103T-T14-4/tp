@@ -26,6 +26,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static final double SCROLL_TO_BOTTOM = 1.0;
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -172,7 +173,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleScroll() {
         Platform.runLater(() -> {
-            personListScrollPane.setVvalue(1.0);
+            personListScrollPane.setVvalue(SCROLL_TO_BOTTOM);
         });
     }
 
