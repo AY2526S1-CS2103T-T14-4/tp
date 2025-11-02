@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
@@ -45,7 +46,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         //Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Remark remark = new Remark(""); // add command does not allow adding remarks straight away
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG))
+                .stream()
+                .filter(tag -> !tag.tagName.trim().isEmpty())
+                .collect(Collectors.toSet());
 
         boolean emailIsPresent = arePrefixesPresent(argMultimap, PREFIX_EMAIL);
         Email email;

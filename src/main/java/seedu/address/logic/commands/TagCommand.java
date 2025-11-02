@@ -22,7 +22,9 @@ public class TagCommand extends Command {
 
     public static final String COMMAND_WORD = "tag";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Tags the specified senior in the address book.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Tags the specified senior in the address book. Tags "
+            + "cannot be empty (i.e. whitespace only). Tags cannot be longer than 30 characters.\n"
             + "Parameters: "
             + "[ i/INDEX (must be a positive integer) | n/NAME p/PHONE_NUMBER ] "
             + "t/TAGNAME [ --remove ] \n"
