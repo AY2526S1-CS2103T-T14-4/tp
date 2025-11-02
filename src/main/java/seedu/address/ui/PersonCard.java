@@ -65,9 +65,11 @@ public class PersonCard extends UiPart<Region> {
         remark.setText(truncate(person.getRemark().value, MAX_REMARK_LENGTH));
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(
-                        truncate(tag.tagName, MAX_TAG_LENGTH))));
-
+                .forEach((tag) -> { 
+                    Label tagLabel = new Label(truncate(tag.tagName, MAX_TAG_LENGTH));
+                    tags.getChildren().add(tagLabel);
+                    setupExpandableField(tagLabel, tag.tagName, MAX_TAG_LENGTH);
+                });
         if (!person.getTags().isEmpty()) {
             tags.setStyle("-fx-padding: 7 0 0 0;");
         }
