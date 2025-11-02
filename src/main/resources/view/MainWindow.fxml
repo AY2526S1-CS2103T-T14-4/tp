@@ -14,7 +14,7 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Label?>
 
-<fx:root minHeight="825" minWidth="600" onCloseRequest="#handleExit" title="ElderRing" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="700" minWidth="600" onCloseRequest="#handleExit" title="ElderRing" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/elderring_logo.png" />
   </icons>
@@ -39,7 +39,7 @@
           <Label text="-ElderRing-" />
         </StackPane>
 
-        <SplitPane dividerPositions="1" orientation="VERTICAL" minHeight="400" prefHeight="800" maxHeight="Infinity" VBox.vgrow="ALWAYS">
+        <SplitPane dividerPositions="1" orientation="VERTICAL" minHeight="300" prefHeight="600" maxHeight="Infinity" VBox.vgrow="ALWAYS">
         <items>
         <ScrollPane fx:id="personListScrollPane" fitToWidth="true" fitToHeight="true" VBox.vgrow="ALWAYS" vbarPolicy="ALWAYS">
           <VBox fx:id="personList" minWidth="340" prefWidth="340" prefHeight="400"
