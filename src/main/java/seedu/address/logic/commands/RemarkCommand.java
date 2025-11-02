@@ -99,7 +99,7 @@ public class RemarkCommand extends Command {
                 personToEdit.getAddress(), newRemark, personToEdit.getTags());
 
         model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        //model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         if (!isAppend && remark.value.isEmpty()) {
             String msg = String.format(
