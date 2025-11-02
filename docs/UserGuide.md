@@ -124,13 +124,13 @@ Typing **`help`** and pressing Enter will open the help window.
 
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+   * `list` : Lists all seniors.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to ElderRing.
+   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a seniors named `John Doe` to ElderRing.
 
-   * `delete i/3` : Deletes the 3rd contact shown in the current list.
+   * `delete i/3` : Deletes the 3rd seniors shown in the current list.
 
-   * `clear` : Deletes all contacts.
+   * `clear` : Deletes all seniors.
 
    * `exit` : Exits the app.
 
