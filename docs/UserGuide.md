@@ -37,6 +37,9 @@ Welcome to **ElderRing**, a **command line (CLI)** desktop application specially
 * [Known issues](#known-issues)
 * [Command summary](#command-summary)
 --------------------------------------------------------------------------------------------------------------------
+
+<br>
+
 ## How to Read This Guide
 
 This guide is designed for all SGAs, whether you're just starting out or are already familiar with ElderRing.
@@ -79,6 +82,9 @@ This is an example of a warning.
 </box>
 
 --------------------------------------------------------------------------------------------------------------------
+
+<br>
+
 ## Quick Start
 
 This guide serves as a walkthrough on **how to install ElderRing** and **how to use it**.
@@ -97,10 +103,10 @@ This guide serves as a walkthrough on **how to install ElderRing** and **how to 
 
 If you are unsure of how to install Java, follow this [guide](https://www.java.com/en/download/help/download_options.html).
 
-## Ensure you have the precise JDK version prescribed based on your following OS:
-**Mac users:**  [Click here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
-**Windows users:**  [Click here](https://se-education.org/guides/tutorials/javaInstallationWindows.html).
-**Linux users:**  [Click here](https://se-education.org/guides/tutorials/javaInstallationLinux.html).
+Ensure you have the precise JDK version prescribed based on your following OS:
+- **Mac users:**  [Click here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
+- **Windows users:**  [Click here](https://se-education.org/guides/tutorials/javaInstallationWindows.html).
+- **Linux users:**  [Click here](https://se-education.org/guides/tutorials/javaInstallationLinux.html).
 
 </box>
 
@@ -116,10 +122,10 @@ If you are unsure of how to install Java, follow this [guide](https://www.java.c
 6. Run the following command in the terminal to launch the application
    `java -jar ElderRing.jar`
 
-7. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+7. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br><br>
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box (located at the bottom of the window) and press Enter to execute it.
+8. Type the command in the command box (located at the bottom of the window) and press Enter to execute it.
 
 <box type="tip" seamless>
 
@@ -128,20 +134,17 @@ Typing **`help`** and pressing Enter will open the help window.
 </box>
 
    Some example commands you can try:
-
    * `list` : Lists all seniors.
-
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a seniors named `John Doe` to ElderRing.
-
+   * `add n/John Doe p/98765432 e/doe@sg.com a/St 9, blk 7, #01-01` : Adds a seniors named `John Doe` to ElderRing.
    * `delete i/3` : Deletes the 3rd seniors shown in the current list.
-
    * `clear --removeall` : Deletes all seniors.
-
    * `exit` : Exits the app.
 
-6. Refer to the [Features](#features) section below for details of each command.
+9. Refer to the [Features](#features) section below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<br>
 
 ## Parameters
 
@@ -152,12 +155,14 @@ This section covers the different parameters in ElderRing and their respective c
 | `NAME`         | Senior’s name                                 | <ul><li>Only letters and spaces are permitted.</li><li>This parameter cannot be left blank.</li><li>If you need to include terms like "s/o" or "d/o" in a name, please use alternatives such as "son of" or "s o" instead.</li><li>Only english characters are allowed with one space between words.</li><li>Maximum length of 66 characters.</li></ul> | :fa-solid-check: <br>`John Doe`<br>                                                                          |
 | `PHONE_NUMBER` | Senior’s phone number                         | <ul><li>Only numbers are allowed.</li><li>This parameter cannot be left blank.</li><li>Only accepts numbers that start with 6, 8, 9.</li><li>Only accepts numbers that are 8-digits.</li></ul>                                                                                                                             | :fa-solid-check: <br>`91234567`<br>                                                                          |
 | `ADDRESS`      | Senior’s residential address                  | <ul><li>Maximum length of 100 characters.</li> </ul>                                                                                                                                                                                                                                                      | :fa-solid-check: <br>`Blk 41 Telok Blangah Way #07-436`<br>                                                  |
-| `EMAIL`        | Senior’s email address                        | <ul><li>Emails should be in the format `local-part@domain`.</li><li>`local-part` must at least contain one letter or digit.</li><li>`domain` must at least contain one letter.</li><li>Maximum length of 50 characters.</li></ul>                                                                                                               | :fa-solid-check: <br>`johndoe123@gmail.com`<br>                                                              |
-| `TAG`          | Category/label applicable to seniors          | <ul>No constraints </ul>                                                                                                                                                                                                                                                                                                   | :fa-solid-check: <br>`hard-of-hearing` <br>                                                                  |
+| `EMAIL`        | Senior’s email address                        | <ul><li>Emails should be in the format `local-part@domain`.</li><li>`local-part` must at least contain one letter or digit.</li><li>`domain` must at least contain one letter.</li><li>Emails will be stored in all lowercase regardless of given input.</li><li>Maximum length of 50 characters.</li></ul>                                                                                                               | :fa-solid-check: <br>`johndoe123@gmail.com`<br>                                                              |
+| `TAG`          | Category/label applicable to seniors          | <ul><li>Maximum length of 30 characters for each tag.</li> </ul>                                                                                                                                                                                                                                                                                                   | :fa-solid-check: <br>`hard-of-hearing` <br>                                                                  |
 | `REMARK`       | Additional notes applicable to seniors        | <ul><li>Maximum length of 2500 characters.</li> </ul>                                                                                                                                                                                                                                                                      | :fa-solid-check: <br>`List of senior’s medications: Alprax (daily), Alprazolam (once every 3 days), ...`<br> |
 | `INDEX`        | The index shown in the displayed seniors list | <ul><li>Only whole numbers are allowed.</li><li>Number must be a positive number.</li><li>The index must refer to a valid entry in the list (i.e., it cannot be out of range).</li></ul>                                                                                                                                   | :fa-solid-check: <br>`1`<br>                                                                                 |
 
 --------------------------------------------------------------------------------------------------------------------
+
+<br>
 
 ## Features
 
@@ -188,7 +193,7 @@ This section covers the list of commands and their usage. If you are experienced
   <box>
 
   e.g., `remark i/INDEX [r/REMARK | ap/APPEND_TEXT | --remove]` can be used as `remark i/1 r/Patient is diabetic.` or
-  `remark i/1 ap/Prescribed diabetes medication.` or `remark i/1 --remove`
+  `remark i/1 ap/Prescribed diabetes medication.` or `remark i/1 --remove`.
 
   </box>
 
@@ -318,7 +323,7 @@ Or:
 
 Examples:
 * `list` followed by `delete i/2` deletes the second senior displayed in ElderRing.
-* `delete n/Amy Tan p/61234567`.
+* `delete n/Amy Tan p/61234567`
 
 <br>
 
@@ -351,10 +356,10 @@ Format: `sort (ASC | DSC)/(NAME | ADDRESS)`
 
 <box type="info" seamless>
 
-* `asc` sorts in ascending order
-* `dsc` sorts in descending order
-* `name` sorts by NAME
-* `address` sorts by ADDRESS
+* `asc` sorts in ascending order.
+* `dsc` sorts in descending order.
+* `name` sorts by NAME.
+* `address` sorts by ADDRESS.
 * It is recommended to create address in the following order to maximize the sort by address functionality:
   * Estate → Street → Block → Unit Number → Postal Code.
 
@@ -380,8 +385,8 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter (e.g., `Hans Bo` will match `Bo Hans`).
 * This feature only searches names.
 * This feature matches partial words within the name (e.g., `Han` will match `Hans`).
-* This feature will return seniors matching at least one keyword
-  (e.g., `Hans Bo` will return `Hans Gruber`, `Boyo Yang`).
+* This feature will display seniors matching at least one keyword
+  (e.g., `Hans Bo` will match `Hans Gruber`, `Boyo Yang`).
 
 Examples:
 * `find alex` displays `Alex Yeoh`.
@@ -409,9 +414,9 @@ With exactly one of:
 3. `APPEND_TEXT`: Mandatory.
 4. `--remove`: Mandatory.
 
-<box type="info" seamless>
+<box type="warning">
 
-Words starting with **`ap/`** or **`r/`**, are treated as invalid input.
+**Warning**: Words starting with **`ap/`** or **`r/`**, are treated as invalid input.
 
 </box>
 
@@ -488,6 +493,10 @@ Clears all entries from ElderRing.
 
 Format: `clear --removeall`
 
+#### Parameters:
+
+1. `--removeall`: Mandatory.
+
 <box type="warning">
 
 **Warning**: Be careful. This command irreversibly deletes ALL entries (this operation cannot be undone).
@@ -536,12 +545,16 @@ ElderRing data are automatically saved as a JSON file `[JAR file location]/data/
 
 --------------------------------------------------------------------------------------------------------------------
 
+<br>
+
 ## FAQ
 
 **Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ElderRing home folder.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<br>
 
 ## Known issues
 
@@ -554,12 +567,14 @@ The remedy is to manually restore the minimized Help Window.
 
 --------------------------------------------------------------------------------------------------------------------
 
+<br>
+
 ## Command summary
 
 | Command                                                            | Usage                                                                                     | Example                                                                                            |
 |--------------------------------------------------------------------|-------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
 | **[help](#viewing-help-help)**                                     | `help`                                                                                    | `help`                                                                                             |
-| **[add](#adding-a-senior-add)**                                    | `add n/NAME p/PHONE_NUMBER a/ADDRESS [e/EMAIL] [t/TAG]…​`                                 | `add n/James Ho p/22224444 a/123, Clementi Rd, 1234665 e/jamesho@example.com t/friend t/colleague` |
+| **[add](#adding-a-senior-add)**                                    | `add n/NAME p/PHONE_NUMBER a/ADDRESS [e/EMAIL] [t/TAG]…​`                                 | `add n/James Ho p/98652148 a/123, Clementi Rd, 1234665 e/jamesho@example.com t/friend t/colleague` |
 | **[edit](#editing-a-senior-edit)**                                 | `edit i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [t/TAG]​…`                  | `edit i/2 n/James Lee e/jameslee@example.com`                                                      |
 | **[delete (by index)](#deleting-a-senior-delete)**                 | `delete i/INDEX`                                                                          | `delete i/3`                                                                                       |
 | **[delete (by name and phone number)](#deleting-a-senior-delete)** | `delete n/NAME p/PHONE_NUMBER`                                                            | `delete n/Amy p/61234567`                                                                          |
