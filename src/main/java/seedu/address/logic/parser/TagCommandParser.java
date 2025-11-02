@@ -47,6 +47,10 @@ public class TagCommandParser implements Parser<TagCommand> {
                 throw new ParseException("Tag name cannot be empty.");
             }
 
+            if (tagName.length() > 30) {
+                throw new ParseException("Tag name cannot be longer than 30 characters.");
+            }
+
             int identifierCount = 0;
             if (indexIsPresent) {
                 identifierCount++;
