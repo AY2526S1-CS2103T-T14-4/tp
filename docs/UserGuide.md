@@ -51,20 +51,21 @@ If you have **experience with ElderRing**:
 - Check out the [Command Summary](#command-summary) for a quick overview of the various commands and their usage.
 - Check out the [Features](#features) section for a more in-depth breakdown of each feature.
 
---------------------------------------------------------------------------------------------------------------------
+<br>
 
 #### Additional Information
 
 Additional information is indicated as a box with an "**i**" symbol.
+<box>
+  <box type="info" seamless>
 
-<box type="info" seamless>
+  This is an example of additional information.
 
-This is an example of additional information.
-
+  </box>
 </box>
 
 #### Tips
-
+<box>
 Tips are displayed as a box with a "**💡**" symbol.
 
 <box type="tip" seamless>
@@ -72,8 +73,12 @@ Tips are displayed as a box with a "**💡**" symbol.
 This is an example of a tip.
 
 </box>
+</box>
+
 
 #### Warnings
+
+<box>
 
 Warnings are displayed as a box with a "**!**" symbol.
 
@@ -82,7 +87,7 @@ Warnings are displayed as a box with a "**!**" symbol.
 This is an example of a warning.
 
 </box>
-
+</box>
 --------------------------------------------------------------------------------------------------------------------
 
 <br>
