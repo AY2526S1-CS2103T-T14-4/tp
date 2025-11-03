@@ -47,16 +47,18 @@ public class AddCommandParser implements Parser<AddCommand> {
         //Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Remark remark = new Remark(""); // add command does not allow adding remarks straight away
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG))
-                .stream()
-                .filter(tag -> !tag.tagName.trim().isEmpty())
-                .collect(Collectors.toSet());
+//        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG))
+//                .stream()
+//                .filter(tag -> !tag.tagName.trim().isEmpty())
+//                .collect(Collectors.toSet());
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        for (Tag tag : tagList) {
-            if (tag.tagName.length() > 30) {
-                throw new ParseException(MESSAGE_TAG_TOO_LONG);
-            }
-        }
+
+//        for (Tag tag : tagList) {
+//            if (tag.tagName.length() > 30) {
+//                throw new ParseException(MESSAGE_TAG_TOO_LONG);
+//            }
+//        }
 
         boolean emailIsPresent = arePrefixesPresent(argMultimap, PREFIX_EMAIL);
         Email email;

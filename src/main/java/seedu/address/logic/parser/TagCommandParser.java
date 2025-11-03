@@ -17,6 +17,7 @@ import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments to create a new TagCommand object
@@ -42,15 +43,16 @@ public class TagCommandParser implements Parser<TagCommand> {
             argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_INDEX, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS,
                     PREFIX_TAG);
 
-            String tagName = argMultimap.getValue(PREFIX_TAG).get().trim();
+            Tag tag = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
+            String tagName = tag.tagName;
 
-            if (tagName.isEmpty()) {
-                throw new ParseException("Tag name cannot be empty.");
-            }
-
-            if (tagName.length() > 30) {
-                throw new ParseException(MESSAGE_TAG_TOO_LONG);
-            }
+//            if (tagName.isEmpty()) {
+//                throw new ParseException("Tag name cannot be empty.");
+//            }
+//
+//            if (tagName.length() > 30) {
+//                throw new ParseException(MESSAGE_TAG_TOO_LONG);
+//            }
 
             int identifierCount = 0;
             if (indexIsPresent) {

@@ -38,6 +38,7 @@ public class TagCommand extends Command {
     public static final String MESSAGE_INVALID_IDENTIFIER = "Senior not found";
     public static final String MESSAGE_TAG_NOT_FOUND = "Senior does not have tag %s.";
     public static final String MESSAGE_TAG_TOO_LONG = "Tag cannot be longer than 30 characters. ";
+    public static final String MESSAGE_TAG_INVALID = "Tag cannot be empty (i.e. whitespace only).";
 
     private final Index targetIndex;
     private final Name targetName;
