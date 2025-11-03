@@ -51,6 +51,8 @@ If you have **experience with ElderRing**:
 - Check out the [Command Summary](#command-summary) for a quick overview of the various commands and their usage.
 - Check out the [Features](#features) section for a more in-depth breakdown of each feature.
 
+--------------------------------------------------------------------------------------------------------------------
+
 #### Additional Information
 
 Additional information is indicated as a box with an "**i**" symbol.
