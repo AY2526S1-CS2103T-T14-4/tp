@@ -55,6 +55,8 @@ If you have **experience with ElderRing**:
 - Check out the [Command Summary](#command-summary) for a quick overview of the various commands and their usage.
 - Check out the [Features](#features) section for a more in-depth breakdown of each feature.
 
+<br>
+
 --------------------------------------------------------------------------------------------------------------------
 
 <br>
@@ -95,6 +97,7 @@ This section outlines the different kind of elements found in this guide and wha
 
   </box>
 
+<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -132,10 +135,10 @@ Ensure you have the precise JDK version prescribed based on your following OS:
 4. Open a command terminal.
 
 5. Change your directory to the folder containing `ElderRing.jar` using 
-   `cd [path from current position to the folder containing ElderRing.jar]`
+   `cd [path from current position to the folder containing ElderRing.jar]`.
 
 6. Run the following command in the terminal to launch the application
-   `java -jar ElderRing.jar`
+   `java -jar ElderRing.jar`.
 
 7. A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br><br>
    ![Ui](images/uiExplanation.png){width=400px}
@@ -144,7 +147,7 @@ Ensure you have the precise JDK version prescribed based on your following OS:
 
 <box type="tip" seamless>
 
-Typing **`help`** and pressing Enter opens the help window.
+**Tip:** Typing **`help`** and pressing Enter opens the help window.
 
 </box>
 
@@ -270,7 +273,7 @@ This section covers the list of commands and their usage. If you are experienced
 
 Shows a message explaining how to access the help page.
 
-![help popup](images/helpCommand.png)
+![help command](images/helpCommand.png)
 
 Format: `help`
 
