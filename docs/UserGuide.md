@@ -36,6 +36,9 @@ Welcome to **ElderRing**, a **Command Line Interface (CLI)** desktop application
 * [FAQ](#faq)
 * [Known Issues](#known-issues)
 * [Command Summary](#command-summary)
+
+<br>
+
 --------------------------------------------------------------------------------------------------------------------
 
 <br>
@@ -132,7 +135,7 @@ Ensure you have the precise JDK version prescribed based on your following OS:
    `java -jar ElderRing.jar`
 
 7. A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br><br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/uiExplanation.png){width=400px}
 
 8. Type a command in the command box (located at the bottom of the window) and press Enter to execute it.
 
@@ -168,6 +171,32 @@ This section covers the different parameters in ElderRing and their respective c
 | `TAG`          | Category/label applicable to seniors          | <ul><li>Maximum length of 30 characters for each tag.</li><li>Multiple tags allowed for each senior.</li></ul>                                                                                                                                                                                                                                                                                                   | :fa-solid-check: <br>`hard-of-hearing` <br>                                                                  |
 | `REMARK`       | Additional notes applicable to seniors        | <ul><li>Maximum length of 2500 characters.</li> </ul>                                                                                                                                                                                                                                                                      | :fa-solid-check: <br>`List of senior’s medications: Alprax (daily), Alprazolam (once every 3 days), ...`<br> |
 | `INDEX`        | The index shown in the displayed seniors list | <ul><li>Only whole numbers are allowed.</li><li>Number must be a positive number.</li><li>The index must refer to a valid entry in the current list.</li></ul>                                                                                                                                   | :fa-solid-check: <br>`1`<br>                                                                                 |
+
+<br>
+
+<box style="background: #fafafaff">
+
+**Features at a glance:**
+<a href="#viewing-help-help" class="badge bg-secondary">help</a> 
+<a href="#adding-a-senior-add" class="badge bg-secondary">add</a> 
+<a href="#editing-a-senior-edit" class="badge bg-secondary">edit</a> 
+<a href="#deleting-a-senior-delete" class="badge bg-secondary">delete</a> 
+<a href="#listing-all-seniors-list" class="badge bg-secondary">list</a> 
+<a href="#sorting-entries-sort" class="badge bg-secondary">sort</a> 
+<a href="#locating-seniors-by-name-find" class="badge bg-secondary">find</a> 
+<a href="#adding-notes-to-a-senior-remark" class="badge bg-secondary">remark</a> 
+<a href="#tagging-a-senior-tag" class="badge bg-secondary">tag</a> 
+<a href="#filtering-entries-filter" class="badge bg-secondary">filter</a> 
+<a href="#clearing-all-entries-clear" class="badge bg-secondary">clear</a> 
+<a href="#exiting-the-program-exit" class="badge bg-secondary">exit</a> 
+
+</box>
+
+<br>
+
+<a href="#introduction">Back to top</a>
+
+<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -240,17 +269,24 @@ Shows a message explaining how to access the help page.
 
 ![help popup](images/helpCommand.png)
 
-
 Format: `help`
+
+<br>
+
+<box style="background: #fafafaff">
+
+**Navigate to the subsections here:**
+<a href="#parameters" class="badge bg-secondary">Parameters</a>
+<a href="#command-summary" class="badge bg-secondary">Command Summary</a>
+<a href="#introduction" class="badge bg-light">Back to top</a>
+
+</box>
 
 <br>
 
 ### Adding a senior : `add`
 
 Adds a senior to ElderRing.
-
-![add command](images/addCommand.png)
-
 
 Format: `add n/NAME p/PHONE_NUMBER a/ADDRESS [e/EMAIL] [t/TAG]…​`
 
@@ -265,6 +301,20 @@ Format: `add n/NAME p/PHONE_NUMBER a/ADDRESS [e/EMAIL] [t/TAG]…​`
 Examples:
 * `add n/Tan Ah Kow e/tak@gmail.com p/96521345 a/Blk 41 Telok Blangah Way #07-436 t/hard-of-hearing`
 * `add n/Shermaine Tan p/98541331 a/1 Lor 2 Toa Payoh #07-36 e/shermainetan@gmail.com`
+
+![add command](images/addCommand.png){width=400px}
+Results of the command: `add n/Tan Ah Kow e/tak@gmail.com p/96521345 a/Blk 41 Telok Blangah Way #07-436 t/hard-of-hearing`.
+
+<br>
+
+<box style="background: #fafafaff">
+
+**Navigate to the subsections here:**
+<a href="#parameters" class="badge bg-secondary">Parameters</a> 
+<a href="#command-summary" class="badge bg-secondary">Command Summary</a>
+<a href="#introduction" class="badge bg-light">Back to top</a>
+
+</box>
 
 <br>
 
@@ -304,6 +354,20 @@ Examples:
 *  `edit i/10 t/Diabetic`
 *  `edit i/1 n/Joseph p/92891234`
 
+![edit command](images/editCommand.png){width=400px}
+Results of the command: `edit i/1 n/Joseph p/92891234`.
+
+<br>
+
+<box style="background: #fafafaff">
+
+**Navigate to the subsections here:**
+<a href="#parameters" class="badge bg-secondary">Parameters</a> 
+<a href="#command-summary" class="badge bg-secondary">Command Summary</a>
+<a href="#introduction" class="badge bg-light">Back to top</a>
+
+</box>
+
 <br>
 
 ### Deleting a senior : `delete`
@@ -332,7 +396,21 @@ Or:
 
 Examples:
 * `list` followed by `delete i/2` deletes the second senior displayed in ElderRing.
-* `delete n/Amy Tan p/61234567`
+* `delete n/Joseph p/92891234`
+
+![delete command](images/deleteCommand.png){width=400px}
+Results of the command: `delete n/Joseph p/92891234`.
+
+<br>
+
+<box style="background: #fafafaff">
+
+**Navigate to the subsections here:**
+<a href="#parameters" class="badge bg-secondary">Parameters</a> 
+<a href="#command-summary" class="badge bg-secondary">Command Summary</a>
+<a href="#introduction" class="badge bg-light">Back to top</a>
+
+</box>
 
 <br>
 
@@ -342,11 +420,26 @@ Shows a list of all seniors in ElderRing.
 
 Format: `list`
 
+![list command](images/listCommand.png){width=400px}
+Results of the command: `list`.
+
 <box type="tip" seamless>
 
-If texts end with `...`, there is more information hidden. Click on the `...` to expand and view the full information
-(not applicable to long tags). You can also click on the `...` to hide it again.
+**Tip:** Unhide long texts.
+
 ![expand](images/expandUi.png)
+Clicking on the `...` expands the senior's full information. Clicking on the long text again hides it.
+
+</box>
+
+<br>
+
+<box style="background: #fafafaff">
+
+**Navigate to the subsections here:**
+<a href="#parameters" class="badge bg-secondary">Parameters</a> 
+<a href="#command-summary" class="badge bg-secondary">Command Summary</a>
+<a href="#introduction" class="badge bg-light">Back to top</a>
 
 </box>
 
@@ -380,13 +473,25 @@ Examples:
 * `sort asc/address`
 * `sort dsc/address`
 
+![sort command](images/sortCommand.png){width=400px}
+Results of the command: `sort asc/name`.
+
+<br>
+
+<box style="background: #fafafaff">
+
+**Navigate to the subsections here:**
+<a href="#parameters" class="badge bg-secondary">Parameters</a> 
+<a href="#command-summary" class="badge bg-secondary">Command Summary</a>
+<a href="#introduction" class="badge bg-light">Back to top</a>
+
+</box>
+
 <br>
 
 ### Locating seniors by name : `find`
 
 Finds seniors whose names contain any of the input keywords.
-
-![find command](images/findCommand.png)
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -398,18 +503,29 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
   (e.g., `Hans Bo` will match `Hans Gruber`, `Boyo Yang`).
 
 Examples:
-* `find alex` displays `Alex Yeoh`.
+* `find tan` displays `Shermaine Tan`, `Tan Ah Kow` and `Tan Kai Lun`.
 * `find can ran` displays `Candice Lim`, `Randy Tan`, `Ranger Lee`.
 * `find charlotte bernice` displays `Bernice Yu`, `Charlotte Oliveiro`.
+
+![find command](images/findCommand.png){width=400px}
+Results of the command: `find tan`.
+
+<br>
+
+<box style="background: #fafafaff">
+
+**Navigate to the subsections here:**
+<a href="#parameters" class="badge bg-secondary">Parameters</a> 
+<a href="#command-summary" class="badge bg-secondary">Command Summary</a>
+<a href="#introduction" class="badge bg-light">Back to top</a>
+
+</box>
 
 <br>
 
 ### Adding notes to a senior : `remark`
 
-Adds relevant miscellaneous information to an existing senior. This feature can replace the remark, append to the existing remark, or remove it.
-
-![remark command](images/remarkCommand.png)
-
+Adds relevant miscellaneous information to an existing senior. This feature can replace the current remark, append to the existing remark, or remove it.
 
 Format: `remark i/INDEX r/REMARK` or `remark i/INDEX ap/APPEND_TEXT` or `remark i/INDEX --remove`
 
@@ -430,17 +546,29 @@ With exactly one of:
 </box>
 
 Examples:
-* `remark i/10 r/Senior is aggressive`
-* `remark i/10 ap/Followed up on 24 Oct`
-* `remark i/10 --remove`
+* `remark i/1 r/Senior is aggressive`
+* `remark i/1 ap/Followed up on 24 Oct`
+* `remark i/1 --remove`
+
+![remark command](images/remarkCommand.png){width=400px}
+Results of the command: `remark i/1 r/Senior is aggressive`.
+
+<br>
+
+<box style="background: #fafafaff">
+
+**Navigate to the subsections here:**
+<a href="#parameters" class="badge bg-secondary">Parameters</a> 
+<a href="#command-summary" class="badge bg-secondary">Command Summary</a>
+<a href="#introduction" class="badge bg-light">Back to top</a>
+
+</box>
 
 <br>
 
 ### Tagging a senior : `tag`
 
 Tags (or untags) the senior at the specified display `INDEX` or the senior with a matching `NAME` and `PHONE_NUMBER`.
-
-![tag command](images/tagCommand.png)
 
 <box type="tip" seamless>
 
@@ -463,14 +591,25 @@ Examples:
 * `tag n/John Doe p/91234567 t/hard-of-hearing`
 * `tag i/1 t/hard-of-hearing --remove`
 
+![tag command](images/tagCommand.png){width=400px}
+Results of the command: `tag i/1 t/hard-of-hearing`.
+
+<br>
+
+<box style="background: #fafafaff">
+
+**Navigate to the subsections here:**
+<a href="#parameters" class="badge bg-secondary">Parameters</a> 
+<a href="#command-summary" class="badge bg-secondary">Command Summary</a>
+<a href="#introduction" class="badge bg-light">Back to top</a>
+
+</box>
+
 <br>
 
 ### Filtering entries : `filter`
 
 Only displays the entries with the input tag.
-
-![filter command](images/filterCommand.png)
-
 
 <box type="tip" seamless>
 
@@ -487,10 +626,24 @@ Format: `filter t/TAG`
 Examples:
 * `filter t/hard-of-hearing`
 
+![filter command](images/filterCommand.png){width=400px}
+Results of the command: `filter t/hard-of-hearing`.
+
 <box type="warning">
 
 **Warning**: If the tag specified does not exist, this feature will not display any entries.
 To display the original list of seniors, use the [list](#listing-all-seniors-list) command.
+
+</box>
+
+<br>
+
+<box style="background: #fafafaff">
+
+**Navigate to the subsections here:**
+<a href="#parameters" class="badge bg-secondary">Parameters</a> 
+<a href="#command-summary" class="badge bg-secondary">Command Summary</a>
+<a href="#introduction" class="badge bg-light">Back to top</a>
 
 </box>
 
@@ -506,9 +659,23 @@ Format: `clear --removeall`
 
 1. `--removeall`: Mandatory.
 
+![clear command](images/clearCommand.png){width=400px}
+Results of the command: `clear --removeall`.
+
 <box type="warning">
 
 **Warning**: Be careful. This command irreversibly deletes ALL entries (this operation cannot be undone).
+
+</box>
+
+<br>
+
+<box style="background: #fafafaff">
+
+**Navigate to the subsections here:**
+<a href="#parameters" class="badge bg-secondary">Parameters</a> 
+<a href="#command-summary" class="badge bg-secondary">Command Summary</a>
+<a href="#introduction" class="badge bg-light">Back to top</a>
 
 </box>
 
@@ -519,6 +686,17 @@ Format: `clear --removeall`
 Exits the program.
 
 Format: `exit`
+
+<br>
+
+<box style="background: #fafafaff">
+
+**Navigate to the subsections here:**
+<a href="#parameters" class="badge bg-secondary">Parameters</a> 
+<a href="#command-summary" class="badge bg-secondary">Command Summary</a>
+<a href="#introduction" class="badge bg-light">Back to top</a>
+
+</box>
 
 <br>
 
@@ -552,6 +730,8 @@ ElderRing data are automatically saved as a JSON file `[JAR file location]/data/
 
 </box>
 
+<br>
+
 --------------------------------------------------------------------------------------------------------------------
 
 <br>
@@ -561,15 +741,21 @@ ElderRing data are automatically saved as a JSON file `[JAR file location]/data/
 **Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ElderRing home folder.
 
+<br>
+
 --------------------------------------------------------------------------------------------------------------------
 
 <br>
 
 ## Known Issues
 
-1. **When using multiple screens**, the GUI will open off-screen if you move the application to a secondary screen, and later switch to using only the primary screen. <br><br>
-The remedy is to delete the `preferences.json` file created by the application (in the same folder as the JAR file) before running the application again.
-<br><br>
+1. **When using multiple screens**, the GUI will open off-screen if you move the application to a secondary screen, and later switch to using only the primary screen. <br>
+
+<br>
+
+The remedy is to delete the `preferences.json` file created by the application (in the same folder as the JAR file) before running the application again. <br>
+
+<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -594,3 +780,7 @@ The remedy is to delete the `preferences.json` file created by the application (
 | **[filter](#filtering-entries-filter)**                            | `filter t/TAG`                                                                            | `filter t/hard-of-hearing`                                                                         |
 | **[clear](#clearing-all-entries-clear)**                           | `clear --removeall`                                                                                   | `clear --removeall`                                                                                            |
 | **[exit](#exiting-the-program-exit)**                              | `exit`                                                                                    | `exit`                                                                                             |
+
+<br>
+
+<a href="#introduction">Back to top</a>
