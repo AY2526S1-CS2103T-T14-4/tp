@@ -7,7 +7,7 @@
 # ElderRing User Guide
 
 ## Introduction
-Welcome to **ElderRing**, a **command line (CLI)** desktop application specially made for **Silver Generation Ambassadors (SGAs)** to better **manage and organise senior clients' information** more efficiently. With simple-to-type commands, seniors' contacts can be managed faster than traditional Graphical User Interface (GUI) applications.
+Welcome to **ElderRing**, a **Command Line Interface (CLI)** desktop application specially made for **Silver Generation Ambassadors (SGAs)** to better **manage and organise senior clients' information** more efficiently. With simple-to-type commands, seniors' contacts can be managed faster than traditional Graphical User Interface (GUI) applications.
 
 <br>
 
@@ -34,8 +34,8 @@ Welcome to **ElderRing**, a **command line (CLI)** desktop application specially
     * [Saving the data](#saving-the-data)
     * [Editing the data file](#editing-the-data-file)
 * [FAQ](#faq)
-* [Known issues](#known-issues)
-* [Command summary](#command-summary)
+* [Known Issues](#known-issues)
+* [Command Summary](#command-summary)
 --------------------------------------------------------------------------------------------------------------------
 
 <br>
@@ -158,7 +158,7 @@ This section covers the different parameters in ElderRing and their respective c
 | `EMAIL`        | Senior’s email address                        | <ul><li>Emails should be in the format `local-part@domain`.</li><li>`local-part` must at least contain one letter or digit.</li><li>`domain` must at least contain one letter.</li><li>Emails will be stored in all lowercase regardless of input.</li><li>Maximum length of 50 characters.</li></ul>                                                                                                               | :fa-solid-check: <br>`johndoe123@gmail.com`<br>                                                              |
 | `TAG`          | Category/label applicable to seniors          | <ul><li>Maximum length of 30 characters for each tag.</li><li>Multiple tags allowed for each senior.</li></ul>                                                                                                                                                                                                                                                                                                   | :fa-solid-check: <br>`hard-of-hearing` <br>                                                                  |
 | `REMARK`       | Additional notes applicable to seniors        | <ul><li>Maximum length of 2500 characters.</li> </ul>                                                                                                                                                                                                                                                                      | :fa-solid-check: <br>`List of senior’s medications: Alprax (daily), Alprazolam (once every 3 days), ...`<br> |
-| `INDEX`        | The index shown in the displayed seniors list | <ul><li>Only whole numbers are allowed.</li><li>Number must be a positive number.</li><li>The index must refer to a valid entry in the list (i.e., it cannot be out of range).</li></ul>                                                                                                                                   | :fa-solid-check: <br>`1`<br>                                                                                 |
+| `INDEX`        | The index shown in the displayed seniors list | <ul><li>Only whole numbers are allowed.</li><li>Number must be a positive number.</li><li>The index must refer to a valid entry in the current list.</li></ul>                                                                                                                                   | :fa-solid-check: <br>`1`<br>                                                                                 |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -299,7 +299,7 @@ Examples:
 
 ### Deleting a senior : `delete`
 
-Deletes the senior at the specified display `INDEX` OR the senior with the matching `NAME` and `PHONE_NUMBER`.
+Deletes the senior at the specified display `INDEX` or the senior with the matching `NAME` and `PHONE_NUMBER`.
 
 Format: `delete i/INDEX` or `delete n/NAME p/PHONE_NUMBER`
 
@@ -416,7 +416,7 @@ With exactly one of:
 
 <box type="warning">
 
-**Warning**: Words starting with **`ap/`** or **`r/`** in the remark text are treated as invalid input.
+**Warning**: Avoid putting spaces immediately after prefixes (e.g., `i/`, `r/`, `ap/`, `--remove`) — the value must follow the prefix directly, or the command may be treated as invalid.
 
 </box>
 
@@ -429,13 +429,13 @@ Examples:
 
 ### Tagging a senior : `tag`
 
-Tags (or untags) the senior at the specified display `INDEX` OR the senior with a matching `NAME` and `PHONE_NUMBER`.
+Tags (or untags) the senior at the specified display `INDEX` or the senior with a matching `NAME` and `PHONE_NUMBER`.
 
 ![tag command](images/tagCommand.png)
 
 <box type="tip" seamless>
 
-Tip: Tagging can be used as a categorisation feature in conjunction with the filter feature.
+**Tip:** Tagging can be used as a categorisation feature in conjunction with the filter feature.
 
 </box>
 
@@ -556,7 +556,7 @@ ElderRing data are automatically saved as a JSON file `[JAR file location]/data/
 
 <br>
 
-## Known issues
+## Known Issues
 
 1. **When using multiple screens**, the GUI will open off-screen if you move the application to a secondary screen, and later switch to using only the primary screen. <br><br>
 The remedy is to delete the `preferences.json` file created by the application (in the same folder as the JAR file) before running the application again.
@@ -566,7 +566,7 @@ The remedy is to delete the `preferences.json` file created by the application (
 
 <br>
 
-## Command summary
+## Command Summary
 
 | Command                                                            | Usage                                                                                     | Example                                                                                            |
 |--------------------------------------------------------------------|-------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|

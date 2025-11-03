@@ -74,7 +74,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 <puml src="diagrams/UiClassDiagram.puml" alt="Structure of the UI Component"/>
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g., `CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2526S1-CS2103T-T14-4/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2526S1-CS2103T-T14-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
@@ -108,7 +108,7 @@ How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to delete a person).<br>
+1. The command can communicate with the `Model` when it is executed (e.g., to delete a person).<br>
    Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take several interactions (between the command object and the `Model`) to achieve.
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
@@ -131,7 +131,7 @@ How the parsing works:
 The `Model` component,
 
 * stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' (e.g., the UI can be bound to this list so that the UI automatically updates when the data in the list change).
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -254,7 +254,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Pros: Will use less memory (e.g., for `delete`, just save the person being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -275,15 +275,15 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Target user profile**:
 
-* SGAs that need to manage and keep track of the profiles of seniors they are going to or have visited
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* SGAs that need to manage the profiles of seniors they are going to or have visited.
+* prefer desktop apps over other types.
+* can type fast.
+* prefers typing to mouse interactions.
+* is reasonably comfortable using CLI apps.
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-* maintain a record of senior profile
-* removes the need of having physical notes of senior profiles
+**Value proposition**: Manage contacts faster than a typical mouse/GUI driven app.
+* maintain a record of senior profile.
+* removes the need of having physical notes of senior profiles.
 
 ### User stories
 
@@ -291,15 +291,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​   | I want to …​                                    | So that I can…​                                              |
 |----------|-----------|-------------------------------------------------|--------------------------------------------------------------|
-| `* * *`  | SGA       | add a senior client’s contact details         | document the senior phone numbers and addresses.            |
+| `* * *`  | SGA       | add a senior client's contact details         | document the senior phone numbers and addresses.            |
 | `* * *`  | SGA       | delete senior profiles when no longer relevant | keep my list clean, updated, and manageable.                 |
 | `* * *`  | SGA       | edit a senior's contact information           | keep their details up to date.                               |
 | `* * *`  | SGA       | view all my senior clients in a list           | have an overview of who I am caring for.                     |
 | `* *`    | SGA       | add members with phone number in the same household       | able to reach out in the future.                     |
-| `* *`    | SGA       | filter seniors by needs                         | I can organize and know how to prepare before visiting them. |
-| `* *`    | SGA       | mark seniors as high-priority                 | identify who needs higher attention.                      |
-| `* *`    | SGA       | search for a senior client by name            | quickly find their respective information quickly.           |
-| `*`      | SGA       | track individual senior visit history      | maintain a record of interactions with each senior.          |
+| `* *`    | SGA       | filter seniors by needs                         | organize visits and know their conditions to prepare before visiting them. |
+| `* *`    | SGA       | mark seniors based on their condition                 | identify who needs higher attention.                      |
+| `* *`    | SGA       | search for a senior client by name            | find their respective information quickly.           |
+| `*`      | SGA       | track individual senior's case notes      | maintain a record of interactions with each senior.          |
 | `*`      | SGA       | record preferred visit times                  | visit seniors when they are most comfortable.                |
 | `*`      | SGA       | record senior exercising routines          | check up on their progress on next visit.             |
 | `*`      | Volunteer | write reflection notes after visits           | process my own emotions while volunteering.                  |
@@ -311,10 +311,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Delete a senior (by index)**
 
 **MSS**
-1. User requests to list seniors
-2. ElderRing shows a list of seniors
-3. User requests to delete a specific senior in the list
-4. ElderRing deletes the senior
+1. User requests to list seniors.
+2. ElderRing shows a list of seniors.
+3. User requests to delete a specific senior in the list.
+4. ElderRing deletes the senior.
 
   Use case ends.
 
@@ -333,9 +333,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Delete a senior (by name & phone)**
 
 **MSS**
-1. User requests to list or filter seniors (optional)
-2. User requests to delete a senior by specifying the name and phone number
-3. ElderRing deletes the matching senior
+1. User requests to list or filter seniors (optional).
+2. User requests to delete a senior by specifying the name and phone number.
+3. ElderRing deletes the matching senior.
 
   Use case ends.
 
@@ -355,8 +355,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Add a senior**
 
 **MSS**
-1. User requests to add a senior to the list (with required fields; optional tags)
-2. ElderRing adds the senior to the list
+1. User requests to add a senior to the list (with required fields; optional tags).
+2. ElderRing adds the senior to the list.
 
   Use case ends.
 
@@ -376,9 +376,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Edit a senior**
 
 **MSS**
-1. User requests to list seniors (optional)
-2. User requests to edit a senior by index, providing one or more new field values
-3. ElderRing updates the senior
+1. User requests to list seniors (optional).
+2. User requests to edit a senior by index, providing one or more new field values.
+3. ElderRing updates the senior.
 
 Use case ends.
 
@@ -403,8 +403,8 @@ Use case ends.
 **Use case: Find senior by name**
 
 **MSS**
-1. User requests to find senior by keyword(s)
-2. ElderRing shows the list filtered to matching names
+1. User requests to find senior by keyword(s).
+2. ElderRing shows the list filtered to matching names.
   Use case ends.
 
 **Extensions**
@@ -423,8 +423,8 @@ Use case ends.
 **Use case: Sort seniors (by field and order)**
 
 **MSS**
-1. User requests to sort the current list by a field (e.g., name/address) and order (ascending/descending)
-2. ElderRing sorts the list and shows a success message
+1. User requests to sort the current list by a field (e.g., name/address) and order (ascending/descending).
+2. ElderRing sorts the list and shows a success message.
 
   Use case ends.
 
@@ -439,9 +439,9 @@ Use case ends.
 **Use case: Tag a senior**
 
 **MSS**
-1. User identifies the target senior (by index, or by name & phone)
-2. User requests to add a tag to the target senior
-3. ElderRing adds the tag to the senior
+1. User identifies the target senior (by index, or by name & phone).
+2. User requests to add a tag to the target senior.
+3. ElderRing adds the tag to the senior.
 
   Use case ends.
 
@@ -461,9 +461,9 @@ Use case ends.
 **Use case: Add, remove or append a remark for a senior**
 
 **MSS**
-1. User requests to list seniors (optional)
-2. User requests to add a remark to the senior at a given index (or to remove it)
-3. ElderRing updates the remark (added, removed or append)
+1. User requests to list seniors (optional).
+2. User requests to add a remark to the senior at a given index (or to remove it).
+3. ElderRing updates the remark (added, removed or append).
 
   Use case ends.
 
@@ -488,8 +488,8 @@ Use case ends.
 **Use case: List all seniors**
 
 **MSS**
-1. User requests to list all seniors
-2. ElderRing shows the full list
+1. User requests to list all seniors.
+2. ElderRing shows the full list.
 
   Use case ends.
 
@@ -594,3 +594,58 @@ testers are expected to do more *exploratory* testing.
 
     2. Test case: Execute a command that modifies data (e.g., `add`, `delete`, `edit`).
     Expected: The data file is updated automatically. Changes persist after restarting the application.
+
+### Appendix: Planned Enhancements
+
+1. Enhance searching by senior's `NAME`
+Currently, the find feature searches names that match singular search terms and returns all entries containing included terms. e.g., `John Tan` will return all seniors names containing john or tan 
+
+The find command tokenizes the user input into individual keywords and performs a case-insensitive, partial match against the `NAME` field. A senior is included in the result list if their name contains at least one of the provided keywords (logical OR). For example, `find John Tan` will return all seniors whose names contain either `John` or `Tan`.
+
+**Proposed Changes:**
+* A senior is included only if their `NAME` contains all of the provided keywords (logical AND).
+
+This makes `find John Tan` return only seniors whose names contain both `John` and `Tan`, which are expected to improve user experience in searching for seniors.
+
+
+2. Allow searching of seniors by `PHONE_NUMBER`, `EMAIL`, `ADDRESS`
+Currently, the find feature only searches the `NAME` field. This means users cannot locate a senior using other information they may know, such as `PHONE_NUMBER`, `EMAIL`, or `ADDRESS`.
+
+The find command currently tokenizes the user input into individual keywords and performs a case-insensitive, partial match only against the `NAME` field. Seniors are included in the result list based solely on name matches, even if their `PHONE_NUMBER`, `EMAIL`, or `ADDRESS` clearly matches the user’s query.
+
+**Proposed Changes:**
+* Extend the find command to search across multiple fields: `PHONE_NUMBER`, `EMAIL`, or `ADDRESS`.
+
+These changes allow SGAs to search using whatever piece of information they have (name, phone, email, or address), improving flexibility and efficiency when retrieving senior records.
+
+
+3. Allow sorting by address in any format based on estate
+Currently, the `sort` feature supports sorting seniors by `ADDRESS` in ascending or descending lexicographical order. To get meaningful ordering, users are advised to enter addresses in a specific format: Estate → Street → Block → Unit Number → Postal Code. However, in practice, SGAs may key in addresses in a variety of formats (e.g., starting with block number, postal code, or even free-text descriptions), which leads to inconsistent and unintuitive ordering when sorting by address.
+
+**Proposed Changes:**
+* Implement address parsing logic (or a lightweight heuristic) that attempts to extract the estate/component used for grouping (e.g., `Telok Blangah`, `Toa Payoh`, `Clementi`) from the `ADDRESS` field.
+
+This makes `sort asc/address` group seniors from the same estate together even when SGAs enter addresses in different formats, resulting in a more intuitive and useful ordering for planning visits by neighbourhood.
+
+
+4. Have the option to specifically view an individual senior details
+Currently, senior details are primarily viewed through the main list. While users can expand truncated fields (e.g., when text ends with `...`) to reveal more information, all details are still presented in a compact list view. This makes it harder to focus on a single senior when there are long remarks, multiple tags, or when SGAs want to quickly review all information related to one senior in a clear, dedicated layout.
+
+The existing workflow requires SGAs to visually scan through the list and selectively expand fields, which is not ideal when they only need to inspect one specific senior in detail (e.g., before a visit). There is no dedicated “view” mode that shows a senior’s full profile in a focused, read-only view.
+
+**Proposed Changes:**
+* Introduce a dedicated command (e.g., `view i/INDEX`) to open a detailed, read-only view of a specific senior.
+* The detailed view should display all fields in full (`NAME`, `PHONE_NUMBER`, `ADDRESS`, `EMAIL`, `TAGS`, and `REMARK`), without truncation or `...` expansion controls.
+
+This provides SGAs with a focused way to review the complete profile of a single senior, improving usability when preparing for visits or verifying information.
+
+
+5. Better formatting for remarks
+Currently, the `remark` feature stores all notes as a single plain-text field attached to a senior. Remarks are displayed in a compact, inline format in the list view and are truncated with `...` when too long.
+
+As a result, long remarks can be challenging to read: different visits, medications, or follow-up notes are merged into one dense block of text. SGAs cannot easily distinguish entries by date, bullet points, or sections (e.g., `Medical`, `Social`, `Follow-up`), reducing the usefulness of remarks for ongoing case tracking.
+
+**Proposed Changes:**
+* Support multi-line remarks with preserved line breaks when displaying them in the UI (e.g., show them in a multi-line text area or block instead of a single wrapped line).
+* Allow simple formatting conventions inside remarks (e.g., `-` as bullet points, or recognizing blank lines as separators between sections).
+These changes make remarks significantly more readable and structured, helping SGAs quickly scan important notes, and follow-ups for each senior.
