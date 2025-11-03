@@ -595,10 +595,11 @@ testers are expected to do more *exploratory* testing.
     2. Test case: Execute a command that modifies data (e.g., `add`, `delete`, `edit`).
     Expected: The data file is updated automatically. Changes persist after restarting the application.
 
-### Appendix: Planned Enhancements
+## Appendix: Planned Enhancements
 
-1. Enhance searching by senior's `NAME`
-Currently, the find feature searches names that match singular search terms and returns all entries containing included terms. e.g., `John Tan` will return all seniors names containing john or tan 
+##### 1. Enhance searching by senior's `NAME`
+
+Currently, the find feature searches names that match singular search terms and returns all entries containing included terms. e.g., `John Tan` will return all seniors names containing `john` or `tan`.
 
 The find command tokenizes the user input into individual keywords and performs a case-insensitive, partial match against the `NAME` field. A senior is included in the result list if their name contains at least one of the provided keywords (logical OR). For example, `find John Tan` will return all seniors whose names contain either `John` or `Tan`.
 
@@ -608,7 +609,8 @@ The find command tokenizes the user input into individual keywords and performs 
 This makes `find John Tan` return only seniors whose names contain both `John` and `Tan`, which are expected to improve user experience in searching for seniors.
 
 
-2. Allow searching of seniors by `PHONE_NUMBER`, `EMAIL`, `ADDRESS`
+##### 2. Allow searching of seniors by `PHONE_NUMBER`, `EMAIL`, `ADDRESS`
+
 Currently, the find feature only searches the `NAME` field. This means users cannot locate a senior using other information they may know, such as `PHONE_NUMBER`, `EMAIL`, or `ADDRESS`.
 
 The find command currently tokenizes the user input into individual keywords and performs a case-insensitive, partial match only against the `NAME` field. Seniors are included in the result list based solely on name matches, even if their `PHONE_NUMBER`, `EMAIL`, or `ADDRESS` clearly matches the user’s query.
@@ -619,7 +621,8 @@ The find command currently tokenizes the user input into individual keywords and
 These changes allow SGAs to search using whatever piece of information they have (name, phone, email, or address), improving flexibility and efficiency when retrieving senior records.
 
 
-3. Allow sorting by address in any format based on estate
+##### 3. Allow sorting by address in any format based on estate
+
 Currently, the `sort` feature supports sorting seniors by `ADDRESS` in ascending or descending lexicographical order. To get meaningful ordering, users are advised to enter addresses in a specific format: Estate → Street → Block → Unit Number → Postal Code. However, in practice, SGAs may key in addresses in a variety of formats (e.g., starting with block number, postal code, or even free-text descriptions), which leads to inconsistent and unintuitive ordering when sorting by address.
 
 **Proposed Changes:**
@@ -628,7 +631,8 @@ Currently, the `sort` feature supports sorting seniors by `ADDRESS` in ascending
 This makes `sort asc/address` group seniors from the same estate together even when SGAs enter addresses in different formats, resulting in a more intuitive and useful ordering for planning visits by neighbourhood.
 
 
-4. Have the option to specifically view an individual senior details
+##### 4. Have the option to specifically view an individual senior details
+
 Currently, senior details are primarily viewed through the main list. While users can expand truncated fields (e.g., when text ends with `...`) to reveal more information, all details are still presented in a compact list view. This makes it harder to focus on a single senior when there are long remarks, multiple tags, or when SGAs want to quickly review all information related to one senior in a clear, dedicated layout.
 
 The existing workflow requires SGAs to visually scan through the list and selectively expand fields, which is not ideal when they only need to inspect one specific senior in detail (e.g., before a visit). There is no dedicated “view” mode that shows a senior’s full profile in a focused, read-only view.
@@ -640,7 +644,8 @@ The existing workflow requires SGAs to visually scan through the list and select
 This provides SGAs with a focused way to review the complete profile of a single senior, improving usability when preparing for visits or verifying information.
 
 
-5. Better formatting for remarks
+##### 5. Better formatting for remarks
+
 Currently, the `remark` feature stores all notes as a single plain-text field attached to a senior. Remarks are displayed in a compact, inline format in the list view and are truncated with `...` when too long.
 
 As a result, long remarks can be challenging to read: different visits, medications, or follow-up notes are merged into one dense block of text. SGAs cannot easily distinguish entries by date, bullet points, or sections (e.g., `Medical`, `Social`, `Follow-up`), reducing the usefulness of remarks for ongoing case tracking.
@@ -648,4 +653,5 @@ As a result, long remarks can be challenging to read: different visits, medicati
 **Proposed Changes:**
 * Support multi-line remarks with preserved line breaks when displaying them in the UI (e.g., show them in a multi-line text area or block instead of a single wrapped line).
 * Allow simple formatting conventions inside remarks (e.g., `-` as bullet points, or recognizing blank lines as separators between sections).
+
 These changes make remarks significantly more readable and structured, helping SGAs quickly scan important notes, and follow-ups for each senior.
