@@ -103,6 +103,9 @@ public class ParserUtil {
      */
     public static Tag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
+        if (!Tag.isValidTagContent(tag) || !Tag.isValidTagLength(tag)) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
         String trimmedTag = tag.trim();
         return new Tag(trimmedTag);
     }
