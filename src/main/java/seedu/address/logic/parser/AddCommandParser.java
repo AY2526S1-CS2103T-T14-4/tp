@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.TagCommand.MESSAGE_TAG_TOO_LONG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -50,6 +51,12 @@ public class AddCommandParser implements Parser<AddCommand> {
                 .stream()
                 .filter(tag -> !tag.tagName.trim().isEmpty())
                 .collect(Collectors.toSet());
+
+        for (Tag tag : tagList) {
+            if (tag.tagName.length() > 30) {
+                throw new ParseException(MESSAGE_TAG_TOO_LONG);
+            }
+        }
 
         boolean emailIsPresent = arePrefixesPresent(argMultimap, PREFIX_EMAIL);
         Email email;
