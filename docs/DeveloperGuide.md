@@ -595,7 +595,7 @@ testers are expected to do more *exploratory* testing.
     2. Test case: Execute a command that modifies data (e.g., `add`, `delete`, `edit`).
     Expected: The data file is updated automatically. Changes persist after restarting the application.
 
-## Appendix: Planned Enhancements
+## Appendix: Planned enhancements
 
 ##### 1. Enhance searching by senior's `NAME`
 
