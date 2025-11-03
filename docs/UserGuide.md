@@ -416,7 +416,7 @@ With exactly one of:
 
 <box type="warning">
 
-**Warning**: Words starting with **`ap/`** or **`r/`** in the remark text are treated as invalid input.
+**Warning**: Avoid putting spaces immediately after prefixes (e.g., `i/`, `r/`, `ap/`, `--remove`) — the value must follow the prefix directly, or the command may be treated as invalid.
 
 </box>
 
