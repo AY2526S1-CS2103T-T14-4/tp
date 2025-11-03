@@ -16,6 +16,7 @@ Welcome to **ElderRing**, a **Command Line Interface (CLI)** desktop application
 
 ## Table of Contents
 * [How to Read This Guide](#how-to-read-this-guide)
+* [Understanding the User Guide](#understanding-the-user-guide)
 * [Quick Start](#quick-start)
 * [Parameters](#parameters)
 * [Features](#features)
@@ -54,20 +55,23 @@ If you have **experience with ElderRing**:
 - Check out the [Command Summary](#command-summary) for a quick overview of the various commands and their usage.
 - Check out the [Features](#features) section for a more in-depth breakdown of each feature.
 
+--------------------------------------------------------------------------------------------------------------------
+
 <br>
 
+### Understanding the User Guide
 
-<box>
+This section outlines the different kind of elements found in this guide and what they represent.
 
   #### Additional Information
 
-    Additional information is indicated as a box with an "**i**" symbol.
+  Additional information is indicated as a box with an "**i**" symbol.
 
-    <box type="info" seamless>
+  <box type="info" seamless>
 
-    This is an example of additional information.
+  This is an example of additional information.
 
-    </box>
+  </box>
 
   #### Tips
 
@@ -91,7 +95,6 @@ If you have **experience with ElderRing**:
 
   </box>
 
-</box>
 
 --------------------------------------------------------------------------------------------------------------------
 
