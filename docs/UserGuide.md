@@ -141,7 +141,7 @@ Ensure you have the precise JDK version prescribed based on your following OS:
    `java -jar ElderRing.jar`.
 
 7. A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br><br>
-   ![Ui](images/uiExplanation.png){width=400px}
+   ![Ui](images/uiExplanation.png){width=800px}
 
 8. Type a command in the command box (located at the bottom of the window) and press Enter to execute it.
 
@@ -284,7 +284,7 @@ Format: `help`
 **Navigate to the subsections here:**
 <a href="#parameters" class="badge bg-secondary">Parameters</a>
 <a href="#command-summary" class="badge bg-secondary">Command Summary</a>
-<a href="#introduction" class="badge bg-light">Back to top</a>
+<a href="#introduction" class="badge bg-light text-dark">Back to top</a>
 
 </box>
 
@@ -308,7 +308,7 @@ Examples:
 * `add n/Tan Ah Kow e/tak@gmail.com p/96521345 a/Blk 41 Telok Blangah Way #07-436 t/hard-of-hearing`
 * `add n/Shermaine Tan p/98541331 a/1 Lor 2 Toa Payoh #07-36 e/shermainetan@gmail.com`
 
-![add command](images/addCommand.png){width=400px}
+![add command](images/addCommand.png){width=800px} <br>
 Results of the command: `add n/Tan Ah Kow e/tak@gmail.com p/96521345 a/Blk 41 Telok Blangah Way #07-436 t/hard-of-hearing`.
 
 <br>
@@ -318,7 +318,7 @@ Results of the command: `add n/Tan Ah Kow e/tak@gmail.com p/96521345 a/Blk 41 Te
 **Navigate to the subsections here:**
 <a href="#parameters" class="badge bg-secondary">Parameters</a> 
 <a href="#command-summary" class="badge bg-secondary">Command Summary</a>
-<a href="#introduction" class="badge bg-light">Back to top</a>
+<a href="#introduction" class="badge bg-light text-dark">Back to top</a>
 
 </box>
 
@@ -360,7 +360,7 @@ Examples:
 *  `edit i/10 t/Diabetic`
 *  `edit i/1 n/Joseph p/92891234`
 
-![edit command](images/editCommand.png){width=400px}
+![edit command](images/editCommand.png){width=800px} <br>
 Results of the command: `edit i/1 n/Joseph p/92891234`.
 
 <br>
@@ -370,7 +370,7 @@ Results of the command: `edit i/1 n/Joseph p/92891234`.
 **Navigate to the subsections here:**
 <a href="#parameters" class="badge bg-secondary">Parameters</a> 
 <a href="#command-summary" class="badge bg-secondary">Command Summary</a>
-<a href="#introduction" class="badge bg-light">Back to top</a>
+<a href="#introduction" class="badge bg-light text-dark">Back to top</a>
 
 </box>
 
@@ -404,7 +404,7 @@ Examples:
 * `list` followed by `delete i/2` deletes the second senior displayed in ElderRing.
 * `delete n/Joseph p/92891234`
 
-![delete command](images/deleteCommand.png){width=400px}
+![delete command](images/deleteCommand.png){width=800px} <br>
 Results of the command: `delete n/Joseph p/92891234`.
 
 <br>
@@ -414,7 +414,7 @@ Results of the command: `delete n/Joseph p/92891234`.
 **Navigate to the subsections here:**
 <a href="#parameters" class="badge bg-secondary">Parameters</a> 
 <a href="#command-summary" class="badge bg-secondary">Command Summary</a>
-<a href="#introduction" class="badge bg-light">Back to top</a>
+<a href="#introduction" class="badge bg-light text-dark">Back to top</a>
 
 </box>
 
@@ -426,7 +426,7 @@ Shows a list of all seniors in ElderRing.
 
 Format: `list`
 
-![list command](images/listCommand.png){width=400px}
+![list command](images/listCommand.png){width=800px} <br>
 Results of the command: `list`.
 
 <box type="tip" seamless>
@@ -445,7 +445,7 @@ Clicking on the `...` expands the senior's full information. Clicking on the lon
 **Navigate to the subsections here:**
 <a href="#parameters" class="badge bg-secondary">Parameters</a> 
 <a href="#command-summary" class="badge bg-secondary">Command Summary</a>
-<a href="#introduction" class="badge bg-light">Back to top</a>
+<a href="#introduction" class="badge bg-light text-dark">Back to top</a>
 
 </box>
 
@@ -479,7 +479,7 @@ Examples:
 * `sort asc/address`
 * `sort dsc/address`
 
-![sort command](images/sortCommand.png){width=400px}
+![sort command](images/sortCommand.png){width=800px} <br>
 Results of the command: `sort asc/name`.
 
 <br>
@@ -489,7 +489,7 @@ Results of the command: `sort asc/name`.
 **Navigate to the subsections here:**
 <a href="#parameters" class="badge bg-secondary">Parameters</a> 
 <a href="#command-summary" class="badge bg-secondary">Command Summary</a>
-<a href="#introduction" class="badge bg-light">Back to top</a>
+<a href="#introduction" class="badge bg-light text-dark">Back to top</a>
 
 </box>
 
@@ -513,7 +513,7 @@ Examples:
 * `find can ran` displays `Candice Lim`, `Randy Tan`, `Ranger Lee`.
 * `find charlotte bernice` displays `Bernice Yu`, `Charlotte Oliveiro`.
 
-![find command](images/findCommand.png){width=400px}
+![find command](images/findCommand.png){width=800px} <br>
 Results of the command: `find tan`.
 
 <br>
@@ -523,7 +523,7 @@ Results of the command: `find tan`.
 **Navigate to the subsections here:**
 <a href="#parameters" class="badge bg-secondary">Parameters</a> 
 <a href="#command-summary" class="badge bg-secondary">Command Summary</a>
-<a href="#introduction" class="badge bg-light">Back to top</a>
+<a href="#introduction" class="badge bg-light text-dark">Back to top</a>
 
 </box>
 
@@ -556,7 +556,7 @@ Examples:
 * `remark i/1 ap/Followed up on 24 Oct`
 * `remark i/1 --remove`
 
-![remark command](images/remarkCommand.png){width=400px}
+![remark command](images/remarkCommand.png){width=800px} <br>
 Results of the command: `remark i/1 r/Senior is aggressive`.
 
 <br>
@@ -566,7 +566,7 @@ Results of the command: `remark i/1 r/Senior is aggressive`.
 **Navigate to the subsections here:**
 <a href="#parameters" class="badge bg-secondary">Parameters</a> 
 <a href="#command-summary" class="badge bg-secondary">Command Summary</a>
-<a href="#introduction" class="badge bg-light">Back to top</a>
+<a href="#introduction" class="badge bg-light text-dark">Back to top</a>
 
 </box>
 
@@ -597,7 +597,7 @@ Examples:
 * `tag n/John Doe p/91234567 t/hard-of-hearing`
 * `tag i/1 t/hard-of-hearing --remove`
 
-![tag command](images/tagCommand.png){width=400px}
+![tag command](images/tagCommand.png){width=800px} <br>
 Results of the command: `tag i/1 t/hard-of-hearing`.
 
 <br>
@@ -607,7 +607,7 @@ Results of the command: `tag i/1 t/hard-of-hearing`.
 **Navigate to the subsections here:**
 <a href="#parameters" class="badge bg-secondary">Parameters</a> 
 <a href="#command-summary" class="badge bg-secondary">Command Summary</a>
-<a href="#introduction" class="badge bg-light">Back to top</a>
+<a href="#introduction" class="badge bg-light text-dark">Back to top</a>
 
 </box>
 
@@ -632,7 +632,7 @@ Format: `filter t/TAG`
 Examples:
 * `filter t/hard-of-hearing`
 
-![filter command](images/filterCommand.png){width=400px}
+![filter command](images/filterCommand.png){width=800px} <br>
 Results of the command: `filter t/hard-of-hearing`.
 
 <box type="warning">
@@ -649,7 +649,7 @@ To display the original list of seniors, use the [list](#listing-all-seniors-lis
 **Navigate to the subsections here:**
 <a href="#parameters" class="badge bg-secondary">Parameters</a> 
 <a href="#command-summary" class="badge bg-secondary">Command Summary</a>
-<a href="#introduction" class="badge bg-light">Back to top</a>
+<a href="#introduction" class="badge bg-light text-dark">Back to top</a>
 
 </box>
 
@@ -665,7 +665,7 @@ Format: `clear --removeall`
 
 1. `--removeall`: Mandatory.
 
-![clear command](images/clearCommand.png){width=400px}
+![clear command](images/clearCommand.png){width=800px} <br> <br>
 Results of the command: `clear --removeall`.
 
 <box type="warning">
@@ -681,7 +681,7 @@ Results of the command: `clear --removeall`.
 **Navigate to the subsections here:**
 <a href="#parameters" class="badge bg-secondary">Parameters</a> 
 <a href="#command-summary" class="badge bg-secondary">Command Summary</a>
-<a href="#introduction" class="badge bg-light">Back to top</a>
+<a href="#introduction" class="badge bg-light text-dark">Back to top</a>
 
 </box>
 
@@ -700,7 +700,7 @@ Format: `exit`
 **Navigate to the subsections here:**
 <a href="#parameters" class="badge bg-secondary">Parameters</a> 
 <a href="#command-summary" class="badge bg-secondary">Command Summary</a>
-<a href="#introduction" class="badge bg-light">Back to top</a>
+<a href="#introduction" class="badge bg-light text-dark">Back to top</a>
 
 </box>
 
@@ -715,6 +715,8 @@ ElderRing data is automatically saved in the hard disk after any command that mo
 The application supports up to **250 entries** to maintain optimal performance while meeting the operational needs of volunteers who typically manage a manageable number of senior contacts.
 
 </box>
+
+<br>
 
 ### Editing the data file
 
