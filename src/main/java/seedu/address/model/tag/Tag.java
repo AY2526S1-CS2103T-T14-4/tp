@@ -24,6 +24,11 @@ public class Tag {
         this.tagName = tagName.trim().toLowerCase(); //keeps all tags as lowercase
     }
 
+    /**
+     * Checks if tag is not empty (i.e. not whitespace only)
+     * @param tagName Target tag being added
+     * @return
+     */
     public static boolean isValidTagContent(String tagName) {
         requireNonNull(tagName);
         String trimmed = tagName.trim();
@@ -34,6 +39,11 @@ public class Tag {
         }
     }
 
+    /**
+     * Checks if tagName is within length constraint of 30 characters
+     * @param tagName Target tag being added
+     * @return
+     */
     public static boolean isValidTagLength(String tagName) {
         requireNonNull(tagName);
         String trimmed = tagName.trim();

@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.TagCommand.MESSAGE_TAG_TOO_LONG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -45,14 +44,6 @@ public class TagCommandParser implements Parser<TagCommand> {
 
             Tag tag = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
             String tagName = tag.tagName;
-
-//            if (tagName.isEmpty()) {
-//                throw new ParseException("Tag name cannot be empty.");
-//            }
-//
-//            if (tagName.length() > 30) {
-//                throw new ParseException(MESSAGE_TAG_TOO_LONG);
-//            }
 
             int identifierCount = 0;
             if (indexIsPresent) {
