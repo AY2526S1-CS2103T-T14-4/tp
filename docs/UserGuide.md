@@ -58,13 +58,13 @@ If you have **experience with ElderRing**:
 
   #### Additional Information
 
-    Additional information is indicated as a box with an "**i**" symbol.
+  Additional information is indicated as a box with an "**i**" symbol.
 
-    <box type="info" seamless>
+  <box type="info" seamless>
 
-    This is an example of additional information.
+  This is an example of additional information.
 
-    </box>
+  </box>
 
   #### Tips
 
