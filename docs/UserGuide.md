@@ -57,6 +57,10 @@ If you have **experience with ElderRing**:
 
 <br>
 
+<a href="#introduction">Back to top</a>
+
+<br>
+
 --------------------------------------------------------------------------------------------------------------------
 
 <br>
@@ -85,9 +89,7 @@ This section outlines the different kind of elements found in this guide and wha
 
   </box>
 
-
   #### Warnings
-
 
   Warnings are displayed as a box with a "**!**" symbol.
 
@@ -96,6 +98,10 @@ This section outlines the different kind of elements found in this guide and wha
   This is an example of a warning.
 
   </box>
+
+<br>
+
+<a href="#introduction">Back to top</a>
 
 <br>
 
@@ -159,6 +165,12 @@ Ensure you have the precise JDK version prescribed based on your following OS:
    * `exit` : Exits the app.
 
 9. Refer to the [Features](#features) section below for details of each command.
+
+<br>
+
+<a href="#introduction">Back to top</a>
+
+<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -294,9 +306,16 @@ This section covers the list of commands and their usage. If you are experienced
 
 Shows a message explaining how to access the help page.
 
-![help command](images/helpCommand.png)
-
 Format: `help`
+
+<figure>
+
+  <img src="images/helpWindow.png" alt="help window" style="display: block; margin: 0 auto;" />
+  <figcaption style="text-align: center; font-style: italic">
+    <md>Results of the command: `help`</md>
+  </figcaption>
+
+</figure>
 
 <br>
 
@@ -326,11 +345,17 @@ Format: `add n/NAME p/PHONE_NUMBER a/ADDRESS [e/EMAIL] [t/TAG]…​`
 5. `TAG`: Optional.
 
 Examples:
-* `add n/Tan Ah Kow e/tak@gmail.com p/96521345 a/Blk 41 Telok Blangah Way #07-436 t/hard-of-hearing` creates an entry with the name Tan Ah Kow, email tak@gmail.com, phone number 96521345 and address Blk 41 Telok Blangah Way #07-436, with the tag "hard-of-hearing."
+* `add n/Tan Ah Kow e/tak@gmail.com p/96521345 a/Blk 41 Telok Blangah Way #07-436 t/hard-of-hearing` creates an entry with the name Tan Ah Kow, email tak@gmail.com, phone number 96521345 and address Blk 41 Telok Blangah Way #07-436, with the tag "hard-of-hearing".
 * `add n/Shermaine Tan p/98541331 a/1 Lor 2 Toa Payoh #07-36 e/shermainetan@gmail.com` creates an entry with the name Shermaine Tan, phone number 98541331, address 1 Lor 2 Toa Payoh #07-36 and email shermainetan@gmail.com.
 
-![add command](images/addCommand.png){width=800px} <br>
-Results of the command: `add n/Tan Ah Kow e/tak@gmail.com p/96521345 a/Blk 41 Telok Blangah Way #07-436 t/hard-of-hearing`.
+<figure>
+
+  <img src="images/addCommand.png" alt="add command" style="display: block; margin: 0 auto;" width="800px"/>
+  <figcaption style="text-align: center; font-style: italic">
+    <md>Results of the command: `add n/Tan Ah Kow e/tak@gmail.com p/96521345 a/Blk 41 Telok Blangah Way #07-436 t/hard-of-hearing`.</md>
+  </figcaption>
+
+</figure>
 
 <br>
 
@@ -381,8 +406,14 @@ Examples:
 *  `edit i/10 t/Diabetic` edits the tenth displayed entry to now be tagged as "diabetic" only.
 *  `edit i/1 n/Joseph p/92891234` edits the first displayed entry's name to now be Joseph and its phone number to 92891234.
 
-![edit command](images/editCommand.png){width=800px} <br>
-Results of the command: `edit i/1 n/Joseph p/92891234`.
+<figure>
+
+  <img src="images/editCommand.png" alt="edit command" style="display: block; margin: 0 auto;" width="800px"/>
+  <figcaption style="text-align: center; font-style: italic">
+    <md>Results of the command: `edit i/1 n/Joseph p/92891234`.</md>
+  </figcaption>
+
+</figure>
 
 <br>
 
@@ -425,8 +456,14 @@ Examples:
 * `list` followed by `delete i/2` deletes the second entry displayed.
 * `delete n/Joseph p/92891234` deletes the entry with name Joseph and phone number 92891234.
 
-![delete command](images/deleteCommand.png){width=800px} <br>
-Results of the command: `delete n/Joseph p/92891234`.
+<figure>
+
+  <img src="images/deleteCommand.png" alt="delete command" style="display: block; margin: 0 auto;" width="800px"/>
+  <figcaption style="text-align: center; font-style: italic">
+    <md>Results of the command: `delete n/Joseph p/92891234`.</md>
+  </figcaption>
+
+</figure>
 
 <br>
 
@@ -447,8 +484,14 @@ Shows a list of all seniors in ElderRing.
 
 Format: `list`
 
-![list command](images/listCommand.png){width=800px} <br>
-Results of the command: `list`.
+<figure>
+
+  <img src="images/listCommand.png" alt="list command" style="display: block; margin: 0 auto;" width="800px"/>
+  <figcaption style="text-align: center; font-style: italic">
+    <md>Results of the command: `list`.</md>
+  </figcaption>
+
+</figure>
 
 <box type="tip" seamless>
 
@@ -500,8 +543,14 @@ Examples:
 * `sort asc/address` sorts the entries by address in ascending order.
 * `sort dsc/address` sorts the entries by address in descending order.
 
-![sort command](images/sortCommand.png){width=800px} <br>
-Results of the command: `sort asc/name`.
+<figure>
+
+  <img src="images/sortCommand.png" alt="sort command" style="display: block; margin: 0 auto;" width="800px"/>
+  <figcaption style="text-align: center; font-style: italic">
+    <md>Results of the command: `sort asc/name`.</md>
+  </figcaption>
+
+</figure>
 
 <br>
 
@@ -534,8 +583,14 @@ Examples:
 * `find can ran` displays `Candice Lim`, `Randy Tan`, `Ranger Lee`.
 * `find charlotte bernice` displays `Bernice Yu`, `Charlotte Oliveiro`.
 
-![find command](images/findCommand.png){width=800px} <br>
-Results of the command: `find tan`.
+<figure>
+
+  <img src="images/findCommand.png" alt="find command" style="display: block; margin: 0 auto;" width="800px"/>
+  <figcaption style="text-align: center; font-style: italic">
+    <md>Results of the command: `find tan`.</md>
+  </figcaption>
+
+</figure>
 
 <br>
 
@@ -577,8 +632,14 @@ Examples:
 * `remark i/1 ap/Followed up on 24 Oct` appends "Followed up on 24 Oct" to the remarks of the first displayed entry.
 * `remark i/1 --remove` removes any remarks of the first displayed entry.
 
-![remark command](images/remarkCommand.png){width=800px} <br>
-Results of the command: `remark i/1 r/Senior is aggressive`.
+<figure>
+
+  <img src="images/remarkCommand.png" alt="remark command" style="display: block; margin: 0 auto;" width="800px"/>
+  <figcaption style="text-align: center; font-style: italic">
+    <md>Results of the command: `remark i/1 r/Senior is aggressive`.</md>
+  </figcaption>
+
+</figure>
 
 <br>
 
@@ -625,8 +686,14 @@ Examples:
 * `tag n/John Doe p/91234567 t/hard-of-hearing` tags the entry with name John Doe and phone number 91234567 as "hard-of-hearing."
 * `tag i/1 t/hard-of-hearing --remove` removes (untags) the tag "hard-of-hearing" from the first displayed entry.
 
-![tag command](images/tagCommand.png){width=800px} <br>
-Results of the command: `tag i/1 t/hard-of-hearing`.
+<figure>
+
+  <img src="images/tagCommand.png" alt="tag command" style="display: block; margin: 0 auto;" width="800px"/>
+  <figcaption style="text-align: center; font-style: italic">
+    <md>Results of the command: `tag i/1 t/hard-of-hearing`.</md>
+  </figcaption>
+
+</figure>
 
 <br>
 
@@ -661,8 +728,14 @@ Examples:
 * `filter t/hard-of-hearing` displays the entries with the "hard-of-hearing" tag.
 * `filter t/1950-1960 t/hard-of-hearing` displays the entries with the "1950-1960" or "hard-of-hearing" tags.
 
-![filter command](images/filterCommand.png){width=800px} <br>
-Results of the command: `filter t/hard-of-hearing`.
+<figure>
+
+  <img src="images/filterCommand.png" alt="filter command" style="display: block; margin: 0 auto;" width="800px"/>
+  <figcaption style="text-align: center; font-style: italic">
+    <md>Results of the command: `filter t/hard-of-hearing`.</md>
+  </figcaption>
+
+</figure>
 
 <box type="warning">
 
@@ -694,8 +767,14 @@ Format: `clear --removeall`
 
 1. `--removeall`: Mandatory.
 
-![clear command](images/clearCommand.png){width=800px} <br> <br>
-Results of the command: `clear --removeall`.
+<figure>
+
+  <img src="images/clearCommand.png" alt="clear command" style="display: block; margin: 0 auto;" width="800px"/>
+  <figcaption style="text-align: center; font-style: italic">
+    <md>Results of the command: `clear --removeall`.</md>
+  </figcaption>
+
+</figure>
 
 <box type="warning">
 
@@ -780,6 +859,10 @@ ElderRing data are automatically saved as a JSON file `[JAR file location]/data/
 
 <br>
 
+<a href="#introduction">Back to top</a>
+
+<br>
+
 --------------------------------------------------------------------------------------------------------------------
 
 <br>
@@ -791,6 +874,10 @@ ElderRing data are automatically saved as a JSON file `[JAR file location]/data/
 <br>
 
 The remedy is to delete the `preferences.json` file created by the application (in the same folder as the JAR file) before running the application again. <br>
+
+<br>
+
+<a href="#introduction">Back to top</a>
 
 <br>
 
