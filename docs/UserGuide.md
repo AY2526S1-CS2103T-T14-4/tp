@@ -299,9 +299,16 @@ This section covers the list of commands and their usage. If you are experienced
 
 Shows a message explaining how to access the help page.
 
-![help command](images/helpCommand.png)
-
 Format: `help`
+
+<figure>
+
+  <img src="images/helpWindow.png" alt="help window" style="display: block; margin: 0 auto;" />
+  <figcaption style="text-align: center; font-style: italic">
+    <md>Results of the command: `help`</md>
+  </figcaption>
+
+</figure>
 
 <br>
 
@@ -334,8 +341,14 @@ Examples:
 * `add n/Tan Ah Kow e/tak@gmail.com p/96521345 a/Blk 41 Telok Blangah Way #07-436 t/hard-of-hearing`
 * `add n/Shermaine Tan p/98541331 a/1 Lor 2 Toa Payoh #07-36 e/shermainetan@gmail.com`
 
-![add command](images/addCommand.png){width=800px} <br>
-Results of the command: `add n/Tan Ah Kow e/tak@gmail.com p/96521345 a/Blk 41 Telok Blangah Way #07-436 t/hard-of-hearing`.
+<figure>
+
+  <img src="images/addCommand.png" alt="add command" style="display: block; margin: 0 auto;" width="800px"/>
+  <figcaption style="text-align: center; font-style: italic">
+    <md>Results of the command: `add n/Tan Ah Kow e/tak@gmail.com p/96521345 a/Blk 41 Telok Blangah Way #07-436 t/hard-of-hearing`.</md>
+  </figcaption>
+
+</figure>
 
 <br>
 
@@ -386,8 +399,14 @@ Examples:
 *  `edit i/10 t/Diabetic`
 *  `edit i/1 n/Joseph p/92891234`
 
-![edit command](images/editCommand.png){width=800px} <br>
-Results of the command: `edit i/1 n/Joseph p/92891234`.
+<figure>
+
+  <img src="images/editCommand.png" alt="edit command" style="display: block; margin: 0 auto;" width="800px"/>
+  <figcaption style="text-align: center; font-style: italic">
+    <md>Results of the command: `edit i/1 n/Joseph p/92891234`.</md>
+  </figcaption>
+
+</figure>
 
 <br>
 
@@ -430,8 +449,14 @@ Examples:
 * `list` followed by `delete i/2` deletes the second senior displayed in ElderRing.
 * `delete n/Joseph p/92891234`
 
-![delete command](images/deleteCommand.png){width=800px} <br>
-Results of the command: `delete n/Joseph p/92891234`.
+<figure>
+
+  <img src="images/deleteCommand.png" alt="delete command" style="display: block; margin: 0 auto;" width="800px"/>
+  <figcaption style="text-align: center; font-style: italic">
+    <md>Results of the command: `delete n/Joseph p/92891234`.</md>
+  </figcaption>
+
+</figure>
 
 <br>
 
@@ -452,8 +477,14 @@ Shows a list of all seniors in ElderRing.
 
 Format: `list`
 
-![list command](images/listCommand.png){width=800px} <br>
-Results of the command: `list`.
+<figure>
+
+  <img src="images/listCommand.png" alt="list command" style="display: block; margin: 0 auto;" width="800px"/>
+  <figcaption style="text-align: center; font-style: italic">
+    <md>Results of the command: `list`.</md>
+  </figcaption>
+
+</figure>
 
 <box type="tip" seamless>
 
@@ -505,8 +536,14 @@ Examples:
 * `sort asc/address`
 * `sort dsc/address`
 
-![sort command](images/sortCommand.png){width=800px} <br>
-Results of the command: `sort asc/name`.
+<figure>
+
+  <img src="images/sortCommand.png" alt="sort command" style="display: block; margin: 0 auto;" width="800px"/>
+  <figcaption style="text-align: center; font-style: italic">
+    <md>Results of the command: `sort asc/name`.</md>
+  </figcaption>
+
+</figure>
 
 <br>
 
@@ -539,8 +576,14 @@ Examples:
 * `find can ran` displays `Candice Lim`, `Randy Tan`, `Ranger Lee`.
 * `find charlotte bernice` displays `Bernice Yu`, `Charlotte Oliveiro`.
 
-![find command](images/findCommand.png){width=800px} <br>
-Results of the command: `find tan`.
+<figure>
+
+  <img src="images/findCommand.png" alt="find command" style="display: block; margin: 0 auto;" width="800px"/>
+  <figcaption style="text-align: center; font-style: italic">
+    <md>Results of the command: `find tan`.</md>
+  </figcaption>
+
+</figure>
 
 <br>
 
@@ -582,8 +625,14 @@ Examples:
 * `remark i/1 ap/Followed up on 24 Oct`
 * `remark i/1 --remove`
 
-![remark command](images/remarkCommand.png){width=800px} <br>
-Results of the command: `remark i/1 r/Senior is aggressive`.
+<figure>
+
+  <img src="images/remarkCommand.png" alt="remark command" style="display: block; margin: 0 auto;" width="800px"/>
+  <figcaption style="text-align: center; font-style: italic">
+    <md>Results of the command: `remark i/1 r/Senior is aggressive`.</md>
+  </figcaption>
+
+</figure>
 
 <br>
 
@@ -627,8 +676,14 @@ Examples:
 * `tag n/John Doe p/91234567 t/hard-of-hearing`
 * `tag i/1 t/hard-of-hearing --remove`
 
-![tag command](images/tagCommand.png){width=800px} <br>
-Results of the command: `tag i/1 t/hard-of-hearing`.
+<figure>
+
+  <img src="images/tagCommand.png" alt="tag command" style="display: block; margin: 0 auto;" width="800px"/>
+  <figcaption style="text-align: center; font-style: italic">
+    <md>Results of the command: `tag i/1 t/hard-of-hearing`.</md>
+  </figcaption>
+
+</figure>
 
 <br>
 
@@ -662,8 +717,14 @@ Format: `filter t/TAG [t/TAG]...`
 Examples:
 * `filter t/hard-of-hearing`
 
-![filter command](images/filterCommand.png){width=800px} <br>
-Results of the command: `filter t/hard-of-hearing`.
+<figure>
+
+  <img src="images/filterCommand.png" alt="filter command" style="display: block; margin: 0 auto;" width="800px"/>
+  <figcaption style="text-align: center; font-style: italic">
+    <md>Results of the command: `filter t/hard-of-hearing`.</md>
+  </figcaption>
+
+</figure>
 
 <box type="warning">
 
@@ -695,8 +756,14 @@ Format: `clear --removeall`
 
 1. `--removeall`: Mandatory.
 
-![clear command](images/clearCommand.png){width=800px} <br> <br>
-Results of the command: `clear --removeall`.
+<figure>
+
+  <img src="images/clearCommand.png" alt="clear command" style="display: block; margin: 0 auto;" width="800px"/>
+  <figcaption style="text-align: center; font-style: italic">
+    <md>Results of the command: `clear --removeall`.</md>
+  </figcaption>
+
+</figure>
 
 <box type="warning">
 
