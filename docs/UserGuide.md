@@ -134,22 +134,59 @@ Ensure you have the precise JDK version prescribed based on your following OS:
 
 </box>
 
-2. Download the latest [`ElderRing.jar`](https://github.com/AY2526S1-CS2103T-T14-4/tp/releases).
+2. Download the **latest** `ElderRing.jar` from this [link](https://github.com/AY2526S1-CS2103T-T14-4/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for ElderRing.
+3. Find the file you have just downloaded. It is called `ElderRing.jar`.
 
-4. Open a command terminal.
+4. Create a new folder you want to use as the _home folder_ for ElderRing.
 
-5. Change your directory to the folder containing `ElderRing.jar` using 
-   `cd [path from current position to the folder containing ElderRing.jar]`.
+* It is recommended to use a new and empty folder.
 
-6. Run the following command in the terminal to launch the application
-   `java -jar ElderRing.jar`.
+* This folder can be created anywhere on your computer.
 
-7. A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br><br>
+5. Copy the file to the newly created folder.
+<box type="info" seamless>
+
+**How to copy the file into the new folder:**<br>
+
+1. Right click on `ElderRing.jar` and select **Copy**
+2. **Navigate** to the newly created folder.
+3. Right click on the folder and select **Paste**
+
+</box>
+
+6. You should have an empty folder with `ElderRing.jar` file similar to this:
+
+![installation](images/installation.png){width=800px}
+
+<br>
+
+### Starting ElderRing
+
+1. Open a command terminal.
+* **Windows:** Open the start menu and search for `cmd` then press `Enter`
+* **MacOS:** Open spotlight search and search for `Terminal` then press `Enter`
+* **Linux:** press `Ctrl + Alt + T` to open the command terminal.
+
+2. Navigate into the folder you created earlier.
+
+<box type="info" seamless>
+
+**How to navigate into the folder:**<br>
+
+1. Open the command terminal.
+2. Type `cd ` (with a space after `cd`).
+3. Drag the folder into the terminal window.
+4. Press `Enter`.
+
+</box>
+
+3. Run the following command to launch the application `java -jar ElderRing.jar`
+
+4. A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br><br>
    ![Ui](images/uiExplanation.png){width=800px}
 
-8. Type a command in the command box (located at the bottom of the window) and press Enter to execute it.
+5. Type a command in the command box (located at the bottom of the window) and press Enter to execute it.
 
 <box type="tip" seamless>
 
@@ -164,7 +201,7 @@ Ensure you have the precise JDK version prescribed based on your following OS:
    * `clear --removeall` : Deletes all seniors.
    * `exit` : Exits the app.
 
-9. Refer to the [Features](#features) section below for details of each command.
+6. Refer to the [Features](#features) section below for details of each command.
 
 <br>
 
