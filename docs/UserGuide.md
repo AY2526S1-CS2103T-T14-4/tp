@@ -332,7 +332,7 @@ Format: `add n/NAME p/PHONE_NUMBER a/ADDRESS [e/EMAIL] [t/TAG]…​`
 
 Examples:
 * `add n/Tan Ah Kow e/tak@gmail.com p/96521345 a/Blk 41 Telok Blangah Way #07-436 t/hard-of-hearing` creates an entry with the name Tan Ah Kow, email tak@gmail.com, phone number 96521345 and address Blk 41 Telok Blangah Way #07-436, with the tag "hard-of-hearing."
-* `add n/Shermaine Tan p/98541331 a/1 Lor 2 Toa Payoh #07-36 e/shermainetan@gmail.com`
+* `add n/Shermaine Tan p/98541331 a/1 Lor 2 Toa Payoh #07-36 e/shermainetan@gmail.com` creates an entry with the name Shermaine Tan, phone number 98541331, address 1 Lor 2 Toa Payoh #07-36 and email shermainetan@gmail.com.
 
 ![add command](images/addCommand.png){width=800px} <br>
 Results of the command: `add n/Tan Ah Kow e/tak@gmail.com p/96521345 a/Blk 41 Telok Blangah Way #07-436 t/hard-of-hearing`.
@@ -383,8 +383,8 @@ The index **must be a positive integer** 1, 2, 3, …​
 </box>
 
 Examples:
-*  `edit i/10 t/Diabetic`
-*  `edit i/1 n/Joseph p/92891234`
+*  `edit i/10 t/Diabetic` edits the tenth displayed entry to now be tagged as "diabetic" only.
+*  `edit i/1 n/Joseph p/92891234` edits the first displayed entry's name to now be Joseph and its phone number to 92891234.
 
 ![edit command](images/editCommand.png){width=800px} <br>
 Results of the command: `edit i/1 n/Joseph p/92891234`.
@@ -427,8 +427,8 @@ Or:
 </box>
 
 Examples:
-* `list` followed by `delete i/2` deletes the second senior displayed in ElderRing.
-* `delete n/Joseph p/92891234`
+* `list` followed by `delete i/2` deletes the second entry displayed.
+* `delete n/Joseph p/92891234` deletes the entry with name Joseph and phone number 92891234.
 
 ![delete command](images/deleteCommand.png){width=800px} <br>
 Results of the command: `delete n/Joseph p/92891234`.
@@ -500,7 +500,7 @@ Format: `sort (ASC | DSC)/(NAME | ADDRESS)`
 </box>
 
 Examples:
-* `sort asc/name`
+* `sort asc/name` sorts the entries by name in ascending 
 * `sort dsc/name`
 * `sort asc/address`
 * `sort dsc/address`
@@ -600,8 +600,7 @@ Results of the command: `remark i/1 r/Senior is aggressive`.
 
 ### Tagging a senior : `tag`
 
-Tags (or untags) the senior at the specified display `INDEX` or the senior with a matching `NAME` and `PHONE_NUMBER`. 
-Tags are meant to serve as labels and hence are only stored as lowercase.
+Tags (or untags) an existing senior.
 
 <box type="tip" seamless>
 
@@ -621,6 +620,10 @@ Either:
 Or:
 4. `NAME`: Mandatory.
 5. `PHONE`: Mandatory.
+
+* Tags (or untags) the senior at the specified display `INDEX` or the senior with a matching `NAME` and `PHONE_NUMBER`.
+* Only one tag can be added at a time.
+* Tags are meant to serve as labels and hence are only stored as lowercase.
 
 Examples:
 * `tag i/1 t/hard-of-hearing`
