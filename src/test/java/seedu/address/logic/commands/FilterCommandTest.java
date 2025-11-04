@@ -46,7 +46,7 @@ public class FilterCommandTest {
 
     @Test
     public void execute_noMatch_noPersonFound() {
-        String expectedMessage = "Elderly with tag(s): [nonexistent]";
+        String expectedMessage = "Listed all seniors with tag(s): [nonexistent]";
         FilterCommand command = new FilterCommand(Collections.singletonList("nonexistent"));
         expectedModel.updateFilteredPersonList(p -> false);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -55,7 +55,7 @@ public class FilterCommandTest {
 
     @Test
     public void execute_multipleTags_multiplePersonsFound() {
-        String expectedMessage = "Elderly with tag(s): [vip], [friend]";
+        String expectedMessage = "Listed all seniors with tag(s): [vip], [friend]";
         List<String> tagsToFilter = Arrays.asList("vip", "friend");
         FilterCommand command = new FilterCommand(tagsToFilter);
 
