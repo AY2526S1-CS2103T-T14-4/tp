@@ -500,10 +500,10 @@ Format: `sort (ASC | DSC)/(NAME | ADDRESS)`
 </box>
 
 Examples:
-* `sort asc/name` sorts the entries by name in ascending 
-* `sort dsc/name`
-* `sort asc/address`
-* `sort dsc/address`
+* `sort asc/name` sorts the entries by name in ascending order.
+* `sort dsc/name` sorts the entries by name in descending order.
+* `sort asc/address` sorts the entries by address in ascending order.
+* `sort dsc/address` sorts the entries by address in descending order.
 
 ![sort command](images/sortCommand.png){width=800px} <br>
 Results of the command: `sort asc/name`.
@@ -578,9 +578,9 @@ With exactly one of:
 </box>
 
 Examples:
-* `remark i/1 r/Senior is aggressive`
-* `remark i/1 ap/Followed up on 24 Oct`
-* `remark i/1 --remove`
+* `remark i/1 r/Senior is aggressive` adds a remark, "Senior is aggressive," to the first displayed entry.
+* `remark i/1 ap/Followed up on 24 Oct` appends "Followed up on 24 Oct" to the remarks of the first displayed entry.
+* `remark i/1 --remove` removes any remarks of the first displayed entry.
 
 ![remark command](images/remarkCommand.png){width=800px} <br>
 Results of the command: `remark i/1 r/Senior is aggressive`.
@@ -626,9 +626,9 @@ Or:
 * Tags are meant to serve as labels and hence are only stored as lowercase.
 
 Examples:
-* `tag i/1 t/hard-of-hearing`
-* `tag n/John Doe p/91234567 t/hard-of-hearing`
-* `tag i/1 t/hard-of-hearing --remove`
+* `tag i/1 t/hard-of-hearing` tags the first displayed entry as "hard-of-hearing."
+* `tag n/John Doe p/91234567 t/hard-of-hearing` tags the entry with name John Doe and phone number 91234567 as "hard-of-hearing."
+* `tag i/1 t/hard-of-hearing --remove` removes (untags) the tag "hard-of-hearing" from the first displayed entry.
 
 ![tag command](images/tagCommand.png){width=800px} <br>
 Results of the command: `tag i/1 t/hard-of-hearing`.
@@ -663,7 +663,8 @@ Format: `filter t/TAG [t/TAG]...`
 1. `TAG`: Mandatory.
 
 Examples:
-* `filter t/hard-of-hearing`
+* `filter t/hard-of-hearing` displays the entries with the "hard-of-hearing" tag.
+* `filter t/1950-1960 t/hard-of-hearing` displays the entries with the "1950-1960" or "hard-of-hearing" tags.
 
 ![filter command](images/filterCommand.png){width=800px} <br>
 Results of the command: `filter t/hard-of-hearing`.
