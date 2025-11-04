@@ -18,6 +18,8 @@ Welcome to **ElderRing**, a **Command Line Interface (CLI)** desktop application
 * [How to Read This Guide](#how-to-read-this-guide)
 * [Understanding the User Guide](#understanding-the-user-guide)
 * [Quick Start](#quick-start)
+    * [Installation](#installation)
+    * [Starting ElderRing](#starting-elderring)
 * [Parameters](#parameters)
 * [Features](#features)
     * [Viewing help: `help`](#viewing-help-help)
@@ -120,6 +122,8 @@ This guide serves as a walkthrough on **how to install ElderRing** and **how to 
 
 </box>
 
+<br>
+
 ### Installation
 1. Ensure you have Java `17` or above installed on your computer.<br>
 
@@ -128,15 +132,15 @@ This guide serves as a walkthrough on **how to install ElderRing** and **how to 
 If you are unsure of how to install Java, follow this [guide](https://www.java.com/en/download/help/download_options.html).
 
 Ensure you have the precise JDK version prescribed based on your following OS:
-- **Mac users:**  [Click here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 - **Windows users:**  [Click here](https://se-education.org/guides/tutorials/javaInstallationWindows.html).
+- **Mac users:**  [Click here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 - **Linux users:**  [Click here](https://se-education.org/guides/tutorials/javaInstallationLinux.html).
 
 </box>
 
 2. Download the **latest** `ElderRing.jar` from this [link](https://github.com/AY2526S1-CS2103T-T14-4/tp/releases).
 
-3. Find the file you have just downloaded. It is called `ElderRing.jar`.
+3. Find the file (`ElderRing.jar`) you just downloaded.
 
 4. Create a new folder you want to use as the _home folder_ for ElderRing.
 
@@ -149,23 +153,30 @@ Ensure you have the precise JDK version prescribed based on your following OS:
 
 **How to copy the file into the new folder:**<br>
 
-1. Right click on `ElderRing.jar` and select **Copy**
+1. Right click on `ElderRing.jar` and select **Copy**.
 2. **Navigate** to the newly created folder.
-3. Right click on the folder and select **Paste**
+3. Right click on the folder and select **Paste**.
 
 </box>
 
 6. You should have an empty folder with `ElderRing.jar` file similar to this:
 
-![installation](images/installation.png){width=800px}
+<figure>
+
+  <img src="images/installation.png" alt="installation guide" style="display: block; margin: 0 auto;" width="600px"/>
+  <figcaption style="text-align: center; font-style: italic">
+    <md>After adding `ElderRing.jar` file in an empty folder.</md>
+  </figcaption>
+
+</figure>
 
 <br>
 
 ### Starting ElderRing
 
 1. Open a command terminal.
-* **Windows:** Open the start menu and search for `cmd` then press `Enter`
-* **MacOS:** Open spotlight search and search for `Terminal` then press `Enter`
+* **Windows:** Open the start menu, search for `cmd`, then press `Enter`.
+* **MacOS:** Open spotlight search, search for `Terminal`, then press `Enter`.
 * **Linux:** press `Ctrl + Alt + T` to open the command terminal.
 
 2. Navigate into the folder you created earlier.
@@ -181,16 +192,16 @@ Ensure you have the precise JDK version prescribed based on your following OS:
 
 </box>
 
-3. Run the following command to launch the application `java -jar ElderRing.jar`
+3. Run the following command to launch the application `java -jar ElderRing.jar`.
 
 4. A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br><br>
    ![Ui](images/uiExplanation.png){width=800px}
 
-5. Type a command in the command box (located at the bottom of the window) and press Enter to execute it.
+5. Type a command in the command box (located at the bottom of the window) and press `Enter` to execute it.
 
 <box type="tip" seamless>
 
-**Tip:** Typing **`help`** and pressing Enter opens the help window.
+**Tip:** Typing **`help`** and pressing `Enter` opens the help window.
 
 </box>
 
