@@ -57,6 +57,10 @@ If you have **experience with ElderRing**:
 
 <br>
 
+<a href="#introduction">Back to top</a>
+
+<br>
+
 --------------------------------------------------------------------------------------------------------------------
 
 <br>
@@ -96,6 +100,10 @@ This section outlines the different kind of elements found in this guide and wha
   This is an example of a warning.
 
   </box>
+
+<br>
+
+<a href="#introduction">Back to top</a>
 
 <br>
 
@@ -159,6 +167,12 @@ Ensure you have the precise JDK version prescribed based on your following OS:
    * `exit` : Exits the app.
 
 9. Refer to the [Features](#features) section below for details of each command.
+
+<br>
+
+<a href="#introduction">Back to top</a>
+
+<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -848,6 +862,10 @@ ElderRing data are automatically saved as a JSON file `[JAR file location]/data/
 
 <br>
 
+<a href="#introduction">Back to top</a>
+
+<br>
+
 --------------------------------------------------------------------------------------------------------------------
 
 <br>
@@ -859,6 +877,10 @@ ElderRing data are automatically saved as a JSON file `[JAR file location]/data/
 <br>
 
 The remedy is to delete the `preferences.json` file created by the application (in the same folder as the JAR file) before running the application again. <br>
+
+<br>
+
+<a href="#introduction">Back to top</a>
 
 <br>
 
