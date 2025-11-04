@@ -165,7 +165,7 @@ Ensure you have the precise JDK version prescribed based on your following OS:
 
   <img src="images/installation.png" alt="installation guide" style="display: block; margin: 0 auto;" width="600px"/>
   <figcaption style="text-align: center; font-style: italic">
-    <md>After adding `ElderRing.jar` file in an empty folder.</md>
+    <md>After adding `ElderRing.jar` file into an empty folder.</md>
   </figcaption>
 
 </figure>
