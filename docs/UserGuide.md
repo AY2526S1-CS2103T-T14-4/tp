@@ -310,7 +310,7 @@ Format: `help`
 
 <figure>
 
-  <img src="images/helpWindow.png" alt="help window" style="display: block; margin: 0 auto;" />
+  <img src="images/helpCommand.png" alt="help window" style="display: block; margin: 0 auto;" />
   <figcaption style="text-align: center; font-style: italic">
     <md>Results of the command: `help`</md>
   </figcaption>
@@ -345,8 +345,8 @@ Format: `add n/NAME p/PHONE_NUMBER a/ADDRESS [e/EMAIL] [t/TAG]…​`
 5. `TAG`: Optional.
 
 Examples:
-* `add n/Tan Ah Kow e/tak@gmail.com p/96521345 a/Blk 41 Telok Blangah Way #07-436 t/hard-of-hearing` creates an entry with the name Tan Ah Kow, email tak@gmail.com, phone number 96521345 and address Blk 41 Telok Blangah Way #07-436, with the tag "hard-of-hearing".
-* `add n/Shermaine Tan p/98541331 a/1 Lor 2 Toa Payoh #07-36 e/shermainetan@gmail.com` creates an entry with the name Shermaine Tan, phone number 98541331, address 1 Lor 2 Toa Payoh #07-36 and email shermainetan@gmail.com.
+* `add n/Tan Ah Kow e/tak@gmail.com p/96521345 a/Blk 41 Telok Blangah Way #07-436 t/hard-of-hearing` creates an entry with the name `Tan Ah Kow`, email `tak@gmail.com`, phone number `96521345` and address `Blk 41 Telok Blangah Way #07-436`, with the tag `hard-of-hearing`.
+* `add n/Shermaine Tan p/98541331 a/1 Lor 2 Toa Payoh #07-36 e/shermainetan@gmail.com` creates an entry with the name `Shermaine Tan`, phone number `98541331`, address `1 Lor 2 Toa Payoh #07-36` and email `shermainetan@gmail.com`.
 
 <figure>
 
@@ -403,8 +403,8 @@ The index **must be a positive integer** 1, 2, 3, …​
 </box>
 
 Examples:
-*  `edit i/10 t/Diabetic` edits the tenth displayed entry to now be tagged as "diabetic" only.
-*  `edit i/1 n/Joseph p/92891234` edits the first displayed entry's name to now be Joseph and its phone number to 92891234.
+*  `edit i/10 t/Diabetic` edits the tenth displayed entry to now be tagged as `diabetic` only.
+*  `edit i/1 n/Joseph p/92891234` edits the first displayed entry's name to now be `Joseph` and its phone number to `92891234`.
 
 <figure>
 
@@ -454,7 +454,7 @@ Or:
 
 Examples:
 * `list` followed by `delete i/2` deletes the second entry displayed.
-* `delete n/Joseph p/92891234` deletes the entry with name Joseph and phone number 92891234.
+* `delete n/Joseph p/92891234` deletes the entry with name `Joseph` and phone number `92891234`.
 
 <figure>
 
@@ -628,8 +628,8 @@ With exactly one of:
 </box>
 
 Examples:
-* `remark i/1 r/Senior is aggressive` adds a remark, "Senior is aggressive," to the first displayed entry.
-* `remark i/1 ap/Followed up on 24 Oct` appends "Followed up on 24 Oct" to the remarks of the first displayed entry.
+* `remark i/1 r/Senior is aggressive` adds a remark `Senior is aggressive` to the first displayed entry.
+* `remark i/1 ap/Followed up on 24 Oct` appends `Followed up on 24 Oct` to the remarks of the first displayed entry.
 * `remark i/1 --remove` removes any remarks of the first displayed entry.
 
 <figure>
@@ -664,17 +664,17 @@ Tags (or untags) an existing senior.
 
 </box>
 
-Format: `tag i/INDEX t/TAG [ --remove]` or `tag n/NAME p/PHONE_NUMBER t/TAG [ --remove]`.
+Format: `tag i/INDEX t/TAG [--remove]` or `tag n/NAME p/PHONE_NUMBER t/TAG [--remove]`.
 #### Parameters:
 
 1. `TAG`: Mandatory.
 2. `--remove`: Optional.
 
-Either:
+With either: <br>
 3. `INDEX`: Mandatory.
 
-Or:
-4. `NAME`: Mandatory.
+Or: <br>
+4. `NAME`: Mandatory. <br>
 5. `PHONE`: Mandatory.
 
 * Tags (or untags) the senior at the specified display `INDEX` or the senior with a matching `NAME` and `PHONE_NUMBER`.
@@ -682,9 +682,9 @@ Or:
 * Tags are meant to serve as labels and hence are only stored as lowercase.
 
 Examples:
-* `tag i/1 t/hard-of-hearing` tags the first displayed entry as "hard-of-hearing."
-* `tag n/John Doe p/91234567 t/hard-of-hearing` tags the entry with name John Doe and phone number 91234567 as "hard-of-hearing."
-* `tag i/1 t/hard-of-hearing --remove` removes (untags) the tag "hard-of-hearing" from the first displayed entry.
+* `tag i/1 t/hard-of-hearing` tags the first displayed entry as `hard-of-hearing`.
+* `tag n/John Doe p/91234567 t/hard-of-hearing` tags the entry with name `John Doe` and phone number `91234567` as `hard-of-hearing`.
+* `tag i/1 t/hard-of-hearing --remove` removes (untags) the tag `hard-of-hearing` from the first displayed entry.
 
 <figure>
 
@@ -725,8 +725,8 @@ Format: `filter t/TAG [t/TAG]...`
 1. `TAG`: Mandatory.
 
 Examples:
-* `filter t/hard-of-hearing` displays the entries with the "hard-of-hearing" tag.
-* `filter t/1950-1960 t/hard-of-hearing` displays the entries with the "1950-1960" or "hard-of-hearing" tags.
+* `filter t/hard-of-hearing` displays the entries with the `hard-of-hearing` tag.
+* `filter t/1950-1960 t/hard-of-hearing` displays the entries tagged with `1950-1960` or `hard-of-hearing`.
 
 <figure>
 
@@ -778,7 +778,7 @@ Format: `clear --removeall`
 
 <box type="warning">
 
-**Warning**: Be careful. This command irreversibly deletes ALL entries (this operation cannot be undone).
+**Warning**: Be careful. This command irreversibly deletes **ALL** entries (this operation cannot be undone).
 
 </box>
 
@@ -869,10 +869,7 @@ ElderRing data are automatically saved as a JSON file `[JAR file location]/data/
 
 ## Known Issues
 
-1. **When using multiple screens**, the GUI will open off-screen if you move the application to a secondary screen, and later switch to using only the primary screen. <br>
-
-<br>
-
+1. **When using multiple screens**, the GUI will open off-screen if you move the application to a secondary screen, and later switch to using only the primary screen. <br><br>
 The remedy is to delete the `preferences.json` file created by the application (in the same folder as the JAR file) before running the application again. <br>
 
 <br>
