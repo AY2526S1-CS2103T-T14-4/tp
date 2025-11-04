@@ -77,6 +77,6 @@ public class FilterCommandTest {
 
         assertTrue(result.contains("vip"));
         assertTrue(result.contains("friend"));
-        assertTrue(result.startsWith("Elderly with tag(s):"));
+        assertTrue(result.startsWith("Listed all seniors with tag(s):"));
     }
 }
