@@ -637,7 +637,7 @@ Results of the command: `tag i/1 t/hard-of-hearing`.
 
 ### Filtering entries : `filter`
 
-Only displays the entries with the input tag. 
+Only displays the entries matching the entire input tag(s) exactly. Filter does not match tags which partially match the input tag(s).
 
 <box type="tip" seamless>
 
@@ -645,7 +645,7 @@ Only displays the entries with the input tag.
 
 </box>
 
-Format: `filter t/TAG`
+Format: `filter t/TAG [t/TAG]...`
 
 #### Parameters:
 
