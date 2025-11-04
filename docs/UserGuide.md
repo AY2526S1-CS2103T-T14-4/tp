@@ -902,7 +902,7 @@ ElderRing data are automatically saved as a JSON file `[JAR file location]/data/
 
 ## FAQ
 
-**Q**: How do I transfer my data to another computer?<br>
+**Q**: How do I transfer my data to another computer? <br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ElderRing home folder.
 
 <br>
