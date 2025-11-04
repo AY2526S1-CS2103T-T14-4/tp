@@ -42,7 +42,7 @@ public class FilterCommand extends Command {
 
         String joinedTags = tags.stream().map(Tag::toString).reduce((a, b) -> a + ", " + b).orElse("");
         return new CommandResult(
-                String.format("Elderly with tag(s): %s", joinedTags));
+                String.format("Listed all seniors with tag(s): %s", joinedTags));
     }
 
     @Override
