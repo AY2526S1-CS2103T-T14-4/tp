@@ -192,7 +192,7 @@ Ensure you have the precise JDK version prescribed based on your following OS:
 
 </box>
 
-3. Run the following command to launch the application `java -jar ElderRing.jar`.
+3. Run the following command to launch the application: `java -jar ElderRing.jar`.
 
 4. A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br><br>
    ![Ui](images/uiExplanation.png){width=800px}
