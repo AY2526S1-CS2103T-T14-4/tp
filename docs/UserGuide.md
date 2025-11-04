@@ -206,15 +206,10 @@ Characters with accents or diacritics (e.g., à, é, ô, ÿ) as well as those fr
 
 ElderRing considers contacts as duplicates based on the following criteria:
 
-**For Adding New Contacts:**
-* A contact is considered a duplicate if both its **name and phone number** match exactly with an existing contact
+* An entry is considered a duplicate if both its **name and phone number** match exactly with an existing contact
 * Other fields (email, address, tags, remarks) can be the same and will not trigger duplicate detection
 * Example: Adding "John Doe" with phone number "99998888" when another "John Doe" with phone number "99998888" already exists will fail
-
-**For Editing Existing Contacts:**
-* You can change a contact's name to match another contact **only if their phone numbers are different**
-* You can change a contact's phone number to match another contact **only if their names are different**
-* This prevents accidental creation of duplicates while allowing flexible updates
+* This duplicate detecting applies for both adding and editing entries.
 
 </box>
 
