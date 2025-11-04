@@ -592,7 +592,8 @@ Results of the command: `remark i/1 r/Senior is aggressive`.
 
 ### Tagging a senior : `tag`
 
-Tags (or untags) the senior at the specified display `INDEX` or the senior with a matching `NAME` and `PHONE_NUMBER`.
+Tags (or untags) the senior at the specified display `INDEX` or the senior with a matching `NAME` and `PHONE_NUMBER`. 
+Tags are meant to serve as labels and hence are only stored as lowercase.
 
 <box type="tip" seamless>
 
@@ -600,15 +601,18 @@ Tags (or untags) the senior at the specified display `INDEX` or the senior with 
 
 </box>
 
-Format: `tag i/INDEX t/TAG [ --remove]` or `tag n/NAME p/PHONE_NUMBER t/TAG [ --remove]`
-or `tag i/INDEX t/TAG --remove` or `tag n/NAME p/PHONE_NUMBER t/TAG --remove`
-
+Format: `tag i/INDEX t/TAG [ --remove]` or `tag n/NAME p/PHONE_NUMBER t/TAG [ --remove]`.
 #### Parameters:
 
 1. `TAG`: Mandatory.
-2. `INDEX`: Optional.
-3. `NAME`: Optional.
-4. `PHONE`: Optional.
+2. `--remove`: Optional.
+
+Either:
+3. `INDEX`: Mandatory.
+
+Or:
+4. `NAME`: Mandatory.
+5. `PHONE`: Mandatory.
 
 Examples:
 * `tag i/1 t/hard-of-hearing`
@@ -633,7 +637,7 @@ Results of the command: `tag i/1 t/hard-of-hearing`.
 
 ### Filtering entries : `filter`
 
-Only displays the entries with the input tag.
+Only displays the entries with the input tag. 
 
 <box type="tip" seamless>
 
