@@ -89,9 +89,7 @@ This section outlines the different kind of elements found in this guide and wha
 
   </box>
 
-
   #### Warnings
-
 
   Warnings are displayed as a box with a "**!**" symbol.
 
@@ -352,7 +350,7 @@ Format: `add n/NAME p/PHONE_NUMBER a/ADDRESS [e/EMAIL] [t/TAG]…​`
 5. `TAG`: Optional.
 
 Examples:
-* `add n/Tan Ah Kow e/tak@gmail.com p/96521345 a/Blk 41 Telok Blangah Way #07-436 t/hard-of-hearing` creates an entry with the name Tan Ah Kow, email tak@gmail.com, phone number 96521345 and address Blk 41 Telok Blangah Way #07-436, with the tag "hard-of-hearing."
+* `add n/Tan Ah Kow e/tak@gmail.com p/96521345 a/Blk 41 Telok Blangah Way #07-436 t/hard-of-hearing` creates an entry with the name Tan Ah Kow, email tak@gmail.com, phone number 96521345 and address Blk 41 Telok Blangah Way #07-436, with the tag "hard-of-hearing".
 * `add n/Shermaine Tan p/98541331 a/1 Lor 2 Toa Payoh #07-36 e/shermainetan@gmail.com` creates an entry with the name Shermaine Tan, phone number 98541331, address 1 Lor 2 Toa Payoh #07-36 and email shermainetan@gmail.com.
 
 <figure>
