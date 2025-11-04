@@ -8,7 +8,8 @@ import static java.util.Objects.requireNonNull;
  */
 public class Tag {
 
-    //public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
+    public static final String MESSAGE_CONSTRAINTS = "Tags cannot be empty (i.e. whitespace only).\n"
+            + "Tags cannot be longer than 30 characters.";
     //public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String tagName;
@@ -21,6 +22,36 @@ public class Tag {
     public Tag(String tagName) {
         requireNonNull(tagName);
         this.tagName = tagName.trim().toLowerCase(); //keeps all tags as lowercase
+    }
+
+    /**
+     * Checks if tag is not empty (i.e. not whitespace only)
+     * @param tagName Target tag being added
+     * @return
+     */
+    public static boolean isValidTagContent(String tagName) {
+        requireNonNull(tagName);
+        String trimmed = tagName.trim();
+        if (trimmed.isEmpty()) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /**
+     * Checks if tagName is within length constraint of 30 characters
+     * @param tagName Target tag being added
+     * @return
+     */
+    public static boolean isValidTagLength(String tagName) {
+        requireNonNull(tagName);
+        String trimmed = tagName.trim();
+        if (trimmed.length() > 30) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     @Override

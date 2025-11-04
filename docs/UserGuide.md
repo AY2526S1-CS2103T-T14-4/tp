@@ -37,6 +37,9 @@ Welcome to **ElderRing**, a **Command Line Interface (CLI)** desktop application
 * [FAQ](#faq)
 * [Known Issues](#known-issues)
 * [Command Summary](#command-summary)
+
+<br>
+
 --------------------------------------------------------------------------------------------------------------------
 
 <br>
@@ -51,6 +54,12 @@ If you are **new to ElderRing**:
 If you have **experience with ElderRing**:
 - Check out the [Command Summary](#command-summary) for a quick overview of the various commands and their usage.
 - Check out the [Features](#features) section for a more in-depth breakdown of each feature.
+
+<br>
+
+<a href="#introduction">Back to top</a>
+
+<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -80,9 +89,7 @@ This section outlines the different kind of elements found in this guide and wha
 
   </box>
 
-
   #### Warnings
-
 
   Warnings are displayed as a box with a "**!**" symbol.
 
@@ -92,6 +99,11 @@ This section outlines the different kind of elements found in this guide and wha
 
   </box>
 
+<br>
+
+<a href="#introduction">Back to top</a>
+
+<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -172,13 +184,13 @@ Ensure you have the precise JDK version prescribed based on your following OS:
 3. Run the following command to launch the application `java -jar ElderRing.jar`
 
 4. A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br><br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/uiExplanation.png){width=800px}
 
 5. Type a command in the command box (located at the bottom of the window) and press Enter to execute it.
 
 <box type="tip" seamless>
 
-Typing **`help`** and pressing Enter opens the help window.
+**Tip:** Typing **`help`** and pressing Enter opens the help window.
 
 </box>
 
@@ -191,6 +203,12 @@ Typing **`help`** and pressing Enter opens the help window.
 
 6. Refer to the [Features](#features) section below for details of each command.
 
+<br>
+
+<a href="#introduction">Back to top</a>
+
+<br>
+
 --------------------------------------------------------------------------------------------------------------------
 
 <br>
@@ -199,15 +217,62 @@ Typing **`help`** and pressing Enter opens the help window.
 
 This section covers the different parameters in ElderRing and their respective constraints.
 
-| Parameter      | Description                                   | Constraints                                                                                                                                                                                                                                                                                                                | Example                                                                                                      |
-|----------------|-----------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
-| `NAME`         | Senior’s name                                 | <ul><li>Only letters and spaces are permitted.</li><li>This parameter cannot be left blank.</li><li>If you need to include terms like "s/o" or "d/o" in a name, please use alternatives such as "son of" or "s o" instead.</li><li>Only English letters with single spaces between words are allowed.</li><li>Maximum length of 66 characters.</li></ul> | :fa-solid-check: <br>`John Doe`<br>                                                                          |
-| `PHONE_NUMBER` | Senior’s phone number                         | <ul><li>Only numbers are allowed.</li><li>This parameter cannot be left blank.</li><li>Only accepts numbers that start with 6, 8, 9.</li><li>Only 8-digit numbers are accepted.</li></ul>                                                                                                                             | :fa-solid-check: <br>`91234567`<br>                                                                          |
-| `ADDRESS`      | Senior’s residential address                  | <ul><li>Maximum length of 100 characters.</li> </ul>                                                                                                                                                                                                                                                      | :fa-solid-check: <br>`Blk 41 Telok Blangah Way #07-436`<br>                                                  |
-| `EMAIL`        | Senior’s email address                        | <ul><li>Emails should be in the format `local-part@domain`.</li><li>`local-part` must at least contain one letter or digit.</li><li>`domain` must at least contain one letter.</li><li>Emails will be stored in all lowercase regardless of input.</li><li>Maximum length of 50 characters.</li></ul>                                                                                                               | :fa-solid-check: <br>`johndoe123@gmail.com`<br>                                                              |
-| `TAG`          | Category/label applicable to seniors          | <ul><li>Maximum length of 30 characters for each tag.</li><li>Multiple tags allowed for each senior.</li></ul>                                                                                                                                                                                                                                                                                                   | :fa-solid-check: <br>`hard-of-hearing` <br>                                                                  |
-| `REMARK`       | Additional notes applicable to seniors        | <ul><li>Maximum length of 2500 characters.</li> </ul>                                                                                                                                                                                                                                                                      | :fa-solid-check: <br>`List of senior’s medications: Alprax (daily), Alprazolam (once every 3 days), ...`<br> |
-| `INDEX`        | The index shown in the displayed seniors list | <ul><li>Only whole numbers are allowed.</li><li>Number must be a positive number.</li><li>The index must refer to a valid entry in the current list.</li></ul>                                                                                                                                   | :fa-solid-check: <br>`1`<br>                                                                                 |
+<box type="warning">
+
+To make sure commands to work successfully, ensure that all parameters follow the constraints mentioned below.
+
+Characters with accents or diacritics (e.g., à, é, ô, ÿ) as well as those from non-Latin alphabets (e.g., Я (Cyrillic – Russian), あ (Japanese – Hiragana), ض (Arabic)), are currently **not supported**.
+
+</box>
+
+| Parameter      | Description                                   | Constraints                                                                                                                                                                                                                                                                                                                                              | Example                                                                                                                                                                                                                                                          |
+|----------------|-----------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `NAME`         | Senior’s name                                 | <ul><li>Only letters and spaces are permitted.</li><li>This parameter cannot be left blank.</li><li>If you need to include terms like "s/o" or "d/o" in a name, please use alternatives such as "son of" or "s o" instead.</li><li>Only English letters with single spaces between words are allowed.</li><li>Maximum length of 66 characters.</li></ul> | :fa-solid-check: <br>`John Doe`<br><br> :fa-solid-xmark: <br>`J@mes`<br>`ジョン ドー`<br>`俊涵`                                                                                                                                                                         |
+| `PHONE_NUMBER` | Senior’s phone number                         | <ul><li>Only numbers are allowed.</li><li>This parameter cannot be left blank.</li><li>Only accepts numbers that start with 6, 8, 9.</li><li>Only 8-digit numbers are accepted.</li></ul>                                                                                                                                                                | :fa-solid-check: <br>`91234567`<br><br> :fa-solid-xmark:<br>`+65 1234 5678`<br>`12345678`                                                                                                                                                                        |
+| `ADDRESS`      | Senior’s residential address                  | <ul><li>Maximum length of 100 characters.</li> </ul>                                                                                                                                                                                                                                                                                                     | :fa-solid-check: <br>`Blk 41 Telok Blangah Way #07-436`<br><br> :fa-solid-xmark:<br>`College Avenue East 36/38, Ngee Ann Kongsi Auditorium, Singapore 138677, East North Tower #02-211/212`                                                                      |
+| `EMAIL`        | Senior’s email address                        | <ul><li>Emails should be in the format `local-part@domain`.</li><li>`local-part` must at least contain one letter or digit.</li><li>`domain` must at least contain one letter.</li><li>Emails will be stored in all lowercase regardless of input.</li><li>Maximum length of 50 characters.</li></ul>                                                    | :fa-solid-check: <br>`johndoe123@gmail.com`<br>`john@example`<br>`nigel@example.c`<br><br> :fa-solid-xmark:<br>`luk`<br>`lu_+ke@gmail.com`<br>`alex.ye_o+h@ex.amp-le.com``-luke@gmail.com`<br>`mihir@example-.com`<br>`lucas@ex/ample.com`<br>`noel@example.c-m` |
+| `TAG`          | Category/label applicable to seniors          | <ul><li>Maximum length of 30 characters for each tag.</li><li>Multiple tags allowed for each senior.</li></ul>                                                                                                                                                                                                                                           | :fa-solid-check: <br>`hard-of-hearing` <br><br> :fa-solid-xmark:<br>`meredeka_generation_1950_to_1959`                                                                                                                                                           |
+| `REMARK`       | Additional notes applicable to seniors        | <ul><li>Maximum length of 2500 characters.</li> </ul>                                                                                                                                                                                                                                                                                                    | :fa-solid-check: <br>`List of senior’s medications: Alprax (daily), Alprazolam (once every 3 days), ...`<br>                                                                                                                                                     |
+| `INDEX`        | The index shown in the displayed seniors list | <ul><li>Only whole numbers are allowed.</li><li>Number must be a positive number.</li><li>The index must refer to a valid entry in the current list.</li></ul>                                                                                                                                                                                           | :fa-solid-check: <br>`1`<br><br> :fa-solid-xmark:<br>`0`<br>`-1`<br>`1 2`                                                                                                                                                                                        |
+
+<br>
+
+<box type="info" seamless>
+
+**Duplicate Contact Criteria**
+
+ElderRing considers contacts as duplicates based on the following criteria:
+
+* An entry is considered a duplicate if both its **name and phone number** match exactly with an existing contact
+* Other fields (email, address, tags, remarks) can be the same and will not trigger duplicate detection
+* Example: Adding "John Doe" with phone number "99998888" when another "John Doe" with phone number "99998888" already exists will fail
+* This duplicate detecting applies for both adding and editing entries.
+
+</box>
+
+<box style="background: #fafafaff">
+
+**Features at a glance:**
+<a href="#viewing-help-help" class="badge bg-secondary">help</a> 
+<a href="#adding-a-senior-add" class="badge bg-secondary">add</a> 
+<a href="#editing-a-senior-edit" class="badge bg-secondary">edit</a> 
+<a href="#deleting-a-senior-delete" class="badge bg-secondary">delete</a> 
+<a href="#listing-all-seniors-list" class="badge bg-secondary">list</a> 
+<a href="#sorting-entries-sort" class="badge bg-secondary">sort</a> 
+<a href="#locating-seniors-by-name-find" class="badge bg-secondary">find</a> 
+<a href="#adding-notes-to-a-senior-remark" class="badge bg-secondary">remark</a> 
+<a href="#tagging-a-senior-tag" class="badge bg-secondary">tag</a> 
+<a href="#filtering-entries-filter" class="badge bg-secondary">filter</a> 
+<a href="#clearing-all-entries-clear" class="badge bg-secondary">clear</a> 
+<a href="#exiting-the-program-exit" class="badge bg-secondary">exit</a> 
+
+</box>
+
+<br>
+
+<a href="#introduction">Back to top</a>
+
+<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -278,19 +343,33 @@ This section covers the list of commands and their usage. If you are experienced
 
 Shows a message explaining how to access the help page.
 
-![help popup](images/helpCommand.png)
-
-
 Format: `help`
+
+<figure>
+
+  <img src="images/helpCommand.png" alt="help window" style="display: block; margin: 0 auto;" />
+  <figcaption style="text-align: center; font-style: italic">
+    <md>Results of the command: `help`</md>
+  </figcaption>
+
+</figure>
+
+<br>
+
+<box style="background: #fafafaff">
+
+**Navigate to the subsections here:**
+<a href="#parameters" class="badge bg-secondary">Parameters</a>
+<a href="#command-summary" class="badge bg-secondary">Command Summary</a>
+<a href="#introduction" class="badge bg-light text-dark">Back to top</a>
+
+</box>
 
 <br>
 
 ### Adding a senior : `add`
 
 Adds a senior to ElderRing.
-
-![add command](images/addCommand.png)
-
 
 Format: `add n/NAME p/PHONE_NUMBER a/ADDRESS [e/EMAIL] [t/TAG]…​`
 
@@ -303,8 +382,28 @@ Format: `add n/NAME p/PHONE_NUMBER a/ADDRESS [e/EMAIL] [t/TAG]…​`
 5. `TAG`: Optional.
 
 Examples:
-* `add n/Tan Ah Kow e/tak@gmail.com p/96521345 a/Blk 41 Telok Blangah Way #07-436 t/hard-of-hearing`
-* `add n/Shermaine Tan p/98541331 a/1 Lor 2 Toa Payoh #07-36 e/shermainetan@gmail.com`
+* `add n/Tan Ah Kow e/tak@gmail.com p/96521345 a/Blk 41 Telok Blangah Way #07-436 t/hard-of-hearing` creates an entry with the name `Tan Ah Kow`, email `tak@gmail.com`, phone number `96521345` and address `Blk 41 Telok Blangah Way #07-436`, with the tag `hard-of-hearing`.
+* `add n/Shermaine Tan p/98541331 a/1 Lor 2 Toa Payoh #07-36 e/shermainetan@gmail.com` creates an entry with the name `Shermaine Tan`, phone number `98541331`, address `1 Lor 2 Toa Payoh #07-36` and email `shermainetan@gmail.com`.
+
+<figure>
+
+  <img src="images/addCommand.png" alt="add command" style="display: block; margin: 0 auto;" width="800px"/>
+  <figcaption style="text-align: center; font-style: italic">
+    <md>Results of the command: `add n/Tan Ah Kow e/tak@gmail.com p/96521345 a/Blk 41 Telok Blangah Way #07-436 t/hard-of-hearing`.</md>
+  </figcaption>
+
+</figure>
+
+<br>
+
+<box style="background: #fafafaff">
+
+**Navigate to the subsections here:**
+<a href="#parameters" class="badge bg-secondary">Parameters</a> 
+<a href="#command-summary" class="badge bg-secondary">Command Summary</a>
+<a href="#introduction" class="badge bg-light text-dark">Back to top</a>
+
+</box>
 
 <br>
 
@@ -341,8 +440,28 @@ The index **must be a positive integer** 1, 2, 3, …​
 </box>
 
 Examples:
-*  `edit i/10 t/Diabetic`
-*  `edit i/1 n/Joseph p/92891234`
+*  `edit i/10 t/Diabetic` edits the tenth displayed entry to now be tagged as `diabetic` only.
+*  `edit i/1 n/Joseph p/92891234` edits the first displayed entry's name to now be `Joseph` and its phone number to `92891234`.
+
+<figure>
+
+  <img src="images/editCommand.png" alt="edit command" style="display: block; margin: 0 auto;" width="800px"/>
+  <figcaption style="text-align: center; font-style: italic">
+    <md>Results of the command: `edit i/1 n/Joseph p/92891234`.</md>
+  </figcaption>
+
+</figure>
+
+<br>
+
+<box style="background: #fafafaff">
+
+**Navigate to the subsections here:**
+<a href="#parameters" class="badge bg-secondary">Parameters</a> 
+<a href="#command-summary" class="badge bg-secondary">Command Summary</a>
+<a href="#introduction" class="badge bg-light text-dark">Back to top</a>
+
+</box>
 
 <br>
 
@@ -371,8 +490,28 @@ Or:
 </box>
 
 Examples:
-* `list` followed by `delete i/2` deletes the second senior displayed in ElderRing.
-* `delete n/Amy Tan p/61234567`
+* `list` followed by `delete i/2` deletes the second entry displayed.
+* `delete n/Joseph p/92891234` deletes the entry with name `Joseph` and phone number `92891234`.
+
+<figure>
+
+  <img src="images/deleteCommand.png" alt="delete command" style="display: block; margin: 0 auto;" width="800px"/>
+  <figcaption style="text-align: center; font-style: italic">
+    <md>Results of the command: `delete n/Joseph p/92891234`.</md>
+  </figcaption>
+
+</figure>
+
+<br>
+
+<box style="background: #fafafaff">
+
+**Navigate to the subsections here:**
+<a href="#parameters" class="badge bg-secondary">Parameters</a> 
+<a href="#command-summary" class="badge bg-secondary">Command Summary</a>
+<a href="#introduction" class="badge bg-light text-dark">Back to top</a>
+
+</box>
 
 <br>
 
@@ -382,11 +521,32 @@ Shows a list of all seniors in ElderRing.
 
 Format: `list`
 
+<figure>
+
+  <img src="images/listCommand.png" alt="list command" style="display: block; margin: 0 auto;" width="800px"/>
+  <figcaption style="text-align: center; font-style: italic">
+    <md>Results of the command: `list`.</md>
+  </figcaption>
+
+</figure>
+
 <box type="tip" seamless>
 
-If texts end with `...`, there is more information hidden. Click on the `...` to expand and view the full information
-(not applicable to long tags). You can also click on the `...` to hide it again.
+**Tip:** Unhide long texts.
+
 ![expand](images/expandUi.png)
+Clicking on the `...` expands the senior's full information. Clicking on the long text again hides it.
+
+</box>
+
+<br>
+
+<box style="background: #fafafaff">
+
+**Navigate to the subsections here:**
+<a href="#parameters" class="badge bg-secondary">Parameters</a> 
+<a href="#command-summary" class="badge bg-secondary">Command Summary</a>
+<a href="#introduction" class="badge bg-light text-dark">Back to top</a>
 
 </box>
 
@@ -415,18 +575,36 @@ Format: `sort (ASC | DSC)/(NAME | ADDRESS)`
 </box>
 
 Examples:
-* `sort asc/name`
-* `sort dsc/name`
-* `sort asc/address`
-* `sort dsc/address`
+* `sort asc/name` sorts the entries by name in ascending order.
+* `sort dsc/name` sorts the entries by name in descending order.
+* `sort asc/address` sorts the entries by address in ascending order.
+* `sort dsc/address` sorts the entries by address in descending order.
+
+<figure>
+
+  <img src="images/sortCommand.png" alt="sort command" style="display: block; margin: 0 auto;" width="800px"/>
+  <figcaption style="text-align: center; font-style: italic">
+    <md>Results of the command: `sort asc/name`.</md>
+  </figcaption>
+
+</figure>
+
+<br>
+
+<box style="background: #fafafaff">
+
+**Navigate to the subsections here:**
+<a href="#parameters" class="badge bg-secondary">Parameters</a> 
+<a href="#command-summary" class="badge bg-secondary">Command Summary</a>
+<a href="#introduction" class="badge bg-light text-dark">Back to top</a>
+
+</box>
 
 <br>
 
 ### Locating seniors by name : `find`
 
 Finds seniors whose names contain any of the input keywords.
-
-![find command](images/findCommand.png)
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -438,18 +616,35 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
   (e.g., `Hans Bo` will match `Hans Gruber`, `Boyo Yang`).
 
 Examples:
-* `find alex` displays `Alex Yeoh`.
+* `find tan` displays `Shermaine Tan`, `Tan Ah Kow` and `Tan Kai Lun`.
 * `find can ran` displays `Candice Lim`, `Randy Tan`, `Ranger Lee`.
 * `find charlotte bernice` displays `Bernice Yu`, `Charlotte Oliveiro`.
+
+<figure>
+
+  <img src="images/findCommand.png" alt="find command" style="display: block; margin: 0 auto;" width="800px"/>
+  <figcaption style="text-align: center; font-style: italic">
+    <md>Results of the command: `find tan`.</md>
+  </figcaption>
+
+</figure>
+
+<br>
+
+<box style="background: #fafafaff">
+
+**Navigate to the subsections here:**
+<a href="#parameters" class="badge bg-secondary">Parameters</a> 
+<a href="#command-summary" class="badge bg-secondary">Command Summary</a>
+<a href="#introduction" class="badge bg-light text-dark">Back to top</a>
+
+</box>
 
 <br>
 
 ### Adding notes to a senior : `remark`
 
-Adds relevant miscellaneous information to an existing senior. This feature can replace the remark, append to the existing remark, or remove it.
-
-![remark command](images/remarkCommand.png)
-
+Adds relevant miscellaneous information to an existing senior. This feature can replace the current remark, append to the existing remark, or remove it.
 
 Format: `remark i/INDEX r/REMARK` or `remark i/INDEX ap/APPEND_TEXT` or `remark i/INDEX --remove`
 
@@ -470,17 +665,35 @@ With exactly one of:
 </box>
 
 Examples:
-* `remark i/10 r/Senior is aggressive`
-* `remark i/10 ap/Followed up on 24 Oct`
-* `remark i/10 --remove`
+* `remark i/1 r/Senior is aggressive` adds a remark `Senior is aggressive` to the first displayed entry.
+* `remark i/1 ap/Followed up on 24 Oct` appends `Followed up on 24 Oct` to the remarks of the first displayed entry.
+* `remark i/1 --remove` removes any remarks of the first displayed entry.
+
+<figure>
+
+  <img src="images/remarkCommand.png" alt="remark command" style="display: block; margin: 0 auto;" width="800px"/>
+  <figcaption style="text-align: center; font-style: italic">
+    <md>Results of the command: `remark i/1 r/Senior is aggressive`.</md>
+  </figcaption>
+
+</figure>
+
+<br>
+
+<box style="background: #fafafaff">
+
+**Navigate to the subsections here:**
+<a href="#parameters" class="badge bg-secondary">Parameters</a> 
+<a href="#command-summary" class="badge bg-secondary">Command Summary</a>
+<a href="#introduction" class="badge bg-light text-dark">Back to top</a>
+
+</box>
 
 <br>
 
 ### Tagging a senior : `tag`
 
-Tags (or untags) the senior at the specified display `INDEX` or the senior with a matching `NAME` and `PHONE_NUMBER`.
-
-![tag command](images/tagCommand.png)
+Tags (or untags) an existing senior.
 
 <box type="tip" seamless>
 
@@ -488,29 +701,53 @@ Tags (or untags) the senior at the specified display `INDEX` or the senior with 
 
 </box>
 
-Format: `tag i/INDEX t/TAG [ --remove]` or `tag n/NAME p/PHONE_NUMBER t/TAG [ --remove]`
-or `tag i/INDEX t/TAG --remove` or `tag n/NAME p/PHONE_NUMBER t/TAG --remove`
-
+Format: `tag i/INDEX t/TAG [--remove]` or `tag n/NAME p/PHONE_NUMBER t/TAG [--remove]`.
 #### Parameters:
 
 1. `TAG`: Mandatory.
-2. `INDEX`: Optional.
-3. `NAME`: Optional.
-4. `PHONE`: Optional.
+2. `--remove`: Optional.
+
+With either: <br>
+3. `INDEX`: Mandatory.
+
+Or: <br>
+4. `NAME`: Mandatory. <br>
+5. `PHONE`: Mandatory.
+
+* Tags (or untags) the senior at the specified display `INDEX` or the senior with a matching `NAME` and `PHONE_NUMBER`.
+* Only one tag can be added at a time.
+* Tags are meant to serve as labels and hence are only stored as lowercase.
 
 Examples:
-* `tag i/1 t/hard-of-hearing`
-* `tag n/John Doe p/91234567 t/hard-of-hearing`
-* `tag i/1 t/hard-of-hearing --remove`
+* `tag i/1 t/hard-of-hearing` tags the first displayed entry as `hard-of-hearing`.
+* `tag n/John Doe p/91234567 t/hard-of-hearing` tags the entry with name `John Doe` and phone number `91234567` as `hard-of-hearing`.
+* `tag i/1 t/hard-of-hearing --remove` removes (untags) the tag `hard-of-hearing` from the first displayed entry.
+
+<figure>
+
+  <img src="images/tagCommand.png" alt="tag command" style="display: block; margin: 0 auto;" width="800px"/>
+  <figcaption style="text-align: center; font-style: italic">
+    <md>Results of the command: `tag i/1 t/hard-of-hearing`.</md>
+  </figcaption>
+
+</figure>
+
+<br>
+
+<box style="background: #fafafaff">
+
+**Navigate to the subsections here:**
+<a href="#parameters" class="badge bg-secondary">Parameters</a> 
+<a href="#command-summary" class="badge bg-secondary">Command Summary</a>
+<a href="#introduction" class="badge bg-light text-dark">Back to top</a>
+
+</box>
 
 <br>
 
 ### Filtering entries : `filter`
 
-Only displays the entries with the input tag.
-
-![filter command](images/filterCommand.png)
-
+Only displays the entries matching the entire input tag(s) exactly. Filter does not match tags which partially match the input tag(s).
 
 <box type="tip" seamless>
 
@@ -518,19 +755,40 @@ Only displays the entries with the input tag.
 
 </box>
 
-Format: `filter t/TAG`
+Format: `filter t/TAG [t/TAG]...`
 
 #### Parameters:
 
 1. `TAG`: Mandatory.
 
 Examples:
-* `filter t/hard-of-hearing`
+* `filter t/hard-of-hearing` displays the entries with the `hard-of-hearing` tag.
+* `filter t/1950-1960 t/hard-of-hearing` displays the entries tagged with `1950-1960` or `hard-of-hearing`.
+
+<figure>
+
+  <img src="images/filterCommand.png" alt="filter command" style="display: block; margin: 0 auto;" width="800px"/>
+  <figcaption style="text-align: center; font-style: italic">
+    <md>Results of the command: `filter t/hard-of-hearing`.</md>
+  </figcaption>
+
+</figure>
 
 <box type="warning">
 
 **Warning**: If the tag specified does not exist, this feature will not display any entries.
 To display the original list of seniors, use the [list](#listing-all-seniors-list) command.
+
+</box>
+
+<br>
+
+<box style="background: #fafafaff">
+
+**Navigate to the subsections here:**
+<a href="#parameters" class="badge bg-secondary">Parameters</a> 
+<a href="#command-summary" class="badge bg-secondary">Command Summary</a>
+<a href="#introduction" class="badge bg-light text-dark">Back to top</a>
 
 </box>
 
@@ -546,9 +804,29 @@ Format: `clear --removeall`
 
 1. `--removeall`: Mandatory.
 
+<figure>
+
+  <img src="images/clearCommand.png" alt="clear command" style="display: block; margin: 0 auto;" width="800px"/>
+  <figcaption style="text-align: center; font-style: italic">
+    <md>Results of the command: `clear --removeall`.</md>
+  </figcaption>
+
+</figure>
+
 <box type="warning">
 
-**Warning**: Be careful. This command irreversibly deletes ALL entries (this operation cannot be undone).
+**Warning**: Be careful. This command irreversibly deletes **ALL** entries (this operation cannot be undone).
+
+</box>
+
+<br>
+
+<box style="background: #fafafaff">
+
+**Navigate to the subsections here:**
+<a href="#parameters" class="badge bg-secondary">Parameters</a> 
+<a href="#command-summary" class="badge bg-secondary">Command Summary</a>
+<a href="#introduction" class="badge bg-light text-dark">Back to top</a>
 
 </box>
 
@@ -562,6 +840,17 @@ Format: `exit`
 
 <br>
 
+<box style="background: #fafafaff">
+
+**Navigate to the subsections here:**
+<a href="#parameters" class="badge bg-secondary">Parameters</a> 
+<a href="#command-summary" class="badge bg-secondary">Command Summary</a>
+<a href="#introduction" class="badge bg-light text-dark">Back to top</a>
+
+</box>
+
+<br>
+
 ### Saving the data
 
 ElderRing data is automatically saved in the hard disk after any command that modifies the data. There is no need for manual saving.
@@ -571,6 +860,8 @@ ElderRing data is automatically saved in the hard disk after any command that mo
 The application supports up to **250 entries** to maintain optimal performance while meeting the operational needs of volunteers who typically manage a manageable number of senior contacts.
 
 </box>
+
+<br>
 
 ### Editing the data file
 
@@ -592,6 +883,8 @@ ElderRing data are automatically saved as a JSON file `[JAR file location]/data/
 
 </box>
 
+<br>
+
 --------------------------------------------------------------------------------------------------------------------
 
 <br>
@@ -601,6 +894,12 @@ ElderRing data are automatically saved as a JSON file `[JAR file location]/data/
 **Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ElderRing home folder.
 
+<br>
+
+<a href="#introduction">Back to top</a>
+
+<br>
+
 --------------------------------------------------------------------------------------------------------------------
 
 <br>
@@ -608,8 +907,13 @@ ElderRing data are automatically saved as a JSON file `[JAR file location]/data/
 ## Known Issues
 
 1. **When using multiple screens**, the GUI will open off-screen if you move the application to a secondary screen, and later switch to using only the primary screen. <br><br>
-The remedy is to delete the `preferences.json` file created by the application (in the same folder as the JAR file) before running the application again.
-<br><br>
+The remedy is to delete the `preferences.json` file created by the application (in the same folder as the JAR file) before running the application again. <br>
+
+<br>
+
+<a href="#introduction">Back to top</a>
+
+<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -634,3 +938,7 @@ The remedy is to delete the `preferences.json` file created by the application (
 | **[filter](#filtering-entries-filter)**                            | `filter t/TAG`                                                                            | `filter t/hard-of-hearing`                                                                         |
 | **[clear](#clearing-all-entries-clear)**                           | `clear --removeall`                                                                                   | `clear --removeall`                                                                                            |
 | **[exit](#exiting-the-program-exit)**                              | `exit`                                                                                    | `exit`                                                                                             |
+
+<br>
+
+<a href="#introduction">Back to top</a>

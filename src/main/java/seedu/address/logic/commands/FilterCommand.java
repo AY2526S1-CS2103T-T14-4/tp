@@ -15,7 +15,7 @@ import seedu.address.model.tag.Tag;
 public class FilterCommand extends Command {
 
     public static final String COMMAND_WORD = "filter";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": filters all seniors with the specified tag.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": filters all seniors with the specified tag(s).\n"
             + "Parameters: t/TAG\n"
             + "Example: " + COMMAND_WORD + " t/friend";
 
@@ -42,7 +42,7 @@ public class FilterCommand extends Command {
 
         String joinedTags = tags.stream().map(Tag::toString).reduce((a, b) -> a + ", " + b).orElse("");
         return new CommandResult(
-                String.format("Elderly with tag(s): %s", joinedTags));
+                String.format("Listed all seniors with tag(s): %s", joinedTags));
     }
 
     @Override
@@ -55,6 +55,6 @@ public class FilterCommand extends Command {
     @Override
     public String toString() {
         String joinedTags = tags.stream().map(Tag::toString).reduce((a, b) -> a + ", " + b).orElse("");
-        return "Elderly with tag(s): " + joinedTags;
+        return "Listed all seniors with tag(s): " + joinedTags;
     }
 }
