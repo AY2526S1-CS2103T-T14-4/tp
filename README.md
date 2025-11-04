@@ -1,5 +1,5 @@
 [![Java CI](https://github.com/AY2526S1-CS2103T-T14-4/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2526S1-CS2103T-T14-4/tp/actions/workflows/gradle.yml)
-[![codecov]()](https://codecov.io/gh/AY2526S1-CS2103T-T14-4/tp)
+[![codecov](https://codecov.io/gh/AY2526S1-CS2103T-T14-4/tp/graph/badge.svg?token=H10E5XH0BD)](https://codecov.io/gh/AY2526S1-CS2103T-T14-4/tp)
 ![Ui](docs/images/Ui.png)
 
 * ElderRing is an elderly care management address book for silver generation ambassadors and volunteers to easily facilitate and manage elderly clients by consolidating all their information in one place.<br>
